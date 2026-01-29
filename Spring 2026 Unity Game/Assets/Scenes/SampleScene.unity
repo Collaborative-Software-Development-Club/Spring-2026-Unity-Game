@@ -621,7 +621,7 @@ MonoBehaviour:
   _sprintSpeed: 12
   _rotationSpeed: 15
   _inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 1892599961}
 --- !u!54 &1892599960
 Rigidbody:
   m_ObjectHideFlags: 0
