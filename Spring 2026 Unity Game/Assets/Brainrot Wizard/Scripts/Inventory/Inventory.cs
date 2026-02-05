@@ -80,7 +80,7 @@ public class Inventory : MonoBehaviour
     
         itemQuantityText.text = slot.quantity.ToString();
     }
-
+    // Carson 2 4 2026
     public void TaxItems(float percent)
     {
         for (int i = 0; i < inventory.Length; i++)
@@ -124,13 +124,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void OnDrop(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            DropItem();
-        }
-    }
+
+    // Move to player inventory subclass
+    // public void Drop(InputAction.CallbackContext context)
+    // {
+    //     if (context.started)
+    //     {
+    //         DropItem();
+    //     }
+    // }
     
     private void DropItem()
     {
@@ -144,7 +146,7 @@ public class Inventory : MonoBehaviour
         switch (itemTypeToDrop)
         {
             case ItemType.None:
-                DropOre();
+                Drop();
                 break;
             default:
                 Debug.LogWarning("Can't drop invalid type!");
@@ -153,7 +155,7 @@ public class Inventory : MonoBehaviour
     }
 
     // TODO: Make into general items in the future 
-    private void DropOre()
+    private void Drop()
     {
         if(inventory[currentlySelectedSlot] == null || inventory[currentlySelectedSlot].quantity <= 0) return;
 
