@@ -30,7 +30,8 @@ public class Inventory : MonoBehaviour
         itemSpriteRenderer = itemPrefab.GetComponent<SpriteRenderer>();
     }
     
-    public bool AddItemToInventory(ItemClass item, int amount)
+    // Needs to be switched to a item instance in the future
+    public bool AddItemToInventory(ItemData item, int amount)
     {
         for (int i = 0; i < inventory.Length; i++)
         {
@@ -47,10 +48,10 @@ public class Inventory : MonoBehaviour
             if (slot != null && slot.item != null) continue;
             inventory[i] = new InventorySlot(item, amount);
             inventorySlots[i].gameObject.SetActive(true);
-            inventorySlots[i].GetComponent<Image>().sprite = item.itemIcon;
+            inventorySlots[i].GetComponent<Image>().sprite = item.icon;
             itemQuantityText.SetActive(true);
             itemQuantityText.GetComponent<TextMeshProUGUI>().text = amount.ToString();
-
+            
             return true;
         }
 

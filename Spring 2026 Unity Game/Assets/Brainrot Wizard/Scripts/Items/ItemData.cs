@@ -20,12 +20,12 @@ public enum Rarity
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Game/BrainrotMixer/Item/Base Item")]
-public class ItemClass : ScriptableObject
+public class ItemData : ScriptableObject
 {
-    public string itemName = "Unnamed";
-    public ItemType itemType =  ItemType.None;
-    public Rarity rarity = Rarity.None;
+    public new string name = "Unnamed";
+    public string text;
     public double value = 0;
-    public Sprite itemIcon;
-    public string itemText;
+    public Sprite icon;
+    public ItemType type =  ItemType.None;
+    public Rarity rarity = Rarity.None;
 }
