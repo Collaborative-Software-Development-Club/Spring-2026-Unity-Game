@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public enum ItemType{
+public enum ItemType
+{
     None,
     Machine,
     Brainrot,
@@ -16,7 +17,7 @@ public enum Rarity
     Uncommon,
     Rare,
     Epic,
-    Legendary,
+    Legendary
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Game/BrainrotMixer/Item/Base Item")]

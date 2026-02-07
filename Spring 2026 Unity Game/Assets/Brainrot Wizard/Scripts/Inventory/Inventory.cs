@@ -11,18 +11,15 @@ public class Inventory : MonoBehaviour
     }
 
     public bool AddItemToInventory(ItemData item, int quantity=1) {
-        bool found = false;
         for (int i = 0; i < slots.Length; i++) {
             if (slots[i].Type() == item.type) {
                 slots[i].quantity++;
-                found = true;
                 return true;
             }
         }
         for (int i = 0; i < slots.Length; i++) {
             if (slots[i] == null) {
                 slots[i] = new InventorySlot(item, quantity);
-                found = true;
                 return true;
             }
         }
