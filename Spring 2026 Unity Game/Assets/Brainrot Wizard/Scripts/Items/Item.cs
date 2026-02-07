@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     private ItemData itemData;
-    protected virtual ItemData GetItemData() => itemData;
+    protected virtual ItemData GetItemData() => itemData; // what does this do
 
     public void PrintData()
     {
