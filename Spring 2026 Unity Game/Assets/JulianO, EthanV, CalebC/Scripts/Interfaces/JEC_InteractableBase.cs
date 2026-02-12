@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class CCInteractableBase : MonoBehaviour
+public abstract class JEC_InteractableBase : MonoBehaviour
 {
     [SerializeField] private InputReader inputReader;
     [SerializeField] private GameObject interactionPrompt;

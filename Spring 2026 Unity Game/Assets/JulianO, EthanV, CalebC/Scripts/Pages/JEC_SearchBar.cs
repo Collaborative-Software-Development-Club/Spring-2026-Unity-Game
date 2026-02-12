@@ -2,7 +2,7 @@ using System;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class CCSearchBar : CCInteractableBase
+public class JEC_SearchBar : JEC_InteractableBase
 {
     protected override void Interact()
     {
