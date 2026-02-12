@@ -9,22 +9,37 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
     public event UnityAction<bool> SprintEvent = delegate { };
     // Add this line:
     public event UnityAction InteractEvent = delegate { };
+    public event UnityAction NumSelectEvent = delegate { };
 
     private PlayerInputActions _actions;
 
+    public PlayerInputActions Actions
+    {
+        get
+        {
+            EnsureActions();
+            return _actions;
+        }
+    }
+
     private void OnEnable()
     {
-        if (_actions == null)
-        {
-            _actions = new PlayerInputActions();
-            _actions.Player.SetCallbacks(this);
-        }
+        EnsureActions();
         _actions.Player.Enable();
     }
 
     private void OnDisable()
     {
         _actions?.Player.Disable();
+    }
+
+    private void EnsureActions()
+    {
+        if (_actions != null)
+            return;
+
+        _actions = new PlayerInputActions();
+        _actions.Player.SetCallbacks(this);
     }
 
     public void OnMove(InputAction.CallbackContext context) => MoveEvent.Invoke(context.ReadValue<Vector2>());
@@ -47,5 +62,11 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
             Debug.Log("Input Reader: Interaction Event Triggered!");
             InteractEvent.Invoke();
         }
+    }
+
+    public void OnNumSelect(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            NumSelectEvent.Invoke();
     }
 }
