@@ -1,27 +1,27 @@
 [System.Serializable]
 public class InventorySlot
 {
-    public ItemData? itemData;
+    public Item item;
     public int quantity;
 
-    public InventorySlot(ItemData itemData, int quantity)
+    public InventorySlot(Item item, int quantity)
     {
-        this.itemData = itemData;
+        this.item = item;
         this.quantity = quantity;
     }
 
     public InventorySlot() {
-        this.itemData = null;
-        this.quantity = 0;
+        item = null;
+        quantity = 0;
     }
 
     public ItemType Type() {
-        return this.itemData.type;
+        return item.GetType();
     }
 
-    public bool Add(InventorySlot invslot) {
-        if (invslot.quantity == this.quantity) {
-            this.quantity += invslot.quantity;
+    public bool Add(InventorySlot invSlot) {
+        if (invSlot.quantity == quantity) {
+            quantity += invSlot.quantity;
             return true;
         }
         return false;
