@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0488121544089041855bd69bb775fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Brainrot
-  brainrotData: {fileID: 11400000, guid: 9d3bf689b1e933244a43aceabcd25606, type: 2}
+  Data: {fileID: 11400000, guid: 9d3bf689b1e933244a43aceabcd25606, type: 2}
 --- !u!4 &1269979254
 Transform:
   m_ObjectHideFlags: 0

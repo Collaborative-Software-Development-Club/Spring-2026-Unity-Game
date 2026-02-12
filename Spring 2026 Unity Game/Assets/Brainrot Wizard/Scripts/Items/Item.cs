@@ -2,9 +2,8 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    private ItemData itemData;
-    protected virtual ItemData GetItemData() => itemData; // what does this do
-
+    [SerializeField] protected ItemData data; 
+    
     public void PrintData()
     {
         if(!HasData())
@@ -13,13 +12,13 @@ public abstract class Item : MonoBehaviour
             return;
         }
 
-        Debug.Log(GetData());
+        Debug.Log(GetDataAsString());
     }
 
-    public virtual string GetData()
+    public virtual string GetDataAsString()
     {
         return $"[{GetRarity()}] {GetName()}\n" +
-               $"Type: {GetItemType()}\n" +
+               $"Type: {GetType()}\n" +
                $"Value: {GetValue()}\n" +
                $"Description: {GetDescription()}";
     }
@@ -41,31 +40,31 @@ public abstract class Item : MonoBehaviour
     }
     public virtual string GetName()
     {
-        return GetItemData().name;
+        return data.name;
     }
     public virtual string GetDescription()
     {
-        return GetItemData().text;
+        return data.text;
     }
     public virtual double GetValue()
     {
-        return GetItemData().value;
+        return data.value;
     }
-    public virtual ItemType GetItemType()
+    public virtual ItemType GetType()
     {
-        return GetItemData().type;
+        return data.type;
     }
     public virtual Rarity GetRarity()
     {
-        return GetItemData().rarity;
+        return data.rarity;
     }
     public virtual Sprite GetIcon()
     {
-        return GetItemData().icon;
+        return data.icon;
     }
     public bool HasData()
     {
-        return GetItemData() != null;
+        return data != null;
     }
     protected virtual void OnValidate()
     {
