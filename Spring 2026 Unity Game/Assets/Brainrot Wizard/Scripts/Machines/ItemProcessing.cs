@@ -25,9 +25,8 @@ public class ItemProcessing : MonoBehaviour
         return output;
     }
 
-    public bool addToInput(ItemData inputItem, int quantity)
+    public bool addToInput(Item inputItem, int quantity)
     {
-        //return input.AddItemToInventory(inputItem, quantity);
-        return true;
+        return input.AddItemToInventory(inputItem, quantity);
     }
 }
