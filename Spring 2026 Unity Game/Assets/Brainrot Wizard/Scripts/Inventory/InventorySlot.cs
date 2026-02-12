@@ -1,7 +1,7 @@
 [System.Serializable]
 public class InventorySlot
 {
-    public Item item;
+    public Item? item;
     public int quantity;
 
     public InventorySlot(Item item, int quantity)
@@ -20,8 +20,17 @@ public class InventorySlot
     }
 
     public bool Add(InventorySlot invSlot) {
-        if (invSlot.quantity == quantity) {
-            quantity += invSlot.quantity;
+        return Add(invSlot.item, invSlot.quantity);
+    }
+
+    public bool Add(Item item, int quantity) {
+        if (this.quantity == quantity) {
+            this.quantity += quantity;
+            return true;
+        }
+        if (this.quantity == 0 || item is null) {
+            this.item = item;
+            this.quantity += quantity;
             return true;
         }
         return false;
