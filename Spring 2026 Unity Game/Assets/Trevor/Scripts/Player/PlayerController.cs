@@ -6,11 +6,11 @@ public class PlayerController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _walkSpeed = 7f;
     [SerializeField] private float _sprintSpeed = 12f;
-    [SerializeField] private float _rotationSpeed = 15f;
 
     [Header("References")]
     [SerializeField] private InputReader _inputReader;
-    [SerializeField] private SpriteRenderer _spriteRenderer; // Drag your sprite child here
+    // Reference the asset's script here
+    [SerializeField] private Animator _animator;
 
     private Rigidbody _rb;
     private Vector2 _frameInput;
@@ -33,19 +33,33 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         float speed = _isSprinting ? _sprintSpeed : _walkSpeed;
+        // Movement on X/Z plane for 3D physics
         Vector3 moveDir = new Vector3(_frameInput.x, 0, _frameInput.y).normalized;
 
         _rb.linearVelocity = new Vector3(moveDir.x * speed, _rb.linearVelocity.y, moveDir.z * speed);
 
-        HandleSpriteDirection();
+        HandleAnimations();
     }
 
-    private void HandleSpriteDirection()
+    private void HandleAnimations()
     {
-        if (_frameInput.x == 0) return;
+        if (_animator == null) return;
 
-        // Flip the sprite based on horizontal movement
-        // This keeps the sprite "upright" but changes the facing direction
-        _spriteRenderer.flipX = _frameInput.x < 0;
+        // Tell the animator if we are moving
+        bool isMoving = _frameInput.magnitude > 0;
+        _animator.SetBool("IsMoving", isMoving);
+
+        if (!isMoving) return;
+
+        // Determine direction integer for the asset's animator
+        // 0: Down, 1: Up, 2: Right, 3: Left
+        if (Mathf.Abs(_frameInput.x) > Mathf.Abs(_frameInput.y))
+        {
+            _animator.SetInteger("Direction", _frameInput.x > 0 ? 2 : 3);
+        }
+        else
+        {
+            _animator.SetInteger("Direction", _frameInput.y > 0 ? 1 : 0);
+        }
     }
 }
