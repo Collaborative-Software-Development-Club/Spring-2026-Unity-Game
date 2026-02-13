@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -52,8 +53,27 @@ public class MachineAdd : MonoBehaviour
             quantity = 2;
         }
 
-            // Find existing attribute entry and increment if present, otherwise add new.
-            var existing = clone.attributes.Find(aq => aq.attribute == chosen);
+        
+        
+
+        // Total all attributes that currently exist, divide 1 by that, and then randomize a chance to possibly remove a quantity of that attribute.
+        int totalAttributes = clone.attributes.Sum(aq => aq.quantity);
+        if (totalAttributes > 0)
+        {
+            double chanceToRemove = 1.0 / totalAttributes * 100;
+            foreach (AttributeQuantity attribute in clone.attributes) {
+                int removeRoll = Random.Range(0, 100);
+                if (chanceToRemove < removeRoll) {
+                    attribute.quantity = -1;
+                    if (attribute.quantity <= 0) {
+                        clone.attributes.Remove(attribute);
+                    }
+                }
+            }
+        }
+
+        // Find existing attribute entry and increment if present, otherwise add new.
+        var existing = clone.attributes.Find(aq => aq.attribute == chosen);
         if (existing != null)
         {
             existing.quantity += quantity;
