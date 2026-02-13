@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//If there is an issue with this class it may be because canvas is xy space and map is xz space.
 public class GridUtility
 {
     public static Vector2Int WorldSpaceToGrid(Vector2 worldPos, int gridWidth, int gridHeight)
@@ -10,5 +11,10 @@ public class GridUtility
         return new Vector2Int(gridX, gridY);
     }
 
-    //public static Vector2 GridToWorldSpace(int gridWidth, int gridHeight)
+
+    public static Vector2 GridToWorldSpace(int x, int y, int gridWidth, int gridHeight)
+    {
+        Vector2 viewportPos = new Vector3((float)x / gridWidth, (float)y / gridHeight);
+        return Camera.main.ViewportToWorldPoint(viewportPos);
+    }
 }

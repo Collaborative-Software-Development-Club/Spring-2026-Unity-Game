@@ -69,14 +69,18 @@ public class Inventory
         InventorySlot returning = new InventorySlot(); // null slot
 
         //slots[slot].quantity = Math.Clamp(slots[slot].quantity - quantity, 0, slots.Length);
-        
+        if (quantity <= 0) {
+            Debug.Log("You asked for a negative or zero amount of something at invslot " + slot + "!");
+            return returning;
+        }
+
         if (slots[slot].quantity > quantity) {
             slots[slot].quantity -= quantity;
-            returning = new InventorySlot(slots[slot].item, quantity);
+            returning.Add(slots[slot].item, quantity);
             return returning;
         }
         if (slots[slot].quantity > 0) { // full removal of the invslot
-            returning = new InventorySlot(slots[slot].item, slots[slot].quantity);
+            returning.Add(slots[slot].item, slots[slot].quantity);
             slots[slot] = new InventorySlot(); // nullify slot
             return returning;
         }
@@ -85,7 +89,7 @@ public class Inventory
 
     //parse inventory and remove all of a specific type of item, up to a quantity, and return them
     public InventorySlot RemoveItemFromInventory(Item item, int quantity=1) {
-        InventorySlot returning = new InventorySlot(item, 0);
+        InventorySlot returning = new InventorySlot();
         for (int i = slots.Length-1; i >= 0; i--) {
             if (slots[i].Type() == item.GetType()) {
                 returning.Add(RemoveFromSlot(i, quantity - returning.quantity));

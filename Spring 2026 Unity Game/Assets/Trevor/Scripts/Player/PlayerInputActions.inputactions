@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NumSelect",
+                    "type": "Button",
+                    "id": "7264f0f8-0a41-4108-8ba7-34e65452f2e8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -109,6 +118,61 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05ae9341-9c85-4522-aed2-02de626adbe3",
+                    "path": "<Keyboard>/#(1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NumSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "066954a5-e28a-4923-a099-25bb430225d9",
+                    "path": "<Keyboard>/#(2)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NumSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "347e85b1-3532-4262-9bfe-7d1f8969e3df",
+                    "path": "<Keyboard>/#(3)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NumSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7dd6e67d-2061-4ce1-b65d-544ee2884e03",
+                    "path": "<Keyboard>/#(4)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NumSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8dd4e6a1-1a80-457f-ae16-17fc7197f17a",
+                    "path": "<Keyboard>/#(5)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NumSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
