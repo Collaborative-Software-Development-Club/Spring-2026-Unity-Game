@@ -105,4 +105,12 @@ public class Inventory
 
         return returning;
     }
+    // Return the total number of items within the inventory.
+    public int GetTotalItemCount() {
+        int count = 0;
+        for (int i = 0; i < slots.Length; i++) {
+            count += slots[i].quantity;
+        }
+        return count;
+    }
 }
