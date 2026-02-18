@@ -4,7 +4,7 @@ using UnityEngine;
 public class JEC_KeyboardPedestal : JEC_InteractableBase
 {
     public GameObject KeyboardUI;
-    public PlayerController Controller;
+    public GameObject Player;
 
     private void Update()
     {
@@ -23,17 +23,20 @@ public class JEC_KeyboardPedestal : JEC_InteractableBase
     protected override void Interact()
     {
         JEC_Events.OnInteractKeyboardPedestal.Invoke();
+        Debug.Log("Interacted with Keyboard");
     }
 
     public void ExitPedestal()
     {
         KeyboardUI.SetActive(false);
-        Controller.enabled = true;
+        Player.GetComponent<PlayerController>().enabled = true;
     }
 
     public void EnterPedestal()
     {
         KeyboardUI.SetActive(true);
-        Controller.enabled = false;
+        Player.GetComponent<PlayerController>().enabled = false;
+        Player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+
     }
 }

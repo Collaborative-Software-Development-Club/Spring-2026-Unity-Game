@@ -171,6 +171,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &58211441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8179888228996640637, guid: cb07985d6cf62974a966720c5b2ef555,
+    type: 3}
+  m_PrefabInstance: {fileID: 694788262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &77223891
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,18 +820,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 694788262}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &694788264 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1171674424468010076, guid: cb07985d6cf62974a966720c5b2ef555,
-    type: 3}
-  m_PrefabInstance: {fileID: 694788262}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e7ad1a83241d0a4ba0a6aa83c2e3620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &755119102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,8 +1088,9 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   interactionPrompt: {fileID: 630729498}
   hidePromptOnInteract: 1
+  playerInRange: 0
   KeyboardUI: {fileID: 514561542}
-  Controller: {fileID: 694788264}
+  Player: {fileID: 58211441}
 --- !u!135 &852619703
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2665,6 +2660,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key Collectable
       objectReference: {fileID: 0}
+    - target: {fileID: 2245998342842503689, guid: 5395ec87795e03d46b93796c864066ea,
+        type: 3}
+      propertyPath: m_Name
+      value: Letter
+      objectReference: {fileID: 0}
     - target: {fileID: 3127278221859417523, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2770,6 +2770,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1262540174}
+    - target: {fileID: 8584391440406854541, guid: 5395ec87795e03d46b93796c864066ea,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
