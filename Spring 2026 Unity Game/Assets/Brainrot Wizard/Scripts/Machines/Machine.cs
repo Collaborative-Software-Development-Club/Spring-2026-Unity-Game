@@ -164,7 +164,7 @@ public abstract class Machine : MonoBehaviour
         if (attrCount == 0) { Debug.Log($"{name}: no attributes to duplicate."); input.AddItemToInventory(item, removed.quantity); return; }
 
         int attributeIndex = UnityEngine.Random.Range(0, attrCount);
-        var result = MachineFunctionality.duplicateRandomAttribute(itemData, attributeIndex, failChance);
+        var result = MachineFunctionality.DuplicateRandomAttribute(itemData, attributeIndex, failChance);
         if (result == null) { Debug.Log($"{name}: duplicateRandomAttribute returned null."); input.AddItemToInventory(item, removed.quantity); return; }
 
         if (!SetItemData(item, result)) { Debug.LogWarning($"{name}: failed to set ItemData on item."); input.AddItemToInventory(item, removed.quantity); return; }

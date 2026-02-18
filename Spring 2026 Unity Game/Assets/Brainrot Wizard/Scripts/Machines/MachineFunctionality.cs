@@ -226,7 +226,7 @@ public class MachineFunctionality : MonoBehaviour
     /// instead of incremented.</param>
     /// <returns>A new BrainrotData instance with the selected attribute incremented or decremented based on the random chance;
     /// or null if input is null.</returns>
-    public static BrainrotData duplicateRandomAttribute(BrainrotData input, int attributeToDuplicate, int failChance)
+    public static BrainrotData DuplicateRandomAttribute(BrainrotData input, int attributeToDuplicate, int failChance)
     {
         if (input == null)
         {

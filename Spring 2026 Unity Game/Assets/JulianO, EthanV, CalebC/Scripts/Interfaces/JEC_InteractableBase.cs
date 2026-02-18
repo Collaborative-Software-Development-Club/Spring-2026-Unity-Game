@@ -8,12 +8,12 @@ public abstract class JEC_InteractableBase : MonoBehaviour
     [SerializeField] private GameObject interactionPrompt;
     //Hides prompt after one interaction
     [SerializeField] private bool hidePromptOnInteract = false;
+    [SerializeField] private bool playerInRange = false;
 
     private void OnEnable()
     {
         if (inputReader != null)
         {
-            inputReader.InteractEvent += Interact;
             inputReader.InteractEvent += DisableInteract;
         }
     }
@@ -22,7 +22,6 @@ public abstract class JEC_InteractableBase : MonoBehaviour
     {
         if (inputReader != null)
         {
-            inputReader.InteractEvent -= Interact;
             inputReader.InteractEvent -= DisableInteract;
         }
     }
@@ -41,6 +40,7 @@ public abstract class JEC_InteractableBase : MonoBehaviour
             if (interactionPrompt != null)
             {
                 interactionPrompt.SetActive(true);
+                inputReader.InteractEvent += Interact;
             }
         }
     }
@@ -52,6 +52,7 @@ public abstract class JEC_InteractableBase : MonoBehaviour
             if (interactionPrompt != null)
             {
                 interactionPrompt.SetActive(false);
+                inputReader.InteractEvent -= Interact;
             }
         }
     }
