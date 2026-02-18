@@ -4,8 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class CollectSeed : MonoBehaviour {
-	[SerializeField] private string name;
+public class CollectWater: MonoBehaviour {
 	[SerializeField] private int maxAmt;
 	[SerializeField] private InputReader inputReader;
 	[SerializeField] private GameObject popupPrompt;
@@ -27,16 +26,11 @@ public class CollectSeed : MonoBehaviour {
 
 	private void collectInteraction() {
 		if (isPlayerNearby) {
-			if (PlayerInv.seeds.ContainsKey(name)) {
-				if (PlayerInv.seeds[name] < maxAmt) {
-					PlayerInv.seeds[name]++;
-					Debug.Log("<color=green> COLLECTED ANOTHER " + name + " SEED.</color>");
-				} else {
-					Debug.Log("<color=red>MAX " + name + " SEED AMOUNT REACHED</color>.");
-				}
+			if (PlayerInv.water < maxAmt) {
+				PlayerInv.water++;
+				Debug.Log("<color=blue> COLLECTED ANOTHER WATER.</color>");
 			} else {
-				PlayerInv.seeds.Add(name, 1);
-				Debug.Log("<color=green>COLLECTED " + name + " SEED.</color>");
+				Debug.Log("<color=red>MAX WATER AMOUNT REACHED</color>.");
 			}
 		}
 	}
