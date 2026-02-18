@@ -7,36 +7,17 @@ public class JEC_KeyManager : MonoBehaviour
     // Store a list of KeyScriptableObjects
     public List<JEC_Key> Keyboard;
 
-    //TEMPORARY FOR TOGGLING KEYBOARD PEDESTAL
-    public GameObject PedestalDisplay;
-    private bool PedestalDisplayed = false;
-
     // Whenever we type in the URL, we need to track how many of each char has been used
     public Dictionary<string, int> KeysUsed;
 
     void Start()
     {
-        JEC_Events.OnInteractPedestal.AddListener(ToggleKeyDisplay);
+        JEC_Events.OnPickupKey.AddListener(IncrementKeyVal);
 
         foreach (var key in Keyboard)
         {
             key.amount = 0;
         }
-    }
-
-    private void Update()
-    {
-        // Whenever we press F, KeyManager updates our scriptableObjects and KeyDisplay updates the UI 
-        if (Input.GetKeyDown("p"))
-        {
-            JEC_Events.OnInteractPedestal.Invoke();
-        }
-    }
-
-    public void ToggleKeyDisplay()
-    {
-        PedestalDisplayed = !PedestalDisplayed;
-        PedestalDisplay.SetActive(PedestalDisplayed);
     }
 
     public JEC_Key FindKey(string c)

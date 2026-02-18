@@ -12,28 +12,12 @@ public class JEC_KeyDisplay : MonoBehaviour
     {
         JEC_Events.OnKeyPressSuccess.AddListener(UpdateDisplayedKey);
         JEC_Events.OnKeyRemoved.AddListener(UpdateDisplayedKey);
+        JEC_Events.OnInteractKeyboardPedestal.AddListener(UpdateAllDisplayedKeys);
     }
 
-    void Update()
+    private void OnEnable()
     {
-        // Whenever we press F, KeyManager updates our scriptableObjects and KeyDisplay updates the UI 
-        if(Input.GetKeyDown("f"))
-        {
-            KeyManager.IncrementKeyVal("a");
-            Debug.Log("Added a to Keys");
-
-            UpdateDisplayedKey("a");
-        }
-
-        // Whenever we press F, KeyManager updates our scriptableObjects and KeyDisplay updates the UI 
-        if (Input.GetKeyDown("m"))
-        {
-            KeyManager.IncrementKeyVal("b");
-            Debug.Log("Added b to Keys");
-
-            UpdateDisplayedKey("b");
-        }
-
+        UpdateAllDisplayedKeys();
     }
 
     public void UpdateDisplayedKey(string c)
@@ -53,6 +37,24 @@ public class JEC_KeyDisplay : MonoBehaviour
             amountText.text = (key.amount - KeyManager.KeysUsed[key.character]).ToString();
             Debug.Log("Number of " + c + " keys used: " + KeyManager.KeysUsed[key.character].ToString());
         }
+    }
+
+    public void UpdateAllDisplayedKeys()
+    {
+
+        foreach (JEC_Key key in KeyManager.Keyboard)
+        {
+            string c = key.character;
+
+            GameObject keyUI = GetUIKey(c);
+
+            GameObject amount = JEC_Helper.FindGameObjectInChildWithTag(keyUI, "JEC_Amount");
+            TextMeshProUGUI amountText = amount.GetComponent<TextMeshProUGUI>();
+
+            amountText.text = (key.amount - KeyManager.KeysUsed[c]).ToString();
+        }
+
+        Debug.Log("Updated Key UI");
     }
 
     public GameObject GetUIKey(string c)

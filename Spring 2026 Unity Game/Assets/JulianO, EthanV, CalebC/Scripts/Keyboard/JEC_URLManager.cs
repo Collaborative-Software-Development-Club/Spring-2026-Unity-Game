@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class JEC_URLManager : MonoBehaviour
 {
@@ -11,23 +12,23 @@ public class JEC_URLManager : MonoBehaviour
     private TMP_InputField inputText;
     private string CurrentText;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+
+    private void OnEnable()
     {
         inputText = GetComponent<TMP_InputField>();
 
-        if (inputText == null )
+        if (inputText == null)
         {
             Debug.LogError("JEC_ERROR: Failed to retrieve text component.");
         }
 
         CurrentText = inputText.text;
-    }
 
-    private void OnEnable()
-    {
         KeyManager.ResetKeysTyped();
 
+        // TODO: make it so input field is automatically selected
+        inputText.ActivateInputField();
     }
 
     public void TextFilter(string text)
