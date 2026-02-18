@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EssenceSpawner : MonoBehaviour
 {
+    [SerializeField] Vector2Int initialVel;
     EssenceController essenceController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,7 +13,7 @@ public class EssenceSpawner : MonoBehaviour
 
     private void Update()
     {
-        essenceController.CreateEssenceWorld(gameObject.transform.position, new Vector2Int(-1, 0), EssenceType.normal);
+        essenceController.CreateEssenceWorld(gameObject.transform.position, initialVel, EssenceType.normal);
     }
 
 }

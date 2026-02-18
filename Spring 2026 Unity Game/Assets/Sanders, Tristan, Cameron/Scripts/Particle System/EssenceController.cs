@@ -13,11 +13,13 @@ public class EssenceController : MonoBehaviour
     };
 
     private Texture2D essenceTexture;
-    private EssenceData[,] essenceGrid;
+    private Essence[,] essenceGrid;
     private HashSet<Vector2Int> activeEssenceLocations = new();
 
     [SerializeField] int gridHeight;
     [SerializeField] int gridWidth;
+
+    #region Initialization
     //Ensure aspect ratio of grid is aligned with monitor.
     private void OnValidate()
     {
@@ -42,66 +44,76 @@ public class EssenceController : MonoBehaviour
 
     private void Awake()
     {
-        essenceGrid = new EssenceData[gridWidth, gridHeight];
+        essenceGrid = new Essence[gridWidth, gridHeight];
         InitializeTexture();
     }
+    #endregion
 
-    //Advance all active essence by a step
-    private void SimulateActiveEssence()
-    {
-        HashSet<Vector2Int> newActiveLocations = new();
-        foreach(var oldLocation in activeEssenceLocations)
-        {
-            EssenceData essenceAtLocation = essenceGrid[oldLocation.x, oldLocation.y];
-            Vector2Int newLocation = oldLocation + essenceAtLocation.velocity;
-            
-            if(newLocation.x >= 0 && newLocation.y >= 0 && newLocation.x < gridWidth && newLocation.y < gridHeight)
-            {
-                SetEssence(newLocation.x, newLocation.y, essenceAtLocation);
-                newActiveLocations.Add(newLocation);
-            }
-            
-            SetEssence(oldLocation.x,oldLocation.y,EssenceData.Empty);
-        }
-        activeEssenceLocations = newActiveLocations;
-    }
-
+    #region Essence Modification
     //Set a point to be a non-moving essence of a specified type
     private void CreateEssence(int posX, int posY, EssenceType type)
     {
-        essenceGrid[posX, posY] = new EssenceData { velocity = Vector2Int.zero, type = type};
+        essenceGrid[posX, posY] = new Essence(Vector2Int.zero, type);
         essenceTexture.SetPixel(posX, posY, TypeColorDict[type]);
     }
 
     //Set a point to be a moving essence of a specified type
     private void CreateEssence(int posX, int posY, Vector2Int velocity, EssenceType type)
     {
-        essenceGrid[posX, posY] = new EssenceData { velocity = Vector2Int.zero, type = type };
-
-        essenceTexture.SetPixel(posX, posY, TypeColorDict[type]);
-
+        CreateEssence(posX, posY, type);
         SetVelocity(posX, posY, velocity);
     }
 
     //Set a point to have the information of a given essence.
-    private void SetEssence(int x, int y, EssenceData essenceData)
+    private void SetEssence(int posX, int posY, Essence essence)
     {
-        essenceGrid[x, y] = essenceData;
+        essenceGrid[posX, posY] = essence;
 
-        essenceTexture.SetPixel(x, y, TypeColorDict[essenceData.type]);
+        essenceTexture.SetPixel(posX, posY, TypeColorDict[essence.Type]);
     }
 
     //Cause a given point of essence to move.
     private void SetVelocity(int posX, int posY, Vector2Int velocity)
     {
-        if (!essenceGrid[posX,posY].Equals(EssenceData.Empty))
+        if (!essenceGrid[posX,posY].Equals(Essence.Empty))
         {
-            essenceGrid[posX, posY].velocity = velocity;
+            essenceGrid[posX, posY].SetVelocity(velocity);
             if(!activeEssenceLocations.Contains(new Vector2Int(posX, posY)))
             {
                 activeEssenceLocations.Add(new Vector2Int(posX, posY));
             }
         }
+    }
+
+    #endregion
+
+    #region Essence Simulation
+    //Advance all active essence by a step
+    private void SimulateActiveEssence()
+    {
+        HashSet<Vector2Int> newActiveLocations = new();
+        foreach (var oldLocation in activeEssenceLocations)
+        {
+            Essence essenceAtLocation = essenceGrid[oldLocation.x, oldLocation.y];
+
+            Vector2Int newLocation = MoveEssence(essenceAtLocation,oldLocation);
+            
+            if(essenceAtLocation.GetVelocity().magnitude > 0) newActiveLocations.Add(newLocation);
+
+            SetEssence(oldLocation.x, oldLocation.y, Essence.Empty);
+            SetEssence(newLocation.x, newLocation.y, essenceAtLocation);
+        }
+        activeEssenceLocations = newActiveLocations;
+    }
+
+    private Vector2Int MoveEssence(Essence essenceAtLocation, Vector2Int oldLocation)
+    {
+        return essenceAtLocation.SimulateEssence(oldLocation, gridWidth, gridHeight);
+    }
+
+    private Vector2Int CollideEssence(Essence essenceAtLocation, Vector2Int potentialLocation)
+    {
+        return Vector2Int.zero;
     }
 
     // Update is called once per frame
@@ -110,7 +122,9 @@ public class EssenceController : MonoBehaviour
         SimulateActiveEssence();
         essenceTexture.Apply();
     }
+    #endregion
 
+    #region Public Methods
     /// <summary>
     /// Creates non-moving essence at the specified point with the specified type
     /// </summary>
@@ -141,10 +155,14 @@ public class EssenceController : MonoBehaviour
     public void ApplyForce(Vector2 position, Vector2Int force)
     {
         Vector2Int gridPos = GridUtility.WorldSpaceToGrid(position, gridWidth, gridHeight);
-        Vector2Int oldVelocity = essenceGrid[gridPos.x, gridPos.y].velocity;
-        int mass = 1;//May become based off essence data if we give different essence different mass.
-        Vector2Int newVelocity =  oldVelocity + (force/mass);
-        SetVelocity(gridPos.x, gridPos.y, newVelocity);
+        if (essenceGrid[gridPos.x, gridPos.y] != null)
+        {
+            Vector2Int oldVelocity = essenceGrid[gridPos.x, gridPos.y].GetVelocity();
+            int mass = 1;//May become based off essence data if we give different essence different mass.
+            Vector2Int newVelocity = oldVelocity + (force / mass);
+            SetVelocity(gridPos.x, gridPos.y, newVelocity);
+        }
     }
+    #endregion
 
 }

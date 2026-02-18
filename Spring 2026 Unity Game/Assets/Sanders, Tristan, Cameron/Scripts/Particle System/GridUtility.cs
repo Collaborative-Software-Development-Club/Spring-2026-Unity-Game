@@ -17,4 +17,9 @@ public class GridUtility
         Vector2 viewportPos = new Vector3((float)x / gridWidth, (float)y / gridHeight);
         return Camera.main.ViewportToWorldPoint(viewportPos);
     }
+
+    public static bool IsInBounds(Vector2Int position, int gridWidth, int gridHeight)
+    {
+        return position.x >= 0 && position.y >= 0 && position.x < gridWidth && position.y < gridHeight;
+    }
 }

@@ -1062,6 +1062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a75b46cd8f8554e91833ee99a594d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EssenceSpawner
+  initialVel: {x: -4, y: 0}
 --- !u!1 &1892599958
 GameObject:
   m_ObjectHideFlags: 0
