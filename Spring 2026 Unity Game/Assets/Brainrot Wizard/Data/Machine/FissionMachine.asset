@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FissionMachine
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   name: Fise Brainrots
-  processType: 4
+  processType: 5
   texture: {fileID: 0}
   inputCount: 1
   outputCount: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RemoveMachine
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   name: Remove Attributes
-  processType: 1
+  processType: 2
   texture: {fileID: 0}
   inputCount: 1
   outputCount: 1

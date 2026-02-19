@@ -130,8 +130,9 @@ GameObject:
   - component: {fileID: 234499358}
   - component: {fileID: 234499357}
   - component: {fileID: 234499356}
+  - component: {fileID: 234499359}
   m_Layer: 0
-  m_Name: Add Attribute Machine
+  m_Name: AddAttributeMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,12 +221,26 @@ Transform:
   m_GameObject: {fileID: 234499355}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.31982, y: 3.30142, z: 0}
+  m_LocalPosition: {x: 1.543, y: 3.442, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &234499359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234499355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d163215c7826304dbcb0d171d1925d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MachineTest
+  machine: {fileID: 234499356}
+  item: {fileID: 1665795736}
 --- !u!1 &471837397
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +536,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1658199318
+--- !u!1 &1665795735
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,37 +544,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1658199320}
-  - component: {fileID: 1658199319}
+  - component: {fileID: 1665795737}
+  - component: {fileID: 1665795736}
   m_Layer: 0
-  m_Name: MachineTest
+  m_Name: Brainrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1658199319
+--- !u!114 &1665795736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658199318}
+  m_GameObject: {fileID: 1665795735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d163215c7826304dbcb0d171d1925d7, type: 3}
+  m_Script: {fileID: 11500000, guid: c0488121544089041855bd69bb775fa1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MachineTest
---- !u!4 &1658199320
+  m_EditorClassIdentifier: Assembly-CSharp::Brainrot
+  data: {fileID: 11400000, guid: 9d3bf689b1e933244a43aceabcd25606, type: 2}
+--- !u!4 &1665795737
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658199318}
+  m_GameObject: {fileID: 1665795735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.21049, y: 4.4552755, z: 0}
+  m_LocalPosition: {x: 0.53223, y: 3.03693, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -646,5 +662,5 @@ SceneRoots:
   - {fileID: 471837400}
   - {fileID: 3329936757199296107}
   - {fileID: 543499022}
-  - {fileID: 1658199320}
   - {fileID: 234499358}
+  - {fileID: 1665795737}

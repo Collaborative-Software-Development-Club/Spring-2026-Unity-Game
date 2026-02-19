@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DuplicateMachine
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   name: Duplicate Attributes
-  processType: 2
+  processType: 3
   texture: {fileID: 0}
   inputCount: 1
   outputCount: 1

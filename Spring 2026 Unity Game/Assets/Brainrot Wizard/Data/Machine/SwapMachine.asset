@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SwapMachine
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   name: Swap Attributes
-  processType: 3
+  processType: 4
   texture: {fileID: 0}
   inputCount: 2
   outputCount: 2
