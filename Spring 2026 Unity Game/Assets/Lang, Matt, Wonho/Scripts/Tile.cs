@@ -29,4 +29,10 @@ public class Tile : MonoBehaviour
         Color1 = color;
         image.color = color;
     }
+
+    public void TextColor(Color color)
+    {
+        Color1 = color;
+        text.color = color;
+    }
 }
