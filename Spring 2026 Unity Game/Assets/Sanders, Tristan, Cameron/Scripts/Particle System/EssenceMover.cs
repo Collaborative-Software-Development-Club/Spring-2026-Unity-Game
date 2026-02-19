@@ -5,6 +5,7 @@ public class EssenceMover : MonoBehaviour
     EssenceController essenceController;
     [SerializeField] private Vector2Int force = Vector2Int.up;
     [SerializeField] private int radius = 2;
+    [SerializeField] private int mass = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +25,7 @@ public class EssenceMover : MonoBehaviour
             return;
         }
 
-        essenceController.ApplyForceArea(gameObject.transform.position, force, radius);
+        essenceController.ApplyForceArea(gameObject.transform.position, force, radius, mass);
     }
 
 }

@@ -130,7 +130,7 @@ public class EssenceController : MonoBehaviour
     /// </summary>
     /// <param name="position"></param>
     /// <param name="type"></param>
-    public void CreateEssenceWorld(Vector2 position, EssenceType type)
+    public void CreateEssenceWorld(Vector3 position, EssenceType type)
     {
         Vector2Int gridPos = GridUtility.WorldSpaceToGrid(position, gridWidth, gridHeight);
         CreateEssence(gridPos.x,gridPos.y,type);
@@ -141,7 +141,7 @@ public class EssenceController : MonoBehaviour
     /// </summary>
     /// <param name="position"></param>
     /// <param name="type"></param>
-    public void CreateEssenceWorld(Vector2 position, Vector2Int velocity, EssenceType type)
+    public void CreateEssenceWorld(Vector3 position, Vector2Int velocity, EssenceType type)
     {
         Vector2Int gridPos = GridUtility.WorldSpaceToGrid(position, gridWidth, gridHeight);
         CreateEssence(gridPos.x,gridPos.y,velocity,type);
@@ -152,7 +152,7 @@ public class EssenceController : MonoBehaviour
     /// </summary>
     /// <param name="position"></param>
     /// <param name="force"></param>
-    public void ApplyForce(Vector2 position, Vector2Int force)
+    public void ApplyForce(Vector3 position, Vector2Int force)
     {
         Vector2Int gridPos = GridUtility.WorldSpaceToGrid(position, gridWidth, gridHeight);
         if (!GridUtility.IsInBounds(gridPos, gridWidth, gridHeight))
@@ -172,7 +172,7 @@ public class EssenceController : MonoBehaviour
     /// <summary>
     /// Applies a given force to all essence in a radius (in grid cells) around a position.
     /// </summary>
-    public void ApplyForceArea(Vector2 position, Vector2Int force, int radius)
+    public void ApplyForceArea(Vector3 position, Vector2Int force, int radius, int mass)
     {
         Vector2Int center = GridUtility.WorldSpaceToGrid(position, gridWidth, gridHeight);
         if (!GridUtility.IsInBounds(center, gridWidth, gridHeight))
@@ -198,7 +198,6 @@ public class EssenceController : MonoBehaviour
                 }
 
                 Vector2Int oldVelocity = essence.GetVelocity();
-                int mass = 1;
                 Vector2Int newVelocity = oldVelocity + (force / mass);
                 SetVelocity(x, y, newVelocity);
             }
