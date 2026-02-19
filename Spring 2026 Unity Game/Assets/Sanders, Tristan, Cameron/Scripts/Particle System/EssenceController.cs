@@ -155,12 +155,53 @@ public class EssenceController : MonoBehaviour
     public void ApplyForce(Vector2 position, Vector2Int force)
     {
         Vector2Int gridPos = GridUtility.WorldSpaceToGrid(position, gridWidth, gridHeight);
+        if (!GridUtility.IsInBounds(gridPos, gridWidth, gridHeight))
+        {
+            return;
+        }
+
         if (essenceGrid[gridPos.x, gridPos.y] != null)
         {
             Vector2Int oldVelocity = essenceGrid[gridPos.x, gridPos.y].GetVelocity();
             int mass = 1;//May become based off essence data if we give different essence different mass.
             Vector2Int newVelocity = oldVelocity + (force / mass);
             SetVelocity(gridPos.x, gridPos.y, newVelocity);
+        }
+    }
+
+    /// <summary>
+    /// Applies a given force to all essence in a radius (in grid cells) around a position.
+    /// </summary>
+    public void ApplyForceArea(Vector2 position, Vector2Int force, int radius)
+    {
+        Vector2Int center = GridUtility.WorldSpaceToGrid(position, gridWidth, gridHeight);
+        if (!GridUtility.IsInBounds(center, gridWidth, gridHeight))
+        {
+            return;
+        }
+
+        int r = Mathf.Max(0, radius);
+        for (int x = center.x - r; x <= center.x + r; x++)
+        {
+            for (int y = center.y - r; y <= center.y + r; y++)
+            {
+                Vector2Int pos = new Vector2Int(x, y);
+                if (!GridUtility.IsInBounds(pos, gridWidth, gridHeight))
+                {
+                    continue;
+                }
+
+                Essence essence = essenceGrid[x, y];
+                if (essence == null || essence.Equals(Essence.Empty))
+                {
+                    continue;
+                }
+
+                Vector2Int oldVelocity = essence.GetVelocity();
+                int mass = 1;
+                Vector2Int newVelocity = oldVelocity + (force / mass);
+                SetVelocity(x, y, newVelocity);
+            }
         }
     }
     #endregion
