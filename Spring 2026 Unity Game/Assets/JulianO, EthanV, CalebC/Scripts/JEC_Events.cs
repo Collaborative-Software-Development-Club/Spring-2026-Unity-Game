@@ -15,10 +15,4 @@ public static class JEC_Events
 
     public static UnityEvent<string> OnKeyRemoved = new UnityEvent<string>();
 
-    public static UnityEvent OnStartNPC = new UnityEvent();
-
-    public static UnityEvent ProgressDialogueNPC = new UnityEvent();
-
-    public static UnityEvent OnStopNPC = new UnityEvent();
-
 }
