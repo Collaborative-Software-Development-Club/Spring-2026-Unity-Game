@@ -12,17 +12,18 @@ public class Board : MonoBehaviour
         rows = GetComponentsInChildren<Row>();
     }
 
-    private bool test = true;
+   // private bool test = true;
 
-    private void Update()
+    private void OnGridGeneration()
     {
-        if (test == true)
-        {
+        //if (test == true)
+      //  {
             DrawGrid();
+            ShowSolution();
             BlindBlock();
             HighlightGrid();
-            test = false;
-        }
+            //test = false;
+     //   }
     }
 
     void DrawGrid()
@@ -42,6 +43,20 @@ public class Board : MonoBehaviour
         rows[gridGenerationScript.startX].tiles[gridGenerationScript.startY].TextColor(Color.white);
         rows[gridGenerationScript.endX].tiles[gridGenerationScript.endY].SetColor(Color.green);
         rows[gridGenerationScript.endX].tiles[gridGenerationScript.endY].TextColor(Color.white);
+    }
+    //Since we are too dumb to solve our own puzzle
+    void ShowSolution()
+    {
+        for(int i = 0; i < 13; i++)
+        {
+            for(int j = 0; j < 13; j++)
+            {
+                if (gridGenerationScript.visited[i,j])
+                {
+                    rows[i].tiles[j].SetColor(Color.blue);
+                }
+            }
+        }
     }
 
     void BlindBlock()

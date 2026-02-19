@@ -1,34 +1,33 @@
 using UnityEngine;
-
+using UnityEngine.Events;
 public class GridGeneration : MonoBehaviour
 {
-    public char[,] grid;
+    public char[,] grid = new char[13,13];
     private string letters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public string exampleMessage = "I REALLY HOPE THIS WORKS";
     //public int[,] angles = {{1,1},{1,-1},{-1,1},{-1,-1},{1,0},{0,1},{-1,0},{0,-1}};
-    public int[,] angles = {{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
-
+    //public int[,] angles = {{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
+    public int[,] angles;
     public int startX;
     public int startY;
     public int endX;
     public int endY;
     public int currentX;
     public int currentY;
-    bool [,] visited;
+    public bool [,] visited = new bool[13,13];
+    public UnityEvent OnGenerated;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        startX = Random.Range(0,13);
-        currentX = startX;
-        startY = Random.Range(0,13);
-        currentY = startY;
-        grid = new char[13,13];
-        visited = new bool[13,13];
-        for (int i = 0; i < 13; i++) {
-            for(int j = 0; j<13; j++) {
-                grid[i,j] = '0';
-            }
-        }
+        ClearGarbage();
+    }
+    public void OnDifficultySelected()
+    {
+        /*
+        Debug.Log(angles.GetLength(0));
+        for(int i = 0; i<angles.GetLength(0); i++) {
+            Debug.Log(angles[i,0]+" "+angles[i,1]);
+        }*/
         int retryCount = 0;
         int maxRetries = 100;
 
@@ -50,7 +49,8 @@ public class GridGeneration : MonoBehaviour
                 }
             }
         }
-
+        //PrintGrid();
+        OnGenerated.Invoke();
     }
     void ClearGarbage() {
         startX = Random.Range(0,13);
@@ -152,11 +152,52 @@ public class GridGeneration : MonoBehaviour
     }
     bool AvoidEdge(int dx, int dy)
     {
-        return (12-currentX) % dx == 0 && (12-currentY) % dy == 0;
+        if (dx == 0 || dy == 0)
+        {
+            return true;
+        }
+        else
+        {
+            bool validX = true;
+            if(dx < 0)
+            {
+                validX = currentX % (-dx) == 0;
+            }
+            else
+            {
+                validX = (12-currentX) % dx == 0;
+            }
+            if(validX) {
+                bool validY = true;
+                if(dy < 0)
+                {
+                    validY = currentY % (-dy) == 0;
+                }
+                else
+                {
+                    validY = (12-currentY) % dy == 0;
+                }
+                return validY;
+            }
+            return false;
+            
+        }
     }
     // Update is called once per frame
     void Update()
     {
         
+    }
+    void PrintGrid()
+    {
+        for(int i = 0; i < 13; i++)
+        {
+            string row = "";
+            for(int j = 0; j < 13; j++)
+            {
+                row = row + grid[i,j] + " ";
+            }
+            Debug.Log(row);
+        }
     }
 }
