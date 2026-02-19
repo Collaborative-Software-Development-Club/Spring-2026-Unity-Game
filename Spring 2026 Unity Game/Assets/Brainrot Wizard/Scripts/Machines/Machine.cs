@@ -7,7 +7,7 @@ using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Machine : MonoBehaviour
+public class Machine : MonoBehaviour
 {
     [Tooltip("Chance for an operation to fail, expressed as a percentage (0-100)")]
     public int failChance = 50;
@@ -310,13 +310,13 @@ public abstract class Machine : MonoBehaviour
     }
 
     // overloaded call for operations that require two integers (e.g., Swap)
-    public void OnInteraction(int indexA, int indexB)
+    public void OnInteraction(int attributeFromBrainrot1, int attributeFromBrainrot2)
     {
         if (data == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return; }
 
         if (_actionMap != null && _actionMap.TryGetValue(data.processType, out var del))
         {
-            if (del is Action<int, int> ai) { ai(indexA, indexB); return; }
+            if (del is Action<int, int> ai) { ai(attributeFromBrainrot1, attributeFromBrainrot2); return; }
             if (del is Action a) { a(); return; } // fall back if typed delegate not present
         }
 
