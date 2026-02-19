@@ -5,6 +5,8 @@ public class Board : MonoBehaviour
     public GridGeneration gridGenerationScript;
     private Row[] rows;
 
+    public bool show = false;
+
     private int randnum;
 
     private void Awake()
@@ -19,11 +21,14 @@ public class Board : MonoBehaviour
         //if (test == true)
       //  {
             DrawGrid();
-            ShowSolution();
             BlindBlock();
-            HighlightGrid();
-            //test = false;
-     //   }
+        if (show)
+        {
+            ShowSolution();
+        }
+        HighlightGrid();
+        //test = false;
+        //   }
     }
 
     void DrawGrid()
