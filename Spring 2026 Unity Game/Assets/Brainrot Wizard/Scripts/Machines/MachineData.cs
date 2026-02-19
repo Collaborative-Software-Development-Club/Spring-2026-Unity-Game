@@ -6,6 +6,7 @@ using UnityEngine.Windows;
 
 public enum machineType
 { 
+    None,
     Add,
     Remove,
     Duplicate,
@@ -20,7 +21,7 @@ public enum machineType
 public class MachineData : ScriptableObject
 {
     public new string name = "Unnamed";
-    public machineType processType;
+    public machineType processType = machineType.None;
     public Sprite texture;
     public int inputCount = 0;
     public int outputCount = 0;

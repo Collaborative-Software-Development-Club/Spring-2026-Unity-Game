@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 234499357}
   - component: {fileID: 234499356}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Add Attribute Machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,8 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Machine
   failChance: 50
-  data: {fileID: 0}
-  functions: {fileID: 0}
+  data: {fileID: 11400000, guid: 44bfaa659146b6a4c894ed7c4277ba3e, type: 2}
 --- !u!212 &234499357
 SpriteRenderer:
   serializedVersion: 2

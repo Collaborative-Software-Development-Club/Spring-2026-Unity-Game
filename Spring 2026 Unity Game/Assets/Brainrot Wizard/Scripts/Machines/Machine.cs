@@ -14,8 +14,6 @@ public class Machine : MonoBehaviour
 
     [SerializeField] protected MachineData data;
 
-    [SerializeField] protected MachineFunctionality functions;
-
     [SerializeField] protected Inventory inventory;
 
     protected Inventory input;
@@ -95,8 +93,6 @@ public class Machine : MonoBehaviour
 
     protected virtual void HandleAdd()
     {
-        if (functions == null) { Debug.LogWarning($"{name}: functions is null"); return; }
-
         var removed = input.RemoveFromSlot(0);
         var item = removed.item;
         if (item == null) { Debug.Log($"{name}: no item in input slot 0."); return; }
@@ -109,7 +105,7 @@ public class Machine : MonoBehaviour
             return;
         }
 
-        var result = functions.AddRandomAttribute(itemData, failChance);
+        var result = MachineFunctionality.AddRandomAttribute(itemData, failChance);
         if (result == null)
         {
             Debug.Log($"{name}: AddRandomAttribute returned null.");
@@ -132,8 +128,6 @@ public class Machine : MonoBehaviour
     }
     protected virtual void HandleRemove()
     {
-        if (functions == null) { Debug.LogWarning($"{name}: functions is null"); return; }
-
         var removed = input.RemoveFromSlot(0);
         var item = removed.item;
         if (item == null) { Debug.Log($"{name}: no item in input slot 0."); return; }
@@ -141,7 +135,7 @@ public class Machine : MonoBehaviour
         var itemData = GetItemData(item) as BrainrotData;
         if (itemData == null) { Debug.LogWarning($"{name}: item is not a Brainrot."); input.AddItemToInventory(item, removed.quantity); return; }
 
-        var result = functions.RemoveRandomAttribute(itemData);
+        var result = MachineFunctionality.RemoveRandomAttribute(itemData);
         if (result == null) { Debug.Log($"{name}: RemoveRandomAttribute returned null."); input.AddItemToInventory(item, removed.quantity); return; }
 
         if (!SetItemData(item, result)) { Debug.LogWarning($"{name}: failed to set ItemData on item."); input.AddItemToInventory(item, removed.quantity); return; }
@@ -151,8 +145,6 @@ public class Machine : MonoBehaviour
 
     protected virtual void HandleDuplicate()
     {
-        if (functions == null) { Debug.LogWarning($"{name}: functions is null"); return; }
-
         var removed = input.RemoveFromSlot(0);
         var item = removed.item;
         if (item == null) { Debug.Log($"{name}: no item in input slot 0."); return; }
@@ -175,8 +167,6 @@ public class Machine : MonoBehaviour
     // DoSwap - concrete swap using caller-provided attribute indexes (no randomness here).
     public void HandleSwap(int attributeIndexA, int attributeIndexB)
     {
-        if (functions == null) { Debug.LogWarning($"{name}: functions is null"); return; }
-
         var removedA = input.RemoveFromSlot(0);
         var removedB = input.RemoveFromSlot(1);
         var itemA = removedA.item;
@@ -210,7 +200,7 @@ public class Machine : MonoBehaviour
             return;
         }
 
-        var results = functions.SwapRandomAttribute(dataA, dataB, attributeIndexA, attributeIndexB, failChance);
+        var results = MachineFunctionality.SwapRandomAttribute(dataA, dataB, attributeIndexA, attributeIndexB, failChance);
         if (results == null || results.Length != 2)
         {
             Debug.LogWarning($"{name}: SwapRandomAttribute failed.");
@@ -241,8 +231,6 @@ public class Machine : MonoBehaviour
 
     protected virtual void HandleFission()
     {
-        if (functions == null) { Debug.LogWarning($"{name}: functions is null"); return; }
-
         var removed = input.RemoveFromSlot(0);
         var item = removed.item;
         if (item == null) { Debug.Log($"{name}: no item in input slot 0."); return; }
@@ -271,8 +259,6 @@ public class Machine : MonoBehaviour
 
     protected virtual void HandleFusion()
     {
-        if (functions == null) { Debug.LogWarning($"{name}: functions is null"); return; }
-
         var removedA = input.RemoveFromSlot(0);
         var removedB = input.RemoveFromSlot(1);
         var itemA = removedA.item;
@@ -321,5 +307,44 @@ public class Machine : MonoBehaviour
         }
 
         Debug.LogWarning($"{name}: no handler configured for machine type '{data.processType}' that accepts two indexes.");
+    }
+
+    // Function for retrieving the type this machine is.
+    public machineType GetMachineType() 
+    {
+        return data.processType;
+    }
+
+    // Function for retrieving the input inventory of this machine.
+    public Inventory GetInputInventory()
+    {
+        return input;
+    }
+    // Function for retrieving the output inventory of this machine.
+    public Inventory GetOutputInventory()
+    {
+        return output;
+    }
+    // Function for adding an item to the input inventory of this machine. Returns true if successful, false if the input inventory is full.
+    public bool AddItemToInput(Item item, int quantity=1)
+    {
+        return input.AddItemToInventory(item, quantity);
+    }
+    // Function for adding an item to the output inventory of this machine. Returns true if successful, false if the output inventory is full.
+    public bool AddItemToOutput(Item item, int quantity=1)
+    {
+        return output.AddItemToInventory(item, quantity);
+    }
+    // Function for removing an item from the input inventory of this machine. Returns true if successful, false if the input inventory is empty or does not contain the item.
+    public bool RemoveItemFromInput(Item item, int quantity=1)
+    {
+        var removed = input.RemoveItemFromInventory(item, quantity);
+        return removed.quantity > 0;
+    }
+    // Function for removing an item from the output inventory of this machine. Returns true if successful, false if the output inventory is empty or does not contain the item.
+    public bool RemoveItemFromOutput(Item item, int quantity=1)
+    {
+        var removed = output.RemoveItemFromInventory(item, quantity);
+        return removed.quantity > 0;
     }
 }

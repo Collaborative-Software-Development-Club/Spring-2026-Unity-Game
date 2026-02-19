@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class MachineFunctionality : MonoBehaviour
+public static class MachineFunctionality
 {
     /// <summary>
     /// Clone the provided BrainrotData and add a random attribute (or increment existing). Also removes a random quantity of existing attributes based on the total number of attributes.
@@ -11,7 +11,7 @@ public class MachineFunctionality : MonoBehaviour
     /// </summary>
     /// <param name="input">Source BrainrotData to clone and modify.</param>
     /// <param name="failChance">The percentage chance (0-100) that each existing attribute will lose a quantity instead of the new attribute being added. This chance is applied independently to each existing attribute.</param>
-    public BrainrotData AddRandomAttribute(BrainrotData input, int failChance)
+    public static BrainrotData AddRandomAttribute(BrainrotData input, int failChance)
     {
         if (input == null)
         {
@@ -20,7 +20,7 @@ public class MachineFunctionality : MonoBehaviour
         }
 
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone = Instantiate(input);
+        var clone = MonoBehaviour.Instantiate(input);
 
         if (clone.attributes == null)
         {
@@ -92,7 +92,7 @@ public class MachineFunctionality : MonoBehaviour
     /// </summary>
     /// <param name="input">Source BrainrotData to clone and modify.</param>
     /// <returns></returns>
-    public BrainrotData RemoveRandomAttribute(BrainrotData input)
+    public static BrainrotData RemoveRandomAttribute(BrainrotData input)
     {
 
         if (input == null)
@@ -102,7 +102,7 @@ public class MachineFunctionality : MonoBehaviour
         }
 
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone = Instantiate(input);
+        var clone = MonoBehaviour.Instantiate(input);
 
         if (clone.attributes == null)
         {
@@ -145,7 +145,7 @@ public class MachineFunctionality : MonoBehaviour
     /// <param name="failChance">The percentage chance (0-100) that each attribute swap will fail and select a different attribute instead. This chance is applied independently to each swap.</param>
     /// <returns>An array containing two new BrainrotData instances with the specified attributes swapped. Returns null if either
     /// input1 or input2 is null.</returns>
-    public BrainrotData[] SwapRandomAttribute(BrainrotData input1, BrainrotData input2, int attributeToSwap1, int attributeToSwap2, int failChance)
+    public static BrainrotData[] SwapRandomAttribute(BrainrotData input1, BrainrotData input2, int attributeToSwap1, int attributeToSwap2, int failChance)
     {
         if (input1 == null)
         {
@@ -159,9 +159,9 @@ public class MachineFunctionality : MonoBehaviour
         }
 
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone1 = Instantiate(input1);
+        var clone1 = MonoBehaviour.Instantiate(input1);
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone2 = Instantiate(input2);
+        var clone2 = MonoBehaviour.Instantiate(input2);
 
         if (clone1.attributes == null)
         {
@@ -235,7 +235,7 @@ public class MachineFunctionality : MonoBehaviour
         }
 
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone = Instantiate(input);
+        var clone = MonoBehaviour.Instantiate(input);
 
         if (clone.attributes == null)
         {
@@ -291,7 +291,7 @@ public class MachineFunctionality : MonoBehaviour
         }
 
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone = Instantiate(input);
+        var clone = MonoBehaviour.Instantiate(input);
 
         if (clone.attributes == null)
         {
@@ -386,9 +386,9 @@ public class MachineFunctionality : MonoBehaviour
         }
 
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone1 = Instantiate(input1);
+        var clone1 = MonoBehaviour.Instantiate(input1);
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone2 = Instantiate(input2);
+        var clone2 = MonoBehaviour.Instantiate(input2);
 
         // Create the new BrainrotData to return, which will combine attributes from both inputs at random.
         BrainrotData newBrainrot = new BrainrotData();
