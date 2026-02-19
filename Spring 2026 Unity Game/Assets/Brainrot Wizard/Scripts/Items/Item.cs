@@ -50,7 +50,7 @@ public abstract class Item : MonoBehaviour
     {
         return data.value;
     }
-    public virtual ItemType GetType()
+    public new virtual ItemType GetType()
     {
         return data.type;
     }

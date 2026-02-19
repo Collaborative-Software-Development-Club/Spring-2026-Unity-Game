@@ -34,6 +34,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public Action<GameState> onGameStateChange;
 
+    /// <summary>
+    /// Reports when turns are changed
+    /// </summary>
+    public Action onTurnChange; 
+    
+    public int CurrentTurnCount { get; private set; } = 0;
+
     public EconomyManager EconomyManager {get; private set;}
 
     private void Awake()
@@ -78,15 +85,12 @@ public class GameManager : MonoBehaviour
             case GameState.None:
                 break;
             case GameState.ContractWork:
-                CurrentGameState = GameState.Shopping;
                 ShoppingState();
                 break;
             case GameState.Shopping:
-                CurrentGameState = GameState.Crafting;
                 CraftingState();
                 break;
             case GameState.Crafting:
-                CurrentGameState = GameState.ContractWork;
                 ContractWorkState();
                 break;
             default:
@@ -95,19 +99,19 @@ public class GameManager : MonoBehaviour
         
         onGameStateChange.Invoke(CurrentGameState);
     }
-    // TODO: Fill in with crafting state logic & operations
     private void CraftingState()
     {
-        
+        CurrentGameState = GameState.Crafting;
     }
-    // TODO: Fill in with shopping state logic & operations
     private void ShoppingState()
     {
-        
+        CurrentGameState = GameState.Shopping;
     }
-    // TODO: Fill in with contract work state logic & operations
     private void ContractWorkState()
     {
+        CurrentGameState = GameState.ContractWork;
         
+        onTurnChange?.Invoke();
+        CurrentTurnCount++;
     }
 }

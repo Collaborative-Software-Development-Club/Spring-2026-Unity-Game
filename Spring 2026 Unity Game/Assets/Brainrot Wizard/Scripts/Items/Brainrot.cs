@@ -4,40 +4,41 @@ using UnityEngine;
 
 public class Brainrot : Item 
 {
-    protected new BrainrotData Data; 
+    private BrainrotData BrainrotData => data as BrainrotData;
+ 
 
     public override string GetDataAsString()
     {
-        string data = base.GetDataAsString();
+        string dataAsString = base.GetDataAsString();
     
-        data += "\nCategory: " + GetCategory();
+        dataAsString += "\nCategory: " + GetCategory();
     
         var attributes = GetAttributes();
-
+        
         if (attributes != null && attributes.Count > 0)
         {
-            data += "\nAttributes:";
+            dataAsString += "\nAttributes:";
             foreach (var attribute in attributes)
             {
-                data += $"\n  • {attribute.attribute}: {attribute.quantity}";
+                dataAsString += $"\n  • {attribute.attribute}: {attribute.quantity}";
             }
         }
         else
         {
-            data += "\nAttributes: None";
+            dataAsString += "\nAttributes: None";
         }
 
-        return data;
+        return dataAsString;
     }
 
     //protected override ItemType RequiredItemType { get; }
 
     public List<AttributeQuantity> GetAttributes()
     {
-        return Data.attributes;
+        return BrainrotData.attributes;
     }
     public Category GetCategory()
     {
-        return Data.category;
+        return BrainrotData.category;
     }
 }
