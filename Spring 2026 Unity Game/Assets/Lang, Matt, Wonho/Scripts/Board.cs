@@ -16,7 +16,9 @@ public class Board : MonoBehaviour
     {
         if (test == true)
         {
-            Invoke("DrawGrid", 0.5f);
+            //Invoke("DrawGrid", 0.5f);
+            DrawGrid();
+            HighlightGrid();
             test = false;
         }
     }
@@ -30,5 +32,11 @@ public class Board : MonoBehaviour
                 rows[i].tiles[j].SetLetter(gridGenerationScript.grid[i, j]);
             }
         }
+    }
+
+    void HighlightGrid()
+    {
+        rows[gridGenerationScript.startX].tiles[gridGenerationScript.startY].SetColor(Color.red);
+        rows[gridGenerationScript.endX].tiles[gridGenerationScript.endY].SetColor(Color.green);
     }
 }
