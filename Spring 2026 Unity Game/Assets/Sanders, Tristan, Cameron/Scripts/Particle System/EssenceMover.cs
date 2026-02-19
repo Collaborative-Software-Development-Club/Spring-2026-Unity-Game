@@ -3,6 +3,8 @@ using UnityEngine;
 public class EssenceMover : MonoBehaviour
 {
     EssenceController essenceController;
+    [SerializeField] private Vector2Int force = Vector2Int.up;
+    [SerializeField] private int radius = 2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,7 +13,18 @@ public class EssenceMover : MonoBehaviour
 
     private void Update()
     {
-        essenceController.ApplyForce(gameObject.transform.position,Vector2Int.up);
+        if (essenceController == null)
+        {
+            return;
+        }
+
+        if (radius <= 0)
+        {
+            essenceController.ApplyForce(gameObject.transform.position, force);
+            return;
+        }
+
+        essenceController.ApplyForceArea(gameObject.transform.position, force, radius);
     }
 
 }

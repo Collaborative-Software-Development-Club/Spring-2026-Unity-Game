@@ -3,17 +3,27 @@ using UnityEngine;
 public class PortalInteractable : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject portalVisual;
-    [SerializeField] private GameObject interactionPrompt; // Drag your UI Canvas/Panel here
+    [SerializeField] private GameObject portalVisual;      // The actual portal effect
+    [SerializeField] private GameObject glowVisual;        // The 'Glow' child object for the pillar
+    [SerializeField] private CanvasGroup interactionPrompt; // The UI popup (add a Canvas Group component)
     [SerializeField] private InputReader inputReader;
 
     private bool _isPlayerNearby = false;
 
     private void Awake()
     {
-        // Ensure everything is hidden at the start
+        // Ensure the portal and glow are hidden at the start
         if (portalVisual != null) portalVisual.SetActive(false);
-        if (interactionPrompt != null) interactionPrompt.SetActive(false);
+        if (glowVisual != null) glowVisual.SetActive(false);
+
+        // UI Optimization: Keep the object active but hidden.
+        // This forces Unity to load fonts/textures into memory now
+        // rather than during the first interaction, preventing lag spikes.
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.alpha = 0;
+            interactionPrompt.blocksRaycasts = false;
+        }
     }
 
     private void OnEnable()
@@ -28,6 +38,7 @@ public class PortalInteractable : MonoBehaviour
 
     private void HandleInteraction()
     {
+        // Only allow activation if the player is nearby and portal isn't already active
         if (_isPlayerNearby && !portalVisual.activeSelf)
         {
             ActivatePortal();
@@ -36,10 +47,13 @@ public class PortalInteractable : MonoBehaviour
 
     private void ActivatePortal()
     {
-        portalVisual.SetActive(true);
+        if (portalVisual != null) portalVisual.SetActive(true);
 
-        // Hide the prompt once the portal is open
-        if (interactionPrompt != null) interactionPrompt.SetActive(false);
+        // Hide the UI prompt immediately upon activation
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.alpha = 0;
+        }
 
         Debug.Log("Portal Activated!");
     }
@@ -50,10 +64,13 @@ public class PortalInteractable : MonoBehaviour
         {
             _isPlayerNearby = true;
 
-            // Only show prompt if the portal isn't already open
+            // Enable the glow effect when the player is in range
+            if (glowVisual != null) glowVisual.SetActive(true);
+
+            // Show prompt only if the portal isn't already open
             if (interactionPrompt != null && !portalVisual.activeSelf)
             {
-                interactionPrompt.SetActive(true);
+                interactionPrompt.alpha = 1;
             }
         }
     }
@@ -63,7 +80,15 @@ public class PortalInteractable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _isPlayerNearby = false;
-            if (interactionPrompt != null) interactionPrompt.SetActive(false);
+
+            // Disable the glow when the player leaves
+            if (glowVisual != null) glowVisual.SetActive(false);
+
+            // Hide the UI prompt
+            if (interactionPrompt != null)
+            {
+                interactionPrompt.alpha = 0;
+            }
         }
     }
 }

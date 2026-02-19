@@ -5,7 +5,9 @@ public class GridGeneration : MonoBehaviour
     public char[,] grid;
     private string letters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public string exampleMessage = "I REALLY HOPE THIS WORKS";
-    public int[,] angles = {{1,1},{1,-1},{-1,1},{-1,-1},{1,0},{0,1},{-1,0},{0,-1}};
+    //public int[,] angles = {{1,1},{1,-1},{-1,1},{-1,-1},{1,0},{0,1},{-1,0},{0,-1}};
+    public int[,] angles = {{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
+
     public int startX;
     public int startY;
     public int endX;
@@ -30,10 +32,10 @@ public class GridGeneration : MonoBehaviour
         int retryCount = 0;
         int maxRetries = 100;
 
-        bool pathCreated = populatePath(exampleMessage);
+        bool pathCreated = PopulatePath(exampleMessage);
         while(!pathCreated && retryCount < maxRetries) {
-            clearGarbage();
-            pathCreated = populatePath(exampleMessage);
+            ClearGarbage();
+            pathCreated = PopulatePath(exampleMessage);
             retryCount++;
             Debug.Log("Retry attempt: " + retryCount);
         }
@@ -44,21 +46,13 @@ public class GridGeneration : MonoBehaviour
         for (int i = 0; i< 13; i++) {
             for(int j = 0; j<13; j++) {
                 if (!visited[i,j]) {
-                    grid[i,j] = randomLetter();
+                    grid[i,j] = RandomLetter();
                 }
             }
         }
-        string []grids = new string[13];
-        for (int i = 0; i < 13; i++)
-        {
-            for (int j = 0; j < 13; j++)
-            {
-                grids[i] += grid[i, j] + " ";
-            }
-            Debug.Log(grids[i]);
-        }
+
     }
-    void clearGarbage() {
+    void ClearGarbage() {
         startX = Random.Range(0,13);
         currentX = startX;
         startY = Random.Range(0,13);
@@ -66,15 +60,15 @@ public class GridGeneration : MonoBehaviour
         grid = new char[13,13];
         visited = new bool[13,13];
     }
-    char randomLetter()
+    char RandomLetter()
     {
         int letter = Random.Range(0, 26);
         return letters[letter];
     }
-    bool inBounds(int x, int xChange, int y, int yChange) {
+    bool InBounds(int x, int xChange, int y, int yChange) {
         return (0 <= x + xChange && 12 >= x + xChange) && (0 <= y + yChange && 12 >= y + yChange);
     }
-    int[] pickValidAngle(int x, int y)
+    int[] PickValidAngle(int x, int y)
     {
         int max = angles.GetLength(0);
         bool valid = false;
@@ -85,7 +79,7 @@ public class GridGeneration : MonoBehaviour
             int chosen = Random.Range(0, max);
             angle[0] = angles[chosen,0];
             angle[1] = angles[chosen,1];
-            if (inBounds(x, angle[0], y, angle[1]) && avoidOverlaps(angle[0],angle[1])) {
+            if (InBounds(x, angle[0], y, angle[1]) && AvoidEdge(angle[0], angle[1]) && AvoidOverlaps(angle[0],angle[1])) {
                 valid = true;
             }
             attempt += 1;
@@ -95,7 +89,7 @@ public class GridGeneration : MonoBehaviour
         }
         return angle;
     }
-    bool populatePath(string message)
+    bool PopulatePath(string message)
     {
         int currentPosition = 0;
         int x = currentX;
@@ -110,7 +104,7 @@ public class GridGeneration : MonoBehaviour
                 Debug.Log("Too Many Attempts");
                 return false; 
             }
-            int[] angle = pickValidAngle(x, y);
+            int[] angle = PickValidAngle(x, y);
             //no valid angle found - restart
             if (angle[0] == 0 && angle[1] == 0)
             {
@@ -122,7 +116,7 @@ public class GridGeneration : MonoBehaviour
                 startX = x;
                 startY = y;
             }
-            while (currentPosition < message.Length && inBounds(x, 0, y, 0) && !visited[x, y])
+            while (currentPosition < message.Length && InBounds(x, 0, y, 0) && !visited[x, y])
             {
                 visited[x, y] = true;
                 grid[x, y] = message[currentPosition];
@@ -133,34 +127,32 @@ public class GridGeneration : MonoBehaviour
             }
             x -= angle[0];
             y -= angle[1];
+            currentX = x;
+            currentY = y;
         }
         endX = x;
         endY = y;
         string []grids = new string[13];
-        for (int i = 0; i < 13; i++)
-        {
-            for (int j = 0; j < 13; j++)
-            {
-                grids[i] += grid[i, j] + " ";
-            }
-            Debug.Log(grids[i]);
-        }
         currentX = x;
         currentY = y;
        
         return true;
     }
-    bool avoidOverlaps(int dx, int dy) {
+    bool AvoidOverlaps(int dx, int dy) {
         int x = currentX + dx;
         int y = currentY + dy;
-        while(inBounds(x,0,y,0)) {
+        while(InBounds(x,0,y,0)) {
             if (visited[x,y]) {
                 return false;
             }
-            x+= dx;
+            x += dx;
             y += dy;
         }
         return true;
+    }
+    bool AvoidEdge(int dx, int dy)
+    {
+        return (12-currentX) % dx == 0 && (12-currentY) % dy == 0;
     }
     // Update is called once per frame
     void Update()
