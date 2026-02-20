@@ -7,7 +7,8 @@ public enum ItemType
     Brainrot,
     Tool,
     Seed,
-    Lootbox
+    Lootbox,
+    Contract
 }
 
 public enum Rarity
@@ -27,6 +28,6 @@ public class ItemData : ScriptableObject
     public string text;
     public double value = 0;
     public Sprite icon;
-    public ItemType type =  ItemType.None;
+    public ItemType type = ItemType.None;
     public Rarity rarity = Rarity.None;
 }
