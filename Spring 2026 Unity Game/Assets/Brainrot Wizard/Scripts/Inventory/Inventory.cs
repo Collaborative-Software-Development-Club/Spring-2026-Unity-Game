@@ -14,7 +14,7 @@ public class Inventory
 
     public bool AddItemToInventory(Item item, int quantity=1) {
         for (int i = 0; i < slots.Length; i++) {
-            if (slots[i].Type() == item.GetType()) {
+            if (slots[i].IsTypeAs(item)) {
                 slots[i].quantity += quantity;
                 return true;
             }
@@ -34,7 +34,7 @@ public class Inventory
             slots[slot] = new InventorySlot(item, quantity);
             return replace;
         }
-        if (slots[slot].Type() == item.GetType()) {
+        if (slots[slot].IsTypeAs(item)) {
             slots[slot].quantity += quantity;
         }
         slots[slot] = new InventorySlot(item, quantity);
@@ -91,7 +91,7 @@ public class Inventory
     public InventorySlot RemoveItemFromInventory(Item item, int quantity=1) {
         InventorySlot returning = new InventorySlot();
         for (int i = slots.Length-1; i >= 0; i--) {
-            if (slots[i].Type() == item.GetType()) {
+            if (slots[i].IsTypeAs(item)) {
                 returning.Add(RemoveFromSlot(i, quantity - returning.quantity));
                 if (returning.quantity == quantity) {
                     return returning;
@@ -112,5 +112,14 @@ public class Inventory
             count += slots[i].quantity;
         }
         return count;
+    }
+    
+    public int Length() {
+        return slots.Length;
+    }
+
+    public InventorySlot? GetItemAt(int slot) {
+        if (slot > slots.Length) return null;
+        return slots[slot];
     }
 }

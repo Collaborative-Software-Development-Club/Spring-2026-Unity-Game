@@ -1,6 +1,8 @@
+using UnityEngine;
+
 [System.Serializable]
 public class InventorySlot
-{
+{ // Carson was here
     public Item? item;
     public int quantity;
 
@@ -15,7 +17,8 @@ public class InventorySlot
         quantity = 0;
     }
 
-    public ItemType Type() {
+    public ItemType? Type() {
+        if (item is null) return null;
         return item.GetType();
     }
 
@@ -34,5 +37,19 @@ public class InventorySlot
             return true;
         }
         return false;
+    }
+
+    public bool IsType(ItemType? type) {
+        if (type is null && item is null) return true;
+        if (type !is null && item !is null && type == item.GetType()) return true;
+        return false;
+    }
+
+    public bool IsTypeAs(Item? item) {
+        if (item is null) return IsType(null);
+        if (!item.HasData()) return IsType(null);
+        Debug.Log(item.HasData());
+        Debug.Log(item is null);
+        return IsType(item.GetType());
     }
 }

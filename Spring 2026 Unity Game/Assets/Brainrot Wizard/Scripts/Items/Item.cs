@@ -52,6 +52,7 @@ public abstract class Item : MonoBehaviour
     }
     public new virtual ItemType GetType()
     {
+        Debug.Log(data is null);
         return data.type;
     }
     public virtual Rarity GetRarity()
@@ -64,7 +65,7 @@ public abstract class Item : MonoBehaviour
     }
     public bool HasData()
     {
-        return data != null;
+        return !(data is null);
     }
     protected virtual void OnValidate()
     {
