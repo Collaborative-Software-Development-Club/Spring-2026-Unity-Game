@@ -16,6 +16,7 @@ public enum Category
 
 public enum Attribute
 {
+    None,
     AI,
     Animal,
     Surreal,

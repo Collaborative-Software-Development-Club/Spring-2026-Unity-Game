@@ -24,7 +24,6 @@ public enum Rarity
 [CreateAssetMenu(fileName = "New Item", menuName = "Game/BrainrotMixer/Item/Base Item")]
 public class ItemData : ScriptableObject
 {
-    public new string name = "Unnamed";
     public string text;
     public double value = 0;
     public Sprite icon;

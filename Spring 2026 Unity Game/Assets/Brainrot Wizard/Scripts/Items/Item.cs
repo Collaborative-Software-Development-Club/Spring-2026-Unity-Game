@@ -2,7 +2,11 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    [SerializeField] protected ItemData data; 
+    [SerializeField] protected ItemData data;
+    protected string Name;
+
+    public abstract void Initialize(ItemData itemData);
+    public abstract void Initialize(ItemData itemData, string itemName);
     
     public void PrintData()
     {
@@ -18,7 +22,7 @@ public abstract class Item : MonoBehaviour
     public virtual string GetDataAsString()
     {
         return $"[{GetRarity()}] {GetName()}\n" +
-               $"Type: {GetType()}\n" +
+               $"Type: {GetItemType()}\n" +
                $"Value: {GetValue()}\n" +
                $"Description: {GetDescription()}";
     }
@@ -50,7 +54,7 @@ public abstract class Item : MonoBehaviour
     {
         return data.value;
     }
-    public new virtual ItemType GetType()
+    public virtual ItemType GetItemType()
     {
         Debug.Log(data is null);
         return data.type;

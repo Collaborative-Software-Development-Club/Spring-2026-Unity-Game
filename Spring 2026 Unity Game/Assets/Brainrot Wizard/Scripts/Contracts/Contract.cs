@@ -32,5 +32,13 @@ public class Contract : Item
         }
         this.input = new Inventory(numOfAttributes);
     }
-    
+
+    public override void Initialize(ItemData itemData)
+    {
+        throw new NotImplementedException();
+    }
+    public override void Initialize(ItemData itemData, string itemName)
+    {
+        throw new NotImplementedException();
+    }
 }
