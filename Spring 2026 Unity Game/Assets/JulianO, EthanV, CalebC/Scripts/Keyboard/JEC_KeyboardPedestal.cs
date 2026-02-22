@@ -23,7 +23,6 @@ public class JEC_KeyboardPedestal : JEC_InteractableBase
     protected override void Interact()
     {
         JEC_Events.OnInteractKeyboardPedestal.Invoke();
-        Debug.Log("Interacted with Keyboard");
     }
 
     public void ExitPedestal()

@@ -11,8 +11,6 @@ public class JEC_KeyCollectable : MonoBehaviour
         TextMeshProUGUI charTextUI = canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         character = charTextUI.text;
-
-        Debug.Log("Character is: " +  character);
     }
 
     private void OnTriggerEnter(Collider other)

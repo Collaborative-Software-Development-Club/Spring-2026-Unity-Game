@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -39,7 +41,7 @@ public class JEC_URLManager : MonoBehaviour
         }
         else if (CurrentText.Length > text.Length) 
         { 
-            HandleKeyRemoved(text); 
+            HandleKeysRemoved(text); 
         }
 
         CurrentText = inputText.text;
@@ -47,6 +49,7 @@ public class JEC_URLManager : MonoBehaviour
 
     public void HandleKeyAdded(string text)
     {
+
         string c = text[^1].ToString();
 
         JEC_Key key = KeyManager.FindKey(c);
@@ -70,16 +73,40 @@ public class JEC_URLManager : MonoBehaviour
             JEC_Events.OnKeyPressSuccess.Invoke(c);
 
         }
+        
     }
 
-    public void HandleKeyRemoved(string text)
+    public void HandleKeysRemoved(string text)
     {
-        string c = CurrentText[^1].ToString();
 
-        KeyManager.KeysUsed[c]--;
+        //if keys are being removed, text is a substring of CurrentText
+        string chars = StringDifference(text, CurrentText);
+        
+        foreach (char c in chars)
+        {
+            KeyManager.KeysUsed["" + c]--;
 
-        // Invoke key removed event
-        JEC_Events.OnKeyRemoved.Invoke(c);
+            // Invoke key removed event
+            JEC_Events.OnKeyRemoved.Invoke("" + c);
+        }
+    }
+
+
+    // returns a string with every character not in the previous string
+    // (assuming s1 is a substring of s2)
+    private string StringDifference(string s1, string s2)
+    {
+        string result = (string)s2.Clone();
+
+        for (int i = 0; i < s1.Length; i++)
+        {
+            if (result.IndexOf(s1[i]) != -1)
+            {
+                result = result.Remove(result.IndexOf(s1[i]), 1);
+            }
+        }
+
+        return result;
     }
 
 }
