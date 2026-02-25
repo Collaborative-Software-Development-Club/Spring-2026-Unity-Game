@@ -19,6 +19,6 @@ public static class JEC_Events
 
     public static UnityEvent ProgressDialogueNPC = new UnityEvent();
 
-    public static UnityEvent OnStopNPC = new UnityEvent();
+    public static UnityEvent LeaveNPC = new UnityEvent();
 
 }

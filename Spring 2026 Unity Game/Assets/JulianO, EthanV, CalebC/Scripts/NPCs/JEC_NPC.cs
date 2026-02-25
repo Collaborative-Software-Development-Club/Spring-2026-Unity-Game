@@ -18,7 +18,15 @@ public class JEC_NPC : JEC_InteractableBase
     {
         JEC_Events.OnStartNPC.AddListener(StartDialogue);
         JEC_Events.ProgressDialogueNPC.AddListener(NextLine);
-        JEC_Events.OnStopNPC.AddListener(EndDialogue);
+        JEC_Events.LeaveNPC.AddListener(EndDialogue);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            JEC_Events.LeaveNPC.Invoke();
+        }
     }
 
     public bool CanInteract()
@@ -65,7 +73,7 @@ public class JEC_NPC : JEC_InteractableBase
             isTyping = false;
         }
         // if there is another line remaining, start the next line
-        else if ((dialogueIndex + 1) < (dialogueData.dialogueLines.Length))
+        else if (++dialogueIndex < (dialogueData.dialogueLines.Length))
         {
             StartCoroutine(TypeLine());
         }
