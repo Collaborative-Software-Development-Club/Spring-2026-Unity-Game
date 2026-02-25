@@ -47,33 +47,68 @@ public class JEC_URLManager : MonoBehaviour
         CurrentText = inputText.text;
     }
 
+    //public void HandleKeyAdded(string text)
+    //{
+
+    //    string c = text[^1].ToString();
+
+    //    JEC_Key key = KeyManager.FindKey(c);
+
+    //    //Check if the user has a specific key
+    //    if (key == null || key.amount == 0 || KeyManager.KeysUsed[c] >= key.amount)
+    //    {
+    //        inputText.text = text.Substring(0, text.Length - 1);
+
+    //        // Invoke key press failure event
+    //        JEC_Events.OnKeyPressFailure.Invoke(c);
+
+    //    }
+    //    else
+    //    {
+    //        inputText.text = text;
+
+    //        KeyManager.KeysUsed[c]++;
+
+    //        // Invoke key press success event
+    //        JEC_Events.OnKeyPressSuccess.Invoke(c);
+
+    //    }
+        
+    //}
+
+
     public void HandleKeyAdded(string text)
     {
 
-        string c = text[^1].ToString();
+        string chars = StringDifference(CurrentText, text);
 
-        JEC_Key key = KeyManager.FindKey(c);
-
-        //Check if the user has a specific key
-        if (key == null || key.amount == 0 || KeyManager.KeysUsed[c] >= key.amount)
+        foreach (char c in chars)
         {
-            inputText.text = text.Substring(0, text.Length - 1);
+            JEC_Key key = KeyManager.FindKey("" + c);
 
-            // Invoke key press failure event
-            JEC_Events.OnKeyPressFailure.Invoke(c);
 
+            //Check if the user has a specific key
+            if (key == null || key.amount == 0 || KeyManager.KeysUsed["" + c] >= key.amount)
+            {
+                inputText.text = CurrentText;
+
+                // Invoke key press failure event
+                JEC_Events.OnKeyPressFailure.Invoke("" + c);
+                Debug.Log("Didn't add key to URL");
+
+            }
+            else
+            {
+                inputText.text = text;
+
+                KeyManager.KeysUsed["" + c]++;
+
+                // Invoke key press success event
+                JEC_Events.OnKeyPressSuccess.Invoke("" + c);
+
+            }
         }
-        else
-        {
-            inputText.text = text;
 
-            KeyManager.KeysUsed[c]++;
-
-            // Invoke key press success event
-            JEC_Events.OnKeyPressSuccess.Invoke(c);
-
-        }
-        
     }
 
     public void HandleKeysRemoved(string text)
