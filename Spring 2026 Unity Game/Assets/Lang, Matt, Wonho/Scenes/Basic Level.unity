@@ -722,7 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfb50c48d5794821a3be98fca488864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  difficulty: 3
+  difficulty: 2
   gridCreator: {fileID: 179031796}
   OnDifficultySelected:
     m_PersistentCalls:
@@ -1277,6 +1277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Board
   gridGenerationScript: {fileID: 179031796}
+  rows: []
+  show: 1
 --- !u!1001 &760210694
 PrefabInstance:
   m_ObjectHideFlags: 0

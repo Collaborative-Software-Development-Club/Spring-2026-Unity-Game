@@ -3,11 +3,10 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     public GridGeneration gridGenerationScript;
-    private Row[] rows;
+    public Row[] rows;
 
     public bool show = false;
 
-    private int randnum;
 
     private void Awake()
     {
@@ -20,8 +19,7 @@ public class Board : MonoBehaviour
     {
         //if (test == true)
       //  {
-            DrawGrid();
-            BlindBlock();
+        DrawGrid();
         if (show)
         {
             ShowSolution();
@@ -64,19 +62,5 @@ public class Board : MonoBehaviour
         }
     }
 
-    void BlindBlock()
-    {
-        for (int i = 0; i < 13; i++)
-        {
-            for (int j = 0; j < 13; j++)
-            {
-                randnum = Random.Range(0, 100);
-                if(randnum < 10)
-                {
-                    rows[i].tiles[j].SetColor(Color.darkMagenta);
-                    rows[i].tiles[j].TextColor(Color.darkMagenta);
-                }
-            }
-        }
-    }
+
 }
