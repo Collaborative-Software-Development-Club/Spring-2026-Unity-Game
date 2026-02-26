@@ -113,9 +113,11 @@ public class Inventory
         }
         return count;
     }
-    
-    public int Length() {
-        return slots.Length;
+
+    public int Length {
+        get {
+            return slots.Length;
+        }
     }
 
     public InventorySlot? GetItemAt(int slot) {
