@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class WaterSeed : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int waterCost = 1;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TryWaterPlant();
+        }
+    }
+
+    void TryWaterPlant()
+    {
+        if (PlayerInv.water >= waterCost)
+        {
+            PlayerInv.water -= waterCost;
+            Debug.Log("Plant watered! Water left: " + PlayerInv.water);
+
+        }
+        else
+        {
+            Debug.Log("Not enough water!");
+        }
     }
 }
