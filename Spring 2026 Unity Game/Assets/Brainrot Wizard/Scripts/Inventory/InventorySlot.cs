@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class InventorySlot
 { // Carson was here
-    public Item? item;
+    public Item item;
     public int quantity;
 
     public InventorySlot(Item item, int quantity)
@@ -45,7 +45,7 @@ public class InventorySlot
         return false;
     }
 
-    public bool IsTypeAs(Item? item) {
+    public bool IsTypeAs(Item item) {
         if (item is null) return IsType(null);
         if (!item.HasData()) return IsType(null);
         Debug.Log(item.HasData());

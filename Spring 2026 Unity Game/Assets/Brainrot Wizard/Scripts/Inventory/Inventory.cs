@@ -120,7 +120,7 @@ public class Inventory
         }
     }
 
-    public InventorySlot? GetItemAt(int slot) {
+    public InventorySlot GetItemAt(int slot) {
         if (slot > slots.Length) return null;
         return slots[slot];
     }
