@@ -119,30 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &115732708 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6163102997362465129, guid: d3c78a92f10f1134293975590a933989,
-    type: 3}
-  m_PrefabInstance: {fileID: 8643640241547156939}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &326211788 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6587548541614648627, guid: d3c78a92f10f1134293975590a933989,
-    type: 3}
-  m_PrefabInstance: {fileID: 8643640241547156939}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &471837397
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,18 +414,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &743379783 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3881834947217275917, guid: d3c78a92f10f1134293975590a933989,
-    type: 3}
-  m_PrefabInstance: {fileID: 8643640241547156939}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &882018926
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +536,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GUIManager
   canvas: {fileID: 0}
-  moneyGUI: {fileID: 0}
+  mainObject: {fileID: 0}
+  MainGUIPrefab: {fileID: 4598951225455345688, guid: d3c78a92f10f1134293975590a933989,
+    type: 3}
+  main: {fileID: 0}
 --- !u!114 &958433000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,18 +638,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrainrotTest
   brainrot: {fileID: 1269979253}
---- !u!114 &1710670688 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5849888136106884408, guid: d3c78a92f10f1134293975590a933989,
-    type: 3}
-  m_PrefabInstance: {fileID: 8643640241547156939}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &2131398638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1819949448753061164, guid: 108c003947696a9438d4a9cd21c6737b,
@@ -865,36 +820,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3881834947217275917, guid: d3c78a92f10f1134293975590a933989,
-        type: 3}
-      propertyPath: m_text
-      value: 'Turn: '
-      objectReference: {fileID: 0}
     - target: {fileID: 4598951225455345688, guid: d3c78a92f10f1134293975590a933989,
         type: 3}
       propertyPath: m_Name
       value: MainGUI
       objectReference: {fileID: 0}
-    - target: {fileID: 4962177126279320451, guid: d3c78a92f10f1134293975590a933989,
+    - target: {fileID: 4598951225455345688, guid: d3c78a92f10f1134293975590a933989,
         type: 3}
-      propertyPath: TurnText
-      value: 
-      objectReference: {fileID: 743379783}
-    - target: {fileID: 4962177126279320451, guid: d3c78a92f10f1134293975590a933989,
-        type: 3}
-      propertyPath: MoneyText
-      value: 
-      objectReference: {fileID: 115732708}
-    - target: {fileID: 4962177126279320451, guid: d3c78a92f10f1134293975590a933989,
-        type: 3}
-      propertyPath: StateText
-      value: 
-      objectReference: {fileID: 326211788}
-    - target: {fileID: 4962177126279320451, guid: d3c78a92f10f1134293975590a933989,
-        type: 3}
-      propertyPath: ContractText
-      value: 
-      objectReference: {fileID: 1710670688}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

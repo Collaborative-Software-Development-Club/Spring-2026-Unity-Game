@@ -5,8 +5,6 @@ public class GUIManager : MonoBehaviour
 {
         
     private GameManager gM;
-    public Canvas canvas;
-
     public GameObject mainObject;
     public GameObject MainGUIPrefab;
     public MainGUI main;
@@ -14,12 +12,14 @@ public class GUIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gM = GameManager.Instance;
-        gM.EconomyManager.onMoneyChanged += UpdateMoneyGUI;
-        gM.onTurnChange += UpdateTurnGUI;
-
         mainObject = GameObject.Instantiate(MainGUIPrefab);
         main = mainObject.GetComponent<MainGUI>();
+
+        gM = GameManager.Instance;
+        print(gM.EconomyManager);
+        gM.EconomyManager.onMoneyChanged += UpdateMoneyGUI;
+        gM.onTurnChange += UpdateTurnGUI;
+        gM.onGameStateChange += UpdateStateGUI;
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class GUIManager : MonoBehaviour
     public void UpdateContractGUI(double data) {
         main.ContractText.text = main.Contract + data;
     }
-    public void UpdateStateGUI(double data) {
+    public void UpdateStateGUI(GameState data) {
         main.StateText.text = main.State + data;
     }
     public void UpdateTurnGUI(int data) {

@@ -54,10 +54,7 @@ public class GameManager : MonoBehaviour
 
         _instance = this;
         DontDestroyOnLoad(gameObject); 
-    }
 
-    private void Start()
-    {
         if (EconomyManager == null)
             EconomyManager = GetComponent<EconomyManager>();
     }
