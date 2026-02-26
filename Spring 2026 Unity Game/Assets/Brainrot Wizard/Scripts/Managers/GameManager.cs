@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
     public Action<GameState> onGameStateChange;
 
     /// <summary>
-    /// Reports when turns are changed
+    /// Reports when turns are changed with the current turn
     /// </summary>
-    public Action onTurnChange; 
+    public Action<int> onTurnChange; 
     
     public int CurrentTurnCount { get; private set; } = 0;
 
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentGameState = GameState.ContractWork;
         
-        onTurnChange?.Invoke();
         CurrentTurnCount++;
+        onTurnChange?.Invoke(CurrentTurnCount);
     }
 }
