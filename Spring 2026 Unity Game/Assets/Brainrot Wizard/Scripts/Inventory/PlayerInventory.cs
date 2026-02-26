@@ -6,8 +6,6 @@ public class PlayerInventory : MonoBehaviour
    private Inventory inventory = new(9);
    [SerializeField] private PlayerInventoryUI playerInventoryUI;
 
-   private int currentSlot = 0;
-   
    public void OnSlotClicked(InputAction.CallbackContext context)
    { 
        if (!context.started) return;
