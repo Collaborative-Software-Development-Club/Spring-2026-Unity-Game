@@ -8,7 +8,7 @@ public class JEC_KeyboardPedestal : JEC_InteractableBase
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             JEC_Events.OnExitKeyboardPedestal.Invoke();
         }

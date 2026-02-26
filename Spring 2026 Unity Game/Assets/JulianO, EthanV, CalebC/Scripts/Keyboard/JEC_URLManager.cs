@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -6,6 +7,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class JEC_URLManager : MonoBehaviour
 {
@@ -13,12 +16,18 @@ public class JEC_URLManager : MonoBehaviour
 
     private TMP_InputField inputText;
     private string CurrentText;
-
+    private int CaretPosition;
 
 
     private void OnEnable()
     {
         inputText = GetComponent<TMP_InputField>();
+
+        inputText.text = "";
+        CaretPosition = 0;
+
+        inputText.caretPosition = CaretPosition;
+
 
         if (inputText == null)
         {
@@ -26,11 +35,24 @@ public class JEC_URLManager : MonoBehaviour
         }
 
         CurrentText = inputText.text;
-
         KeyManager.ResetKeysTyped();
 
-        // TODO: make it so input field is automatically selected
+        StartCoroutine(SelectInputField());
+    }
+
+    private void FixedUpdate()
+    {
+        CaretPosition = inputText.caretPosition;
+    }
+
+    IEnumerator SelectInputField()
+    {
+
         inputText.ActivateInputField();
+
+        yield return new WaitForEndOfFrame();
+
+        inputText.OnPointerClick(new PointerEventData(EventSystem.current));
     }
 
     public void TextFilter(string text)
@@ -47,36 +69,6 @@ public class JEC_URLManager : MonoBehaviour
         CurrentText = inputText.text;
     }
 
-    //public void HandleKeyAdded(string text)
-    //{
-
-    //    string c = text[^1].ToString();
-
-    //    JEC_Key key = KeyManager.FindKey(c);
-
-    //    //Check if the user has a specific key
-    //    if (key == null || key.amount == 0 || KeyManager.KeysUsed[c] >= key.amount)
-    //    {
-    //        inputText.text = text.Substring(0, text.Length - 1);
-
-    //        // Invoke key press failure event
-    //        JEC_Events.OnKeyPressFailure.Invoke(c);
-
-    //    }
-    //    else
-    //    {
-    //        inputText.text = text;
-
-    //        KeyManager.KeysUsed[c]++;
-
-    //        // Invoke key press success event
-    //        JEC_Events.OnKeyPressSuccess.Invoke(c);
-
-    //    }
-        
-    //}
-
-
     public void HandleKeyAdded(string text)
     {
 
@@ -91,16 +83,16 @@ public class JEC_URLManager : MonoBehaviour
             if (key == null || key.amount == 0 || KeyManager.KeysUsed["" + c] >= key.amount)
             {
                 inputText.text = CurrentText;
+                inputText.caretPosition = CaretPosition;
 
                 // Invoke key press failure event
                 JEC_Events.OnKeyPressFailure.Invoke("" + c);
-                Debug.Log("Didn't add key to URL");
-
             }
             else
             {
                 inputText.text = text;
 
+                CaretPosition = inputText.caretPosition;
                 KeyManager.KeysUsed["" + c]++;
 
                 // Invoke key press success event

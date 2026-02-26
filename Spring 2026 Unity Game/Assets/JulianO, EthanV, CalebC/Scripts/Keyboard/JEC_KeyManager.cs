@@ -12,6 +12,8 @@ public class JEC_KeyManager : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         JEC_Events.OnPickupKey.AddListener(IncrementKeyVal);
 
         foreach (var key in Keyboard)
