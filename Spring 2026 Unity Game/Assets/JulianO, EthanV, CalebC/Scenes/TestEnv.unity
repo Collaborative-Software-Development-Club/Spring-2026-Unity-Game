@@ -2878,6 +2878,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 874372261}
   dialogueText: {fileID: 497163375}
   nameText: {fileID: 1438944301}
+  Player: {fileID: 58211441}
 --- !u!135 &1308607184
 SphereCollider:
   m_ObjectHideFlags: 0

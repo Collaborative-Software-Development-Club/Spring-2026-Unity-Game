@@ -9,6 +9,7 @@ public class JEC_NPC : JEC_InteractableBase
     public GameObject dialoguePanel;
     public TMP_Text dialogueText, nameText;
     public Image portraitImage;
+    public GameObject Player;
 
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
@@ -59,6 +60,8 @@ public class JEC_NPC : JEC_InteractableBase
         // if doing portraits insert here
 
         dialoguePanel.SetActive(true);
+        Player.GetComponent<PlayerController>().enabled = false;
+        Player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 
         StartCoroutine(TypeLine());
     }
@@ -110,6 +113,7 @@ public class JEC_NPC : JEC_InteractableBase
         isDialogueActive = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
+        Player.GetComponent<PlayerController>().enabled = true;
 
     }
 
