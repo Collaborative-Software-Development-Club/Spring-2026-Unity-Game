@@ -14,8 +14,6 @@ public class Machine : MonoBehaviour
 
     [SerializeField] protected MachineData data;
 
-    [SerializeField] protected Inventory inventory;
-
     protected Inventory input;
 
     protected Inventory output;
