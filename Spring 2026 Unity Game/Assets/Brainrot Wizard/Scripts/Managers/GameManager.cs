@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     
     public int CurrentTurnCount { get; private set; } = 0;
 
+    public int Power { get; private set; } = 0;
+
     public EconomyManager EconomyManager {get; private set;}
 
     private void Awake()
