@@ -48,8 +48,8 @@ public class InventorySlot
     public bool IsTypeAs(Item item) {
         if (item is null) return IsType(null);
         if (!item.HasData()) return IsType(null);
-        Debug.Log(item.HasData());
-        Debug.Log(item is null);
+        // Debug.Log(item.HasData());
+        // Debug.Log(item is null);
         return IsType(item.GetItemType());
     }
 }

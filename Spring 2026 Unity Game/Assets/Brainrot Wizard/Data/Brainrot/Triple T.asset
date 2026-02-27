@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1f445041abca1439b04f0234df8bae, type: 3}
   m_Name: Triple T
   m_EditorClassIdentifier: Assembly-CSharp::BrainrotData
-  name: Triple T
   text: He is triple your T
   value: 1000
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
@@ -22,5 +21,5 @@ MonoBehaviour:
   attributes:
   - attribute: 10
     quantity: 20
-  - attribute: 0
+  - attribute: 1
     quantity: 100

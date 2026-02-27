@@ -9,15 +9,11 @@ public class MachineTest : MonoBehaviour
     void Start()
     {
         print(machine.GetMachineType());
-        machine.AddItemToInput(item, 5);
-        Inventory test = new Inventory(1);
-        test.AddItemToInventory(item, 5);
+        print(machine.AddItemToInput(item, 5));
         print(machine.GetInputInventory().GetTotalItemCount());
         print(machine.GetInputInventory().Length);
-        print(test.GetTotalItemCount());
-        print(test.Length);
-        item.PrintData();
-        //machine.GetInputInventory().GetItemAt(0).item.PrintData();
+        //machine.OnInteraction();
+        machine.GetInputInventory().GetItemAt(0).item.PrintData();
         print(machine.GetOutputInventory().GetTotalItemCount());
     }
 }

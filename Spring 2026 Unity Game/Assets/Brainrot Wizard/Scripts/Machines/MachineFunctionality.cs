@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,7 +29,7 @@ public static class MachineFunctionality
         }
 
         // Get all possible Attribute enum values defined in the project.
-        var values = (Attribute[])System.Enum.GetValues(typeof(Attribute));
+        var values = (Attribute[])Enum.GetValues(typeof(Attribute));
         if (values == null || values.Length == 0)
         {
             Debug.LogWarning("No attributes available to add.");
@@ -36,11 +37,11 @@ public static class MachineFunctionality
         }
 
         // Pick one at random.
-        var chosen = values[Random.Range(0, values.Length)];
+        var chosen = values[UnityEngine.Random.Range(0, values.Length)];
 
-        // Randomize the number of attributes to add (1-3, weighted more towards 1).
+        // UnityEngine.Randomize the number of attributes to add (1-3, weighted more towards 1).
         int quantity = 1;
-        int roll = Random.Range(0, 100);
+        int roll = UnityEngine.Random.Range(0, 100);
         if (roll >= 90)
         {
             quantity = 3;
@@ -57,7 +58,7 @@ public static class MachineFunctionality
             double chanceToRemove = (1.0 / totalAttributes) * (failChance * 2);
             foreach (AttributeQuantity attribute in clone.attributes)
             {
-                int removeRoll = Random.Range(0, 100);
+                int removeRoll = UnityEngine.Random.Range(0, 100);
                 if (chanceToRemove < removeRoll)
                 {
                     attribute.quantity = -1;
@@ -118,7 +119,7 @@ public static class MachineFunctionality
         // Remove the attributes.
         foreach (AttributeQuantity attribute in clone.attributes)
         {
-            int removeRoll = Random.Range(0, 100);
+            int removeRoll = UnityEngine.Random.Range(0, 100);
             if (chance < removeRoll)
             {
                 attribute.quantity = -1;
@@ -185,23 +186,23 @@ public static class MachineFunctionality
         int totalAttributes2 = clone2.attributes.Sum(aq => aq.quantity);
 
         // For each clone, roll the chance to fail, and if it fails, randomize to a different attribute.
-        if (Random.Range(0, 100) < chanceOfFail)
+        if (UnityEngine.Random.Range(0, 100) < chanceOfFail)
         {
             int randAttribute1 = attribute1;
             do
             {
-                randAttribute1 = Random.Range(0, totalAttributes1);
+                randAttribute1 = UnityEngine.Random.Range(0, totalAttributes1);
             } while (randAttribute1 == attribute1);
             attribute1 = randAttribute1;
         }
 
         // For each clone, roll the chance to fail, and if it fails, randomize to a different attribute.
-        if (Random.Range(0, 100) < chanceOfFail)
+        if (UnityEngine.Random.Range(0, 100) < chanceOfFail)
         {
             int randAttribute2 = attribute2;
             do
             {
-                randAttribute2 = Random.Range(0, totalAttributes1);
+                randAttribute2 = UnityEngine.Random.Range(0, totalAttributes1);
             } while (randAttribute2 == attribute1);
             attribute2 = randAttribute2;
         }
@@ -246,7 +247,7 @@ public static class MachineFunctionality
         var existing = clone.attributes.Find(aq => aq.attribute == clone.attributes[attributeToDuplicate].attribute);
 
         // Roll a random chance to see if duplicate fails.
-        if (Random.Range(0, 100) < failChance)
+        if (UnityEngine.Random.Range(0, 100) < failChance)
         {
             // If it fails, remove 1 from the attribute instead of adding.
             if (existing.quantity > 1)
@@ -298,14 +299,14 @@ public static class MachineFunctionality
             clone.attributes = new List<AttributeQuantity>();
         }
 
-        // Randomly remove some attributes based on the fail chance. Uses same randomization as AddRandomAttribute, with independent rolls.
+        // UnityEngine.Randomly remove some attributes based on the fail chance. Uses same randomization as AddRandomAttribute, with independent rolls.
         int totalAttributes = clone.attributes.Sum(aq => aq.quantity);
         if (totalAttributes > 0)
         {
             double chanceToRemove = (1.0 / totalAttributes) * (failChance * 2);
             foreach (AttributeQuantity attribute in clone.attributes)
             {
-                int removeRoll = Random.Range(0, 100);
+                int removeRoll = UnityEngine.Random.Range(0, 100);
                 if (chanceToRemove < removeRoll)
                 {
                     attribute.quantity = -1;
@@ -332,10 +333,10 @@ public static class MachineFunctionality
 
             for (int i = 0; i < attributesToTransfer.Length; i++)
             {
-                int attributeSelected = Random.Range(0, totalAttributes);
+                int attributeSelected = UnityEngine.Random.Range(0, totalAttributes);
                 do
                 {
-                    attributeSelected = Random.Range(0, totalAttributes);
+                    attributeSelected = UnityEngine.Random.Range(0, totalAttributes);
                 } while (attributesToTransfer.Contains(attributeSelected));
                 attributesToTransfer[i] = attributeSelected;
             }
@@ -393,9 +394,9 @@ public static class MachineFunctionality
         // Create the new BrainrotData to return, which will combine attributes from both inputs at random.
         BrainrotData newBrainrot = new BrainrotData();
 
-        // Randomize between the two categories for the new BrainrotData.
+        // UnityEngine.Randomize between the two categories for the new BrainrotData.
         newBrainrot.category = clone1.category;
-        if (Random.Range(0, 1) == 1)
+        if (UnityEngine.Random.Range(0, 1) == 1)
         {
             newBrainrot.category = clone2.category;
         }
@@ -406,11 +407,11 @@ public static class MachineFunctionality
             var matchingAQ = clone2.attributes.Find(aq2 => aq2.attribute == aq1.attribute);
             if (matchingAQ != null)
             {
-                // If they do, Randomize between the two quantities to keep.
+                // If they do, UnityEngine.Randomize between the two quantities to keep.
                 newBrainrot.attributes.Add(new AttributeQuantity
                 {
                     attribute = aq1.attribute,
-                    quantity = Random.Range(aq1.quantity, matchingAQ.quantity)
+                    quantity = UnityEngine.Random.Range(aq1.quantity, matchingAQ.quantity)
                 });
             }
         }
@@ -420,7 +421,7 @@ public static class MachineFunctionality
         {
             if (!newBrainrot.attributes.Any(aq => aq.attribute == aq1.attribute))
             {
-                if (Random.Range(0, 100) > failChance)
+                if (UnityEngine.Random.Range(0, 100) > failChance)
                 {
                     newBrainrot.attributes.Add(new AttributeQuantity
                     {
@@ -434,7 +435,7 @@ public static class MachineFunctionality
         {
             if (!newBrainrot.attributes.Any(aq => aq.attribute == aq2.attribute))
             {
-                if (Random.Range(0, 100) > failChance)
+                if (UnityEngine.Random.Range(0, 100) > failChance)
                 {
                     newBrainrot.attributes.Add(new AttributeQuantity
                     {

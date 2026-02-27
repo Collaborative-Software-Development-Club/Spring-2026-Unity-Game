@@ -20,7 +20,7 @@ public class Inventory
             }
         }
         for (int i = 0; i < slots.Length; i++) {
-            if (slots[i] == null) {
+            if (slots[i].item == null) {
                 slots[i] = new InventorySlot(item, quantity);
                 return true;
             }
