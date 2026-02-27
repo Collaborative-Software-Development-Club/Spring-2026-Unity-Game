@@ -4,7 +4,7 @@ using UnityEngine;
 public class GUIManager : MonoBehaviour
 {
         
-    private GameManager gM;
+    public GameManager gM;
     public GameObject mainObject;
     public GameObject MainGUIPrefab;
     public MainGUI main;
@@ -14,6 +14,7 @@ public class GUIManager : MonoBehaviour
     {
         mainObject = GameObject.Instantiate(MainGUIPrefab);
         main = mainObject.GetComponent<MainGUI>();
+        main.MyGUIManager = this;
 
         gM = GameManager.Instance;
         print(gM.EconomyManager);

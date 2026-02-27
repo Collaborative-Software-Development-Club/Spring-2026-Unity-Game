@@ -102,16 +102,25 @@ public class GameManager : MonoBehaviour
     private void CraftingState()
     {
         CurrentGameState = GameState.Crafting;
+        onGameStateChange.Invoke(CurrentGameState);
     }
     private void ShoppingState()
     {
         CurrentGameState = GameState.Shopping;
+        onGameStateChange.Invoke(CurrentGameState);
     }
     private void ContractWorkState()
     {
         CurrentGameState = GameState.ContractWork;
+        onGameStateChange.Invoke(CurrentGameState);
         
         CurrentTurnCount++;
         onTurnChange?.Invoke(CurrentTurnCount);
+    }
+
+    public void TutorialStart() {
+        CurrentGameState = GameState.ContractWork;
+        if (onGameStateChange is null) print("IDK WHY ONGAMESTATECHANGE IS NULL.\nYOUR ACTION HAS NOT BEEN RUN.\nIF YOU CAN FIX IT PLEASE DO.");
+        onGameStateChange?.Invoke(CurrentGameState);
     }
 }
