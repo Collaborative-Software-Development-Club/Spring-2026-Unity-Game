@@ -56,7 +56,7 @@ public abstract class Item : MonoBehaviour
     }
     public virtual ItemType GetItemType()
     {
-        Debug.Log(data is null);
+        //Debug.Log(data is null);
         return data.type;
     }
     public virtual Rarity GetRarity()

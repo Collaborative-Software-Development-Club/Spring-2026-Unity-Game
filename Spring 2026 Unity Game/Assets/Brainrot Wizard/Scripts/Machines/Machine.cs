@@ -106,7 +106,7 @@ public class Machine : MonoBehaviour
         var result = MachineFunctionality.AddRandomAttribute(itemData, failChance);
         if (result == null)
         {
-            Debug.Log($"{name}: AddRandomAttribute returned null.");
+            Debug.LogWarning($"{name}: AddRandomAttribute returned null.");
             input.AddItemToInventory(item, removed.quantity);
             return;
         }
@@ -128,13 +128,13 @@ public class Machine : MonoBehaviour
     {
         var removed = input.RemoveFromSlot(0);
         var item = removed.item;
-        if (item == null) { Debug.Log($"{name}: no item in input slot 0."); return; }
+        if (item == null) { Debug.LogWarning($"{name}: no item in input slot 0."); return; }
 
         var itemData = GetItemData(item) as BrainrotData;
         if (itemData == null) { Debug.LogWarning($"{name}: item is not a Brainrot."); input.AddItemToInventory(item, removed.quantity); return; }
 
         var result = MachineFunctionality.RemoveRandomAttribute(itemData);
-        if (result == null) { Debug.Log($"{name}: RemoveRandomAttribute returned null."); input.AddItemToInventory(item, removed.quantity); return; }
+        if (result == null) { Debug.LogWarning($"{name}: RemoveRandomAttribute returned null."); input.AddItemToInventory(item, removed.quantity); return; }
 
         if (!SetItemData(item, result)) { Debug.LogWarning($"{name}: failed to set ItemData on item."); input.AddItemToInventory(item, removed.quantity); return; }
 
@@ -145,17 +145,17 @@ public class Machine : MonoBehaviour
     {
         var removed = input.RemoveFromSlot(0);
         var item = removed.item;
-        if (item == null) { Debug.Log($"{name}: no item in input slot 0."); return; }
+        if (item == null) { Debug.LogWarning($"{name}: no item in input slot 0."); return; }
 
         var itemData = GetItemData(item) as BrainrotData;
         if (itemData == null) { Debug.LogWarning($"{name}: item is not a Brainrot."); input.AddItemToInventory(item, removed.quantity); return; }
 
         int attrCount = itemData.attributes?.Count ?? 0;
-        if (attrCount == 0) { Debug.Log($"{name}: no attributes to duplicate."); input.AddItemToInventory(item, removed.quantity); return; }
+        if (attrCount == 0) { Debug.LogWarning($"{name}: no attributes to duplicate."); input.AddItemToInventory(item, removed.quantity); return; }
 
         int attributeIndex = UnityEngine.Random.Range(0, attrCount);
         var result = MachineFunctionality.DuplicateRandomAttribute(itemData, attributeIndex, failChance);
-        if (result == null) { Debug.Log($"{name}: duplicateRandomAttribute returned null."); input.AddItemToInventory(item, removed.quantity); return; }
+        if (result == null) { Debug.LogWarning($"{name}: duplicateRandomAttribute returned null."); input.AddItemToInventory(item, removed.quantity); return; }
 
         if (!SetItemData(item, result)) { Debug.LogWarning($"{name}: failed to set ItemData on item."); input.AddItemToInventory(item, removed.quantity); return; }
 
@@ -231,7 +231,7 @@ public class Machine : MonoBehaviour
     {
         var removed = input.RemoveFromSlot(0);
         var item = removed.item;
-        if (item == null) { Debug.Log($"{name}: no item in input slot 0."); return; }
+        if (item == null) { Debug.LogWarning($"{name}: no item in input slot 0."); return; }
 
         var itemData = GetItemData(item) as BrainrotData;
         if (itemData == null) { Debug.LogWarning($"{name}: item is not a Brainrot."); input.AddItemToInventory(item, removed.quantity); return; }
@@ -262,7 +262,7 @@ public class Machine : MonoBehaviour
         var itemA = removedA.item;
         var itemB = removedB.item;
 
-        if (itemA == null || itemB == null) { Debug.Log($"{name}: need two items in input slots 0 and 1 to fuse."); if (itemA != null) input.AddItemToInventory(itemA, removedA.quantity); if (itemB != null) input.AddItemToInventory(itemB, removedB.quantity); return; }
+        if (itemA == null || itemB == null) { Debug.LogWarning($"{name}: need two items in input slots 0 and 1 to fuse."); if (itemA != null) input.AddItemToInventory(itemA, removedA.quantity); if (itemB != null) input.AddItemToInventory(itemB, removedB.quantity); return; }
 
         var dataA = GetItemData(itemA) as BrainrotData;
         var dataB = GetItemData(itemB) as BrainrotData;
