@@ -43,8 +43,6 @@ public class GameManager : MonoBehaviour
     
     public int CurrentTurnCount { get; private set; } = 0;
 
-    public int Power { get; private set; } = 0;
-
     public EconomyManager EconomyManager {get; private set;}
 
     private void Awake()
@@ -84,6 +82,8 @@ public class GameManager : MonoBehaviour
         switch (CurrentGameState)
         {
             case GameState.None:
+                Debug.LogWarning("Game on none state, changing to contract!");
+                ContractWorkState();
                 break;
             case GameState.ContractWork:
                 ShoppingState();
