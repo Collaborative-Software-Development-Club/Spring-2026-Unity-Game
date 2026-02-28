@@ -11,5 +11,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Trevor/Scenes/Test Scene 1.unity
     guid: e9a6c7e5fe90fed4aafcddee9fa3a4fa
+  - enabled: 1
+    path: Assets/Anshuman, Ardelia, Irene/Scenes/DampLevel.unity
+    guid: d06dbf4946e7c88498439994844e03be
+  - enabled: 1
+    path: Assets/Brainrot Wizard/Scenes/Main.unity
+    guid: e2d43a14a54f1584095883b3b007be3d
+  - enabled: 1
+    path: Assets/Lang, Matt, Wonho/Scenes/Basic Level.unity
+    guid: d55cd7b003296488aa34bdf49cf8b0c8
+  - enabled: 1
+    path: Assets/Sanders, Tristan, Cameron/Scenes/WindTutorial.unity
+    guid: fb7b86b542de03d4bb05ebfc69024d6b
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
