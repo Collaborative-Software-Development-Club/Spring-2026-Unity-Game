@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 public class Inventory
 {
-    InventorySlot[] slots = new InventorySlot[0];
+    public InventorySlot[] slots = new InventorySlot[0];
     public Inventory(int size) {
         slots = new InventorySlot[size];
         for (int i = 0; i < size; i++) {
