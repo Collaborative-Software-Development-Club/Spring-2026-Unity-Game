@@ -23,6 +23,7 @@ public enum GameState
 
 [RequireComponent(typeof(EconomyManager))]
 [RequireComponent(typeof(GUIManager))]
+[RequireComponent(typeof(RentManager))]
 public class GameManager : MonoBehaviour
 {
     /// <summary>
