@@ -3,6 +3,7 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     public GridGeneration gridGenerationScript;
+    public PlayerControll playerControll;
     public Row[] rows;
 
     public bool show = false;
@@ -13,7 +14,12 @@ public class Board : MonoBehaviour
         rows = GetComponentsInChildren<Row>();
     }
 
-   // private bool test = true;
+    private void Update()
+    {
+        selectedSolution();
+    }
+
+    // private bool test = true;
 
     private void OnGridGeneration()
     {
@@ -62,5 +68,12 @@ public class Board : MonoBehaviour
         }
     }
 
+    void selectedSolution()
+    {
+        if (playerControll.gridx * playerControll.gridy != 10000)
+        {
+            rows[playerControll.gridy].tiles[playerControll.gridx].SetColor(Color.gold);
+        }
+    }
 
 }

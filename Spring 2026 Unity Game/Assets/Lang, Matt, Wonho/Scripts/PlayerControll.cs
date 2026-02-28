@@ -16,6 +16,12 @@ public class PlayerControll : MonoBehaviour
 
     private float gridsize = 1000 / 13;
 
+    private void Start()
+    {
+        gridx = -100;
+        gridy = -100;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -41,6 +47,7 @@ public class PlayerControll : MonoBehaviour
             out localPoint
         );
 
+
         if (localPoint.x < 500 && localPoint.x > -500 && localPoint.y < 500 && localPoint.y > -500)
         {
             tempx = (localPoint.x + 500) / gridsize;
@@ -52,7 +59,7 @@ public class PlayerControll : MonoBehaviour
             tempy = -100;
         }
 
-        gridx = (int)Mathf.Ceil(tempx);
-        gridy = (int)Mathf.Ceil(tempy);
+        gridx = (int)Mathf.Floor(tempx);
+        gridy = (int)Mathf.Floor(tempy);
     }
 }
