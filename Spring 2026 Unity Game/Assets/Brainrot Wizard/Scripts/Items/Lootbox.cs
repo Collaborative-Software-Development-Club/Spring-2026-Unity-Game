@@ -3,7 +3,6 @@ using UnityEngine;
 public class Lootbox : Item
 {
     public Inventory Items;
-    public string Name;
     // the name is the name of the lootbox, the inventory is a list of all items (items) with
     // quantities being the additive rarities (e.g. item a at quantity 50 and item b at quantity 50 leaves a half/half chance of each)
     public void Initialize(string name, Inventory itemsRates) {

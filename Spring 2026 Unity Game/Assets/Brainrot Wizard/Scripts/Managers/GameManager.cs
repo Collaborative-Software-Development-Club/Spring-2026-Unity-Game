@@ -118,10 +118,4 @@ public class GameManager : MonoBehaviour
         CurrentTurnCount++;
         onTurnChange?.Invoke(CurrentTurnCount);
     }
-
-    public void TutorialStart() {
-        CurrentGameState = GameState.ContractWork;
-        if (onGameStateChange is null) print("IDK WHY ONGAMESTATECHANGE IS NULL.\nYOUR ACTION HAS NOT BEEN RUN.\nIF YOU CAN FIX IT PLEASE DO.");
-        onGameStateChange?.Invoke(CurrentGameState);
-    }
 }
