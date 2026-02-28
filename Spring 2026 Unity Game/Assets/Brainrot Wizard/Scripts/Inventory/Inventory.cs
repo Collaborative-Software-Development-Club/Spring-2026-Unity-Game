@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -12,20 +13,20 @@ public class Inventory
         }
     }
 
-    public bool AddItemToInventory(Item item, int quantity=1) {
+    public int AddItemToInventory(Item item, int quantity=1) {
         for (int i = 0; i < slots.Length; i++) {
             if (slots[i].IsTypeAs(item)) {
                 slots[i].quantity += quantity;
-                return true;
+                return i;
             }
         }
         for (int i = 0; i < slots.Length; i++) {
             if (slots[i].item == null) {
                 slots[i] = new InventorySlot(item, quantity);
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     public InventorySlot AddToSlot(int slot, Item item, int quantity=1) {
@@ -40,30 +41,6 @@ public class Inventory
         slots[slot] = new InventorySlot(item, quantity);
         return replace;
     }
-
-    // remove all of a slot up to a quantity and return it
-    
-    /*
-    public InventorySlot RemoveFromSlot(int slot, int quantity = 1)
-    {
-        Assert.IsTrue(quantity >= 0);
-        
-        InventorySlot removedItems = new InventorySlot(slots[slot].item, 0);
-        
-        if (slots[slot].quantity < quantity)
-        {
-            removedItems.quantity = slots[slot].quantity;
-            slots[slot].quantity = 0;
-        }
-        else
-        {
-            removedItems.quantity = quantity;   
-            slots[slot].quantity -= quantity;
-        }
-
-        return removedItems;
-    }
-    */
     
     public InventorySlot RemoveFromSlot(int slot, int quantity=1) {
         InventorySlot returning = new InventorySlot(); // null slot
@@ -88,22 +65,29 @@ public class Inventory
     }
 
     //parse inventory and remove all of a specific type of item, up to a quantity, and return them
-    public InventorySlot RemoveItemFromInventory(Item item, int quantity=1) {
-        InventorySlot returning = new InventorySlot();
-        for (int i = slots.Length-1; i >= 0; i--) {
-            if (slots[i].IsTypeAs(item)) {
-                returning.Add(RemoveFromSlot(i, quantity - returning.quantity));
-                if (returning.quantity == quantity) {
-                    return returning;
+    public List<int> RemoveItemFromInventory(Item item, int quantity = 1)
+    {
+        List<int> modifiedSlots = new();
+        int removed = 0;
+
+        for (int i = slots.Length - 1; i >= 0; i--)
+        {
+            if (slots[i].IsTypeAs(item))
+            {
+                InventorySlot removedSlot = RemoveFromSlot(i, quantity - removed);
+
+                if (removedSlot.quantity > 0)
+                {
+                    modifiedSlots.Add(i);
+                    removed += removedSlot.quantity;
                 }
+
+                if (removed >= quantity)
+                    break;
             }
         }
 
-        if (returning.quantity == 0) {
-            return new InventorySlot();
-        }
-
-        return returning;
+        return modifiedSlots;
     }
     // Return the total number of items within the inventory.
     public int GetTotalItemCount() {

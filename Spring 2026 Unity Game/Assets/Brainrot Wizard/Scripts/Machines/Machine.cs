@@ -118,7 +118,7 @@ public class Machine : MonoBehaviour
             return;
         }
 
-        if (!output.AddItemToInventory(item, removed.quantity))
+        if (output.AddItemToInventory(item, removed.quantity) < 0)
         {
             Debug.LogWarning($"{name}: output full, returning item to input.");
             input.AddItemToInventory(item, removed.quantity);
@@ -138,7 +138,7 @@ public class Machine : MonoBehaviour
 
         if (!SetItemData(item, result)) { Debug.LogWarning($"{name}: failed to set ItemData on item."); input.AddItemToInventory(item, removed.quantity); return; }
 
-        if (!output.AddItemToInventory(item, removed.quantity)) { Debug.LogWarning($"{name}: output full, returning item to input."); input.AddItemToInventory(item, removed.quantity); }
+        if (output.AddItemToInventory(item, removed.quantity) < 0) { Debug.LogWarning($"{name}: output full, returning item to input."); input.AddItemToInventory(item, removed.quantity); }
     }
 
     protected virtual void HandleDuplicate()
@@ -159,7 +159,7 @@ public class Machine : MonoBehaviour
 
         if (!SetItemData(item, result)) { Debug.LogWarning($"{name}: failed to set ItemData on item."); input.AddItemToInventory(item, removed.quantity); return; }
 
-        if (!output.AddItemToInventory(item, removed.quantity)) { Debug.LogWarning($"{name}: output full, returning item to input."); input.AddItemToInventory(item, removed.quantity); }
+        if (output.AddItemToInventory(item, removed.quantity) < 0) { Debug.LogWarning($"{name}: output full, returning item to input."); input.AddItemToInventory(item, removed.quantity); }
     }
 
     // DoSwap - concrete swap using caller-provided attribute indexes (no randomness here).
@@ -215,13 +215,13 @@ public class Machine : MonoBehaviour
             return;
         }
 
-        bool addedA = output.AddItemToInventory(itemA, removedA.quantity);
-        bool addedB = output.AddItemToInventory(itemB, removedB.quantity);
-        if (!addedA || !addedB)
+        int addedA = output.AddItemToInventory(itemA, removedA.quantity);
+        int addedB = output.AddItemToInventory(itemB, removedB.quantity);
+        if (addedA < 0 || addedB < 0)
         {
             Debug.LogWarning($"{name}: output full or partial failure, returning items to input.");
-            if (addedA) output.RemoveItemFromInventory(itemA, removedA.quantity);
-            if (addedB) output.RemoveItemFromInventory(itemB, removedB.quantity);
+            if (addedA > -1) output.RemoveItemFromInventory(itemA, removedA.quantity);
+            if (addedB > -1) output.RemoveItemFromInventory(itemB, removedB.quantity);
             input.AddItemToInventory(itemA, removedA.quantity);
             input.AddItemToInventory(itemB, removedB.quantity);
         }
@@ -241,7 +241,7 @@ public class Machine : MonoBehaviour
 
         if (!SetItemData(item, results[0])) { Debug.LogWarning($"{name}: failed to set fission result on item."); input.AddItemToInventory(item, removed.quantity); return; }
 
-        if (!output.AddItemToInventory(item, removed.quantity)) { Debug.LogWarning($"{name}: output full, returning item to input."); input.AddItemToInventory(item, removed.quantity); return; }
+        if (output.AddItemToInventory(item, removed.quantity) < 0) { Debug.LogWarning($"{name}: output full, returning item to input."); input.AddItemToInventory(item, removed.quantity); return; }
 
         if (results.Length > 1 && results[1] != null)
         {
@@ -251,7 +251,7 @@ public class Machine : MonoBehaviour
 
             if (!SetItemData(cloneItem, results[1])) { Debug.LogWarning($"{name}: failed to set data on clone."); UnityEngine.Object.Destroy(cloneGo); return; }
 
-            if (!output.AddItemToInventory(cloneItem, 1)) { Debug.LogWarning($"{name}: output full, destroying clone."); UnityEngine.Object.Destroy(cloneGo); }
+            if (output.AddItemToInventory(cloneItem, 1) < 0) { Debug.LogWarning($"{name}: output full, destroying clone."); UnityEngine.Object.Destroy(cloneGo); }
         }
     }
 
@@ -273,7 +273,7 @@ public class Machine : MonoBehaviour
 
         if (!SetItemData(itemA, fused)) { Debug.LogWarning($"{name}: failed to set fused data on item."); input.AddItemToInventory(itemA, removedA.quantity); input.AddItemToInventory(itemB, removedB.quantity); return; }
 
-        if (!output.AddItemToInventory(itemA, 1)) { Debug.LogWarning($"{name}: output full, returning items to input."); input.AddItemToInventory(itemA, removedA.quantity); input.AddItemToInventory(itemB, removedB.quantity); return; }
+        if (output.AddItemToInventory(itemA, 1) < 0) { Debug.LogWarning($"{name}: output full, returning items to input."); input.AddItemToInventory(itemA, removedA.quantity); input.AddItemToInventory(itemB, removedB.quantity); return; }
 
         UnityEngine.Object.Destroy(itemB.gameObject);
     }
@@ -326,23 +326,23 @@ public class Machine : MonoBehaviour
     // Function for adding an item to the input inventory of this machine. Returns true if successful, false if the input inventory is full.
     public bool AddItemToInput(Item item, int quantity=1)
     {
-        return input.AddItemToInventory(item, quantity);
+        return input.AddItemToInventory(item, quantity) > -1;
     }
     // Function for adding an item to the output inventory of this machine. Returns true if successful, false if the output inventory is full.
     public bool AddItemToOutput(Item item, int quantity=1)
     {
-        return output.AddItemToInventory(item, quantity);
+        return output.AddItemToInventory(item, quantity) > -1;
     }
     // Function for removing an item from the input inventory of this machine. Returns true if successful, false if the input inventory is empty or does not contain the item.
     public bool RemoveItemFromInput(Item item, int quantity=1)
     {
         var removed = input.RemoveItemFromInventory(item, quantity);
-        return removed.quantity > 0;
+        return removed.Count > 0;
     }
     // Function for removing an item from the output inventory of this machine. Returns true if successful, false if the output inventory is empty or does not contain the item.
     public bool RemoveItemFromOutput(Item item, int quantity=1)
     {
         var removed = output.RemoveItemFromInventory(item, quantity);
-        return removed.quantity > 0;
+        return removed.Count > 0;
     }
 }

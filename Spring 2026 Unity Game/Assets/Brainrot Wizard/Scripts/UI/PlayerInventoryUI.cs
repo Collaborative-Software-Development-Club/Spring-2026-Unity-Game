@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles the visual UI behavior for the player's inventory,
@@ -10,7 +11,7 @@ public class PlayerInventoryUI : MonoBehaviour
     /// Array of inventory slot UI GameObjects.
     /// Each element represents a visual slot in the inventory.
     /// </summary>
-    [SerializeField] private GameObject[] inventorySprites = new GameObject[9];
+    [SerializeField] private InventorySlotUI[] inventorySlotsUI = new InventorySlotUI[9];
 
     /// <summary>
     /// The UI element used to visually indicate the currently selected slot.
@@ -42,6 +43,10 @@ public class PlayerInventoryUI : MonoBehaviour
             else
                 ShowHighlight();
         }
+        else
+        {
+            ShowHighlight();
+        }
 
         MoveHighlight(index);
         highlightedSlotIndex = index;
@@ -55,9 +60,9 @@ public class PlayerInventoryUI : MonoBehaviour
     private void MoveHighlight(int index)
     {
         inventorySelectIcon.transform.position = new Vector3(
-            inventorySprites[index].transform.position.x, 
-            inventorySprites[index].transform.position.y, 
-            inventorySprites[index].transform.position.z
+            inventorySlotsUI[index].transform.position.x, 
+            inventorySlotsUI[index].transform.position.y, 
+            inventorySlotsUI[index].transform.position.z
         );
     }
 
@@ -75,5 +80,15 @@ public class PlayerInventoryUI : MonoBehaviour
     private void HideHighlight()
     {
         inventorySelectIcon.SetActive(false);
+    }
+
+    public void UpdateIconForIndex(int index, Sprite newIcon)
+    {
+        inventorySlotsUI[index].UpdateIcon(newIcon);
+    }
+
+    public void UpdateQuantityTextForIndex(int index, int quantity)
+    {
+        inventorySlotsUI[index].SetQuantityText(quantity);
     }
 }
