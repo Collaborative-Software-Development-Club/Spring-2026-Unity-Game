@@ -27,7 +27,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             FindLoc();
-            Debug.Log("The current grid location is " + gridx + ", " + gridy);
+            //Debug.Log("The current grid location is " + gridx + ", " + gridy);
         }
 
     }
