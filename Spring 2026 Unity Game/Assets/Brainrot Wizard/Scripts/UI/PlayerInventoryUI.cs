@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>
@@ -91,4 +93,5 @@ public class PlayerInventoryUI : MonoBehaviour
     {
         inventorySlotsUI[index].SetQuantityText(quantity);
     }
+    
 }

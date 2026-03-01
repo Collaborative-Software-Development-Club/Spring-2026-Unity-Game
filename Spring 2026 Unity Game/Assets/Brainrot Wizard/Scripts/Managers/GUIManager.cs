@@ -24,6 +24,12 @@ public class GUIManager : MonoBehaviour
     {
         MachineUIRef.Open(machine);
     }
+    
+    
+    public void OpenMachineUI(Machine machine, Action action)
+    {
+        MachineUIRef.Open(machine, action);
+    }
 
     public void CloseMachineUI()
     {
@@ -53,10 +59,10 @@ public class GUIManager : MonoBehaviour
         if (!slot.item) return newSlot;
         
         if(slot.item.GetIcon())
-            inventorySlotUI.slotIcon.sprite = slot.item.GetIcon();
-            
+            inventorySlotUI.UpdateIcon(slot.item.GetIcon());
+
         if (slot.quantity > 0)
-            inventorySlotUI.quantityText.text = slot.quantity.ToString();
+            inventorySlotUI.SetQuantityText(slot.quantity);
 
         return newSlot;
     }

@@ -7,6 +7,15 @@ public class PlayerInventory : MonoBehaviour
 {
    private Inventory _inventory = new(9);
    [SerializeField] private PlayerInventoryUI playerInventoryUI;
+   private int selectedSlot;
+
+   public Item TestItem;
+   
+   private void Start()
+   {
+       AddItemToInventory(TestItem, 10);
+   }
+
 
    public void OnSlotClicked(InputAction.CallbackContext context)
    { 
@@ -20,6 +29,7 @@ public class PlayerInventory : MonoBehaviour
            return;
        }
 
+       selectedSlot = slotIndex;
        playerInventoryUI.HighlightInventorySlot(slotIndex);
    }
 
@@ -33,12 +43,52 @@ public class PlayerInventory : MonoBehaviour
 
    public void RemoveItemFromInventory(Item item, int amount)
    {
-      List<int> removeResult = _inventory.RemoveItemFromInventory(item, amount);
+       List<InventoryChange> removeResult = _inventory.RemoveItemFromInventory(item, amount);
+        print(removeResult.Count);
+       
+       
+       foreach (InventoryChange inventoryChange in removeResult)
+       {
+           InventorySlot slot = _inventory.GetItemAt(inventoryChange.Index);
 
-      foreach (int i in removeResult)
-      {
-          playerInventoryUI.UpdateQuantityTextForIndex(i, _inventory.GetItemAt(i).quantity);
-          playerInventoryUI.UpdateIconForIndex(i, item.GetIcon());
-      }
+           if (slot.item == null || slot.quantity <= 0)
+           {
+               playerInventoryUI.UpdateQuantityTextForIndex(inventoryChange.NewQuantity, 0);
+               playerInventoryUI.UpdateIconForIndex(inventoryChange.Index, null);
+           }
+           else
+           {
+               playerInventoryUI.UpdateQuantityTextForIndex(inventoryChange.NewQuantity, slot.quantity);
+               playerInventoryUI.UpdateIconForIndex(inventoryChange.Index, slot.item.GetIcon());
+           }
+       }
+   }
+   
+   //Implement later
+   //public void DragToOpenContainer();
+
+   private bool _transferring;
+   
+   public void OnQuickTransfer(InputAction.CallbackContext context)
+   {
+       if (context.started && !_transferring)
+       {
+           _transferring = true;
+           QuickTransferToContainer(selectedSlot, 1);
+       }
+
+       if (context.canceled)
+       {
+           _transferring = false;
+       }
+   }
+
+   public void QuickTransferToContainer(int index, int quantity)
+   {
+       Machine machineRef = GameManager.Instance.GUIManager.MachineUIRef.CurrentMachine;
+       if (machineRef == null) return;
+
+       machineRef.AddItemToInput(_inventory.slots[index].item, quantity);
+       RemoveItemFromInventory(_inventory.slots[index].item, quantity);
    }
 }

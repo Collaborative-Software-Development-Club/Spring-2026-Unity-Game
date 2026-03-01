@@ -313,28 +313,91 @@ public class Machine : MonoBehaviour, IInteractable
     {
         return Output;
     }
-    // Function for adding an item to the input inventory of this machine. Returns true if successful, false if the input inventory is full.
-    public bool AddItemToInput(Item item, int quantity=1)
+/// <summary>
+/// Function for adding an item to the input inventory of this machine.
+/// Returns true if successful, false if the input inventory is full.
+/// </summary>
+/// <param name="item">The item to add.</param>
+/// <param name="quantity">The quantity of the item to add. Defaults to 1.</param>
+/// <returns>
+/// True if successful; otherwise false.
+/// </returns>
+public bool AddItemToInput(Item item, int quantity = 1)
+{
+    int newIndex = Input.AddItemToInventory(item, quantity);
+
+    if (hasUI && newIndex > -1)
+        GameManager.Instance.GUIManager.MachineUIRef
+            .UpdateSlotDisplay(newIndex, item.GetIcon(), quantity);
+
+    return newIndex > -1;
+}
+
+/// <summary>
+/// Function for adding an item to the output inventory of this machine.
+/// Returns true if successful, false if the output inventory is full.
+/// </summary>
+/// <param name="item">The item to add.</param>
+/// <param name="quantity">The quantity of the item to add. Defaults to 1.</param>
+/// <returns>
+/// True if successful; otherwise false.
+/// </returns>
+public bool AddItemToOutput(Item item, int quantity = 1)
+{
+    int newIndex = Output.AddItemToInventory(item, quantity);
+
+    if (hasUI && newIndex > -1)
+        GameManager.Instance.GUIManager.MachineUIRef
+            .UpdateSlotDisplay(newIndex, item.GetIcon(), quantity, false);
+
+    return newIndex > -1;
+}
+
+/// <summary>
+/// Function for removing an item from the input inventory of this machine.
+/// Returns true if successful, false if the input inventory is empty or does not contain the item.
+/// </summary>
+/// <param name="item">The item to remove.</param>
+/// <param name="quantity">The quantity of the item to remove. Defaults to 1.</param>
+/// <returns>
+/// True if successful; otherwise false.
+/// </returns>
+public bool RemoveItemFromInput(Item item, int quantity = 1)
+{
+    var removed = Input.RemoveItemFromInventory(item, quantity);
+
+    if (hasUI && removed.Count > 0)
     {
-        return Input.AddItemToInventory(item, quantity) > -1;
+        int index = Input.GetItemAtFirstFoundIndex(item);
+        if (index > -1)
+            GameManager.Instance.GUIManager.MachineUIRef
+                .UpdateSlotDisplay(index, item.GetIcon(), -quantity);
     }
-    // Function for adding an item to the output inventory of this machine. Returns true if successful, false if the output inventory is full.
-    public bool AddItemToOutput(Item item, int quantity=1)
-    {
-        return Output.AddItemToInventory(item, quantity) > -1;
-    }
-    // Function for removing an item from the input inventory of this machine. Returns true if successful, false if the input inventory is empty or does not contain the item.
-    public bool RemoveItemFromInput(Item item, int quantity=1)
-    {
-        var removed = Input.RemoveItemFromInventory(item, quantity);
-        return removed.Count > 0;
-    }
-    // Function for removing an item from the output inventory of this machine. Returns true if successful, false if the output inventory is empty or does not contain the item.
-    public bool RemoveItemFromOutput(Item item, int quantity=1)
-    {
-        var removed = Output.RemoveItemFromInventory(item, quantity);
-        return removed.Count > 0;
-    }
+
+    return removed.Count > 0;
+}
+
+/// <summary>
+/// Function for removing an item from the output inventory of this machine.
+/// Returns true if successful, false if the output inventory is empty or does not contain the item.
+/// </summary>
+/// <param name="item">The item to remove.</param>
+/// <param name="quantity">The quantity of the item to remove. Defaults to 1.</param>
+/// <returns>
+/// True if successful; otherwise false.
+/// </returns>
+public bool RemoveItemFromOutput(Item item, int quantity = 1)
+{
+    var removed = Output.RemoveItemFromInventory(item, quantity);
+
+    if (!hasUI || removed.Count <= 0) return removed.Count > 0;
+    int index = Output.GetItemAtFirstFoundIndex(item);
+    if (index > -1)
+        GameManager.Instance.GUIManager.MachineUIRef
+            .UpdateSlotDisplay(index, item.GetIcon(), -quantity, false);
+
+    return removed.Count > 0;
+}
 
     public string InteractionPrompt => "Open machine";
     public bool Interact(Interacter interactor)
@@ -344,7 +407,7 @@ public class Machine : MonoBehaviour, IInteractable
         if (_actionMap != null && _actionMap.TryGetValue(data.processType, out var del) && del is Action a)
         {
             if (hasUI)
-                GameManager.Instance.GUIManager.OpenMachineUI(this);
+                GameManager.Instance.GUIManager.OpenMachineUI(this, a);
             else
                 a();
 
