@@ -54,4 +54,19 @@ public class MainGUI : MonoBehaviour
     public void UpdateTurnGUI(int turn) {
         TurnText.text = TurnDisplayText + turn;
     }
+
+    /// <summary>
+    /// Shows the all the main gui
+    /// </summary>
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+    /// <summary>
+    /// Hides all the main gui 
+    /// </summary>
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
 }

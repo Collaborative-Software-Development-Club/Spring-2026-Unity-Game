@@ -8,13 +8,6 @@ public class PlayerInventory : MonoBehaviour
    private Inventory _inventory = new(9);
    [SerializeField] private PlayerInventoryUI playerInventoryUI;
 
-   public Item TestItem;
-   
-   private void Start()
-   {
-       AddItemToInventory(TestItem, 10);
-   }
-
    public void OnSlotClicked(InputAction.CallbackContext context)
    { 
        if (!context.started) return;

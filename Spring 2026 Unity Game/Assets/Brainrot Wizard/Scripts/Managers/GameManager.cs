@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public int CurrentTurnCount { get; private set; } = 0;
 
     public EconomyManager EconomyManager {get; private set;}
+    public GUIManager GUIManager {get; private set;}
 
     private void Awake()
     {
@@ -58,6 +59,8 @@ public class GameManager : MonoBehaviour
 
         if (EconomyManager == null)
             EconomyManager = GetComponent<EconomyManager>();
+        if (GUIManager == null)
+            GUIManager = GetComponent<GUIManager>();
     }
 
     private static GameManager _instance;
