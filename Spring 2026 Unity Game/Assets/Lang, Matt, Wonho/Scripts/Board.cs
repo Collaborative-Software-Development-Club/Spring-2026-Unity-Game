@@ -3,13 +3,8 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     public GridGeneration gridGenerationScript;
-    public PlayerControll playerControll;
+    public PlayerControll control;
     public Row[] rows;
-
-    private bool[,] checkBox = new bool[13, 13];
-    private bool checker;
-    private int correct = 0;
-
     public bool show = false;
 
 
@@ -18,21 +13,21 @@ public class Board : MonoBehaviour
         rows = GetComponentsInChildren<Row>();
         for (int i = 0; i < 13; i++)
         {
-            for (int j = 0; j < 13; j++)
+            for(int j = 0; j < 13; j++)
             {
-                checkBox[i, j] = false;
+                rows[i].tiles[j].GetComponent<TileClicked>().row = i;
+                rows[i].tiles[j].GetComponent<TileClicked>().column = j;
+                rows[i].tiles[j].GetComponent<TileClicked>().control = control;
+
+
             }
         }
+
     }
 
     private void Update()
     {
-        SelectedSolution();
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            CheckSolution();
-        }
     }
 
     // private bool test = true;
@@ -85,47 +80,5 @@ public class Board : MonoBehaviour
         }
     }
 
-    void SelectedSolution()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            checker = true;
-        }
 
-        if (playerControll.gridx * playerControll.gridy != 10000 && checkBox[playerControll.gridx, playerControll.gridy] == false && checker == true)
-        {
-            rows[playerControll.gridy].tiles[playerControll.gridx].SetColor(Color.gold);
-            checkBox[playerControll.gridx, playerControll.gridy] = true;
-            checker = false;
-        }
-
-        if (playerControll.gridx * playerControll.gridy != 10000 && checkBox[playerControll.gridx, playerControll.gridy] == true && checker == true)
-        {
-            rows[playerControll.gridy].tiles[playerControll.gridx].SetColor(Color.black);
-            checkBox[playerControll.gridx, playerControll.gridy] = false;
-            checker = false;
-        }
-    }
-
-    void CheckSolution()
-    {
-        correct = 0;
-        for (int i = 0; i < 13; i++)
-        {
-            for (int j = 0; j < 13; j++)
-            {
-                if (checkBox[i, j] != gridGenerationScript.visited[j, i])
-                {
-                    correct++;
-                }
-            }
-        }
-        if (correct == 0)
-        {
-            Debug.Log("You win");
-        } else
-        {
-            Debug.Log("You lose");
-        }
-    }
 }

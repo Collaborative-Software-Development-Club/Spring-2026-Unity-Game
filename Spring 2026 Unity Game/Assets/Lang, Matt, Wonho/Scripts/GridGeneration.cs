@@ -42,6 +42,7 @@ public class GridGeneration : MonoBehaviour
         if (!pathCreated) {
             Debug.Log("Failed to generate path after " + maxRetries + " attempts");
         }
+        visited[endX,endY] = true;
         for (int i = 0; i< 13; i++) {
             for(int j = 0; j<13; j++) {
                 if (!visited[i,j]) {
