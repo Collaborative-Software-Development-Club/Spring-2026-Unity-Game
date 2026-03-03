@@ -1,12 +1,13 @@
-using System.Collections.Generic;
+using System.Collections;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class JEC_KeyDisplay : MonoBehaviour
 {
     public JEC_KeyManager KeyManager;
+    public JEC_URLManager URLManager;
 
     void Start()
     {
@@ -18,7 +19,9 @@ public class JEC_KeyDisplay : MonoBehaviour
     private void OnEnable()
     {
         UpdateAllDisplayedKeys();
+        
     }
+
 
     public void UpdateDisplayedKey(string c)
     {
@@ -33,6 +36,16 @@ public class JEC_KeyDisplay : MonoBehaviour
         {
             GameObject amount = JEC_Helper.FindGameObjectInChildWithTag(keyUI, "JEC_Amount");
             TextMeshProUGUI amountText = amount.GetComponent<TextMeshProUGUI>();
+            Button keyIcon = keyUI.GetComponent<Button>();
+
+            if (KeyManager.KeysUsed[key.character] == key.amount)
+            {
+                keyIcon.interactable = false;
+            }
+            else
+            {
+                keyIcon.interactable = true;
+            }
 
             amountText.text = (key.amount - KeyManager.KeysUsed[key.character]).ToString();
             Debug.Log("Number of " + c + " keys used: " + KeyManager.KeysUsed[key.character].ToString());
@@ -50,6 +63,16 @@ public class JEC_KeyDisplay : MonoBehaviour
 
             GameObject amount = JEC_Helper.FindGameObjectInChildWithTag(keyUI, "JEC_Amount");
             TextMeshProUGUI amountText = amount.GetComponent<TextMeshProUGUI>();
+            Button keyIcon = keyUI.GetComponent<Button>();
+
+            if (key.amount == 0)
+            {
+                keyIcon.interactable = false;
+            }
+            else
+            {
+                keyIcon.interactable = true;
+            }
 
             amountText.text = (key.amount - KeyManager.KeysUsed[c]).ToString();
         }

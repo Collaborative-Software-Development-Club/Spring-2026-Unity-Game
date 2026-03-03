@@ -1,14 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class JEC_URLManager : MonoBehaviour
 {
@@ -18,6 +11,11 @@ public class JEC_URLManager : MonoBehaviour
     private string CurrentText;
     private int CaretPosition;
 
+    private void Start()
+    {
+        JEC_Events.OnInteractKeyboardPedestal.AddListener(StartURLTyping);
+        JEC_Events.OnExitKeyboardPedestal.AddListener(ExitURLTyping);
+    }
 
     private void OnEnable()
     {
@@ -34,15 +32,21 @@ public class JEC_URLManager : MonoBehaviour
             Debug.LogError("JEC_ERROR: Failed to retrieve text component.");
         }
 
-        CurrentText = inputText.text;
         KeyManager.ResetKeysTyped();
-
-        StartCoroutine(SelectInputField());
     }
 
     private void FixedUpdate()
     {
         CaretPosition = inputText.caretPosition;
+    }
+
+    private void StartURLTyping()
+    {
+        inputText.readOnly = false;
+
+        CurrentText = inputText.text;
+
+        StartCoroutine(SelectInputField());
     }
 
     IEnumerator SelectInputField()
@@ -54,6 +58,7 @@ public class JEC_URLManager : MonoBehaviour
 
         inputText.OnPointerClick(new PointerEventData(EventSystem.current));
     }
+
 
     public void TextFilter(string text)
     {
@@ -134,6 +139,12 @@ public class JEC_URLManager : MonoBehaviour
         }
 
         return result;
+    }
+
+   
+    private void ExitURLTyping()
+    {
+        inputText.readOnly = true;
     }
 
 }

@@ -15,8 +15,6 @@ public class JEC_KeyCollectable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collected " + character);
-
         JEC_Events.OnPickupKey.Invoke(character);
 
         Destroy(gameObject);

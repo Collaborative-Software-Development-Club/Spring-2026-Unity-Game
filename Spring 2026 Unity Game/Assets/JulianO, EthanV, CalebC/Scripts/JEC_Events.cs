@@ -5,7 +5,7 @@ public static class JEC_Events
 {
     public static UnityEvent OnInteractKeyboardPedestal = new UnityEvent();
 
-    public static UnityEvent<string> OnEnterUrl = new UnityEvent<string>();
+    public static UnityEvent<string> OnEnterURL = new UnityEvent<string>();
 
     public static UnityEvent OnExitKeyboardPedestal = new UnityEvent();
 

@@ -24,7 +24,7 @@ public class JEC_NPC : JEC_InteractableBase
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             JEC_Events.LeaveNPC.Invoke();
         }
