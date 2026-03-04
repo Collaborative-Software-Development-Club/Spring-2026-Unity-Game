@@ -349,7 +349,6 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   interactionPrompt: {fileID: 7514108219211983262}
   hidePromptOnInteract: 1
-  playerInRange: 0
   KeyboardUI: {fileID: 0}
   Player: {fileID: 0}
 --- !u!135 &2653848413029552327

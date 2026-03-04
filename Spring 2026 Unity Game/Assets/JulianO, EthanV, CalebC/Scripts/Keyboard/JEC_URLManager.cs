@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class JEC_URLManager : MonoBehaviour
 {
@@ -38,12 +39,28 @@ public class JEC_URLManager : MonoBehaviour
     private void FixedUpdate()
     {
         CaretPosition = inputText.caretPosition;
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (JEC_ValidPages.PageURLs.Contains(inputText.text))
+            {
+                JEC_Events.OnEnterURL.Invoke(inputText.text);
+                JEC_Events.OnExitKeyboardPedestal.Invoke();
+            }
+            else
+            {
+                inputText.text = "";
+                inputText.placeholder.GetComponent<TMP_Text>().text = "Invalid URL!";
+                JEC_Events.OnExitKeyboardPedestal.Invoke();
+            }
+        }
     }
 
     private void StartURLTyping()
     {
         inputText.readOnly = false;
 
+        inputText.placeholder.GetComponent<TMP_Text>().text = "Type a URL";
         CurrentText = inputText.text;
 
         StartCoroutine(SelectInputField());
