@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpellSelection : MonoBehaviour
 {
     [Header("Spell Slots")]
     public Image[] spellSlots;
+    [SerializeField] TextMeshProUGUI[] spellTexts;
 
     [Header("Input Reader")]
     [SerializeField] private InputReader _inputReader;
@@ -97,5 +99,10 @@ public class SpellSelection : MonoBehaviour
     public int GetCurrentSpellIndex()
     {
         return currentSpellIndex;
+    }
+
+    public void UpdateSpellCount(int idx, int newCount)
+    {
+        spellTexts[idx].text = $"x{newCount}";
     }
 }

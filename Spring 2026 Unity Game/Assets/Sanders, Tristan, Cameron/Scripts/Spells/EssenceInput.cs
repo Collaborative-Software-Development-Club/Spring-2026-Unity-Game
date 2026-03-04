@@ -100,6 +100,15 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""ab01aaba-098c-4c96-b92e-39da0f3f139c"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -113,6 +122,28 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
                     ""action"": ""Cast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""589d7ef4-f461-4b74-bd50-d8f18550c1f5"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88bf07b4-6a3c-4eba-94b0-d8479baf29a0"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +153,7 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
         // SpellCasting
         m_SpellCasting = asset.FindActionMap("SpellCasting", throwIfNotFound: true);
         m_SpellCasting_Cast = m_SpellCasting.FindAction("Cast", throwIfNotFound: true);
+        m_SpellCasting_Rotate = m_SpellCasting.FindAction("Rotate", throwIfNotFound: true);
     }
 
     ~@EssenceInput()
@@ -203,6 +235,7 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_SpellCasting;
     private List<ISpellCastingActions> m_SpellCastingActionsCallbackInterfaces = new List<ISpellCastingActions>();
     private readonly InputAction m_SpellCasting_Cast;
+    private readonly InputAction m_SpellCasting_Rotate;
     /// <summary>
     /// Provides access to input actions defined in input action map "SpellCasting".
     /// </summary>
@@ -218,6 +251,10 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "SpellCasting/Cast".
         /// </summary>
         public InputAction @Cast => m_Wrapper.m_SpellCasting_Cast;
+        /// <summary>
+        /// Provides access to the underlying input action "SpellCasting/Rotate".
+        /// </summary>
+        public InputAction @Rotate => m_Wrapper.m_SpellCasting_Rotate;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -247,6 +284,9 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
             @Cast.started += instance.OnCast;
             @Cast.performed += instance.OnCast;
             @Cast.canceled += instance.OnCast;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
         }
 
         /// <summary>
@@ -261,6 +301,9 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
             @Cast.started -= instance.OnCast;
             @Cast.performed -= instance.OnCast;
             @Cast.canceled -= instance.OnCast;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
         }
 
         /// <summary>
@@ -308,5 +351,12 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCast(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Rotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotate(InputAction.CallbackContext context);
     }
 }

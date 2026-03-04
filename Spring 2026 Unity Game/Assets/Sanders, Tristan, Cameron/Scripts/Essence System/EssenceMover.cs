@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class EssenceMover : MonoBehaviour
 {
-    [SerializeField] private Vector2 force;
+    [SerializeField] private float force;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Oh yes");
         ApplyForce(collision);
     }
 
     private void ApplyForce(Collider2D other)
     {
-        other.attachedRigidbody.AddForce(force,ForceMode2D.Force);
+        Vector2 forceDir = -transform.up;
+        other.attachedRigidbody.AddForce(forceDir * force,ForceMode2D.Force);
     }
 }
