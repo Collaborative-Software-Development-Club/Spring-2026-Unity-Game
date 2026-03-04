@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: GameScenes
   m_EditorClassIdentifier: Assembly-CSharp::SceneBucket
   availableScenes:
-  - DampLevel
   - Main
   - Basic Level
-  - WindTutorial
   - Internet Level
