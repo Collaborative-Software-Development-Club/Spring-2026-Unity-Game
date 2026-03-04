@@ -36,7 +36,7 @@ public class JEC_URLManager : MonoBehaviour
         KeyManager.ResetKeysTyped();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CaretPosition = inputText.caretPosition;
 

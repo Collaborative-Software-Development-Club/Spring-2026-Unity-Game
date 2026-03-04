@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb453795e46741458e35492e670f1d4, type: 3}
   m_Name: Page2
   m_EditorClassIdentifier: Assembly-CSharp::JEC_PageData
-  url: cookn
+  url: cooking
   pageName: Cooking
   background: {fileID: 0}
   contentPrefab: {fileID: 8982108973372385881, guid: 30c094a538f92c94086c8c1913c8ca52,

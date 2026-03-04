@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 4386784486527567449, guid: 6ddaed2bc8bde3e4b9a4f4c1747b5b49,
         type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4428853956000445461, guid: 6ddaed2bc8bde3e4b9a4f4c1747b5b49,
         type: 3}
@@ -5213,6 +5213,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d49ba23210a93d846833bbc4c7b7d955, type: 2}
   - {fileID: 11400000, guid: 5a11418db5afeef47b12e22685395b7d, type: 2}
   - {fileID: 11400000, guid: 713c63c8cdab85940847aea682978dbe, type: 2}
+  - {fileID: 11400000, guid: 5d9ee4ffde99d3641bc8f576c2fc79d0, type: 2}
   - {fileID: 11400000, guid: 44f4ab5f33a3f60468420216469e3361, type: 2}
   - {fileID: 11400000, guid: 37579c9d520be5040a13e60a91157ccd, type: 2}
   - {fileID: 11400000, guid: 29c90f9e6e063ea4db07aaac9d27c572, type: 2}
