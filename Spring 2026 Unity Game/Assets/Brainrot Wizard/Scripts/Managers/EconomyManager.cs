@@ -14,7 +14,7 @@ public class EconomyManager : MonoBehaviour
     /// Adds the amount of money passed in. 
     /// </summary>
     /// <param name="amount">Required to be 0 or bigger</param>
-    public void AddMoney(int amount)
+    public void AddMoney(double amount)
     { 
         Assert.IsTrue(amount > 0);
         ChangeMoney(amount);
@@ -24,7 +24,7 @@ public class EconomyManager : MonoBehaviour
     /// Removes the amount of money passed in. 
     /// </summary>
     /// <param name="amount">Required to be 0 or bigger</param>
-    public void RemoveMoney(int amount)
+    public void RemoveMoney(double amount)
     {
         Assert.IsTrue(amount > 0);
         ChangeMoney(-amount);
@@ -34,7 +34,7 @@ public class EconomyManager : MonoBehaviour
     /// Takes in a amount of money and modifies the players money with the amount.
     /// </summary>
     /// <param name="amount">Amount of money to change</param>
-    private void ChangeMoney(int amount)
+    private void ChangeMoney(double amount)
     {
         money += amount;
         onMoneyChanged?.Invoke(amount);

@@ -9,6 +9,7 @@ public class LootboxUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dropTextPrefab;    // Prefab for drop entries
     [SerializeField] private Transform contentParent;          // Parent for instantiated drops
     [SerializeField] private Button openButton;                // Open/Roll button
+    [SerializeField] private GameObject panel;
 
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;  // Player's inventory reference
@@ -44,7 +45,7 @@ public class LootboxUI : MonoBehaviour
         openButton.interactable = true;
         openButton.GetComponentInChildren<TextMeshProUGUI>().text = "Open Lootbox";
 
-        gameObject.SetActive(true);
+        panel.SetActive(true);
     }
 
     /// <summary>
@@ -87,7 +88,7 @@ public class LootboxUI : MonoBehaviour
     /// </summary>
     public void CloseLootboxUI()
     {
-        gameObject.SetActive(false);
+        panel.SetActive(false);
 
         // Clear content
         foreach (Transform child in contentParent)

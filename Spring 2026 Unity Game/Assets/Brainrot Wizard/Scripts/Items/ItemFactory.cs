@@ -51,7 +51,12 @@ public static class ItemFactory
                 throw new NotImplementedException("Seed items are not implemented yet.");
 
             case ItemType.Contract:
-                throw new NotImplementedException("Contract items are not implemented yet.");
+                if(data is not ContractData contractData) throw new InvalidCastException("ItemData is not ContractData");
+                
+                newObject = new GameObject("Contract");
+                Contract contract = newObject.AddComponent<Contract>();
+                contract.Initialize(contractData);
+                return contract;
 
             default:
                 throw new ArgumentOutOfRangeException($"Unhandled ItemType: {data.type}");

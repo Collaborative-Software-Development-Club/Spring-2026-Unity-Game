@@ -24,6 +24,7 @@ public enum GameState
 [RequireComponent(typeof(EconomyManager))]
 [RequireComponent(typeof(GUIManager))]
 [RequireComponent(typeof(RentManager))]
+[RequireComponent(typeof(ContractManager))]
 public class GameManager : MonoBehaviour
 {
     /// <summary>
@@ -45,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     public EconomyManager EconomyManager {get; private set;}
     public GUIManager GUIManager {get; private set;}
+    public RentManager RentManager {get; private set;}
+    public ContractManager ContractManager {get; private set;}
 
     private void Awake()
     {
@@ -61,6 +64,10 @@ public class GameManager : MonoBehaviour
             EconomyManager = GetComponent<EconomyManager>();
         if (GUIManager == null)
             GUIManager = GetComponent<GUIManager>();
+        if (RentManager == null)
+            RentManager = GetComponent<RentManager>();
+        if (ContractManager == null)
+            ContractManager = GetComponent<ContractManager>();
     }
 
     private static GameManager _instance;

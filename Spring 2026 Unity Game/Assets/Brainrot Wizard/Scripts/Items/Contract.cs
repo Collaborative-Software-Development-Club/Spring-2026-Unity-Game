@@ -1,17 +1,8 @@
 using System;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting;
-using UnityEditor;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.Timeline;
-using UnityEngine.UIElements;
-using UnityEngine.XR;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Audio.ControlContext;
-using static UnityEngine.InputManagerEntry;
+using Random = UnityEngine.Random;
 
 public enum ContractType
 {
@@ -27,56 +18,13 @@ public enum ContractType
 public class Contract : Item
 {
     public ContractType contractType = ContractType.None;
+    private string _personName;
     public Inventory input = new Inventory(0);
     public AttributeQuantity[] requirements = new AttributeQuantity[0];
 
-    public static readonly string[] ContractNames = new string[]
-{
-    "Junho",
-    "Sam",
-    "Tristan",
-    "Abdel",
-    "Adam",
-    "Alec",
-    "Alex",
-    "Ali",
-    "Alvin",
-    "Amir",
-    "Antonio",
-    "Brady",
-    "Collin",
-    "Connor",
-    "Drew",
-    "Felix",
-    "Frank",
-    "Hank",
-    "Hunter",
-    "Ian",
-    "Jerry",
-    "Jocelin",
-    "Johnny",
-    "Jonathon",
-    "Joy",
-    "Juaquin",
-    "Karam",
-    "Krishna",
-    "Logan",
-    "Manraj",
-    "Marley",
-    "Matt",
-    "Mohisha",
-    "Jacob",
-    "Noah",
-    "Parker",
-    "Rachel",
-    "Raymond",
-    "Robbie",
-    "Sarah",
-    "Shawn",
-    "Spencer",
-    "Tony",
-    "Wyatt",
-};
+    private int _currentTurnCount = 0;
+    
+    private ContractData Data => data as ContractData;
 
     /// <summary>
     /// Shared initialization used instead of constructors.
@@ -107,17 +55,7 @@ public class Contract : Item
         input = new Inventory(numOfAttributes);
 
         // Assign a new random name.
-        int randomNameIndex = UnityEngine.Random.Range(0, ContractNames.Length);
-
-        // Create a new itemData for this contract if it doesn't exist.
-        if (data == null)
-        {
-            data = new ItemData
-            {
-                type = ItemType.Contract,
-                name = ContractNames[randomNameIndex] + "'s Contract"
-            };
-        }
+        int randomNameIndex = UnityEngine.Random.Range(0, ContractData.ContractNames.Length);
 
         // Initialize requirements with random attributes and quantities.
         int requirementsCount = UnityEngine.Random.Range(1, 4);
@@ -146,27 +84,28 @@ public class Contract : Item
     /// <param name="itemData">ItemData instance expected to be of type <see cref="ItemType.Contract"/>.</param>
     public override void Initialize(ItemData itemData)
     {
-        if (itemData.type != ItemType.Contract)
+        if (itemData is not ContractData contractData)
         {
             Debug.LogError("Invalid item data type for contract: " + itemData.type);
             return;
         }
 
         // Assign the ItemData reference so the base Item behaviour can use it.
-        data = itemData;
+        data = contractData;
 
         // Default init: if data contains any designer defaults you may read them here.
         // We'll create a reasonable input size from the data if present, otherwise use defaults.
         // Simplified: ensure an input inventory exists
         if (input == null)
         {
-            
             Initialize(null, 0);
         } else
         {
             int numOfAttributes = input.Length;
             Initialize(null, numOfAttributes);
         }
+
+        _personName = ContractData.ContractNames[Random.Range(0, ContractData.ContractNames.Length - 1)];
     }
 
     /// <summary>
@@ -178,8 +117,8 @@ public class Contract : Item
     public override void Initialize(ItemData itemData, string itemName)
     {
         Initialize(itemData);
-        if (data != null)
-            data.name = itemName;
+        if (Data != null)
+            Data.name = itemName;
     }
 
     /// <summary>
@@ -188,6 +127,58 @@ public class Contract : Item
     /// <returns>Contract name string.</returns>
     public string getContractName() 
     {
-        return data != null ? data.name : "Unnamed Contract";
+        return Data != null ? Data.name : "Unnamed Contract";
+    }
+
+    public bool IsPastDuration()
+    {
+        return _currentTurnCount < Data.TurnDuration;
+    }
+
+    public void IncrementDuration()
+    {
+        _currentTurnCount++;
+    }
+
+    public void DecrementDuration()
+    {
+        _currentTurnCount--;
+    }
+
+    public override double GetValue()
+    {
+        return base.GetValue() * ContractData.DifficultyMultiplier[Data.difficulty];
+    }
+
+    public static Contract GenerateRandomContract()
+    {
+        return (Contract) ItemFactory.CreateItem(GameManager.Instance.ContractManager.GetContractDatabase().GetRandom());
+    }
+
+    public string GetPersonName()
+    {
+        return _personName;
+    }
+
+    public new List<string> GetDataAsString()
+    {
+        var lines = new List<string>();
+
+        if (Data == null)
+            return lines;
+
+        lines.Add($"{_personName}'s Contract");
+        lines.Add($"Type: {contractType}");
+        lines.Add($"Difficulty: {Data.difficulty}");
+        lines.Add($"Duration: {Data.TurnDuration} turns");
+        lines.Add(""); 
+        lines.Add("Requirements:");
+
+        foreach (var req in requirements)
+        {
+            lines.Add($"- {req.attribute}: {req.quantity}");
+        }
+
+        return lines;
     }
 }

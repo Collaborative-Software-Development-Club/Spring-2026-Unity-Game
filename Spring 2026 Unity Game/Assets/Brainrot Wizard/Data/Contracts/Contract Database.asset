@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee4046019b235e448f422067c20bb0d, type: 3}
+  m_Name: Contract Database
+  m_EditorClassIdentifier: Assembly-CSharp::ContractDatabase
+  validContracts:
+  - {fileID: 11400000, guid: 58c4ebc4e3d90cb48b30cada62905aea, type: 2}
+  - {fileID: 11400000, guid: 750d1f632657ee442bf0eaee8526995b, type: 2}
+  - {fileID: 11400000, guid: 75aeea5625433a7449a7af206187747b, type: 2}
