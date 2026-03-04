@@ -11,6 +11,7 @@ public class MainGUI : MonoBehaviour
     private const string MoneyDisplayText = "Money: ";
     private const string StateDisplayText = "GameState: ";
     private const string TurnDisplayText = "Turn: ";
+    private const string RentDisplayText = "Rent Due In: ";
 
     private void Start()
     {
@@ -52,7 +53,7 @@ public class MainGUI : MonoBehaviour
     /// </summary>
     /// <param name="turn">The turn to update the text to.</param>
     public void UpdateTurnGUI(int turn) {
-        TurnText.text = TurnDisplayText + turn;
+        TurnText.text = TurnDisplayText + turn + " | " + RentDisplayText + " " + GameManager.Instance.RentManager.GetTurnsTillRentDue() + " turns!";
     }
 
     /// <summary>

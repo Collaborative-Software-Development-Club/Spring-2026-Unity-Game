@@ -34,8 +34,10 @@ public class RentManager : MonoBehaviour
     {
         int rentAmount = CalculateRentAmount(currentRentStage);
         GameManager.Instance.EconomyManager.RemoveMoney(rentAmount);
-
-        if (GameManager.Instance.EconomyManager.GetMoney() >= 0)
+        bool passed = 
+            GameManager.Instance.EconomyManager.GetMoney() > 0;
+        GameManager.Instance.GUIManager.ShowRentGUI(passed);
+        if (passed)
         {
             currentRentStage++;
             nextRentDueTurn = currentTurn + CalculateRentDuration(currentRentStage);
@@ -79,5 +81,10 @@ public class RentManager : MonoBehaviour
     {
         if(GameManager.Instance != null)
             GameManager.Instance.onTurnChange -= CheckIfRentIsDue;
+    }
+
+    public int GetTurnsTillRentDue()
+    {
+        return nextRentDueTurn - GameManager.Instance.CurrentTurnCount;
     }
 }
