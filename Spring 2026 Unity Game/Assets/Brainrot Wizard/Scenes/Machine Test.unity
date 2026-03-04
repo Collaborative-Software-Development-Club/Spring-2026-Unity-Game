@@ -2028,7 +2028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Machine
   hasUI: 1
   failChance: 0
-  data: {fileID: 11400000, guid: f6bcce591faa1154bbc74af332af2cbe, type: 2}
+  data: {fileID: 11400000, guid: 44bfaa659146b6a4c894ed7c4277ba3e, type: 2}
 --- !u!212 &1311516068
 SpriteRenderer:
   serializedVersion: 2

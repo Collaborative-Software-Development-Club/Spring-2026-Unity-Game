@@ -12,8 +12,8 @@ public class MachineTest : MonoBehaviour
         print(machine.AddItemToInput(item, 5));
         print(machine.GetInputInventory().GetTotalItemCount());
         print(machine.GetInputInventory().Length);
-        //machine.OnInteraction();
-        machine.GetInputInventory().GetItemAt(0).item.PrintData();
+        machine.ProcessFunction(new int[2]);
+        machine.GetOutputFromSlot(0).PrintData();
         print(machine.GetOutputInventory().GetTotalItemCount());
     }
 }

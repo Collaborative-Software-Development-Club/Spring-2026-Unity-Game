@@ -48,4 +48,60 @@ public class DuplicateAttribute : MachineFunctionality
         thisMachine.RemoveItemFromInput(inputBrainrot);
         return true;
     }
+    /// <summary>
+    /// Creates a copy of the specified Brainrot and attempts to duplicate or decrement a selected attribute based
+    /// on a random chance.
+    /// </summary>
+    /// <remarks>The original input object is not modified. If the duplication fails and the attribute's
+    /// quantity is 1, the attribute is removed from the list in the returned copy.</remarks>
+    /// <param name="input">The Brainrot instance to copy and modify. Cannot be null.</param>
+    /// <param name="attributeToDuplicate">The zero-based index of the attribute in the attributes list to attempt to duplicate or decrement.</param>
+    /// <param name="failChance">The percentage chance (0 to 100) that the duplication will fail, resulting in the attribute being decremented
+    /// instead of incremented.</param>
+    /// <returns>A new Brainrot instance with the selected attribute incremented or decremented based on the random chance;
+    /// or null if input is null.</returns>
+    protected static Brainrot DuplicateRandomAttribute(Brainrot input, int attributeToDuplicate, int failChance)
+    {
+        if (input == null)
+        {
+            Debug.LogWarning("MachineData.duplicateRandomAttribute called with null input.");
+            return null;
+        }
+
+        // Instantiate a runtime copy so the asset itself is not changed.
+        var clone = MonoBehaviour.Instantiate(input);
+
+        if (clone.GetAttributes() == null)
+        {
+            Debug.LogWarning("Brainrot is missing Attributes!");
+            return null;
+        }
+
+        // Pull the attribute to duplicate.
+        var existing = clone.GetAttributes()[attributeToDuplicate];
+
+        // Roll a random chance to see if duplicate fails.
+        if (UnityEngine.Random.Range(0, 100) < failChance)
+        {
+            // If it fails, remove 1 from the attribute instead of adding.
+            if (existing.quantity > 1)
+            {
+                clone.RemoveAttribute(existing);
+                existing.quantity -= 1;
+                clone.AddAttribute(existing);
+            }
+            else
+            {
+                clone.RemoveAttribute(existing);
+            }
+        }
+        else
+        {
+            // If it succeeds, add 1 to the attribute.
+            clone.RemoveAttribute(existing);
+            existing.quantity += 1;
+            clone.AddAttribute(existing);
+        }
+        return clone;
+    }
 }

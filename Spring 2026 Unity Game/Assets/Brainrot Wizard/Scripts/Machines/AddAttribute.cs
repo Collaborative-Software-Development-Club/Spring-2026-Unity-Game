@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEngine;
 
 public class AddAttribute : MachineFunctionality
@@ -37,5 +39,89 @@ public class AddAttribute : MachineFunctionality
         thisMachine.AddItemToOutput(AddRandomAttribute(inputBrainrot, thisMachine.failChance));
         thisMachine.RemoveItemFromInput(inputBrainrot);
         return true;
+    }
+    /// <summary>
+    /// Clone the provided Brainrot and add a random attribute (or increment existing). Also removes a random quantity of existing attributes based on the total number of attributes.
+    /// Returns the cloned Brainrot with the modification. Returns null and logs a warning
+    /// if the input is null.
+    /// </summary>
+    /// <param name="input">Source Brainrot to clone and modify.</param>
+    /// <param name="failChance">The percentage chance (0-100) that each existing attribute will lose a quantity instead of the new attribute being added. This chance is applied independently to each existing attribute.</param>
+    protected static Brainrot AddRandomAttribute(Brainrot input, int failChance)
+    {
+        if (input == null)
+        {
+            Debug.LogWarning("MachineData.AddRandomAttribute called with null input.");
+            return null;
+        }
+
+        // Instantiate a runtime copy so the asset itself is not changed.
+        var clone = MonoBehaviour.Instantiate(input);
+
+        if (clone.GetAttributes() == null)
+        {
+            Debug.LogWarning("Brainrot is missing Attributes!");
+            return null;
+        }
+
+        // Get all possible Attribute enum values defined in the project.
+        var values = (Attribute[])Enum.GetValues(typeof(Attribute));
+        if (values == null || values.Length == 0)
+        {
+            Debug.LogWarning("No attributes available to add.");
+            return clone;
+        }
+
+        // Pick one at random.
+        var chosen = values[UnityEngine.Random.Range(0, values.Length)];
+
+        // UnityEngine.Randomize the number of attributes to add (1-3, weighted more towards 1).
+        int quantity = 1;
+        int roll = UnityEngine.Random.Range(0, 100);
+        if (roll >= 90)
+        {
+            quantity = 3;
+        }
+        else if (roll >= 50)
+        {
+            quantity = 2;
+        }
+
+        // Total all attributes that currently exist, divide 1 by that, and then randomize a chance to possibly remove a quantity of that attribute.
+        int totalAttributes = clone.GetAttributes().Sum(aq => aq.quantity);
+        if (totalAttributes > 0)
+        {
+            double chanceToRemove = (1.0 / totalAttributes) * (failChance * 2);
+            foreach (AttributeQuantity attribute in clone.GetAttributes())
+            {
+                int removeRoll = UnityEngine.Random.Range(0, 100);
+                if (chanceToRemove < removeRoll)
+                {
+                    attribute.quantity = -1;
+                    if (attribute.quantity <= 0)
+                    {
+                        clone.RemoveAttribute(attribute);
+                    }
+                }
+            }
+        }
+
+        // Find existing attribute entry and increment if present, otherwise add new.
+        var existing = clone.GetAttributes().Find(aq => aq.attribute == chosen);
+        if (existing != null)
+        {
+            existing.quantity += quantity;
+        }
+        else
+        {
+            var newAQ = new AttributeQuantity
+            {
+                attribute = chosen,
+                quantity = Mathf.Max(1, quantity)
+            };
+            clone.AddAttribute(newAQ);
+        }
+
+        return clone;
     }
 }

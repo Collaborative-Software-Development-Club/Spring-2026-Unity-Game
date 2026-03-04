@@ -205,6 +205,7 @@ private void UpdateUI()
                 GameManager.Instance.GUIManager.OpenMachineUI(this, a);
             else
                 a();
+            ProcessFunction(new int[2]);
 
             return true;
         }

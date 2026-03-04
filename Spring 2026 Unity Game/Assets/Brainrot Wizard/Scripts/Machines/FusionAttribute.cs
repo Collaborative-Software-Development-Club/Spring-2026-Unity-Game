@@ -1,3 +1,4 @@
+﻿using System.Linq;
 using UnityEngine;
 
 public class FusionAttribute : MachineFunctionality
@@ -41,9 +42,98 @@ public class FusionAttribute : MachineFunctionality
             return false;
         }
 
-        thisMachine.AddItemToOutput(FusionAttribute(inputBrainrot1, inputBrainrot2, thisMachine.failChance));
+        thisMachine.AddItemToOutput(FusionAttributes(inputBrainrot1, inputBrainrot2, thisMachine.failChance));
         thisMachine.RemoveItemFromInput(inputBrainrot1);
         thisMachine.RemoveItemFromInput(inputBrainrot2);
         return true;
+    }
+    /// <summary>
+    /// Combines the attributes of two Brainrot instances to create a new fused Brainrot with randomized
+    /// attribute selection and optional attribute loss.
+    /// </summary>
+    /// <remarks>The fusion process randomly selects the category from one of the input instances and combines
+    /// shared attributes by randomly choosing their quantities. Non-shared attributes are included based on the
+    /// specified fail chance. The original input instances are not modified.</remarks>
+    /// <param name="input1">The first Brainrot instance to use as input for the fusion. Cannot be null.</param>
+    /// <param name="input2">The second Brainrot instance to use as input for the fusion. Cannot be null.</param>
+    /// <param name="failChance">The percentage chance (0�100) that a non-shared attribute from either input will be omitted from the fused
+    /// result. Higher values increase the likelihood of attribute loss.</param>
+    /// <returns>A new Brainrot instance containing a randomized combination of categories and attributes from the input
+    /// instances, or null if either input is null.</returns>
+
+    public static Brainrot FusionAttributes(Brainrot input1, Brainrot input2, int failChance)
+    {
+        if (input1 == null)
+        {
+            Debug.LogWarning("MachineData.fusionAttribute called with null input1.");
+            return null;
+        }
+        else if (input2 == null)
+        {
+            Debug.LogWarning("MachineData.fusionAttribute called with null input2.");
+            return null;
+        }
+
+        // Instantiate a runtime copy so the asset itself is not changed.
+        var clone1 = MonoBehaviour.Instantiate(input1);
+        // Instantiate a runtime copy so the asset itself is not changed.
+        var clone2 = MonoBehaviour.Instantiate(input2);
+
+        // Create the new Brainrot to return, which will combine attributes from both inputs at random.
+        Brainrot newBrainrot = new Brainrot();
+
+        // UnityEngine.Randomize between the two categories for the new Brainrot.
+        newBrainrot.ChangeCategory(clone1.GetCategory());
+        if (UnityEngine.Random.Range(0, 1) == 1)
+        {
+            newBrainrot.ChangeCategory(clone2.GetCategory());
+        }
+
+        // Check if the parents share any attributes.
+        foreach (AttributeQuantity aq1 in clone1.GetAttributes())
+        {
+            var matchingAQ = clone2.GetAttributes().Find(aq2 => aq2.attribute == aq1.attribute);
+            if (matchingAQ != null)
+            {
+                // If they do, UnityEngine.Randomize between the two quantities to keep.
+                newBrainrot.AddAttribute(new AttributeQuantity
+                {
+                    attribute = aq1.attribute,
+                    quantity = UnityEngine.Random.Range(aq1.quantity, matchingAQ.quantity)
+                });
+            }
+        }
+
+        // For the rest of the attributes that aren't shared, randomize a chance to keep each based on the fail chance.
+        foreach (AttributeQuantity aq1 in clone1.GetAttributes())
+        {
+            if (!newBrainrot.GetAttributes().Any(aq => aq.attribute == aq1.attribute))
+            {
+                if (UnityEngine.Random.Range(0, 100) > failChance)
+                {
+                    newBrainrot.AddAttribute(new AttributeQuantity
+                    {
+                        attribute = aq1.attribute,
+                        quantity = aq1.quantity
+                    });
+                }
+            }
+        }
+        foreach (AttributeQuantity aq2 in clone2.GetAttributes())
+        {
+            if (!newBrainrot.GetAttributes().Any(aq => aq.attribute == aq2.attribute))
+            {
+                if (UnityEngine.Random.Range(0, 100) > failChance)
+                {
+                    newBrainrot.AddAttribute(new AttributeQuantity
+                    {
+                        attribute = aq2.attribute,
+                        quantity = aq2.quantity
+                    });
+                }
+            }
+        }
+
+        return newBrainrot;
     }
 }
