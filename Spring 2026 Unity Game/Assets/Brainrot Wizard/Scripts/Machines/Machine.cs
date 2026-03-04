@@ -17,7 +17,7 @@ public class Machine : MonoBehaviour, IInteractable
 
     private Dictionary<machineType, Delegate> _actionMap;
 
-    public MachineFunctionality machinefunctionality;
+    public MachineFunctionality MachineFunctionality;
 
     protected virtual void Awake()
     {
@@ -37,14 +37,11 @@ public class Machine : MonoBehaviour, IInteractable
     }
 
 
-    // Confused about this because it should support more than two based off the below comment
-    // Could make it use args... in the future for infinite amount of attributes
-    
-    // overloaded call for operations that require two integers (e.g., Swap)
-    public void OnInteraction(int[] indexes)
+    // Function that will process inputs into outputs when called. indexes for specific attributes can be carried through for swap and duplicate.
+    public void ProcessFunction(int[] indexes)
     {
         if (data == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return; }
-        
+        MachineFunctionality.Handler(this, indexes);
     }
 
     // Function for retrieving the type this machine is.
