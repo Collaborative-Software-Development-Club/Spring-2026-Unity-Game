@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "EssenceInput",
+    "maps": [
+        {
+            "name": "SpellCasting",
+            "id": "e8937d77-518d-4f02-8530-5936678b5098",
+            "actions": [
+                {
+                    "name": "Cast",
+                    "type": "Button",
+                    "id": "2b40400b-dc83-4afe-ad21-70996d01b66c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6bfdcbed-3924-4ce5-9309-1f75aa2f7712",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
