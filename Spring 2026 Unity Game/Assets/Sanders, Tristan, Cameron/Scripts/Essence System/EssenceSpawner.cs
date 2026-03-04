@@ -30,8 +30,7 @@ public class EssenceSpawner : MonoBehaviour
     {
         var essence = Instantiate(essencePrefab, transform.position, transform.rotation,essenceContainer.transform);
         Vector2 initialVel = new Vector2(Random.Range(minXVel, maxXVel), Random.Range(minYVel, maxYVel));
-        essence.GetComponent<Rigidbody>().linearVelocity = CoordConverter.ConvertXYToXZ(initialVel);
-            ;
+        essence.GetComponent<Rigidbody2D>().linearVelocity = initialVel;
     }
 
 }
