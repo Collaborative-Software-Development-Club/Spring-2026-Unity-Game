@@ -5,11 +5,14 @@ public class VineTeleport : MonoBehaviour
     public Transform topPoint;
     private bool playerInRange = false;
     private GameObject player;
+    [SerializeField] private GameObject popupPrompt;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            popupPrompt.SetActive(true);
             playerInRange = true;
             player = other.gameObject;
             Debug.Log("Player near vine");
@@ -20,9 +23,15 @@ public class VineTeleport : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            popupPrompt.SetActive(false);
             playerInRange = false;
             player = null;
         }
+    }
+
+    private void Awake()
+    {
+        popupPrompt.SetActive(false);
     }
 
     private void Update()
