@@ -92,7 +92,7 @@ public class AddAttribute : MachineFunctionality
         if (totalAttributes > 0)
         {
             double chanceToRemove = (1.0 / totalAttributes) * (failChance * 2);
-            foreach (AttributeQuantity attribute in clone.GetAttributes())
+            foreach (AttributeQuantity attribute in input.GetAttributes())
             {
                 int removeRoll = UnityEngine.Random.Range(0, 100);
                 if (chanceToRemove < removeRoll)

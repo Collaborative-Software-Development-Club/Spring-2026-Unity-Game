@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Machine : Item, IInteractable
 {
@@ -11,15 +8,13 @@ public class Machine : Item, IInteractable
     [Tooltip("Chance for an operation to fail, expressed as a percentage (0-100)")]
     public int failChance = 50;
 
-    [FormerlySerializedAs("data")] [SerializeField] protected MachineData machineData;
+    private MachineData machineData => data as MachineData;
 
     protected Inventory Input;
 
     protected Inventory Output;
 
-    private Dictionary<machineType, Delegate> _actionMap;
-
-    public MachineFunctionality MachineFunctionality;
+    private MachineFunctionality _machineFunctionality;
 
     protected virtual void Awake()
     {
@@ -37,16 +32,32 @@ public class Machine : Item, IInteractable
         int outputSize = Mathf.Max(0, machineData.outputCount);
         Output = new Inventory(outputSize);
 
-        /* _actionMap = new Dictionary<machineType, Delegate>
+        switch (machineData.processType)
         {
-            { machineType.Add, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
-            { machineType.Remove, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
-            { machineType.Swap, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
-            { machineType.Duplicate, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
-            { machineType.Fission, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
-            { machineType.Fusion, new Func<Machine, int[], bool>(MachineFunctionality.Handler) }
-        };
-        */
+            case machineType.None:
+                Debug.Log("No machine type!");
+                break;
+            case machineType.Add:
+                _machineFunctionality = new AddAttribute();
+                break;
+            case machineType.Remove:
+                _machineFunctionality = new RemoveAttribute();
+                break;
+            case machineType.Duplicate:
+                _machineFunctionality = new DuplicateAttribute();
+                break;
+            case machineType.Swap:
+                _machineFunctionality = new SwapAttribute();
+                break;
+            case machineType.Fission:
+                _machineFunctionality = new FissionAttribute();
+                break;
+            case machineType.Fusion:
+                _machineFunctionality = new FusionAttribute();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     // Function for retrieving the type this machine is.
@@ -127,17 +138,29 @@ public bool AddItemToOutput(Item item, int quantity = 1)
 /// </returns>
 public bool RemoveItemFromInput(Item item, int quantity = 1)
 {
-    var removed = Input.RemoveItemFromInventory(item, quantity);
-
-    if (hasUI && removed.Count > 0)
+    int index = -1;
+    for (int i = 0; i < Input.Length && index == -1; i++)
     {
-        int index = Input.GetItemAtFirstFoundIndex(item);
-        if (index > -1)
-            GameManager.Instance.GUIManager.MachineUIRef
-                .UpdateSlotDisplay(index, item.GetIcon(), -quantity);
+        var slotItem = Input.GetItemAt(i);
+        if (slotItem != null && slotItem.item == item) 
+            index = i;
     }
 
-    return removed.Count > 0;
+    if (index == -1)
+    {
+        Debug.LogWarning($"Item {item.name} not found in input inventory!");
+        return false;
+    }
+
+    InventorySlot removed = Input.RemoveFromSlot(index, quantity);
+
+    if (hasUI && removed != null && removed.quantity > 0)
+    {
+        GameManager.Instance.GUIManager.MachineUIRef
+            .UpdateSlotDisplay(index, removed.item?.GetIcon(), removed.quantity > 0 ? removed.quantity * -1 : 0);
+    }
+
+    return removed != null && removed.quantity > 0;
 }
 
 /// <summary>
@@ -199,40 +222,40 @@ private void UpdateUI()
     }
 }
 
-    public string InteractionPrompt => "Open machine";
-    public bool Interact(Interacter interactor)
+public string InteractionPrompt => "Open Machine";
+
+public bool Interact(Interacter interactor)
+{
+    if (machineData == null)
     {
-        if (machineData == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return false; }
-
-        if (_actionMap != null && _actionMap.TryGetValue(machineData.processType, out var del) && del is Action a)
-        {
-            // All we need to do is give the OpenMachineUI an action that is a reference to the Handler function below.
-            // Handler just needs the machine passed along, and an optional int array of size 2.
-            // Those will come from Swap and Duplicate's implementation later. For now, provide an empty array.
-            //Action<Machine, int[], bool> temp = MachineFunctionality.Handler();
-            if (hasUI)
-                //GameManager.Instance.GUIManager.OpenMachineUI(this, temp);
-                // Below is there to remove errors, change later!
-                return false;
-            else
-                MachineFunctionality.Handler(this, new int[2]);
-
-            return true;
-        }
-
-        Debug.LogWarning($"{name}: no handler configured for machine type '{machineData.processType}'.");
+        Debug.LogWarning($"{name}: no MachineData assigned.");
         return false;
     }
+
+    int[] args = new int[2];
+
+    Action machineHandler = () =>
+    {
+        _machineFunctionality.Handler(this, args);
+    };
+
+    if (hasUI)
+        GameManager.Instance.GUIManager.OpenMachineUI(this, machineHandler);
+    else
+        machineHandler();
+
+    return true;
+}
 
     public override void Initialize(ItemData itemData)
     {
         if (data is not MachineData newMachineData) return;
-        machineData = newMachineData;
+        data = newMachineData;
     }
     public override void Initialize(ItemData itemData, string itemName)
     {
         if (data is not MachineData newMachineData) return;
-        machineData = newMachineData;
+        data = newMachineData;
         name = itemName;
     }
 }

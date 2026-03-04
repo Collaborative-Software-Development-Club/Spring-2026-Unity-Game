@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239c4c617c24add41be3a37883c93eb4, type: 3}
   m_Name: AddMachine
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
+  text: Adds a random attribute
+  value: 50
+  icon: {fileID: 0}
+  type: 1
+  rarity: 2
   name: Add Attributes
   processType: 1
   texture: {fileID: 0}

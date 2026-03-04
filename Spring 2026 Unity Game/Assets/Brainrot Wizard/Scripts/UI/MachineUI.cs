@@ -22,7 +22,11 @@ public class MachineUI : MonoBehaviour
 
     public void Open(Machine machine)
     {
-        if (CurrentMachine != null) return;
+        if (CurrentMachine != null)
+        {
+            Close();
+            return;
+        }
         
         CurrentMachine = machine;
         
@@ -43,13 +47,17 @@ public class MachineUI : MonoBehaviour
             _outputSlots.Add(newSlot.GetComponent<InventorySlotUI>());
         }
         
-        gameObject.SetActive(true);
+        machineBackgroundUI.SetActive(true);
     }
     
     
     public void Open(Machine machine, Action action)
     {
-        if (CurrentMachine != null) return;
+        if (CurrentMachine != null)
+        {
+            Close();
+            return;
+        }
         
         Open(machine);
         
@@ -64,14 +72,21 @@ public class MachineUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        _inputSlots.Clear();
 
         foreach (Transform child in outputScrollView.content)
         {
             Destroy(child.gameObject);
         }
-        
+        _outputSlots.Clear();
+
+        foreach (Transform child in buttonContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
         CurrentMachine = null;
-        gameObject.SetActive(false);
+        machineBackgroundUI.SetActive(false);
     }
 
     /// <summary>
