@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -35,14 +36,17 @@ public class Machine : Item, IInteractable
 
         int outputSize = Mathf.Max(0, machineData.outputCount);
         Output = new Inventory(outputSize);
-    }
 
-
-    // Function that will process inputs into outputs when called. indexes for specific attributes can be carried through for swap and duplicate.
-    public void ProcessFunction(int[] indexes)
-    {
-        if (machineData == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return; }
-        MachineFunctionality.Handler(this, indexes);
+        /* _actionMap = new Dictionary<machineType, Delegate>
+        {
+            { machineType.Add, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
+            { machineType.Remove, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
+            { machineType.Swap, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
+            { machineType.Duplicate, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
+            { machineType.Fission, new Func<Machine, int[], bool>(MachineFunctionality.Handler) },
+            { machineType.Fusion, new Func<Machine, int[], bool>(MachineFunctionality.Handler) }
+        };
+        */
     }
 
     // Function for retrieving the type this machine is.
@@ -202,11 +206,16 @@ private void UpdateUI()
 
         if (_actionMap != null && _actionMap.TryGetValue(machineData.processType, out var del) && del is Action a)
         {
+            // All we need to do is give the OpenMachineUI an action that is a reference to the Handler function below.
+            // Handler just needs the machine passed along, and an optional int array of size 2.
+            // Those will come from Swap and Duplicate's implementation later. For now, provide an empty array.
+            //Action<Machine, int[], bool> temp = MachineFunctionality.Handler();
             if (hasUI)
-                GameManager.Instance.GUIManager.OpenMachineUI(this, a);
+                //GameManager.Instance.GUIManager.OpenMachineUI(this, temp);
+                // Below is there to remove errors, change later!
+                return false;
             else
-                a();
-            ProcessFunction(new int[2]);
+                MachineFunctionality.Handler(this, new int[2]);
 
             return true;
         }

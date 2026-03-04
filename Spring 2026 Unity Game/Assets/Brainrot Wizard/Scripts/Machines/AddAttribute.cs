@@ -97,10 +97,11 @@ public class AddAttribute : MachineFunctionality
                 int removeRoll = UnityEngine.Random.Range(0, 100);
                 if (chanceToRemove < removeRoll)
                 {
-                    attribute.quantity = -1;
-                    if (attribute.quantity <= 0)
+                    clone.RemoveAttribute(attribute);
+                    attribute.quantity -= 1;
+                    if (attribute.quantity > 0)
                     {
-                        clone.RemoveAttribute(attribute);
+                        clone.AddAttribute(attribute);
                     }
                 }
             }

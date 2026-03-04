@@ -12,7 +12,7 @@ public class MachineTest : MonoBehaviour
         print(machine.AddItemToInput(item, 5));
         print(machine.GetInputInventory().GetTotalItemCount());
         print(machine.GetInputInventory().Length);
-        machine.ProcessFunction(new int[2]);
+        //machine.ProcessFunction(new int[2]);
         machine.GetOutputFromSlot(0).PrintData();
         print(machine.GetOutputInventory().GetTotalItemCount());
     }
