@@ -17,6 +17,8 @@ public class Machine : MonoBehaviour, IInteractable
 
     private Dictionary<machineType, Delegate> _actionMap;
 
+    public MachineFunctionality machinefunctionality;
+
     protected virtual void Awake()
     {
         if (data == null)
@@ -39,17 +41,10 @@ public class Machine : MonoBehaviour, IInteractable
     // Could make it use args... in the future for infinite amount of attributes
     
     // overloaded call for operations that require two integers (e.g., Swap)
-    public void OnInteraction(int attributeFromBrainrot1, int attributeFromBrainrot2)
+    public void OnInteraction(int[] indexes)
     {
         if (data == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return; }
-
-        if (_actionMap != null && _actionMap.TryGetValue(data.processType, out var del))
-        {
-            if (del is Action<int, int> ai) { ai(attributeFromBrainrot1, attributeFromBrainrot2); return; }
-            if (del is Action a) { a(); return; } // fall back if typed delegate not present
-        }
-
-        Debug.LogWarning($"{name}: no handler configured for machine type '{data.processType}' that accepts two indexes.");
+        
     }
 
     // Function for retrieving the type this machine is.
@@ -68,16 +63,27 @@ public class Machine : MonoBehaviour, IInteractable
     {
         return Output;
     }
-/// <summary>
-/// Function for adding an item to the input inventory of this machine.
-/// Returns true if successful, false if the input inventory is full.
-/// </summary>
-/// <param name="item">The item to add.</param>
-/// <param name="quantity">The quantity of the item to add. Defaults to 1.</param>
-/// <returns>
-/// True if successful; otherwise false.
-/// </returns>
-public bool AddItemToInput(Item item, int quantity = 1)
+    // Function for retrieving items found within Input.
+    public Item GetInputFromSlot(int slot) { 
+        return Input.GetItemAt(slot).item;
+    }
+
+    // Function for retrieving items found within Output.
+    public Item GetOutputFromSlot(int slot)
+    {
+        return Output.GetItemAt(slot).item;
+    }
+
+    /// <summary>
+    /// Function for adding an item to the input inventory of this machine.
+    /// Returns true if successful, false if the input inventory is full.
+    /// </summary>
+    /// <param name="item">The item to add.</param>
+    /// <param name="quantity">The quantity of the item to add. Defaults to 1.</param>
+    /// <returns>
+    /// True if successful; otherwise false.
+    /// </returns>
+    public bool AddItemToInput(Item item, int quantity = 1)
 {
     int newIndex = Input.AddItemToInventory(item, quantity);
 
