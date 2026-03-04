@@ -20,6 +20,8 @@ public class JEC_NPC : JEC_InteractableBase
         JEC_Events.OnStartNPC.AddListener(StartDialogue);
         JEC_Events.ProgressDialogueNPC.AddListener(NextLine);
         JEC_Events.LeaveNPC.AddListener(EndDialogue);
+
+        Player = GameObject.Find("MAIN/Player");
     }
 
     private void Update()
@@ -56,7 +58,7 @@ public class JEC_NPC : JEC_InteractableBase
         isDialogueActive = true;
         dialogueIndex = 0;
 
-        nameText.SetText(dialogueData.name);
+        nameText.SetText(dialogueData.npcName);
         // if doing portraits insert here
 
         dialoguePanel.SetActive(true);
