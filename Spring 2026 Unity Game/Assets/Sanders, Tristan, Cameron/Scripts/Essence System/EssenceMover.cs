@@ -3,13 +3,14 @@ using UnityEngine;
 public class EssenceMover : MonoBehaviour
 {
     [SerializeField] private Vector2 force;
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        ApplyForce(other);
+        Debug.Log("Oh yes");
+        ApplyForce(collision);
     }
 
-    private void ApplyForce(Collider other)
+    private void ApplyForce(Collider2D other)
     {
-        other.attachedRigidbody.AddForce(CoordConverter.ConvertXYToXZ(force), ForceMode.Force);
+        other.attachedRigidbody.AddForce(force,ForceMode2D.Force);
     }
 }

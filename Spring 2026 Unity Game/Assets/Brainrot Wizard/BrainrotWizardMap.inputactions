@@ -16,9 +16,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "QuickTransfer",
+                    "name": "QuickTransferTo",
                     "type": "Button",
                     "id": "ef1280a4-6a9e-4aec-a2c8-ecf09526cba1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QuickTransferFrom",
+                    "type": "Button",
+                    "id": "7dfffe03-fd73-480e-afd0-0b23d54305ca",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -189,7 +198,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "QuickTransfer",
+                    "action": "QuickTransferTo",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -200,7 +209,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "QuickTransfer",
+                    "action": "QuickTransferTo",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -211,7 +220,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "QuickTransfer",
+                    "action": "QuickTransferTo",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "afce3b25-6d19-43f6-ba57-61f2603f9a9d",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTransferFrom",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "65880410-1745-4bf9-b02a-9d63ba88b5ed",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTransferFrom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "a98134b4-6aad-4a3b-a68e-802029b786b1",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTransferFrom",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
