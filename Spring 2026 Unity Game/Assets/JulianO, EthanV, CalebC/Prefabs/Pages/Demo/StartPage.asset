@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb453795e46741458e35492e670f1d4, type: 3}
+  m_Name: StartPage
+  m_EditorClassIdentifier: Assembly-CSharp::JEC_PageData
+  url: home
+  pageName: Home
+  background: {fileID: 0}
+  contentPrefab: {fileID: 6745830118252685732, guid: 5c5c6dc206f289847b8c1405d2d33b44,
+    type: 3}

@@ -23,4 +23,6 @@ public static class JEC_Events
 
     public static UnityEvent LeaveNPC = new UnityEvent();
 
+    public static UnityEvent<JEC_PageData> OnPageChanged = new UnityEvent<JEC_PageData>();
+
 }

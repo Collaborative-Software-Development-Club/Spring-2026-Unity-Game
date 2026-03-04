@@ -42,7 +42,7 @@ public class JEC_URLManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (JEC_ValidPages.PageURLs.Contains(inputText.text))
+            if (JEC_PageManager.Instance != null && JEC_PageManager.Instance.IsValidURL(inputText.text))
             {
                 JEC_Events.OnEnterURL.Invoke(inputText.text);
                 JEC_Events.OnExitKeyboardPedestal.Invoke();
