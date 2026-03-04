@@ -16,8 +16,8 @@ public class Sidescroll : MonoBehaviour
     void Start() {
         findKey("w", out wpath, out windex);
         findKey("s", out spath, out sindex);
-        // toggleKey(Globals.wKeyPath, Globals.wKeyIndex);
-        // toggleKey(Globals.sKeyPath, Globals.sKeyIndex);
+        toggleKey(wpath, windex);
+        toggleKey(spath, sindex);
         inputReader.Actions.Player.Move.ApplyBindingOverride(windex, "");
         inputReader.Actions.Player.Move.ApplyBindingOverride(sindex, "");
         
