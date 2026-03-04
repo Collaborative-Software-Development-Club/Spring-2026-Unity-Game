@@ -22,7 +22,7 @@ public class Sidescroll : MonoBehaviour
         inputReader.Actions.Player.Move.ApplyBindingOverride(sindex, "");
         
         Vector3 playerPos = player.transform.position;
-        camera.transform.position = new Vector3(playerPos.x, playerPos.y, playerPos.z - 5);
+        camera.transform.position = new Vector3(playerPos.x, playerPos.y, playerPos.z - 10);
         camera.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
