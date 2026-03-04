@@ -30,7 +30,7 @@ public class PatchOfDirt : MonoBehaviour
     {
         if (playerInRange && !hasPlant && Input.GetKeyDown(KeyCode.E))
         {
-            seedMenu.OpenMenu(this);
+            //seedMenu.OpenMenu(this);
         }
     }
 

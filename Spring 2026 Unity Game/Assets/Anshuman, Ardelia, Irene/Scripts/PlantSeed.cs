@@ -4,8 +4,10 @@ public class PlantSeed : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject seed;
-    [SerializeField] private GameObject interactionPrompt; // Drag your UI Canvas/Panel here
+    [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private InputReader inputReader;
+    public SeedMenuUI seedMenu;  
+
 
     private bool _isPlayerNearby = false;
 
@@ -36,6 +38,8 @@ public class PlantSeed : MonoBehaviour
 
     private void PlantOption()
     {
+
+        seedMenu.OpenMenu(this);
         seed.SetActive(true);
 
         // Hide the prompt once the seed is planted

@@ -3,11 +3,12 @@ using UnityEngine;
 public class SeedMenuUI : MonoBehaviour
 {
     public GameObject panel;
-    private PatchOfDirt currentPatch;
+    private PlantSeed plantSeed;
+    [SerializeField] private WaterSeed waterSeed;
 
-    public void OpenMenu(PatchOfDirt patch)
+    public void OpenMenu(PlantSeed seed)
     {
-        currentPatch = patch;
+        plantSeed = seed;
         panel.SetActive(true);
     }
 
@@ -18,10 +19,13 @@ public class SeedMenuUI : MonoBehaviour
 
     public void PlantSeed(int seedIndex)
     {
-        if (currentPatch != null)
+        Debug.Log("seed: " + seedIndex);
+        if (waterSeed == null)
         {
-            currentPatch.PlantSeed(seedIndex);
+            Debug.LogError("No WaterSeed assigned to SeedMenuUI");
+            return;
         }
+        waterSeed.SelectSeed(seedIndex);
 
         CloseMenu();
     }
