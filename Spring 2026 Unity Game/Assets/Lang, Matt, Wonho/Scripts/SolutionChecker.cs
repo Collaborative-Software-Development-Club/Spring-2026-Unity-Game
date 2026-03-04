@@ -6,7 +6,7 @@ public class SolutionChecker : MonoBehaviour
     public Board board;
     public bool[,] checkBox = new bool[13, 13];
     private int correct = 0;
-
+    public ResultDisplayer result;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,10 +27,12 @@ public class SolutionChecker : MonoBehaviour
         {
             CheckSolution();
         }
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
             Reset();
         }
+        */
     }
 
 
@@ -51,11 +53,14 @@ public class SolutionChecker : MonoBehaviour
         if (correct == 0)
         {
             Debug.Log("You win");
+            result.WinScreen();
         } else
         {
             Debug.Log("You lose");
+            result.LoseScreen();
         }
     }
+    /*
     void Reset()
     {
         for (int i = 0; i < 13; i++)
@@ -70,4 +75,5 @@ public class SolutionChecker : MonoBehaviour
             }
         }
     }
+    */
 }

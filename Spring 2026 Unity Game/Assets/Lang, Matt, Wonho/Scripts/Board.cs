@@ -11,9 +11,14 @@ public class Board : MonoBehaviour
     private void Awake()
     {
         rows = GetComponentsInChildren<Row>();
+
+    }
+
+    private void Start()
+    {
         for (int i = 0; i < 13; i++)
         {
-            for(int j = 0; j < 13; j++)
+            for (int j = 0; j < 13; j++)
             {
                 rows[i].tiles[j].GetComponent<TileClicked>().row = i;
                 rows[i].tiles[j].GetComponent<TileClicked>().column = j;
@@ -22,9 +27,7 @@ public class Board : MonoBehaviour
 
             }
         }
-
     }
-
     private void Update()
     {
 
