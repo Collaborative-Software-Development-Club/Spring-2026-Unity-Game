@@ -77,4 +77,33 @@ public abstract class Item : MonoBehaviour
         
         Debug.LogWarning($"{name} has no ItemData assigned", this);
     }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
+            return false;
+
+        if (ReferenceEquals(this, obj))
+            return true;
+
+        if (obj.GetType() != GetType())
+            return false;
+
+        var other = (Item)obj;
+
+        return data == other.data;
+    }
+
+    public override int GetHashCode()
+    {
+        return data != null ? data.GetHashCode() : 0;
+    }
+    
+    
+    public virtual Item Clone()
+    {
+        var clone = (Item)MemberwiseClone();
+        
+        return clone;
+    }
 }

@@ -2027,8 +2027,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Machine
   hasUI: 1
-  failChance: 50
-  data: {fileID: 11400000, guid: fd4098c13da4b9e45a0170bb814bd31b, type: 2}
+  failChance: 0
+  data: {fileID: 11400000, guid: f6bcce591faa1154bbc74af332af2cbe, type: 2}
 --- !u!212 &1311516068
 SpriteRenderer:
   serializedVersion: 2
@@ -2968,6 +2968,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3329936757199296107}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2131398641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2370744284109351084, guid: 108c003947696a9438d4a9cd21c6737b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3329936757199296107}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e194e7890783284fbe643c651dae3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
 --- !u!1001 &3329936757199296107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3046,6 +3058,61 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 471837399}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_ActionId
+      value: 7dfffe03-fd73-480e-afd0-0b23d54305ca
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_ActionName
+      value: 'Player/QuickTransferFrom[/Keyboard/shift,/Keyboard/g]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2131398641}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnQuickTransferTo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnQuickTransferFrom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInventory, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153943332156273531, guid: 108c003947696a9438d4a9cd21c6737b,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

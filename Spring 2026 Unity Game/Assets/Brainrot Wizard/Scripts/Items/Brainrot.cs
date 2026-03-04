@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,8 +8,13 @@ public class Brainrot : Item
     private Category _category;
     
     // Could switch to dictionary in the future
-    private List<AttributeQuantity> _attributes;
+    private List<AttributeQuantity> _attributes; 
 
+    private void Awake()
+    {
+        if(data != null)
+            Initialize(data);
+    }
 
     public override void Initialize(ItemData itemData)
     {
@@ -160,5 +166,59 @@ public class Brainrot : Item
         _category = newCategory;
         
         return oldCategory;
+    }
+
+    /// <summary>
+    /// Gets the number of attributes on the brainrot.
+    /// </summary>
+    /// <returns>The number of attributes.</returns>
+    public int GetAttributeCount()
+    {
+        return _attributes.Count;
+    }
+    
+    public override bool Equals(object obj)
+    {
+        if (obj is not Brainrot other)
+            return false;
+
+        if (GetCategory() != other.GetCategory())
+            return false;
+
+        if (GetAttributeCount() != other.GetAttributeCount())
+            return false;
+
+        foreach (AttributeQuantity attr in _attributes)
+        {
+            int index = other.FindAttributeIndex(attr.attribute);
+            if (index < 0)
+                return false;
+            
+            if (other.GetAttributes()[index].quantity != attr.quantity)
+                return false;
+        }
+
+        return true;
+    }
+    
+    public override int GetHashCode()
+    {
+        int hash = HashCode.Combine(base.GetHashCode(), _category);
+
+        return _attributes.Aggregate(hash, (current, attr) => HashCode.Combine(current, attr.attribute, attr.quantity));
+    }
+
+    public override Item Clone()
+    {
+        var clone = (Brainrot)MemberwiseClone();
+        
+        clone._attributes = new List<AttributeQuantity>();
+
+        foreach (AttributeQuantity attr in _attributes)
+        {
+            clone._attributes.Add(new AttributeQuantity(attr.attribute, attr.quantity));
+        }
+
+        return clone;
     }
 }

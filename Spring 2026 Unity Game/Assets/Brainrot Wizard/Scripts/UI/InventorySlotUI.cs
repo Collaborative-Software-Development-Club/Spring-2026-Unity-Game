@@ -11,7 +11,10 @@ public class InventorySlotUI : MonoBehaviour
     
     public void SetQuantityText(int amount)
     {
-       quantityText.text = amount.ToString(); 
+        if (amount <= 0)
+            quantityText.text = "";
+        else
+            quantityText.text = amount.ToString(); 
     }
 
     public void UpdateIcon(Sprite icon)

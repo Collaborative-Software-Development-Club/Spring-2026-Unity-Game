@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -18,19 +19,24 @@ public class Inventory
         }
     }
 
-    public int AddItemToInventory(Item item, int quantity=1) {
-        for (int i = 0; i < slots.Length; i++) {
-            if (slots[i].IsTypeAs(item)) {
-                slots[i].quantity += quantity;
-                return i;
-            }
+    public int AddItemToInventory(Item item, int quantity = 1)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == null || !slots[i].item.Equals(item)) continue;
+            
+            slots[i].quantity += quantity;
+            return i;
         }
-        for (int i = 0; i < slots.Length; i++) {
-            if (slots[i].item == null) {
-                slots[i] = new InventorySlot(item, quantity);
-                return i;
-            }
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item != null) continue;
+            
+            slots[i] = new InventorySlot(item, quantity);
+            return i;
         }
+
         return -1;
     }
 
@@ -72,6 +78,8 @@ public class Inventory
     /// <summary>
     /// Removes up to <paramref name="quantity"/> of a specific <paramref name="item"/> from the inventory.
     /// Returns a list of changes, each with the slot index and the new quantity after removal.
+    ///
+    /// DOESN'T WORK
     /// </summary>
     /// <param name="item">The item to remove.</param>
     /// <param name="quantity">The maximum quantity to remove. Defaults to 1.</param>
@@ -89,6 +97,11 @@ public class Inventory
                 break;
 
             // removing problem probably starts here
+            Debug.Log(slots[i].IsTypeAs(item));
+            
+            if(slots[i].item)
+                Debug.Log(slots[i].item.name + " | " + item.name);
+            
             if (!slots[i].IsTypeAs(item))
                 continue;
 
