@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Machine : MonoBehaviour, IInteractable
+public class Machine : Item, IInteractable
 {
     public bool hasUI;
     
     [Tooltip("Chance for an operation to fail, expressed as a percentage (0-100)")]
     public int failChance = 50;
 
-    [SerializeField] protected MachineData data;
+    [FormerlySerializedAs("data")] [SerializeField] protected MachineData machineData;
 
     protected Inventory Input;
 
@@ -21,7 +22,7 @@ public class Machine : MonoBehaviour, IInteractable
 
     protected virtual void Awake()
     {
-        if (data == null)
+        if (machineData == null)
         {
             Debug.LogWarning($"{nameof(Machine)} on '{name}' has no MachineData assigned. Creating empty input and output inventory.");
             Input = new Inventory(0);
@@ -29,10 +30,10 @@ public class Machine : MonoBehaviour, IInteractable
         }
 
         // Ensure a non-negative size
-        int inputSize = Mathf.Max(0, data.inputCount);
+        int inputSize = Mathf.Max(0, machineData.inputCount);
         Input = new Inventory(inputSize);
 
-        int outputSize = Mathf.Max(0, data.outputCount);
+        int outputSize = Mathf.Max(0, machineData.outputCount);
         Output = new Inventory(outputSize);
     }
 
@@ -40,14 +41,14 @@ public class Machine : MonoBehaviour, IInteractable
     // Function that will process inputs into outputs when called. indexes for specific attributes can be carried through for swap and duplicate.
     public void ProcessFunction(int[] indexes)
     {
-        if (data == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return; }
+        if (machineData == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return; }
         MachineFunctionality.Handler(this, indexes);
     }
 
     // Function for retrieving the type this machine is.
     public machineType GetMachineType() 
     {
-        return data.processType;
+        return machineData.processType;
     }
 
     // Function for retrieving the input inventory of this machine.
@@ -197,9 +198,9 @@ private void UpdateUI()
     public string InteractionPrompt => "Open machine";
     public bool Interact(Interacter interactor)
     {
-        if (data == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return false; }
+        if (machineData == null) { Debug.LogWarning($"{name}: no MachineData assigned."); return false; }
 
-        if (_actionMap != null && _actionMap.TryGetValue(data.processType, out var del) && del is Action a)
+        if (_actionMap != null && _actionMap.TryGetValue(machineData.processType, out var del) && del is Action a)
         {
             if (hasUI)
                 GameManager.Instance.GUIManager.OpenMachineUI(this, a);
@@ -210,7 +211,19 @@ private void UpdateUI()
             return true;
         }
 
-        Debug.LogWarning($"{name}: no handler configured for machine type '{data.processType}'.");
+        Debug.LogWarning($"{name}: no handler configured for machine type '{machineData.processType}'.");
         return false;
+    }
+
+    public override void Initialize(ItemData itemData)
+    {
+        if (data is not MachineData newMachineData) return;
+        machineData = newMachineData;
+    }
+    public override void Initialize(ItemData itemData, string itemName)
+    {
+        if (data is not MachineData newMachineData) return;
+        machineData = newMachineData;
+        name = itemName;
     }
 }

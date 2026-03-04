@@ -10,11 +10,10 @@ public class PlayerInventory : MonoBehaviour
    [SerializeField] private PlayerInventoryUI playerInventoryUI;
    private int selectedSlot;
 
-   public Brainrot TestItem;
+   public Lootbox TestItem;
    
    private void Start()
    {
-       TestItem.AddAttribute(Attribute.AI, 5);
        AddItemToInventory(TestItem, 10);
    }
 
@@ -140,5 +139,13 @@ public class PlayerInventory : MonoBehaviour
            AddItemToInventory(slot.item, slot.quantity);
            machineRef.RemoveItemFromOutput(i, slot.quantity);
        }
+   }
+
+   public void OnOpenLootbox(InputAction.CallbackContext context)
+   {
+       if (_inventory.GetItemAt(selectedSlot).item is not Lootbox lootbox || !context.canceled) return;
+       
+       GameManager.Instance.GUIManager.ShowLootboxUI(lootbox);
+       RemoveItemFromSlot(selectedSlot, 1);
    }
 }

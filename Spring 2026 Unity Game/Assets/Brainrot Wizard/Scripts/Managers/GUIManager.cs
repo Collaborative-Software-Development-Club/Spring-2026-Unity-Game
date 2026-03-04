@@ -6,6 +6,7 @@ public class GUIManager : MonoBehaviour
 {
     [SerializeField] private MainGUI mainGUIRef;
     [SerializeField] private MachineUI machineUIRef;
+    [SerializeField] private LootboxUI lootboxUIRef;
 
     [SerializeField] private GameObject slotPrefab;
 
@@ -44,6 +45,16 @@ public class GUIManager : MonoBehaviour
     public void HideMainGUI()
     {
         MainGUIRef.Hide();
+    }
+
+    public void ShowLootboxUI(Lootbox lootbox)
+    {
+        lootboxUIRef.OpenLootboxUI(lootbox);
+    }
+
+    public void HideLootboxUI()
+    {
+        lootboxUIRef.CloseLootboxUI();
     }
 
     /// <summary>
