@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class WaterSeed : MonoBehaviour
 {
-    [Header("UI")]
+    [Header("References")]
     [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private InputReader inputReader;
-    
-    [Header("Plant Data")]
     [SerializeField] private GameObject[] plantPrefabs;
     [SerializeField] private Transform plantSpawnPoint;
-    
+
     private bool watered = false;
     private bool seedSelected = false;
     private bool _isPlayerNearby = false;
@@ -54,11 +52,10 @@ public class WaterSeed : MonoBehaviour
 
     private void GrowPlant()
     {
-        Debug.Log($"GrowPlant | seedIndex={seedIndex}, plantPrefabs.Length={plantPrefabs.Length}");
-
         if (plantSpawnPoint == null || seedIndex < 0 || !seedSelected) return;
 
         PlayerInv.water -= waterCost;
+
         Debug.Log("Plant watered! Water left: " + PlayerInv.water);
         Instantiate(plantPrefabs[seedIndex],
                     plantSpawnPoint.position,
