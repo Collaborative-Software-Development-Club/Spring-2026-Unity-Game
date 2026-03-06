@@ -1262,11 +1262,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 624853777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba56dd56ff4a7118dbd79614ed00a0de, type: 3}
+  m_Script: {fileID: 11500000, guid: bd9095655fe5edc45998a1be09a5dcea, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectSpell
-  books: {fileID: 11400000, guid: 0f4d3f2c56f92ad449a537d998ea5ace, type: 2}
-  book: {fileID: 2026913310}
+  m_EditorClassIdentifier: Assembly-CSharp::BookUnlocker
+  collectionData: {fileID: 11400000, guid: 81c9b90fb59066642b4673d6f771c2ca, type: 2}
+  collectionID: 1
+  unlockOnPlayerCollision: 1
+  onBookUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &659742201
 GameObject:
   m_ObjectHideFlags: 0

@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 93713765533438859}
   - component: {fileID: 5999821457656867553}
   - component: {fileID: 8623488260481721357}
+  - component: {fileID: 2279013776617888991}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -321,6 +322,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: -0.000000023918151}
+--- !u!114 &2279013776617888991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5285918555303954017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9095655fe5edc45998a1be09a5dcea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookUnlocker
+  collectionData: {fileID: 11400000, guid: 81c9b90fb59066642b4673d6f771c2ca, type: 2}
+  collectionID: 2
+  unlockOnPlayerCollision: 1
+  onBookUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5486159743086482188
 GameObject:
   m_ObjectHideFlags: 0

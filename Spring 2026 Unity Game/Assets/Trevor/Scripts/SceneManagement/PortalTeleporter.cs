@@ -9,7 +9,7 @@ public class PortalTeleporter : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            string nextScene = gameplayScenes.GetRandomScene();
+            string nextScene = gameplayScenes.GetRandomAvailableScene();
             if (!string.IsNullOrEmpty(nextScene))
             {
                 SceneManager.LoadScene(nextScene);

@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfb987c88309a541927643587897511, type: 3}
   m_Name: GameScenes
   m_EditorClassIdentifier: Assembly-CSharp::SceneBucket
-  availableScenes:
-  - Main
-  - Basic Level
-  - Internet Level
-  - DampLevel
+  allLevels:
+  - id: 1
+    sceneName: DampLevel
+  - id: 2
+    sceneName: Internet Level
+  - id: 3
+    sceneName: Main
+  - id: 5
+    sceneName: Basic Level
+  progressData: {fileID: 11400000, guid: 81c9b90fb59066642b4673d6f771c2ca, type: 2}
