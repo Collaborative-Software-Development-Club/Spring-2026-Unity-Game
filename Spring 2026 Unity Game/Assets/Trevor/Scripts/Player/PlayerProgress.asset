@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2030669bd244b43469c0aa73e5b2fb19, type: 3}
   m_Name: PlayerProgress
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProgress
-  unlockedBooks: 
+  unlockedBooks: 0100000002000000
