@@ -76,13 +76,14 @@ public class PlayerControll : MonoBehaviour
     public void SelectedSolution()
     {
 
-        if (!state.checkBox[gridx, gridy])
+        if (!state.checkBox[gridx, gridy] && !(board.gridGenerationScript.startX == gridy && board.gridGenerationScript.startY == gridx) && !(board.gridGenerationScript.endX == gridy && board.gridGenerationScript.endY == gridx))
         {
             board.rows[gridy].tiles[gridx].SetColor(Color.gold);
             state.checkBox[gridx, gridy] = true;
         }
         else
         {
+            /*
             if (board.gridGenerationScript.startX == gridy && board.gridGenerationScript.startY == gridx)
             {
                 board.rows[gridy].tiles[gridx].SetColor(Color.red);
@@ -92,10 +93,18 @@ public class PlayerControll : MonoBehaviour
                 board.rows[gridy].tiles[gridx].SetColor(Color.green);
             }
             else
-            {
-                board.rows[gridy].tiles[gridx].SetColor(Color.black);
+            {*/
+                if (board.obstacles.isBlind[gridy,gridx]) 
+                {
+                    board.rows[gridy].tiles[gridx].SetColor(Color.darkMagenta);
+                }
+                else if (!(board.gridGenerationScript.startX == gridy && board.gridGenerationScript.startY == gridx) && !(board.gridGenerationScript.endX == gridy && board.gridGenerationScript.endY == gridx))
+                {
+                    board.rows[gridy].tiles[gridx].SetColor(Color.black);
 
-            }
+                }
+
+            //}
             state.checkBox[gridx, gridy] = false;
         }
     }

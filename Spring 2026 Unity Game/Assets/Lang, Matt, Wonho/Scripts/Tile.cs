@@ -21,7 +21,14 @@ public class Tile : MonoBehaviour
     public void SetLetter(char letter)
     {
         Letter = letter;
-        text.text = letter.ToString();
+        if (letter != ' ') 
+        {
+            text.text = letter.ToString();
+        }
+        else
+        {
+            text.text = "_";
+        }
     }
     
     public void SetColor(Color color)

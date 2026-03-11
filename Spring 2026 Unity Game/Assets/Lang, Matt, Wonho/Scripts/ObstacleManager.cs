@@ -8,16 +8,14 @@ public class ObstacleManager : MonoBehaviour
 
     public Board highlighter;
     public GridGeneration grid;
+    public bool[,] isBlind = new bool[13,13];
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         diff = difficulty.difficulty;   
+        isBlind = new bool[13,13];
     }
-    //creates gray squares
-    void CreateRefractionSquares()
-    {
-        
-    }
+
     // Update is called once per frame
     void Update()
     {
@@ -25,27 +23,33 @@ public class ObstacleManager : MonoBehaviour
     }
     private void OnDifficultySelected()
     {
-        CreateRefractionSquares();
+        
     }
     //create obstacles that can be made after letters are generated
-    private void OnGridGeneration()
+    public void OnGridGeneration()
     {
         BlindBlock();
 
     }
     void BlindBlock()
     {
+        Color blindColor = new Color(1f,1f,1f,0f);
         for (int i = 0; i < 13; i++)
         {
             for (int j = 0; j < 13; j++)
             {
-                randnum = Random.Range(0, 100);
-                if(randnum < 10)
+                if (!(grid.startX == j && grid.startY == i) && !(grid.endX == j && grid.endY == i))
                 {
-                    highlighter.rows[i].tiles[j].SetColor(Color.darkMagenta);
-                    highlighter.rows[i].tiles[j].TextColor(Color.darkMagenta);
+                    randnum = Random.Range(0, 100);
+                    if(randnum < 10)
+                    {
+                        highlighter.rows[i].tiles[j].SetColor(Color.darkMagenta);
+                        highlighter.rows[i].tiles[j].TextColor(blindColor);
+                        isBlind[i,j] = true;
+                    }
                 }
             }
         }
+        highlighter.HighlightGrid();
     }
 }

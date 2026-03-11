@@ -709,6 +709,7 @@ GameObject:
   - component: {fileID: 179031797}
   - component: {fileID: 179031796}
   - component: {fileID: 179031798}
+  - component: {fileID: 179031799}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -740,6 +741,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 444789461}
         m_TargetAssemblyTypeName: Board, Assembly-CSharp
+        m_MethodName: OnGridGeneration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 179031799}
+        m_TargetAssemblyTypeName: ObstacleManager, Assembly-CSharp
         m_MethodName: OnGridGeneration
         m_Mode: 1
         m_Arguments:
@@ -794,6 +807,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &179031799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179031795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf716d743b1ed43d3977df8df1107f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleManager
+  difficulty: {fileID: 179031798}
+  highlighter: {fileID: 444789461}
+  grid: {fileID: 179031796}
 --- !u!1001 &355436085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1465,6 +1493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Board
   gridGenerationScript: {fileID: 179031796}
   control: {fileID: 1383254299}
+  obstacles: {fileID: 179031799}
   rows: []
   show: 0
 --- !u!114 &444789462

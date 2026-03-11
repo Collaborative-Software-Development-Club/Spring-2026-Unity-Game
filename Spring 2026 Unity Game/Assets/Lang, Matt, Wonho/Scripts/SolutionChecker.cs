@@ -43,7 +43,7 @@ public class SolutionChecker : MonoBehaviour
         {
             for (int j = 0; j < 13; j++)
             {
-                if (checkBox[i, j] != board.gridGenerationScript.visited[j, i])
+                if (checkBox[i, j] != board.gridGenerationScript.visited[j, i] && !(board.gridGenerationScript.startX == j && board.gridGenerationScript.startY == i) && !(board.gridGenerationScript.endX == j && board.gridGenerationScript.endY == i))
                 {
                     Debug.Log("INaccuracy at ("+i+", "+j+")");
                     correct++;

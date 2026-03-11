@@ -4,6 +4,7 @@ public class Board : MonoBehaviour
 {
     public GridGeneration gridGenerationScript;
     public PlayerControll control;
+    public ObstacleManager obstacles;
     public Row[] rows;
     public bool show = false;
 
@@ -61,7 +62,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    void HighlightGrid()
+    public void HighlightGrid()
     {
         rows[gridGenerationScript.startX].tiles[gridGenerationScript.startY].SetColor(Color.red);
         rows[gridGenerationScript.startX].tiles[gridGenerationScript.startY].TextColor(Color.white);
