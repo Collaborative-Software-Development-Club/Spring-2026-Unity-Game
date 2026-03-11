@@ -104,7 +104,7 @@ public class Contract : Item
             int numOfAttributes = input.Length;
             Initialize(null, numOfAttributes);
         }
-
+        
         _personName = ContractData.ContractNames[Random.Range(0, ContractData.ContractNames.Length - 1)];
     }
 
