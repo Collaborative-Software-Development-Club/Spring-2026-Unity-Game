@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpellData
   spellID: 1
   spellName: Fire Spell
-  spellIcon: {fileID: 21300000, guid: d04a4907bda32bd4ca8321edd6b8ae8e, type: 3}
+  spellIcon: {fileID: 6337546947990812001, guid: db406530dffd6574db5446e6e283f232,
+    type: 3}
   loreDescription: BLAZEE
   mechanicDescription: Light things on fire
   spellPrefab: {fileID: 6614907055282721451, guid: b566d9ea79b7d7b488dce95e0b5662c6,
