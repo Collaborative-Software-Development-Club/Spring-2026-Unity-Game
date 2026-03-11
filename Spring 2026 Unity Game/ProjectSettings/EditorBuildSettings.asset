@@ -26,5 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/JulianO, EthanV, CalebC/Scenes/Internet Level.unity
     guid: 8a8e3ea0bbfdc4d4baf1d38bc9848a3a
+  - enabled: 1
+    path: Assets/Anshuman, Ardelia, Irene/Scenes/DampLevel3.unity
+    guid: ef5de2d33d2863845bc71ba49526dcd9
+  - enabled: 1
+    path: Assets/Anshuman, Ardelia, Irene/Scenes/DampEnding.unity
+    guid: cb4e3bb34194ea6c89962ffe197e9e18
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
