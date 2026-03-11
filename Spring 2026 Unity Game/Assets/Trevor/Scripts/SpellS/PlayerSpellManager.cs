@@ -12,8 +12,8 @@ public class PlayerSpellManager : MonoBehaviour
     [SerializeField] private Transform castPoint;
     [SerializeField] private SpellUIManager uiManager;
 
-    // Global event so the bookshelf knows when to hide/show books
-    public static UnityAction<SpellData> OnSpellEquipped;
+    // The event now passes the SpellData AND the dynamic Sprite!
+    public static UnityAction<SpellData, Sprite> OnSpellEquipped;
     public static UnityAction OnSpellUnequipped;
 
     private void Update()
@@ -23,7 +23,8 @@ public class PlayerSpellManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) ToggleSpellMenu();
     }
 
-    public void EquipSpell(SpellData newSpell)
+    // Now requires the sprite of the physical book being equipped
+    public void EquipSpell(SpellData newSpell, Sprite physicalBookSprite)
     {
         // If we already have a spell, destroy its instance
         if (currentSpellInstance != null)
@@ -40,7 +41,9 @@ public class PlayerSpellManager : MonoBehaviour
         }
 
         Debug.Log($"Equipped {newSpell.spellName}");
-        OnSpellEquipped?.Invoke(currentSpellData);
+
+        // Pass both the data and the dynamically grabbed sprite to the UI
+        OnSpellEquipped?.Invoke(currentSpellData, physicalBookSprite);
     }
 
     public void UnequipSpell()

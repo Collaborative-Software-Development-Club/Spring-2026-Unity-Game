@@ -15,6 +15,7 @@ public class InteractableShelfBook : MonoBehaviour
 
     private void OnEnable()
     {
+        // Subscribe to the updated global events
         PlayerSpellManager.OnSpellEquipped += HandleGlobalEquipChange;
         PlayerSpellManager.OnSpellUnequipped += HandleGlobalUnequip;
         progressData.OnCollectionUpdated += CheckVisibility;
@@ -25,17 +26,16 @@ public class InteractableShelfBook : MonoBehaviour
 
     private void OnDisable()
     {
+        // Clean up subscriptions
         PlayerSpellManager.OnSpellEquipped -= HandleGlobalEquipChange;
         PlayerSpellManager.OnSpellUnequipped -= HandleGlobalUnequip;
         progressData.OnCollectionUpdated -= CheckVisibility;
 
-        // Clean up the subscription
         if (inputReader != null) inputReader.InteractEvent -= OnInteractPressed;
     }
 
     private void Start() => CheckVisibility();
 
-    // Replaces the old Update() method
     private void OnInteractPressed()
     {
         // Safety check: Ensure the player is nearby, valid, and the book is unlocked
@@ -54,8 +54,8 @@ public class InteractableShelfBook : MonoBehaviour
         }
         else
         {
-            // Otherwise, grab this book (which auto-unequips the old one)
-            nearbyPlayer.EquipSpell(mySpellData);
+            // Pass the dynamic sprite from the SpriteRenderer directly to the Manager!
+            nearbyPlayer.EquipSpell(mySpellData, bookVisuals.sprite);
         }
     }
 
@@ -70,7 +70,8 @@ public class InteractableShelfBook : MonoBehaviour
         }
     }
 
-    private void HandleGlobalEquipChange(SpellData equippedSpell)
+    // Added the 'Sprite' parameter so it matches the updated event signature
+    private void HandleGlobalEquipChange(SpellData equippedSpell, Sprite equippedSprite)
     {
         bookVisuals.enabled = (equippedSpell != mySpellData);
     }
@@ -84,7 +85,7 @@ public class InteractableShelfBook : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Fix for the NullReferenceException: Try to get the component from the object OR its parent
+            // Try to get the component from the object OR its parent
             PlayerSpellManager manager = other.GetComponentInParent<PlayerSpellManager>();
 
             if (manager != null)
