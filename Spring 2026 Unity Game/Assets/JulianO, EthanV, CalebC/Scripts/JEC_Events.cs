@@ -25,4 +25,6 @@ public static class JEC_Events
 
     public static UnityEvent<JEC_PageData> OnPageChanged = new UnityEvent<JEC_PageData>();
 
+    public static UnityEvent OnPopupClosed = new UnityEvent();
+
 }
