@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e473b53a9e90c469f1095190867542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneReturner
-  librarySceneName: MainGameMenu
+  librarySceneName: DampLevel1
 --- !u!65 &624853779
 BoxCollider:
   m_ObjectHideFlags: 0
