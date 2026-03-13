@@ -58,7 +58,8 @@ public class ContractUI : MonoBehaviour
     {
         if(_currentContract == null) return;
         
-        GameManager.Instance.ContractManager.AddContract(_currentContract);
+        
+        GameManager.Instance.ContractManager.TakeContract(_currentContract);
         CloseUI();
     }
     

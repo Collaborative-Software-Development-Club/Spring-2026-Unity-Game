@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,10 @@ public class LootboxUI : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;  // Player's inventory reference
+
+    public Action<Lootbox> onLootboxOpened;
+    public Action onLootboxUIClosed;
+    public Action onLootboxUIOpened;
 
     private Lootbox currentLootbox;
     private bool hasRolled = false;
@@ -45,6 +50,7 @@ public class LootboxUI : MonoBehaviour
         openButton.interactable = true;
         openButton.GetComponentInChildren<TextMeshProUGUI>().text = "Open Lootbox";
 
+        onLootboxUIOpened?.Invoke();
         panel.SetActive(true);
     }
 
@@ -74,6 +80,7 @@ public class LootboxUI : MonoBehaviour
                 lootboxTitleText.text = "You got nothing!";
             }
 
+            onLootboxOpened?.Invoke(currentLootbox);
             hasRolled = true;
             openButton.GetComponentInChildren<TextMeshProUGUI>().text = "Close Lootbox";
         }
@@ -98,6 +105,7 @@ public class LootboxUI : MonoBehaviour
         openButton.onClick.RemoveAllListeners();
         openButton.GetComponentInChildren<TextMeshProUGUI>().text = "Open Lootbox";
 
+        onLootboxUIClosed.Invoke();
         currentLootbox = null;
         hasRolled = false;
     }

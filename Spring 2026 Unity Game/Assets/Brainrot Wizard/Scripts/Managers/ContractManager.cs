@@ -7,6 +7,11 @@ public class ContractManager : MonoBehaviour
 {
     private List<Contract> _contracts = new();
     [SerializeField] private ContractDatabase contractDatabase;
+    
+    public Action onContractTaken;
+    public Action<Contract> onContractFailed;
+    public Action<Contract> onContractTurnedIn;
+    
     private void Start()
     {
         GameManager.Instance.onTurnChange += OnTurnChange;
@@ -28,12 +33,18 @@ public class ContractManager : MonoBehaviour
        return  _contracts.Contains(contractToCheck); 
     }
 
+    public void TakeContract(Contract contract)
+    {
+        onContractTaken?.Invoke();
+        AddContract(contract);
+    }
     public bool TurnInContract(Contract contractToTurnIn)
     {
         if (!HasContract(contractToTurnIn)) return false;
 
         double contractValue = contractToTurnIn.GetValue();
         GameManager.Instance.EconomyManager.AddMoney(contractValue);
+        onContractTurnedIn?.Invoke(contractToTurnIn);
         return _contracts.Remove(contractToTurnIn);
     }
 
@@ -42,9 +53,11 @@ public class ContractManager : MonoBehaviour
         foreach (var contract in _contracts)
         {
             contract.DecrementDuration();
+
+            if (!contract.IsPastDuration()) continue;
             
-            if(contract.IsPastDuration())
-                RemoveContract(contract);
+            onContractFailed?.Invoke(contract);
+            RemoveContract(contract);
         } 
     }
 

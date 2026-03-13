@@ -6,7 +6,7 @@ public class GUIManager : MonoBehaviour
 {
     [SerializeField] private MainGUI mainGUIRef;
     [SerializeField] private MachineUI machineUIRef;
-    [SerializeField] private LootboxUI lootboxUIRef;
+    public LootboxUI lootboxUIRef;
     [SerializeField] private RentGUI rentGUIRef;
 
     [SerializeField] private GameObject slotPrefab;

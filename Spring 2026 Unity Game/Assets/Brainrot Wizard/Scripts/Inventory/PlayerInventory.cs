@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,12 +9,6 @@ public class PlayerInventory : MonoBehaviour
    [SerializeField] private PlayerInventoryUI playerInventoryUI;
    private int selectedSlot;
 
-   public Lootbox TestItem;
-   
-   private void Start()
-   {
-       AddItemToInventory(TestItem, 10);
-   }
 
 
    public void OnSlotClicked(InputAction.CallbackContext context)
@@ -134,7 +127,7 @@ public class PlayerInventory : MonoBehaviour
        {
            InventorySlot slot = machineRef.GetOutputInventory().slots[i];
 
-           if (slot.IsUnityNull() || slot.quantity <= 0) return;
+           if (slot.item || slot.quantity <= 0) return;
            
            AddItemToInventory(slot.item, slot.quantity);
            machineRef.RemoveItemFromOutput(i, slot.quantity);

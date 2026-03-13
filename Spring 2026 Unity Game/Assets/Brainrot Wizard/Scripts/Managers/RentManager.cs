@@ -10,6 +10,8 @@ public class RentManager : MonoBehaviour
     [SerializeField] private int baseRent = 100;
     [SerializeField] private int baseDuration = 100;
     [SerializeField] private int minimumRentDuration = 5;
+
+    public Action onRentPaid;
     
     private void Start()
     {
@@ -41,6 +43,7 @@ public class RentManager : MonoBehaviour
         {
             currentRentStage++;
             nextRentDueTurn = currentTurn + CalculateRentDuration(currentRentStage);
+            onRentPaid?.Invoke();
         }
         else
             // Fail game state goes here later

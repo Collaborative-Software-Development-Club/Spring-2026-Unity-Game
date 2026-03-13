@@ -69,14 +69,6 @@ public class GameManager : MonoBehaviour
         if (ContractManager == null)
             ContractManager = GetComponent<ContractManager>();
     }
-    
-    // Placeholder this shouldn't be here after there is a tutorial
-    // This is just to get rid of the none bug
-    private void Start()
-    {
-        NextState();
-        Debug.LogWarning("Progressing day prematurely!");     
-    }
 
     private static GameManager _instance;
     public static GameManager Instance
