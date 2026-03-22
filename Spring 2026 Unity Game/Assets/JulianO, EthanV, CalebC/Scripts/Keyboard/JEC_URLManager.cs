@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class JEC_URLManager : MonoBehaviour
 {
     public JEC_KeyManager KeyManager;
+    public string StartingURL;
 
     private TMP_InputField inputText;
     private string CurrentText;
@@ -14,6 +15,15 @@ public class JEC_URLManager : MonoBehaviour
 
     private void Start()
     {
+        inputText = GetComponent<TMP_InputField>();
+        inputText.text = StartingURL;
+
+        CurrentText = inputText.text;
+
+        CaretPosition = inputText.text.Length;
+        inputText.caretPosition = CaretPosition;
+
+
         JEC_Events.OnInteractKeyboardPedestal.AddListener(StartURLTyping);
         JEC_Events.OnExitKeyboardPedestal.AddListener(ExitURLTyping);
     }
@@ -22,8 +32,7 @@ public class JEC_URLManager : MonoBehaviour
     {
         inputText = GetComponent<TMP_InputField>();
 
-        inputText.text = "";
-        CaretPosition = 0;
+        CaretPosition = inputText.text.Length;
 
         inputText.caretPosition = CaretPosition;
 
@@ -79,16 +88,20 @@ public class JEC_URLManager : MonoBehaviour
 
     public void TextFilter(string text)
     {
-        if (CurrentText.Length < text.Length)
-        {
-            HandleKeyAdded(text);
-        }
-        else if (CurrentText.Length > text.Length) 
-        { 
-            HandleKeysRemoved(text); 
-        }
+        inputText = GetComponent<TMP_InputField>();
 
-        CurrentText = inputText.text;
+        if (CurrentText != null) { 
+            if (CurrentText.Length < text.Length)
+            {
+                HandleKeyAdded(text);
+            }
+            else if (CurrentText.Length > text.Length)
+            {
+                HandleKeysRemoved(text);
+            }
+
+            CurrentText = inputText.text;
+        }
     }
 
     public void HandleKeyAdded(string text)
@@ -133,7 +146,13 @@ public class JEC_URLManager : MonoBehaviour
         
         foreach (char c in chars)
         {
-            KeyManager.KeysUsed["" + c]--;
+            if (KeyManager.KeysUsed["" + c] != 0) {
+                KeyManager.KeysUsed["" + c]--;
+            }
+            else
+            {
+                KeyManager.IncrementKeyVal("" + c);
+            }
 
             // Invoke key removed event
             JEC_Events.OnKeyRemoved.Invoke("" + c);

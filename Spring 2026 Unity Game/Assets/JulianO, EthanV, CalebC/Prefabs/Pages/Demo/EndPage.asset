@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb453795e46741458e35492e670f1d4, type: 3}
   m_Name: EndPage
   m_EditorClassIdentifier: Assembly-CSharp::JEC_PageData
-  url: macbook
+  url: macbook.com
   pageName: MagicBook
   background: {fileID: 0}
   contentPrefab: {fileID: 7326649422144228718, guid: 2322ae9f1f2fddb4dad982b5d95bf140,
