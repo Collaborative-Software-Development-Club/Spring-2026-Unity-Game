@@ -22,6 +22,11 @@ public class JEC_KeyManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public JEC_Key FindKey(string c)
     {
         for (int i = 0; i < Keyboard.Count; i++)
