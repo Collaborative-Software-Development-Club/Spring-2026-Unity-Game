@@ -6,6 +6,7 @@ TagManager:
   tags:
   - JEC_Amount
   - EssenceSystem
+  - Essence
   layers:
   - Default
   - TransparentFX
