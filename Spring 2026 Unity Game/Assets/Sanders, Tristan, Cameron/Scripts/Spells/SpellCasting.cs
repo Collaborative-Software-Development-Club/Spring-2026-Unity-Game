@@ -5,11 +5,10 @@ using UnityEngine.InputSystem;
 public class SpellCasting : MonoBehaviour
 {
     [SerializeField] GameObject[] spells;
-    [SerializeField] int[] spellCharges;
+    [SerializeField][Tooltip("How many charges the player has of each spell")] int[] spellCharges;
     [SerializeField] SpellSelection spellSelection;
     [SerializeField] private float rotationStep = 15f;
 
-    private EssenceInput essenceInput;
     private EssenceInput.SpellCastingActions spellActions;
     private GameObject spellToPlace;
     private float currentRotation = 0f;
@@ -17,14 +16,13 @@ public class SpellCasting : MonoBehaviour
 
     private void Awake()
     {
-        essenceInput = new EssenceInput();
+        spellActions = new EssenceInput().SpellCasting;
         remainingCharges = new int[spellCharges.Length];
         spellCharges.CopyTo(remainingCharges, 0);
     }
 
     private void OnEnable()
     {
-        spellActions = essenceInput.SpellCasting;
         spellActions.Enable();
         spellActions.Cast.performed += Cast;
         spellActions.Rotate.performed += Rotate;
@@ -37,11 +35,6 @@ public class SpellCasting : MonoBehaviour
         spellActions.Disable();
     }
 
-    private void OnDestroy()
-    {
-        essenceInput.Dispose();
-    }
-
     private void Start()
     {
         Display();
@@ -50,8 +43,14 @@ public class SpellCasting : MonoBehaviour
 
     private void Update()
     {
-        if (spellToPlace == null) return;
+        if (!IsSpellSelected()) return;
+        UpdateSpellPosition();
 
+    }
+
+    //Updates the spells to be where the mouse is
+    private void UpdateSpellPosition()
+    {
         Vector3 mouseScreen = Mouse.current.position.ReadValue();
         mouseScreen.z = -Camera.main.transform.position.z;
         spellToPlace.transform.position = Camera.main.ScreenToWorldPoint(mouseScreen);
@@ -59,7 +58,7 @@ public class SpellCasting : MonoBehaviour
 
     private void Cast(InputAction.CallbackContext ctx)
     {
-        if (spellToPlace == null) return;
+        if (!CanSeeLocation()) return;
 
         int curIndex = spellSelection.GetCurrentSpellIndex();
         if (remainingCharges[curIndex] <= 0) return;
@@ -73,10 +72,10 @@ public class SpellCasting : MonoBehaviour
 
     private void Rotate(InputAction.CallbackContext ctx)
     {
-        if (spellToPlace == null) return;
+        if (!IsSpellSelected()) return;
 
         float scroll = ctx.ReadValue<float>();
-        currentRotation -= scroll * rotationStep;
+        currentRotation += scroll * rotationStep;
         spellToPlace.transform.rotation = Quaternion.Euler(0f, 0f, currentRotation);
     }
 
@@ -105,13 +104,25 @@ public class SpellCasting : MonoBehaviour
 
     public int GetRemainingCharges(int spellIndex) => remainingCharges[spellIndex];
 
-    public void RefillCharges(int spellIndex) => remainingCharges[spellIndex] = spellCharges[spellIndex];
 
     private void InitializeSpellCounts()
     {
-        for(int i = 0; i < remainingCharges.Length; i++)
+        for (int i = 0; i < remainingCharges.Length; i++)
         {
             spellSelection.UpdateSpellCount(i, remainingCharges[i]);
         }
+    }
+
+    private bool CanSeeLocation()
+    {
+        if (!IsSpellSelected()) return false;
+
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, spellToPlace.transform.position, LayerMask.GetMask("Interactable"));
+        return hit.collider == null;
+    }
+
+    private bool IsSpellSelected()
+    {
+        return spellToPlace != null;
     }
 }

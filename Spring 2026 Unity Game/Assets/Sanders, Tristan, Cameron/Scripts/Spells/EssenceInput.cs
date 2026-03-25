@@ -103,7 +103,7 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Rotate"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""ab01aaba-098c-4c96-b92e-39da0f3f139c"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
@@ -125,19 +125,8 @@ public partial class @EssenceInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""589d7ef4-f461-4b74-bd50-d8f18550c1f5"",
-                    ""path"": ""<Mouse>/scroll/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""88bf07b4-6a3c-4eba-94b0-d8479baf29a0"",
-                    ""path"": ""<Mouse>/scroll/down"",
+                    ""id"": ""ff159e5a-f96c-41a4-9907-c8c94b5beba9"",
+                    ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
