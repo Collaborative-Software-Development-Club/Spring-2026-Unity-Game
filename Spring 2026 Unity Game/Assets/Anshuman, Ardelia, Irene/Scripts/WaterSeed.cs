@@ -59,7 +59,7 @@ public class WaterSeed : MonoBehaviour
         Debug.Log("Plant watered! Water left: " + PlayerInv.water);
         Instantiate(plantPrefabs[seedIndex],
                     plantSpawnPoint.position,
-                    plantSpawnPoint.rotation);
+                    plantPrefabs[seedIndex].transform.rotation);
         watered = true;
         Debug.Log("Spawned plant: " + seedIndex);
     }

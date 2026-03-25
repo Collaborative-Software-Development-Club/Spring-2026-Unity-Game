@@ -40,7 +40,7 @@ public class PatchOfDirt : MonoBehaviour
 
         Instantiate(plantPrefabs[seedIndex],
                     plantSpawnPoint.position,
-                    plantSpawnPoint.rotation);
+                    plantPrefabs[seedIndex].transform.rotation);
 
         hasPlant = true;
     }
