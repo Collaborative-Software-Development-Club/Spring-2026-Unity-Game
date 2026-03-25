@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35190d4fab1ee44979937cd9c7ccac96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridGeneration
-  exampleMessage: WELCOME TO THE INCANTATION PUZZLE
+  exampleMessage: NONE SHALL PASS UNTIL THE LEVELS FINISH
   startX: 0
   startY: 0
   endX: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfb50c48d5794821a3be98fca488864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  difficulty: 1
+  difficulty: 2
   gridCreator: {fileID: 179031796}
   OnDifficultySelected:
     m_PersistentCalls:
@@ -3153,7 +3153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d36df8d7e35334e9eca347aedb7b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
-  currentLevel: 1
+  currentLevel: 2
   sceneToLoad: 
   main: 
 --- !u!114 &941171427
@@ -4850,7 +4850,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Congratulations you win!
 
-    Click the button to go to the next level.'
+    Click button to go to next level.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6403,7 +6403,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Next Level
+  m_text: 'Exit
 
 '
   m_isRightToLeft: 0
@@ -9358,7 +9358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d36df8d7e35334e9eca347aedb7b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
-  currentLevel: 1
+  currentLevel: 2
   sceneToLoad: 
   main: 
 --- !u!1001 &385948649209290773

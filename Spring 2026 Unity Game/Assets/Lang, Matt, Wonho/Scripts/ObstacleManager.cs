@@ -33,6 +33,7 @@ public class ObstacleManager : MonoBehaviour
     }
     void BlindBlock()
     {
+        
         Color blindColor = new Color(1f,1f,1f,0f);
         for (int i = 0; i < 13; i++)
         {
