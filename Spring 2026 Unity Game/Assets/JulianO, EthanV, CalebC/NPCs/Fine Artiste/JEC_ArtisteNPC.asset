@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09483a59b88bbf2408b053b3f18815b7, type: 3}
+  m_Name: JEC_ArtisteNPC
+  m_EditorClassIdentifier: Assembly-CSharp::JEC_NPCDialogue
+  npcName: Fine Artiste
+  npcPortrait: {fileID: 0}
+  dialogueLines:
+  - Hello simpleton!
+  - I know exactly what you're thinking.
+  - You are wondering "Oh Ms. Artiste, how do you make such beautiful pieces?"
+  - 'I usually don''t give art tips out to just anyone '
+  - '(gotta keep the '
+  - you can go over to that blue pedestal over there and type a new URL!
+  - Doesn't have a ton of keys though...
+  - You may need to find some new ones along the way!
+  autoProgressLines: 
+  autoProgressDelay: 1.5
+  typingSpeed: 0.05
+  voiceSound: {fileID: 0}
+  voicePitch: 1
