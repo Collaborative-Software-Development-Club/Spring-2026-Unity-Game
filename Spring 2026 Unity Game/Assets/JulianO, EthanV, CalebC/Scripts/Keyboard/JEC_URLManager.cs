@@ -178,7 +178,7 @@ public class JEC_URLManager : MonoBehaviour
     }
 
    
-    private void ExitURLTyping()
+    public void ExitURLTyping()
     {
         inputText.readOnly = true;
     }
