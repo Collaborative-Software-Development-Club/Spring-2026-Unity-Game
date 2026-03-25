@@ -15,5 +15,5 @@ MonoBehaviour:
   url: schmeebay.com
   pageName: SchmeeBay
   background: {fileID: 0}
-  contentPrefab: {fileID: 6745830118252685732, guid: 88b88783e3f39b9459fae16790a51865,
+  contentPrefab: {fileID: 6745830118252685732, guid: b25e7e81d8167ef4d92499b8be2fc059,
     type: 3}

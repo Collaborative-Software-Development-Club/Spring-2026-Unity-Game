@@ -7,6 +7,7 @@ public class SpellCasting : MonoBehaviour
     
     [SerializeField] SpellManager spellManager;
     [SerializeField] private float rotationStep = 15f;
+    [SerializeField][Tooltip("Parent object for all spawned spells")] Transform spellContainer;
 
     private EssenceInput.SpellCastingActions spellActions;
     private GameObject spellToPlace;
@@ -16,6 +17,11 @@ public class SpellCasting : MonoBehaviour
     private void Awake()
     {
         spellActions = new EssenceInput().SpellCasting;
+
+        if (spellContainer == null)
+        {
+            Debug.LogWarning($"{name}: Spell Container is not assigned. Spawned spells will not be grouped under a shared parent.");
+        }
     }
 
     private void OnEnable()
@@ -73,10 +79,39 @@ public class SpellCasting : MonoBehaviour
 
     private void Display(int idx, GameObject spell)
     {
+        if (spell == null)
+        {
+            return;
+        }
+
+        if (spellToPlace != null)
+        {
+            Destroy(spellToPlace);
+        }
+
         Vector3 mousePos = GetMousePosition();
 
-        spellToPlace = Instantiate(spell, mousePos, Quaternion.identity);
+        spellToPlace = Instantiate(spell, mousePos, Quaternion.identity, spellContainer);
         spellToPlace.GetComponent<Collider2D>().enabled = false;
+    }
+
+    public void ClearPlacedSpells()
+    {
+        if (spellToPlace != null)
+        {
+            Destroy(spellToPlace);
+            spellToPlace = null;
+        }
+
+        if (spellContainer == null)
+        {
+            return;
+        }
+
+        for (int i = spellContainer.childCount - 1; i >= 0; i--)
+        {
+            Destroy(spellContainer.GetChild(i).gameObject);
+        }
     }
 
     private bool CanSeeLocation()

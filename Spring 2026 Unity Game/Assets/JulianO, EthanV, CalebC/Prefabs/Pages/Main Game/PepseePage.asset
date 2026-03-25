@@ -15,5 +15,5 @@ MonoBehaviour:
   url: pepsee.com
   pageName: Pepsee
   background: {fileID: 0}
-  contentPrefab: {fileID: 6745830118252685732, guid: 88b88783e3f39b9459fae16790a51865,
+  contentPrefab: {fileID: 6745830118252685732, guid: ff549b4c92d7ab04bbd9b4b311f955d1,
     type: 3}

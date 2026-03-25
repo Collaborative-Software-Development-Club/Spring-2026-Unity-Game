@@ -93,5 +93,10 @@ public class PlayerInventoryUI : MonoBehaviour
     {
         inventorySlotsUI[index].SetQuantityText(quantity);
     }
+
+    public void UpdateItem(int index, Item item)
+    {
+        inventorySlotsUI[index].SetItem(item);
+    }
     
 }

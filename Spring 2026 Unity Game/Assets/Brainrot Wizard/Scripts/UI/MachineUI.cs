@@ -100,11 +100,13 @@ public class MachineUI : MonoBehaviour
     {
         if (isInput)
         {
+            _inputSlots[index].SetItem(CurrentMachine.GetInputFromSlot(index));
             _inputSlots[index].UpdateIcon(icon);
             _inputSlots[index].SetQuantityText(quantity);
         }
         else
         {
+            _outputSlots[index].SetItem(CurrentMachine.GetOutputFromSlot(index));
             _outputSlots[index].UpdateIcon(icon);
             _outputSlots[index].SetQuantityText(quantity);
         }

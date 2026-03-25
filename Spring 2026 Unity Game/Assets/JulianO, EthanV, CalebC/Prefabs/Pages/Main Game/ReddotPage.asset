@@ -15,5 +15,5 @@ MonoBehaviour:
   url: reddot.com
   pageName: Reddot
   background: {fileID: 0}
-  contentPrefab: {fileID: 6745830118252685732, guid: 88b88783e3f39b9459fae16790a51865,
+  contentPrefab: {fileID: 6745830118252685732, guid: 85cc74408d5423a4e917fa728934618d,
     type: 3}

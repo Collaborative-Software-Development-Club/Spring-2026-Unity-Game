@@ -15,5 +15,5 @@ MonoBehaviour:
   url: pepsee.com/stud
   pageName: Pepsee Stud
   background: {fileID: 0}
-  contentPrefab: {fileID: 6745830118252685732, guid: 88b88783e3f39b9459fae16790a51865,
+  contentPrefab: {fileID: 6745830118252685732, guid: 7f2218a7cd68b6d46b54cea0dfdaf0ee,
     type: 3}

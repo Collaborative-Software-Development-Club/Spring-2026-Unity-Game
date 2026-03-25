@@ -9,6 +9,12 @@ public class PlayerInventory : MonoBehaviour
    [SerializeField] private PlayerInventoryUI playerInventoryUI;
    private int selectedSlot;
 
+   public Item testItem;
+
+   private void Start()
+   {
+       AddItemToInventory(testItem, 5);
+   }
 
 
    public void OnSlotClicked(InputAction.CallbackContext context)
@@ -31,6 +37,7 @@ public class PlayerInventory : MonoBehaviour
    {
        int slotIndex = _inventory.AddItemToInventory(item, amount);
        
+       playerInventoryUI.UpdateItem(slotIndex, item);
        playerInventoryUI.UpdateQuantityTextForIndex(slotIndex, _inventory.GetItemAt(slotIndex).quantity);
        playerInventoryUI.UpdateIconForIndex(slotIndex, item.GetIcon());
    }
@@ -47,6 +54,7 @@ public class PlayerInventory : MonoBehaviour
 
            if (slot.item == null || slot.quantity <= 0)
            {
+               playerInventoryUI.UpdateItem(inventoryChange.Index, null);
                playerInventoryUI.UpdateQuantityTextForIndex(inventoryChange.NewQuantity, 0);
                playerInventoryUI.UpdateIconForIndex(inventoryChange.Index, null);
            }
@@ -64,6 +72,7 @@ public class PlayerInventory : MonoBehaviour
        
        if (removeResult.item == null || removeResult.quantity <= 0)
        {
+           playerInventoryUI.UpdateItem(index, null);
            playerInventoryUI.UpdateQuantityTextForIndex(index, 0); 
            playerInventoryUI.UpdateIconForIndex(index, null);
        }

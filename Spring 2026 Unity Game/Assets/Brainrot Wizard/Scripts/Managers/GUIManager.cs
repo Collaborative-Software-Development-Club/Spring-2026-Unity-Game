@@ -8,11 +8,13 @@ public class GUIManager : MonoBehaviour
     [SerializeField] private MachineUI machineUIRef;
     public LootboxUI lootboxUIRef;
     [SerializeField] private RentGUI rentGUIRef;
+    [SerializeField] private TooltipUI tooltipUIRef;
 
     [SerializeField] private GameObject slotPrefab;
 
     public MainGUI MainGUIRef => mainGUIRef;
     public MachineUI MachineUIRef => machineUIRef;
+    public TooltipUI TooltipUIRef => tooltipUIRef;
 
     private void Start()
     {
@@ -79,9 +81,29 @@ public class GUIManager : MonoBehaviour
         var inventorySlotUI = newSlot.GetComponent<InventorySlotUI>();
 
         if (!slot.item) return newSlot;
+        inventorySlotUI.SetItem(slot.item);
         
         if(slot.item.GetIcon())
             inventorySlotUI.UpdateIcon(slot.item.GetIcon());
+
+        if (slot.quantity > 0)
+            inventorySlotUI.SetQuantityText(slot.quantity);
+
+        return newSlot;
+    }
+    /// <summary>
+    /// Creates a new slot game object to be used in ui
+    /// </summary>
+    /// <param name="slot">The slot to use to fill out the slot prefab</param>
+    /// <returns></returns>
+    public GameObject CreateSlot(AttributeQuantity slot)
+    {
+        GameObject newSlot = Instantiate(slotPrefab);
+        var inventorySlotUI = newSlot.GetComponent<InventorySlotUI>();
+
+        if (slot.attribute == Attribute.None) return newSlot;
+
+        inventorySlotUI.UpdateName(StringUtils.PlaceSeparators(slot.attribute.ToString()));
 
         if (slot.quantity > 0)
             inventorySlotUI.SetQuantityText(slot.quantity);

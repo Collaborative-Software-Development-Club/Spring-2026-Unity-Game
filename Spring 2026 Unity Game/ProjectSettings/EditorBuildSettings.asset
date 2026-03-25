@@ -29,5 +29,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Anshuman, Ardelia, Irene/Scenes/DampLevel1.unity
     guid: 6e341a9dba78dfb4c84d109acc35c5e7
+  - enabled: 1
+    path: Assets/Lang, Matt, Wonho/Scenes/Medium Level 1.unity
+    guid: d8295510cfd8d4172ae16c2041e9ee66
+  - enabled: 1
+    path: Assets/Lang, Matt, Wonho/Scenes/Medium Level 2.unity
+    guid: 71533ac3a6be04569a56d18e8c6d61e8
+  - enabled: 1
+    path: Assets/Lang, Matt, Wonho/Scenes/Hard Level 1.unity
+    guid: 6547f79524f8249c7b589c117aedfafc
+  - enabled: 1
+    path: Assets/Lang, Matt, Wonho/Scenes/Hard Level 2.unity
+    guid: a013fcac28904477b96537eeb5678012
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
