@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System;
 
 public class SpellManager : MonoBehaviour
 {
-    [Header("Spell Casting")]
-    [SerializeField] GameObject[] spells;
-    [SerializeField][Tooltip("How many charges the player has of each spell")] int[] spellCharges;
-    private int[] remainingCharges;
+    GameObject[] spells = Array.Empty<GameObject>();
+    int[] spellCharges = Array.Empty<int>();
     private int currentSpellIndex = 0;
 
     [Header("Input Reader")]
@@ -17,11 +16,11 @@ public class SpellManager : MonoBehaviour
     //Events
     public event UnityAction<int, GameObject> OnSpellSelected;
     public event UnityAction<int, int> OnChargeChanged;
+    public event UnityAction OnLoadoutChanged;
 
     private void Awake()
     {
-        remainingCharges = new int[spellCharges.Length];
-        spellCharges.CopyTo(remainingCharges, 0);
+        SetLoadout(Array.Empty<GameObject>(), Array.Empty<int>(), 0);
     }
 
     private void OnEnable()
@@ -32,7 +31,10 @@ public class SpellManager : MonoBehaviour
 
     private void OnDisable()
     {
-        _numSelectAction.performed -= HandleNumSelect;
+        if (_numSelectAction != null)
+        {
+            _numSelectAction.performed -= HandleNumSelect;
+        }
     }
 
     private void HandleNumSelect(InputAction.CallbackContext context)
@@ -40,17 +42,31 @@ public class SpellManager : MonoBehaviour
         string displayName = context.control?.displayName;
         if (!string.IsNullOrEmpty(displayName) && int.TryParse(displayName, out int number))
         {
-            currentSpellIndex = number - 1;
-            OnSpellSelected.Invoke(currentSpellIndex, spells[currentSpellIndex]);
+            TrySelectSpell(number - 1);
             return;
         }
 
         string controlName = context.control?.name;
         if (!string.IsNullOrEmpty(controlName) && int.TryParse(controlName, out number))
         {
-            currentSpellIndex = number - 1;
-            OnSpellSelected.Invoke(currentSpellIndex, spells[currentSpellIndex]);
+            TrySelectSpell(number - 1);
         }
+    }
+
+    void TrySelectSpell(int requestedIndex)
+    {
+        if (spells == null || requestedIndex < 0 || requestedIndex >= spells.Length)
+        {
+            return;
+        }
+
+        if (spells[requestedIndex] == null)
+        {
+            return;
+        }
+
+        currentSpellIndex = requestedIndex;
+        OnSpellSelected?.Invoke(currentSpellIndex, spells[currentSpellIndex]);
     }
 
     /// <summary>
@@ -59,6 +75,11 @@ public class SpellManager : MonoBehaviour
     /// <returns></returns>
     public int GetCurCharge()
     {
+        if (spellCharges == null || currentSpellIndex < 0 || currentSpellIndex >= spellCharges.Length)
+        {
+            return 0;
+        }
+
         return spellCharges[currentSpellIndex];
     }
 
@@ -68,12 +89,64 @@ public class SpellManager : MonoBehaviour
     /// <param name="change"></param>
     public void AddCurCharge(int change)
     {
+        if (spellCharges == null || currentSpellIndex < 0 || currentSpellIndex >= spellCharges.Length)
+        {
+            return;
+        }
+
         spellCharges[currentSpellIndex] += change;
-        OnChargeChanged.Invoke(currentSpellIndex, spellCharges[currentSpellIndex]);
+        spellCharges[currentSpellIndex] = Mathf.Max(0, spellCharges[currentSpellIndex]);
+        OnChargeChanged?.Invoke(currentSpellIndex, spellCharges[currentSpellIndex]);
     }
 
     public int[] GetCharges()
     {
-        return remainingCharges;
+        return spellCharges;
+    }
+
+    public void SetLoadout(GameObject[] newSpells, int[] newCharges, int defaultSelectedIndex = 0)
+    {
+        if (newSpells == null || newCharges == null)
+        {
+            spells = Array.Empty<GameObject>();
+            spellCharges = Array.Empty<int>();
+            currentSpellIndex = 0;
+            OnLoadoutChanged?.Invoke();
+            return;
+        }
+
+        int count = Mathf.Min(newSpells.Length, newCharges.Length);
+        if (count <= 0)
+        {
+            spells = Array.Empty<GameObject>();
+            spellCharges = Array.Empty<int>();
+            currentSpellIndex = 0;
+            OnLoadoutChanged?.Invoke();
+            return;
+        }
+
+        spells = new GameObject[count];
+        spellCharges = new int[count];
+
+        Array.Copy(newSpells, spells, count);
+        Array.Copy(newCharges, spellCharges, count);
+
+        for (int i = 0; i < spellCharges.Length; i++)
+        {
+            spellCharges[i] = Mathf.Max(0, spellCharges[i]);
+        }
+
+        currentSpellIndex = Mathf.Clamp(defaultSelectedIndex, 0, count - 1);
+
+        OnLoadoutChanged?.Invoke();
+        for (int i = 0; i < spellCharges.Length; i++)
+        {
+            OnChargeChanged?.Invoke(i, spellCharges[i]);
+        }
+
+        if (spells[currentSpellIndex] != null)
+        {
+            OnSpellSelected?.Invoke(currentSpellIndex, spells[currentSpellIndex]);
+        }
     }
 }

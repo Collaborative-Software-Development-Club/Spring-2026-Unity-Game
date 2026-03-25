@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.InputSystem;
 
 public class SpellSelection : MonoBehaviour
 {
@@ -22,17 +21,43 @@ public class SpellSelection : MonoBehaviour
     {
         //InitializeImages();
         InitializeSpellCounts();
-        SelectSpell(currentIndex,null);
         spellManager.OnSpellSelected += SelectSpell;
         spellManager.OnChargeChanged += UpdateSpellCount;
+        spellManager.OnLoadoutChanged += InitializeSpellCounts;
+        SelectSpell(currentIndex,null);
+    }
+
+    void OnDestroy()
+    {
+        if (spellManager == null)
+        {
+            return;
+        }
+
+        spellManager.OnSpellSelected -= SelectSpell;
+        spellManager.OnChargeChanged -= UpdateSpellCount;
+        spellManager.OnLoadoutChanged -= InitializeSpellCounts;
     }
 
     void InitializeSpellCounts()
     {
+        for (int i = 0; i < spellTexts.Length; i++)
+        {
+            spellTexts[i].text = "x0";
+        }
+
         int[] spellCharges = spellManager.GetCharges();
-        for (int i =0; i < spellCharges.Length; i++)
+        int count = Mathf.Min(spellCharges.Length, spellTexts.Length);
+
+        for (int i = 0; i < count; i++)
         {
             UpdateSpellCount(i, spellCharges[i]);
+        }
+
+        if (spellSlotImageHolders.Length > 0)
+        {
+            currentIndex = Mathf.Clamp(currentIndex, 0, spellSlotImageHolders.Length - 1);
+            SelectSpell(currentIndex, null);
         }
     }
 
@@ -52,13 +77,22 @@ public class SpellSelection : MonoBehaviour
         if (index < 0 || index >= spellSlotImageHolders.Length)
             return;
 
-        spellSlotImageHolders[currentIndex].color = defaultColor;
+        if (currentIndex >= 0 && currentIndex < spellSlotImageHolders.Length)
+        {
+            spellSlotImageHolders[currentIndex].color = defaultColor;
+        }
+
         spellSlotImageHolders[index].color = selectedColor;
         currentIndex = index;
     }
 
     private void UpdateSpellCount(int idx, int newCount)
     {
+        if (idx < 0 || idx >= spellTexts.Length)
+        {
+            return;
+        }
+
         spellTexts[idx].text = $"x{newCount}";
     }
 }

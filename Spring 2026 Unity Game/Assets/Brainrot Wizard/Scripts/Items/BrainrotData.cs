@@ -23,12 +23,13 @@ public enum Attribute
     Ironic,
     Classic,
     References,
-    DamageMultiplier,
+    Massive,
     Movies,
     TVShow,
     Celebrities,
     Tiktok,
-    InRealLife
+    InRealLife,
+    Iconic
 }
 
 [CreateAssetMenu(fileName = "New Brainrot", menuName = "Game/BrainrotMixer/Item/Brainrot")]
