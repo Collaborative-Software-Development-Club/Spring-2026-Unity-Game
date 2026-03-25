@@ -1,107 +1,63 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class SpellSelection : MonoBehaviour
 {
+    [SerializeField] SpellManager spellManager;
+
     [Header("Spell Slots")]
-    public Image[] spellSlots;
     [SerializeField] TextMeshProUGUI[] spellTexts;
-
-    [Header("Input Reader")]
-    [SerializeField] private InputReader _inputReader;
-
-    [Header("Input Action Names")]
-    [SerializeField] private string numSelectActionName = "NumSelect";
-    [SerializeField] private string actionMapName = "Player";
+    [SerializeField] Image[] spellSlotImageHolders;
 
     [Header("Selection Settings")]
     public Color defaultColor = Color.white;
     public Color selectedColor = Color.yellow;
 
-    private int currentSpellIndex = 0;
-    private UnityEngine.InputSystem.InputAction _numSelectAction;
-    private System.Action<UnityEngine.InputSystem.InputAction.CallbackContext> _numSelectHandler;
+    int currentIndex = 0;
+
 
     void Start()
     {
-        UpdateSelectionVisual();
+        //InitializeImages();
+        InitializeSpellCounts();
+        SelectSpell(currentIndex,null);
+        spellManager.OnSpellSelected += SelectSpell;
+        spellManager.OnChargeChanged += UpdateSpellCount;
     }
 
-    private void OnEnable()
+    void InitializeSpellCounts()
     {
-        if (_inputReader == null)
+        int[] spellCharges = spellManager.GetCharges();
+        for (int i =0; i < spellCharges.Length; i++)
         {
-            Debug.LogWarning("SpellSelection: InputReader is not assigned.");
-            return;
-        }
-
-        var actions = _inputReader.Actions;
-        var actionMap = actions.asset.FindActionMap(actionMapName, false);
-        if (actionMap != null && !actionMap.enabled)
-            actionMap.Enable();
-
-        _numSelectAction = actionMap != null
-            ? actionMap.FindAction(numSelectActionName, false)
-            : actions.FindAction(numSelectActionName, false);
-
-        if (_numSelectAction == null)
-        {
-            Debug.LogWarning($"SpellSelection: Could not find action '{numSelectActionName}' in map '{actionMapName}'.");
-            return;
-        }
-
-        _numSelectHandler = HandleNumSelect;
-        _numSelectAction.performed += _numSelectHandler;
-    }
-
-    private void OnDisable()
-    {
-        if (_numSelectAction == null || _numSelectHandler == null)
-            return;
-
-        _numSelectAction.performed -= _numSelectHandler;
-        _numSelectAction = null;
-        _numSelectHandler = null;
-    }
-
-    private void HandleNumSelect(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        string displayName = context.control?.displayName;
-        if (!string.IsNullOrEmpty(displayName) && int.TryParse(displayName, out int number))
-        {
-            SelectSpell(number - 1);
-            return;
-        }
-
-        string controlName = context.control?.name;
-        if (!string.IsNullOrEmpty(controlName) && int.TryParse(controlName, out number))
-            SelectSpell(number - 1);
-    }
-
-    public void SelectSpell(int index)
-    {
-        if (index < 0 || index >= spellSlots.Length)
-            return;
-
-        currentSpellIndex = index;
-        UpdateSelectionVisual();
-    }
-
-    void UpdateSelectionVisual()
-    {
-        for (int i = 0; i < spellSlots.Length; i++)
-        {
-            spellSlots[i].color = (i == currentSpellIndex) ? selectedColor : defaultColor;
+            UpdateSpellCount(i, spellCharges[i]);
         }
     }
 
-    public int GetCurrentSpellIndex()
+    /* I'll prolly work this later so that it gives the slots images based on the spell the represent
+    void InitializeImages()
     {
-        return currentSpellIndex;
+        for(int i = 0; i < spellSlots.Length; i++)
+        {
+            Sprite spellSprite = spellSlots[i].GetComponent<SpriteRenderer>().sprite;
+            spellSlotImageHolders[i].sprite = spellSprite;
+        }
+    }
+    */
+
+    private void SelectSpell(int index, GameObject gameObject)
+    {
+        if (index < 0 || index >= spellSlotImageHolders.Length)
+            return;
+
+        spellSlotImageHolders[currentIndex].color = defaultColor;
+        spellSlotImageHolders[index].color = selectedColor;
+        currentIndex = index;
     }
 
-    public void UpdateSpellCount(int idx, int newCount)
+    private void UpdateSpellCount(int idx, int newCount)
     {
         spellTexts[idx].text = $"x{newCount}";
     }

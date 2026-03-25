@@ -4,21 +4,18 @@ using UnityEngine.InputSystem;
 //Vile coupling with SpellSelection
 public class SpellCasting : MonoBehaviour
 {
-    [SerializeField] GameObject[] spells;
-    [SerializeField][Tooltip("How many charges the player has of each spell")] int[] spellCharges;
-    [SerializeField] SpellSelection spellSelection;
+    
+    [SerializeField] SpellManager spellManager;
     [SerializeField] private float rotationStep = 15f;
 
     private EssenceInput.SpellCastingActions spellActions;
     private GameObject spellToPlace;
     private float currentRotation = 0f;
-    private int[] remainingCharges;
+
 
     private void Awake()
     {
         spellActions = new EssenceInput().SpellCasting;
-        remainingCharges = new int[spellCharges.Length];
-        spellCharges.CopyTo(remainingCharges, 0);
     }
 
     private void OnEnable()
@@ -32,13 +29,13 @@ public class SpellCasting : MonoBehaviour
     {
         spellActions.Cast.performed -= Cast;
         spellActions.Rotate.performed -= Rotate;
+        spellManager.OnSpellSelected -= Display;
         spellActions.Disable();
     }
 
     private void Start()
     {
-        Display();
-        InitializeSpellCounts();
+        spellManager.OnSpellSelected += Display;
     }
 
     private void Update()
@@ -51,23 +48,18 @@ public class SpellCasting : MonoBehaviour
     //Updates the spells to be where the mouse is
     private void UpdateSpellPosition()
     {
-        Vector3 mouseScreen = Mouse.current.position.ReadValue();
-        mouseScreen.z = -Camera.main.transform.position.z;
-        spellToPlace.transform.position = Camera.main.ScreenToWorldPoint(mouseScreen);
+        spellToPlace.transform.position = GetMousePosition();
     }
 
     private void Cast(InputAction.CallbackContext ctx)
     {
         if (!CanSeeLocation()) return;
 
-        int curIndex = spellSelection.GetCurrentSpellIndex();
-        if (remainingCharges[curIndex] <= 0) return;
+        if (spellManager.GetCurCharge() <= 0) return;
 
-        remainingCharges[curIndex]--;
+        spellManager.AddCurCharge(-1);
         spellToPlace.GetComponent<Collider2D>().enabled = true;
         spellToPlace = null;
-        spellSelection.UpdateSpellCount(curIndex, remainingCharges[curIndex]);
-        Display();
     }
 
     private void Rotate(InputAction.CallbackContext ctx)
@@ -79,38 +71,12 @@ public class SpellCasting : MonoBehaviour
         spellToPlace.transform.rotation = Quaternion.Euler(0f, 0f, currentRotation);
     }
 
-    private void Display()
+    private void Display(int idx, GameObject spell)
     {
-        int curIndex = spellSelection.GetCurrentSpellIndex();
+        Vector3 mousePos = GetMousePosition();
 
-        if (remainingCharges[curIndex] <= 0)
-        {
-            if (spellToPlace != null)
-            {
-                Destroy(spellToPlace);
-                spellToPlace = null;
-            }
-            return;
-        }
-
-        currentRotation = 0f;
-        Vector3 mouseScreen = Mouse.current.position.ReadValue();
-        mouseScreen.z = -Camera.main.transform.position.z;
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mouseScreen);
-
-        spellToPlace = Instantiate(spells[curIndex], worldPos, Quaternion.identity);
+        spellToPlace = Instantiate(spell, mousePos, Quaternion.identity);
         spellToPlace.GetComponent<Collider2D>().enabled = false;
-    }
-
-    public int GetRemainingCharges(int spellIndex) => remainingCharges[spellIndex];
-
-
-    private void InitializeSpellCounts()
-    {
-        for (int i = 0; i < remainingCharges.Length; i++)
-        {
-            spellSelection.UpdateSpellCount(i, remainingCharges[i]);
-        }
     }
 
     private bool CanSeeLocation()
@@ -124,5 +90,12 @@ public class SpellCasting : MonoBehaviour
     private bool IsSpellSelected()
     {
         return spellToPlace != null;
+    }
+
+    private Vector2 GetMousePosition()
+    {
+        Vector3 mouseScreen = Mouse.current.position.ReadValue();
+        mouseScreen.z = -Camera.main.transform.position.z;
+        return Camera.main.ScreenToWorldPoint(mouseScreen);
     }
 }

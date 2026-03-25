@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5548647673722030972}
   - component: {fileID: 1857281769804091522}
-  - component: {fileID: 2539407581078635149}
   - component: {fileID: 3482271174809795303}
+  - component: {fileID: 2539407581078635149}
   m_Layer: 0
   m_Name: Wind Spell
   m_TagString: Untagged
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.09770346, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 0.49019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,19 +93,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2539407581078635149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3359139041318384699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58d4d8e87e0c9fe4a9ba9b963c1191a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  force: 5
 --- !u!58 &3482271174809795303
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -142,3 +129,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.06
+--- !u!114 &2539407581078635149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3359139041318384699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d4d8e87e0c9fe4a9ba9b963c1191a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  force: 10
