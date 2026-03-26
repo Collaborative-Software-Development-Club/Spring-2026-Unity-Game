@@ -6,7 +6,7 @@ using UnityEngine;
 public class JEC_Popups : JEC_InteractableBase
 {
     public Image adImage;
-    public TMP_Text text;
+    [SerializeField] public TMP_Text text;
     public GameObject Player;
     public GameObject popupContent;
     public bool hidingKeys;
