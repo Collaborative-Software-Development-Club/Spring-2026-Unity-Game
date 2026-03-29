@@ -867,6 +867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d067e7e65053c804387b80bb39a367dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Restart
+  _mainMenuSceneName: MainGameMenu
+  _enableEscapeToMenu: 1
 --- !u!1 &398705503
 GameObject:
   m_ObjectHideFlags: 0
@@ -4690,7 +4692,7 @@ Transform:
   m_GameObject: {fileID: 1146174432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.02, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5787,7 +5789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47ea2e2bf7564ff7837816b978f558e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelFlowManager
-  player: {fileID: 0}
+  player: {fileID: 1866944504}
   essenceTracker: {fileID: 924304304}
   spellManager: {fileID: 39127501}
   spellCasting: {fileID: 1866944500}
@@ -5799,21 +5801,21 @@ MonoBehaviour:
     playerSpawnPoint: {fileID: 263275307}
     essenceGoal: {fileID: 835259460}
     spells:
-    - {fileID: 3359139041318384699, guid: 8abb558fa573c8948a1af8e5980bfb8d, type: 3}
+    - {fileID: 3359139041318384699, guid: ca9ec51e9003f5c42b0fc087d3952fba, type: 3}
     spellCharges: 06000000
   - levelName: Lvl2
     environmentRoot: {fileID: 971983954}
     playerSpawnPoint: {fileID: 1021088609}
     essenceGoal: {fileID: 398705507}
     spells:
-    - {fileID: 3359139041318384699, guid: 8abb558fa573c8948a1af8e5980bfb8d, type: 3}
+    - {fileID: 3359139041318384699, guid: ca9ec51e9003f5c42b0fc087d3952fba, type: 3}
     spellCharges: 08000000
   - levelName: Lvl3
     environmentRoot: {fileID: 1457657418}
     playerSpawnPoint: {fileID: 520097557}
     essenceGoal: {fileID: 53551785}
     spells:
-    - {fileID: 3359139041318384699, guid: 8abb558fa573c8948a1af8e5980bfb8d, type: 3}
+    - {fileID: 3359139041318384699, guid: ca9ec51e9003f5c42b0fc087d3952fba, type: 3}
     spellCharges: 0c000000
 --- !u!1 &1295568161
 GameObject:
@@ -5945,7 +5947,7 @@ Transform:
   m_GameObject: {fileID: 1455893697}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.04, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
