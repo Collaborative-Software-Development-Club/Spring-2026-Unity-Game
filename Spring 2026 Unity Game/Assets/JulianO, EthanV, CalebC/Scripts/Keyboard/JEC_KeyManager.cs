@@ -29,19 +29,16 @@ public class JEC_KeyManager : MonoBehaviour
 
     public JEC_Key FindKey(string c)
     {
+        if (c.Equals("/"))
+        {
+            c = "forwardSlash";
+        }
+
         foreach (JEC_Key key in Keyboard) {
 
             if (key.character.Equals(c))
                 return key;
         }
-
-        //for (int i = 0; i < Keyboard.Count; i++)
-        //{
-        //    Debug.Log(Keyboard[i].character + " and " + c);
-        //    Debug.Log(Keyboard[i].character.Equals(c));
-        //    if (Keyboard[i].character.Equals(c))
-        //        return Keyboard[i];
-        //}
 
         Debug.Log("Reached here with letter: " + c);
         return null;
@@ -53,7 +50,14 @@ public class JEC_KeyManager : MonoBehaviour
 
         foreach(var key in Keyboard)
         {
-            KeysUsed[key.character] = 0;
+            if (key.character.Equals("forwardSlash"))
+            {
+                KeysUsed["/"] = 0;
+            }
+            else
+            {
+                KeysUsed[key.character] = 0;
+            }
         }
     }
 

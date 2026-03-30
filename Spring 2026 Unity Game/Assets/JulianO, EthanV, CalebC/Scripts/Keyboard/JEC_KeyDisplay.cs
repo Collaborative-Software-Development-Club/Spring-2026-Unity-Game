@@ -25,7 +25,11 @@ public class JEC_KeyDisplay : MonoBehaviour
 
     public void UpdateDisplayedKey(string c)
     {
+
         JEC_Key key = KeyManager.FindKey(c);
+
+        c = key.character.Equals("forwardSlash") ? "/" : key.character;
+
         GameObject keyUI = GetUIKey(c);
 
         if (key == null || keyUI == null)
@@ -38,7 +42,7 @@ public class JEC_KeyDisplay : MonoBehaviour
             TextMeshProUGUI amountText = amount.GetComponent<TextMeshProUGUI>();
             Button keyIcon = keyUI.GetComponent<Button>();
 
-            if (KeyManager.KeysUsed[key.character] == key.amount)
+            if (KeyManager.KeysUsed[c] == key.amount)
             {
                 keyIcon.interactable = false;
             }
@@ -47,8 +51,8 @@ public class JEC_KeyDisplay : MonoBehaviour
                 keyIcon.interactable = true;
             }
 
-            amountText.text = (key.amount - KeyManager.KeysUsed[key.character]).ToString();
-            Debug.Log("Number of " + c + " keys used: " + KeyManager.KeysUsed[key.character].ToString());
+            amountText.text = (key.amount - KeyManager.KeysUsed[c]).ToString();
+            Debug.Log("Number of " + c + " keys used: " + KeyManager.KeysUsed[c].ToString());
         }
     }
 
@@ -57,7 +61,7 @@ public class JEC_KeyDisplay : MonoBehaviour
 
         foreach (JEC_Key key in KeyManager.Keyboard)
         {
-            string c = key.character;
+            string c = key.character.Equals("forwardSlash") ? "/" : key.character; 
 
             GameObject keyUI = GetUIKey(c);
 
@@ -82,6 +86,11 @@ public class JEC_KeyDisplay : MonoBehaviour
 
     public GameObject GetUIKey(string c)
     {
+        if (c.Equals("/"))
+        {
+            c = "forwardSlash";
+        }
+
         GameObject keyUI = GameObject.Find("Keyboard/" +  c);
 
         if (keyUI == null)
