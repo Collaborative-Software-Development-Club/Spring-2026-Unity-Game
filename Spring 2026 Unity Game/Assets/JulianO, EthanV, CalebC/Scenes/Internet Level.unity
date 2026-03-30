@@ -2948,6 +2948,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal Display
       objectReference: {fileID: 0}
+    - target: {fileID: 2351145566548012397, guid: fff3d1323a647734289ea2ba484cc926,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8204728345318992248, guid: fff3d1323a647734289ea2ba484cc926,
         type: 3}
       propertyPath: m_Pivot.x

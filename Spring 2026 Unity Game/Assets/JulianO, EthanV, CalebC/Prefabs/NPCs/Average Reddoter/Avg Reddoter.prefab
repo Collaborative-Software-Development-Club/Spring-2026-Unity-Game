@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 7572238233517981106}
   - component: {fileID: 8893772320550778393}
   m_Layer: 0
-  m_Name: Fine Artiste
+  m_Name: Avg Reddoter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,7 +326,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 54260378572017787, guid: fb9abbb57e022aa4687fa1a1aff07721, type: 3}
-  m_Color: {r: 1, g: 0.34276712, b: 0.34276712, a: 1}
+  m_Color: {r: 1, g: 0.54340774, b: 0.16470587, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   interactionPrompt: {fileID: 7030287968700394268}
   hidePromptOnInteract: 1
-  dialogueData: {fileID: 11400000, guid: be40537ed9b0a8444958c50b8549b832, type: 2}
+  dialogueData: {fileID: 11400000, guid: 11203a05dfc398448bdd83356f02b814, type: 2}
   dialoguePanel: {fileID: 5728452226159612691}
   dialogueText: {fileID: 8861339366268284231}
   nameText: {fileID: 5325295658840634575}
@@ -395,7 +395,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.92
+  m_Radius: 1.5
   m_Center: {x: 0, y: -0.00000007152558, z: 0}
 --- !u!1 &4067493929371255804
 GameObject:
