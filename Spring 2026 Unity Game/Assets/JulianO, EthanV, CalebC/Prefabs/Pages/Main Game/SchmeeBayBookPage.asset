@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb453795e46741458e35492e670f1d4, type: 3}
   m_Name: SchmeeBayBookPage
   m_EditorClassIdentifier: Assembly-CSharp::JEC_PageData
-  url: schmeebay.com
-  pageName: SchmeeBay
+  url: schmeebay.com/grandpa's-book
+  pageName: SchmeeBay Book
   background: {fileID: 0}
-  contentPrefab: {fileID: 6745830118252685732, guid: b25e7e81d8167ef4d92499b8be2fc059,
+  contentPrefab: {fileID: 6745830118252685732, guid: ddfa80951023fd843b729f71c014b81d,
     type: 3}

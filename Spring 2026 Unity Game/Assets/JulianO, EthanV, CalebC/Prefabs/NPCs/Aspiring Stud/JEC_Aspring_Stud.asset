@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09483a59b88bbf2408b053b3f18815b7, type: 3}
+  m_Name: JEC_Aspring_Stud
+  m_EditorClassIdentifier: Assembly-CSharp::JEC_NPCDialogue
+  npcName: Aspiring Stud
+  npcPortrait: {fileID: 0}
+  dialogueLines:
+  - I wanted to get totally shredded...
+  - So I bought 400 cans of pepsee...
+  - It came in bulk in a pallette on my doorstep...
+  - I'm not strong enough to move it into my house...
+  - I hope that if I keep drinking cans I'll get ripped enough to lift it...
+  autoProgressLines: 
+  autoProgressDelay: 1.5
+  typingSpeed: 0.05
+  voiceSound: {fileID: 0}
+  voicePitch: 1
