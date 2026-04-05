@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1f445041abca1439b04f0234df8bae, type: 3}
   m_Name: Mewing
   m_EditorClassIdentifier: Assembly-CSharp::BrainrotData
-  text: 
-  value: 0
+  text: shushhhh
+  value: 15
   icon: {fileID: 0}
   type: 2
-  rarity: 0
-  category: 0
-  attributes: []
+  rarity: 1
+  category: 5
+  attributes:
+  - attribute: 11
+    quantity: 20

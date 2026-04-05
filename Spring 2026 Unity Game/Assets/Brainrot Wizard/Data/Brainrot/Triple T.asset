@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Triple T
   m_EditorClassIdentifier: Assembly-CSharp::BrainrotData
   text: He is triple your T
-  value: 1000
+  value: 100
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   type: 2
   rarity: 5

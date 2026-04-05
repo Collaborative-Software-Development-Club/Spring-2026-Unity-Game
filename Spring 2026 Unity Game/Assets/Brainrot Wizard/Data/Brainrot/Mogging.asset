@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1f445041abca1439b04f0234df8bae, type: 3}
   m_Name: Mogging
   m_EditorClassIdentifier: Assembly-CSharp::BrainrotData
-  text: 
-  value: 0
+  text: Salute to ASU frat leaders
+  value: 55
   icon: {fileID: 0}
   type: 2
-  rarity: 0
-  category: 0
-  attributes: []
+  rarity: 3
+  category: 6
+  attributes:
+  - attribute: 11
+    quantity: 30
+  - attribute: 7
+    quantity: 15
+  - attribute: 12
+    quantity: 20

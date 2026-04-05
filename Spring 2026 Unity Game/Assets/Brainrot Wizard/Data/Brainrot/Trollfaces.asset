@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1f445041abca1439b04f0234df8bae, type: 3}
   m_Name: Trollfaces
   m_EditorClassIdentifier: Assembly-CSharp::BrainrotData
-  text: 
-  value: 0
-  icon: {fileID: 0}
+  text: r u mad bro
+  value: 60
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   type: 2
-  rarity: 0
-  category: 0
-  attributes: []
+  rarity: 3
+  category: 4
+  attributes:
+  - attribute: 5
+    quantity: 50
+  - attribute: 4
+    quantity: 25
+  - attribute: 3
+    quantity: 35
