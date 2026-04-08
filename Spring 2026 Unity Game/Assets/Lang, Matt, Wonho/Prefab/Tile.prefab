@@ -261,6 +261,7 @@ MonoBehaviour:
   row: 0
   column: 0
   control: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &4560473919352544524
 MonoBehaviour:
   m_ObjectHideFlags: 0
