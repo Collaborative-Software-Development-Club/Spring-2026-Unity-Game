@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1aefafa8230326545badef2c27ec93c8
+guid: 6710a08c7cc89dd4ba5a70d74ec42732
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3523368849046877808
-    second: JEC_mytar_0
+      213: -2686894316833742042
+    second: World_Wide_Wizard_Website_Wtemplate_20260408181442_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JEC_mytar_0
+      name: World_Wide_Wizard_Website_Wtemplate_20260408181442_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09942eb03ba7a1fc0800000000000000
-      internalID: -3523368849046877808
+      spriteID: 623eb18cadb36bad0800000000000000
+      internalID: -2686894316833742042
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      JEC_mytar_0: -3523368849046877808
+      World_Wide_Wizard_Website_Wtemplate_20260408181442_0: -2686894316833742042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
