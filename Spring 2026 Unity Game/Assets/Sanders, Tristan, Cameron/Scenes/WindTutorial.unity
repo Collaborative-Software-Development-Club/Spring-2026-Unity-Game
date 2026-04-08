@@ -317,7 +317,7 @@ MonoBehaviour:
   <RequiredAmount>k__BackingField: 100
   enableDebugEssenceInput: 1
   debugAddEssenceKey: 61
-  debugAddAmount: 1
+  debugAddAmount: 10
   OnEssenceCollected:
     m_PersistentCalls:
       m_Calls: []
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   <RequiredAmount>k__BackingField: 100
   enableDebugEssenceInput: 1
   debugAddEssenceKey: 61
-  debugAddAmount: 1
+  debugAddAmount: 10
   OnEssenceCollected:
     m_PersistentCalls:
       m_Calls: []
@@ -5699,14 +5699,14 @@ MonoBehaviour:
   - levelName: Lvl2
     environmentRoot: {fileID: 971983954}
     playerSpawnPoint: {fileID: 1021088609}
-    essenceGoal: {fileID: 0}
+    essenceGoal: {fileID: 398705507}
     spells:
     - {fileID: 3359139041318384699, guid: ca9ec51e9003f5c42b0fc087d3952fba, type: 3}
     spellCharges: 08000000
   - levelName: Lvl3
     environmentRoot: {fileID: 1457657418}
     playerSpawnPoint: {fileID: 520097557}
-    essenceGoal: {fileID: 0}
+    essenceGoal: {fileID: 53551785}
     spells:
     - {fileID: 3359139041318384699, guid: ca9ec51e9003f5c42b0fc087d3952fba, type: 3}
     spellCharges: 0c000000
@@ -11085,6 +11085,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 719796346}
     m_Modifications:
+    - target: {fileID: 1638792487756357733, guid: b0569e44a8205444787ecad03c83543f,
+        type: 3}
+      propertyPath: debugAddAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3171627767725336659, guid: b0569e44a8205444787ecad03c83543f,
         type: 3}
       propertyPath: m_LocalPosition.x
