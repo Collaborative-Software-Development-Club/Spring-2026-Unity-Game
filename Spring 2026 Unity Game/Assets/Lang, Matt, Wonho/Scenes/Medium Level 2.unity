@@ -1511,6 +1511,9 @@ MonoBehaviour:
   playerControll: {fileID: 1383254299}
   board: {fileID: 444789461}
   result: {fileID: 444789463}
+  stopwatch: {fileID: 0}
+  bookUnlocker: {fileID: 0}
+  sceneChanger: {fileID: 2116252687}
 --- !u!114 &444789463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3155,7 +3158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   currentLevel: 3
   sceneToLoad: 
-  main: 
 --- !u!114 &941171427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9360,7 +9362,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   currentLevel: 3
   sceneToLoad: 
-  main: 
 --- !u!1001 &385948649209290773
 PrefabInstance:
   m_ObjectHideFlags: 0

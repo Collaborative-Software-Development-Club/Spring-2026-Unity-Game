@@ -5,7 +5,7 @@ public class SceneChanger : MonoBehaviour
 {
     public int currentLevel;
     [SerializeField] private string sceneToLoad;
-    [SerializeField] private string main = "MainGameMenu";
+    private string main = "MainGameMenu";
     public void Start()
     {
         switch (currentLevel)

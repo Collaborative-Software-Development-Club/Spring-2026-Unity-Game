@@ -1663,6 +1663,8 @@ MonoBehaviour:
   board: {fileID: 444789461}
   result: {fileID: 444789463}
   stopwatch: {fileID: 98838409}
+  bookUnlocker: {fileID: 0}
+  sceneChanger: {fileID: 2116252687}
 --- !u!114 &444789463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3307,7 +3309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   currentLevel: 1
   sceneToLoad: 
-  main: 
 --- !u!114 &941171427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4727,7 +4728,7 @@ MonoBehaviour:
 
     Phrase:
 
-    "I REALLY HOPE THIS WORKS"'
+    "Welcome to the Incantation puzzle"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9611,7 +9612,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   currentLevel: 1
   sceneToLoad: 
-  main: 
 --- !u!1001 &385948649209290773
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,18 +11,41 @@ public class BrainrotNames : MonoBehaviour
     public Category[] prioritylist = new Category[] {Category.Massive, Category.Italian, Category.Throwback, Category.RageComic, Category.PopCulture, Category.Challenge};
     public Dictionary<Category, string> name = new Dictionary<Category, string>();
 
+    public bool PrintDebug;
+
+    public String[] SetupNames = new String[] {"Massive", "Italian", "Classical", "Trolly", "Iconic", "Honorable"};
+
+    public BrainrotData brainrottest;
+
     private Attribute[][] setupPriorities = new Attribute[][] { new Attribute[]{Attribute.Massive}, new Attribute[]{Attribute.AI, Attribute.Surreal}, new Attribute[]{Attribute.Classic, Attribute.References}, new Attribute[]{Attribute.Classic, Attribute.Ironic}, new Attribute[]{Attribute.Tiktok, Attribute.TVShow, Attribute.Celebrities, Attribute.Movies}, new Attribute[]{Attribute.InRealLife, Attribute.Classic}};
 
     private void Start() {
-        for (int i = 0; i < prioritylist.Length; i++) {
-            
+        for (int i = 0; i < setupPriorities.Length; i++) {
+            names[prioritylist[i]] = setupPriorities[i];
+            name[prioritylist[i]] = SetupNames[i];
+        }
+
+        if (brainrottest != null && PrintDebug) {
+            print(Name(brainrottest));
         }
     }
-    
-    public string Name(Brainrot brainrot) {
+
+    public List<Category> MyCategories(BrainrotData brainrot) {
+        List<Category> myCategories = hasAllOfCategories(brainrot.attributes);
+        return myCategories;
+    }
+
+    public string Name(BrainrotData brainrot) {
         List<Category> myCategories = new List<Category>();
-        myCategories = hasAllOfCategories(brainrot.GetAttributes());
-        return "Placeholder";
+        myCategories = hasAllOfCategories(brainrot.attributes);
+        string named = "Brainrot";
+        if (myCategories.Count() == 0) {
+            return "Disappointing Brainrot";
+        }
+        for (int i = myCategories.Count() - 1; i > -1; i--) {
+            named = name[myCategories[i]] + " " + named;
+        }
+        return named;
     }
 
     public List<Attribute> AttributesFromAttributesGiven(List<AttributeQuantity> input) {
@@ -36,7 +59,6 @@ public class BrainrotNames : MonoBehaviour
     public List<Category> hasAllOfCategories(List<AttributeQuantity> listGiven) {
         List<Category> export = new List<Category>();
         var listAttributes = AttributesFromAttributesGiven(listGiven);
-        print(listAttributes);
         foreach (Category category in prioritylist) {
             if (hasAllOfCategory(category, listAttributes)) {
                 export.Add(category);
@@ -46,11 +68,19 @@ public class BrainrotNames : MonoBehaviour
     }
 
     public bool hasAllOfCategory(Category category, List<Attribute> listGiven) {
+        bool bufferbool = true;
         foreach (Attribute attribute in names[category]) {
             if (!listGiven.Contains(attribute)) {
-                return false;
+                bufferbool = false;
             }
         }
-        return true;
+        if (category == Category.PopCulture) {
+            foreach (Attribute attribute in names[category]) {
+            if (listGiven.Contains(attribute)) {
+                bufferbool = true;
+            }
+        }
+        }
+        return bufferbool;
     }
 }

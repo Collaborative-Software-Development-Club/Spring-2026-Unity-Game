@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79eb1a81bb06e97449b4e9a172b9a197, type: 3}
+  m_Name: TestSpell
+  m_EditorClassIdentifier: Assembly-CSharp::SpellData
+  spellID: 5
+  spellName: Test Spell
+  spellIcon: {fileID: 6337546947990812001, guid: db406530dffd6574db5446e6e283f232,
+    type: 3}
+  loreDescription: Does this work
+  mechanicDescription: Testing
+  spellPrefab: {fileID: 6614907055282721451, guid: b566d9ea79b7d7b488dce95e0b5662c6,
+    type: 3}

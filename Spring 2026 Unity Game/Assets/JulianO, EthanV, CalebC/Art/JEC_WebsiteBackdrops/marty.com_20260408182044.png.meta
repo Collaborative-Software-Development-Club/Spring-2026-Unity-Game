@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 956a5bfdc0827ef40904a8568be11214
+guid: 749bdd06e58416f428dd3393a06b5bff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7071664406555110502
-    second: JEC_marty_0
+      213: -1007729129109115700
+    second: marty.com_20260408182044_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JEC_marty_0
+      name: marty.com_20260408182044_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a93528480b66cdd90800000000000000
-      internalID: -7071664406555110502
+      spriteID: ccc23ad32b3d302f0800000000000000
+      internalID: -1007729129109115700
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      JEC_marty_0: -7071664406555110502
+      marty.com_20260408182044_0: -1007729129109115700
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
