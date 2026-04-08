@@ -7,6 +7,7 @@ public class SolutionChecker : MonoBehaviour
     public bool[,] checkBox = new bool[13, 13];
     private int correct = 0;
     public ResultDisplayer result;
+    public Stopwatch stopwatch;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -53,6 +54,7 @@ public class SolutionChecker : MonoBehaviour
         if (correct == 0)
         {
             Debug.Log("You win");
+            stopwatch.PauseStopwatch();
             result.WinScreen();
         } else
         {

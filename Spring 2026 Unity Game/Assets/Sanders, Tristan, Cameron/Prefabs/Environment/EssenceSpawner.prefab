@@ -105,10 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a75b46cd8f8554e91833ee99a594d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EssenceSpawner
-  minXVel: -6
-  maxXVel: -6
-  minYVel: -0.5
-  maxYVel: 0.5
+  spawnDirection: {x: 0, y: 0}
+  spawnVariance: 0
   essencePrefab: {fileID: 3277068675634938870, guid: 92a2eebdfe684a348b4c2072029f791e,
     type: 3}
-  spawnRate: 2
+  spawnRate: 10
+  spawnMaximum: 1000

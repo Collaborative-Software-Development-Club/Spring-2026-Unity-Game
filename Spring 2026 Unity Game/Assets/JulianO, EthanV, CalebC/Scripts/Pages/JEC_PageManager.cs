@@ -10,8 +10,10 @@ public class JEC_PageManager : MonoBehaviour
     [SerializeField] private JEC_PageData defaultPage;
 
     private Dictionary<string, JEC_PageData> pageLookup;
+    private Dictionary<JEC_PageData, GameObject> pageInstances;
     private GameObject activePageInstance;
     private JEC_Page activePageComponent;
+    private JEC_PageData activePageData;
 
     private void Awake()
     {
@@ -23,6 +25,7 @@ public class JEC_PageManager : MonoBehaviour
         Instance = this;
 
         pageLookup = new Dictionary<string, JEC_PageData>();
+        pageInstances = new Dictionary<JEC_PageData, GameObject>();
         foreach (var page in pages)
         {
             if (page == null || string.IsNullOrEmpty(page.url))
@@ -68,24 +71,39 @@ public class JEC_PageManager : MonoBehaviour
 
     private void LoadPage(JEC_PageData pageData)
     {
-        UnloadCurrentPage();
+        if (pageData == null)
+            return;
 
-        if (pageData.contentPrefab == null)
+        if (activePageData == pageData && activePageInstance != null)
         {
-            Debug.LogError("JEC_ERROR: PageData '" + pageData.pageName + "' has no content prefab assigned.");
+            JEC_Events.OnPageChanged.Invoke(pageData);
             return;
         }
 
-        Transform parent = pageParent != null ? pageParent : transform;
-        activePageInstance = Instantiate(pageData.contentPrefab, parent);
-        activePageInstance.transform.localPosition = Vector3.zero;
-        activePageInstance.transform.localRotation = Quaternion.identity;
-        activePageInstance.transform.localScale = Vector3.one;
+        UnloadCurrentPage();
 
+        if (!pageInstances.TryGetValue(pageData, out activePageInstance) || activePageInstance == null)
+        {
+            if (pageData.contentPrefab == null)
+            {
+                Debug.LogError("JEC_ERROR: PageData '" + pageData.pageName + "' has no content prefab assigned.");
+                return;
+            }
+
+            Transform parent = pageParent != null ? pageParent : transform;
+            activePageInstance = Instantiate(pageData.contentPrefab, parent);
+            activePageInstance.transform.localPosition = Vector3.zero;
+            activePageInstance.transform.localRotation = Quaternion.identity;
+            activePageInstance.transform.localScale = Vector3.one;
+            pageInstances[pageData] = activePageInstance;
+        }
+
+        activePageInstance.SetActive(true);
         activePageComponent = activePageInstance.GetComponent<JEC_Page>();
         if (activePageComponent != null)
             activePageComponent.OnPageLoad(pageData);
 
+        activePageData = pageData;
         JEC_Events.OnPageChanged.Invoke(pageData);
     }
 
@@ -97,8 +115,9 @@ public class JEC_PageManager : MonoBehaviour
         if (activePageComponent != null)
             activePageComponent.OnPageUnload();
 
-        Destroy(activePageInstance);
+        activePageInstance.SetActive(false);
         activePageInstance = null;
         activePageComponent = null;
+        activePageData = null;
     }
 }
