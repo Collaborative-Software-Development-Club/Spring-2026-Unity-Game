@@ -1512,6 +1512,8 @@ MonoBehaviour:
   board: {fileID: 444789461}
   result: {fileID: 444789463}
   stopwatch: {fileID: 0}
+  bookUnlocker: {fileID: 661214018}
+  sceneChanger: {fileID: 2116252687}
 --- !u!114 &444789463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1841,7 +1843,19 @@ MonoBehaviour:
   unlockOnPlayerCollision: 0
   onBookUnlocked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a0fd7309055e9b9448110a92a9f98c03, type: 2}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &661214019
 Transform:
   m_ObjectHideFlags: 0
@@ -3206,7 +3220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   currentLevel: 5
   sceneToLoad: 
-  main: 
 --- !u!114 &941171427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9412,7 +9425,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   currentLevel: 5
   sceneToLoad: 
-  main: 
 --- !u!1001 &385948649209290773
 PrefabInstance:
   m_ObjectHideFlags: 0

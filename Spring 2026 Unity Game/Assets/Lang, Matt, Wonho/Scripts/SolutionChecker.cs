@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SolutionChecker : MonoBehaviour
@@ -8,6 +9,8 @@ public class SolutionChecker : MonoBehaviour
     private int correct = 0;
     public ResultDisplayer result;
     public Stopwatch stopwatch;
+    [SerializeField]public BookUnlocker bookUnlocker;
+    [SerializeField]public SceneChanger sceneChanger;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,6 +63,10 @@ public class SolutionChecker : MonoBehaviour
         {
             Debug.Log("You lose");
             result.LoseScreen();
+            if(sceneChanger.currentLevel == 5)
+            {
+                bookUnlocker.Unlock();
+            }
         }
     }
     /*
