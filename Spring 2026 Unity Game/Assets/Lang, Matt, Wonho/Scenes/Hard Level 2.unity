@@ -1771,6 +1771,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 661214018}
+        m_TargetAssemblyTypeName: BookUnlocker, Assembly-CSharp
+        m_MethodName: Unlock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &453949575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,22 +1852,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookUnlocker
   collectionData: {fileID: 11400000, guid: 81c9b90fb59066642b4673d6f771c2ca, type: 2}
   collectionID: 5
-  unlockOnPlayerCollision: 0
+  unlockOnPlayerCollision: 1
   onBookUnlocked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: a0fd7309055e9b9448110a92a9f98c03, type: 2}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &661214019
 Transform:
   m_ObjectHideFlags: 0
