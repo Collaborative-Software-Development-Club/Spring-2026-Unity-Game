@@ -44,3 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71987865906ac457aa78ec44b50b8e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EssenceSpell
+  essencePrefab: {fileID: 3277068675634938870, guid: 6aaa32a79dd074e75928124af4beab54,
+    type: 3}
+  essenceCount: 15
+  spawnRadius: 0.35
+  launchSpeed: 8
+  bounciness: 1
+  zeroGravity: 1
+  despawnAfterSeconds: 10
