@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EssenceSpell : SpellBehavior
 {
@@ -6,6 +7,8 @@ public class EssenceSpell : SpellBehavior
     [SerializeField] GameObject essencePrefab;
     [SerializeField][Min(1)] int essenceCount = 15;
     [SerializeField][Min(0f)] float spawnRadius = 0.35f;
+    [SerializeField][Min(0f)] float minSpawnDistanceFromCenter = 0.8f;
+    [SerializeField][Min(0f)] float cooldownSeconds = 1f;
 
     [Header("Motion")]
     [SerializeField][Min(0f)] float launchSpeed = 8f;
@@ -15,7 +18,8 @@ public class EssenceSpell : SpellBehavior
     [Header("Lifetime")]
     [SerializeField][Min(0f)] float despawnAfterSeconds = 10f;
 
-    PhysicsMaterial2D runtimeBounceMaterial;
+    PhysicsMaterial runtimeBounceMaterial;
+    float lastCastTime = float.NegativeInfinity;
 
     public override void CastSpell(Transform playerTransform)
     {
@@ -25,33 +29,41 @@ public class EssenceSpell : SpellBehavior
             return;
         }
 
+        if (Time.time < lastCastTime + cooldownSeconds)
+        {
+            return;
+        }
+
+        lastCastTime = Time.time;
+
         EnsureRuntimeMaterial();
 
-        Vector2 center = playerTransform.position;
+        Vector3 center = playerTransform.position;
+        float effectiveSpawnRadius = Mathf.Max(spawnRadius, minSpawnDistanceFromCenter);
 
         for (int i = 0; i < essenceCount; i++)
         {
             float angle = (Mathf.PI * 2f * i) / essenceCount;
-            Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            Vector2 spawnPos = center + (direction * spawnRadius);
+            Vector3 direction = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            Vector3 spawnPos = center + (direction * effectiveSpawnRadius);
 
             GameObject spawned = Instantiate(essencePrefab, spawnPos, Quaternion.identity);
 
-            Rigidbody2D rb = spawned.GetComponent<Rigidbody2D>();
+            Rigidbody rb = spawned.GetComponent<Rigidbody>();
             if (rb != null)
             {
                 if (zeroGravity)
                 {
-                    rb.gravityScale = 0f;
+                    rb.useGravity = false;
                 }
 
                 rb.linearDamping = 0f;
                 rb.angularDamping = 0f;
-                rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+                rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
                 rb.linearVelocity = direction * launchSpeed;
             }
 
-            Collider2D col = spawned.GetComponent<Collider2D>();
+            Collider col = spawned.GetComponent<Collider>();
             if (col != null)
             {
                 col.sharedMaterial = runtimeBounceMaterial;
@@ -68,10 +80,13 @@ public class EssenceSpell : SpellBehavior
             return;
         }
 
-        runtimeBounceMaterial = new PhysicsMaterial2D("EssenceSpell_NoFriction_Bounce")
+        runtimeBounceMaterial = new PhysicsMaterial("EssenceSpell_NoFriction_Bounce_3D")
         {
-            friction = 0f,
-            bounciness = bounciness
+            dynamicFriction = 0f,
+            staticFriction = 0f,
+            bounciness = bounciness,
+            frictionCombine = PhysicsMaterialCombine.Minimum,
+            bounceCombine = PhysicsMaterialCombine.Maximum
         };
     }
 }
