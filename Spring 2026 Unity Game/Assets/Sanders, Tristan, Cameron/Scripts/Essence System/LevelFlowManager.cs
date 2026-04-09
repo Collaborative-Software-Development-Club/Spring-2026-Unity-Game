@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelFlowManager : MonoBehaviour
 {
@@ -31,6 +32,15 @@ public class LevelFlowManager : MonoBehaviour
     [Header("Flow")]
     [SerializeField] float levelTransitionDelay = 3f;
     [SerializeField] LevelDefinition[] levels;
+
+    [Header("Completion / Return To Hub")]
+    [SerializeField] bool loopLevels = false;
+    [SerializeField] float finalReturnDelay = 0.25f;
+    [SerializeField] PlayerProgress progressData;
+    [SerializeField] LevelID unlockedBook = LevelID.None;
+    [SerializeField] string hubSceneName = "MageLibrary";
+    [SerializeField] BookUnlocker bookUnlocker;
+    [SerializeField] SceneReturner sceneReturner;
 
     int currentLevelIndex;
     bool isTransitioning;
@@ -85,7 +95,6 @@ public class LevelFlowManager : MonoBehaviour
         }
 
     }
-
     void SubscribeToGoals()
     {
         if (levels == null)
@@ -141,9 +150,54 @@ public class LevelFlowManager : MonoBehaviour
 
         ClearContainers();
 
+        bool isFinalLevel = currentLevelIndex >= levels.Length - 1;
+        if (isFinalLevel && !loopLevels)
+        {
+            if (finalReturnDelay > 0f)
+            {
+                yield return new WaitForSeconds(finalReturnDelay);
+            }
+
+            CompletePuzzleAndReturnToHub();
+            yield break;
+        }
+
         int nextLevel = (currentLevelIndex + 1) % levels.Length;
         ActivateLevel(nextLevel, false);
         isTransitioning = false;
+    }
+
+    void CompletePuzzleAndReturnToHub()
+    {
+        if (progressData != null && unlockedBook != LevelID.None)
+        {
+            progressData.UnlockBook(unlockedBook);
+        }
+        else if (bookUnlocker != null)
+        {
+            bookUnlocker.Unlock();
+        }
+        else
+        {
+            Debug.LogWarning($"{name}: No book unlock target configured for final level completion.");
+        }
+
+        isTransitioning = false;
+
+        if (sceneReturner != null)
+        {
+            sceneReturner.ReturnToLibrary();
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(hubSceneName))
+        {
+            SceneManager.LoadScene(hubSceneName);
+        }
+        else
+        {
+            Debug.LogError($"{name}: Hub scene name is empty, cannot return after final level.");
+        }
     }
 
     void ActivateLevel(int levelIndex, bool isInitialLevel)
