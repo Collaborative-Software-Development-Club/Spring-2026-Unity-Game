@@ -4887,13 +4887,13 @@ TextureImporter:
       name: Mediavel_47
       rect:
         serializedVersion: 2
-        x: 512
-        y: 736
-        width: 16
-        height: 16
+        x: 513
+        y: 737
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
       customData: 
       outline: []
       physicsShape: []
@@ -13159,13 +13159,13 @@ TextureImporter:
       name: Mediavel_423
       rect:
         serializedVersion: 2
-        x: 531
-        y: 402
-        width: 70
-        height: 88
+        x: 532
+        y: 403
+        width: 68
+        height: 87
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 9, y: 8, z: 8, w: 9}
       customData: 
       outline: []
       physicsShape: []
