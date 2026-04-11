@@ -9,12 +9,14 @@ public class GUIManager : MonoBehaviour
     public LootboxUI lootboxUIRef;
     [SerializeField] private RentGUI rentGUIRef;
     [SerializeField] private TooltipUI tooltipUIRef;
+    [SerializeField] private ContractTerminalUI contractTerminalUIRef;
 
     [SerializeField] private GameObject slotPrefab;
 
     public MainGUI MainGUIRef => mainGUIRef;
     public MachineUI MachineUIRef => machineUIRef;
     public TooltipUI TooltipUIRef => tooltipUIRef;
+    public ContractTerminalUI ContractTerminalUIRef => contractTerminalUIRef;
 
     private void Start()
     {
@@ -68,6 +70,16 @@ public class GUIManager : MonoBehaviour
     public void HideRentGUI()
     {
         rentGUIRef.CloseUI();
+    }
+
+    public void ShowContractTerminalUI()
+    {
+        contractTerminalUIRef.Show();
+    }
+    
+    public void HideContractTerminalUI()
+    {
+        contractTerminalUIRef.Hide();
     }
 
     /// <summary>

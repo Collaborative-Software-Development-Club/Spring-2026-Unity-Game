@@ -9,7 +9,7 @@ public class BrainrotNames : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Dictionary<Category, Attribute[]> names = new Dictionary<Category, Attribute[]>();
     public Category[] prioritylist = new Category[] {Category.Massive, Category.Italian, Category.Throwback, Category.RageComic, Category.PopCulture, Category.Challenge};
-    public Dictionary<Category, string> name = new Dictionary<Category, string>();
+    public Dictionary<Category, string> brainrotName = new Dictionary<Category, string>();
 
     public bool PrintDebug;
 
@@ -22,7 +22,7 @@ public class BrainrotNames : MonoBehaviour
     private void Start() {
         for (int i = 0; i < setupPriorities.Length; i++) {
             names[prioritylist[i]] = setupPriorities[i];
-            name[prioritylist[i]] = SetupNames[i];
+            brainrotName[prioritylist[i]] = SetupNames[i];
         }
 
         if (brainrottest != null && PrintDebug) {
@@ -43,7 +43,7 @@ public class BrainrotNames : MonoBehaviour
             return "Disappointing Brainrot";
         }
         for (int i = myCategories.Count() - 1; i > -1; i--) {
-            named = name[myCategories[i]] + " " + named;
+            named = brainrotName[myCategories[i]] + " " + named;
         }
         return named;
     }

@@ -24,7 +24,7 @@ public class TutorialUI : MonoBehaviour
 
     private bool openedLootboxUI;
     private bool openedLootbox;
-    private bool closedLootboxUI;
+    //private bool closedLootboxUI;
 
     private bool arrivedAtMachine;
     private bool usedMachine;
@@ -100,7 +100,7 @@ public class TutorialUI : MonoBehaviour
 
         GameManager.Instance.GUIManager.lootboxUIRef.onLootboxOpened += l => openedLootbox = true;
         GameManager.Instance.GUIManager.lootboxUIRef.onLootboxUIOpened += () => openedLootboxUI = true;
-        GameManager.Instance.GUIManager.lootboxUIRef.onLootboxUIClosed += () => closedLootboxUI = true;
+        //GameManager.Instance.GUIManager.lootboxUIRef.onLootboxUIClosed += () => closedLootboxUI = true;
 
         StartCoroutine(RunTutorial());
     }

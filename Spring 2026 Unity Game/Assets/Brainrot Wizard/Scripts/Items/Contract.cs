@@ -145,6 +145,11 @@ public class Contract : Item
         _currentTurnCount--;
     }
 
+    public int GetTurnCount()
+    {
+        return _currentTurnCount;
+    }
+
     public override double GetValue()
     {
         return base.GetValue() * ContractData.DifficultyMultiplier[Data.difficulty];
