@@ -92,10 +92,10 @@ public class GUIManager : MonoBehaviour
         GameObject newSlot = Instantiate(slotPrefab);
         var inventorySlotUI = newSlot.GetComponent<InventorySlotUI>();
 
-        if (!slot.item) return newSlot;
+        if (slot.item != null) return newSlot;
         inventorySlotUI.SetItem(slot.item);
         
-        if(slot.item.GetIcon())
+        if(slot.item != null && slot.item.GetIcon())
             inventorySlotUI.UpdateIcon(slot.item.GetIcon());
 
         if (slot.quantity > 0)

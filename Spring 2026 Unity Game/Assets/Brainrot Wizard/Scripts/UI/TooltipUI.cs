@@ -64,7 +64,7 @@ public class TooltipUI : MonoBehaviour
 
     private void ShowBrainrotSection(Brainrot brainrot)
     {
-        if (!brainrot)
+        if (brainrot == null)
             return;
         
         brainrotSection.SetActive(true);
@@ -78,7 +78,7 @@ public class TooltipUI : MonoBehaviour
     }
     private void ShowLootboxSection(Lootbox lootbox)
     {
-        if (!lootbox)
+        if (lootbox == null)
             return;
         
         lootboxSection.SetActive(true);

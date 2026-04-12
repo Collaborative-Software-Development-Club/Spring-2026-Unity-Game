@@ -3,26 +3,13 @@ using UnityEngine;
 
 public class Lootbox : Item
 {
-    private void Awake()
+    public Lootbox(Loottable itemData)
     {
-        if (data != null)
-            Initialize(data);
+        data = itemData;
     }
 
-    public override void Initialize(ItemData itemData)
+    public Lootbox(Loottable itemData, string itemName) : this(itemData)
     {
-        if (itemData is not Loottable lootboxData)
-        {
-            Debug.LogError("Lootbox requires Loottable data");
-            return;
-        }
-
-        data = lootboxData;
-    }
-
-    public override void Initialize(ItemData itemData, string itemName)
-    {
-        Initialize(itemData);
         Name = itemName;
     }
 

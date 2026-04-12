@@ -74,38 +74,35 @@ public class FusionAttribute : MachineFunctionality
             return null;
         }
 
-        // Instantiate a runtime copy so the asset itself is not changed.
-        var clone1 = MonoBehaviour.Instantiate(input1);
-        // Instantiate a runtime copy so the asset itself is not changed.
-        var clone2 = MonoBehaviour.Instantiate(input2);
-
         // Create the new Brainrot to return, which will combine attributes from both inputs at random.
-        Brainrot newBrainrot = new Brainrot();
+        Brainrot newBrainrot; 
 
-        // UnityEngine.Randomize between the two categories for the new Brainrot.
-        newBrainrot.ChangeCategory(clone1.GetCategory());
-        if (UnityEngine.Random.Range(0, 1) == 1)
+        if (Random.Range(0, 2) == 1)
         {
-            newBrainrot.ChangeCategory(clone2.GetCategory());
+            newBrainrot = new Brainrot(input1);
+        }
+        else
+        {
+            newBrainrot = new Brainrot(input2);
         }
 
         // Check if the parents share any attributes.
-        foreach (AttributeQuantity aq1 in clone1.GetAttributes())
+        foreach (AttributeQuantity aq1 in input1.GetAttributes())
         {
-            var matchingAQ = clone2.GetAttributes().Find(aq2 => aq2.attribute == aq1.attribute);
+            var matchingAQ = input2.GetAttributes().Find(aq2 => aq2.attribute == aq1.attribute);
             if (matchingAQ != null)
             {
                 // If they do, UnityEngine.Randomize between the two quantities to keep.
                 newBrainrot.AddAttribute(new AttributeQuantity
                 {
                     attribute = aq1.attribute,
-                    quantity = UnityEngine.Random.Range(aq1.quantity, matchingAQ.quantity)
+                    quantity = Random.Range(aq1.quantity, matchingAQ.quantity)
                 });
             }
         }
 
         // For the rest of the attributes that aren't shared, randomize a chance to keep each based on the fail chance.
-        foreach (AttributeQuantity aq1 in clone1.GetAttributes())
+        foreach (AttributeQuantity aq1 in input1.GetAttributes())
         {
             if (!newBrainrot.GetAttributes().Any(aq => aq.attribute == aq1.attribute))
             {
@@ -119,7 +116,7 @@ public class FusionAttribute : MachineFunctionality
                 }
             }
         }
-        foreach (AttributeQuantity aq2 in clone2.GetAttributes())
+        foreach (AttributeQuantity aq2 in input2.GetAttributes())
         {
             if (!newBrainrot.GetAttributes().Any(aq => aq.attribute == aq2.attribute))
             {

@@ -50,7 +50,7 @@ public class ContractManager : MonoBehaviour
 
     private void OnTurnChange(int currentTurn)
     {
-        foreach (var contract in _contracts)
+        foreach (Contract contract in _contracts)
         {
             contract.DecrementDuration();
 

@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public abstract class Item 
 {
     [SerializeField] protected ItemData data;
     protected string Name;
 
-    public abstract void Initialize(ItemData itemData);
-    public abstract void Initialize(ItemData itemData, string itemName);
-    
     public void PrintData()
     {
         if(!HasData())
         {
-            Debug.LogWarning($"{name}: ItemData is NULL", this);
+            Debug.LogWarning($"{Name}: ItemData is NULL");
             return;
         }
 
@@ -75,7 +72,7 @@ public abstract class Item : MonoBehaviour
     {
         if (HasData()) return;
         
-        Debug.LogWarning($"{name} has no ItemData assigned", this);
+        Debug.LogWarning($"{Name} has no ItemData assigned");
     }
 
     public override bool Equals(object obj)

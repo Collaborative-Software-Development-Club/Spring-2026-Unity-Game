@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Machine : Item, IInteractable
+public class Machine : Item
 {
     public bool hasUI;
     
@@ -16,50 +16,11 @@ public class Machine : Item, IInteractable
 
     private MachineFunctionality _machineFunctionality;
 
-    protected virtual void Awake()
+    public void SetFunctionality(int[] args)
     {
-        if (machineData == null)
-        {
-            Debug.LogWarning($"{nameof(Machine)} on '{name}' has no MachineData assigned. Creating empty input and output inventory.");
-            Input = new Inventory(0);
-            Output = new Inventory(0);
-        }
-
-        // Ensure a non-negative size
-        int inputSize = Mathf.Max(0, machineData.inputCount);
-        Input = new Inventory(inputSize);
-
-        int outputSize = Mathf.Max(0, machineData.outputCount);
-        Output = new Inventory(outputSize);
-
-        switch (machineData.processType)
-        {
-            case machineType.None:
-                Debug.Log("No machine type!");
-                break;
-            case machineType.Add:
-                _machineFunctionality = new AddAttribute();
-                break;
-            case machineType.Remove:
-                _machineFunctionality = new RemoveAttribute();
-                break;
-            case machineType.Duplicate:
-                _machineFunctionality = new DuplicateAttribute();
-                break;
-            case machineType.Swap:
-                _machineFunctionality = new SwapAttribute();
-                break;
-            case machineType.Fission:
-                _machineFunctionality = new FissionAttribute();
-                break;
-            case machineType.Fusion:
-                _machineFunctionality = new FusionAttribute();
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        _machineFunctionality.Handler(this, args);
     }
-
+    
     // Function for retrieving the type this machine is.
     public machineType GetMachineType() 
     {
@@ -148,7 +109,7 @@ public bool RemoveItemFromInput(Item item, int quantity = 1)
 
     if (index == -1)
     {
-        Debug.LogWarning($"Item {item.name} not found in input inventory!");
+        Debug.LogWarning($"Item {item.GetName()} not found in input inventory!");
         return false;
     }
 
@@ -222,40 +183,45 @@ private void UpdateUI()
     }
 }
 
-public string InteractionPrompt => "Open Machine";
-
-public bool Interact(Interacter interactor)
-{
-    if (machineData == null)
+    public Machine(MachineData itemData)
     {
-        Debug.LogWarning($"{name}: no MachineData assigned.");
-        return false;
+        data = itemData;
+        
+        int inputSize = Mathf.Max(0, machineData.inputCount);
+        Input = new Inventory(inputSize);
+
+        int outputSize = Mathf.Max(0, machineData.outputCount);
+        Output = new Inventory(outputSize);
+
+        switch (machineData.processType)
+        {
+            case machineType.None:
+                Debug.Log("No machine type!");
+                break;
+            case machineType.Add:
+                _machineFunctionality = new AddAttribute();
+                break;
+            case machineType.Remove:
+                _machineFunctionality = new RemoveAttribute();
+                break;
+            case machineType.Duplicate:
+                _machineFunctionality = new DuplicateAttribute();
+                break;
+            case machineType.Swap:
+                _machineFunctionality = new SwapAttribute();
+                break;
+            case machineType.Fission:
+                _machineFunctionality = new FissionAttribute();
+                break;
+            case machineType.Fusion:
+                _machineFunctionality = new FusionAttribute();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
-
-    int[] args = new int[2];
-
-    Action machineHandler = () =>
+    public Machine(MachineData itemData, string itemName) : this(itemData)
     {
-        _machineFunctionality.Handler(this, args);
-    };
-
-    if (hasUI)
-        GameManager.Instance.GUIManager.OpenMachineUI(this, machineHandler);
-    else
-        machineHandler();
-
-    return true;
-}
-
-    public override void Initialize(ItemData itemData)
-    {
-        if (data is not MachineData newMachineData) return;
-        data = newMachineData;
-    }
-    public override void Initialize(ItemData itemData, string itemName)
-    {
-        if (data is not MachineData newMachineData) return;
-        data = newMachineData;
-        name = itemName;
+        Name = itemName;
     }
 }

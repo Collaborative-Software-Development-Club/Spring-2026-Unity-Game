@@ -10,20 +10,8 @@ public class Brainrot : Item
     // Could switch to dictionary in the future
     private List<AttributeQuantity> _attributes; 
 
-    private void Awake()
+    public Brainrot(BrainrotData brainrotData)  
     {
-        if(data != null)
-            Initialize(data);
-    }
-
-    public override void Initialize(ItemData itemData)
-    {
-        if (itemData is not BrainrotData brainrotData)
-        {
-            Debug.LogError("Brainrot requires BrainrotData");
-            return;
-        }
-
         data = brainrotData;
         _category = brainrotData.category;
         
@@ -33,10 +21,25 @@ public class Brainrot : Item
                 .ToList()
             : new List<AttributeQuantity>();
     }
-    public override void Initialize(ItemData itemData, string itemName)
+    public Brainrot(BrainrotData brainrotData, Category category, List<AttributeQuantity> attributes)  
     {
-        Initialize(itemData);
+        data = brainrotData;
+        _category = category;
+        
+        _attributes = attributes != null
+            ? attributes 
+                .Select(a => new AttributeQuantity(a.attribute, a.quantity))
+                .ToList()
+            : new List<AttributeQuantity>();
+    }
+    public Brainrot(BrainrotData itemData, string itemName) : this(itemData)
+    {
         Name = itemName;
+    }
+
+    public Brainrot(Brainrot other) : this(other.data as BrainrotData, other.GetCategory(), other.GetAttributes())
+    {
+        Name = other.Name;
     }
 
     public override string GetDataAsString()

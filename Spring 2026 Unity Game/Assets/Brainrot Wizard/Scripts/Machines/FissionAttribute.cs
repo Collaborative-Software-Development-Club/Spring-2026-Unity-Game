@@ -74,7 +74,7 @@ public class FissionAttribute : MachineFunctionality
         }
 
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone = MonoBehaviour.Instantiate(input);
+        var clone = new Brainrot(input);
 
         if (clone.GetAttributes() == null)
         {

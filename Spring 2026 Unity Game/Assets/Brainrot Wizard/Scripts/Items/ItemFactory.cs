@@ -12,8 +12,6 @@ public static class ItemFactory
     {
         if (data == null) return null;
 
-        GameObject newObject;
-
         switch (data.type)
         {
             case ItemType.None:
@@ -23,25 +21,19 @@ public static class ItemFactory
             case ItemType.Machine:
                 if (data is not MachineData machineData) throw new InvalidCastException("ItemData is not MachineData");
 
-                newObject = new GameObject("Machine");
-                Machine machine = newObject.AddComponent<Machine>();
-                machine.Initialize(machineData);
+                Machine machine = new Machine(machineData);
                 return machine;
 
             case ItemType.Brainrot:
                 if (data is not BrainrotData brainrotData) throw new InvalidCastException("ItemData is not BrainrotData");
 
-                newObject = new GameObject("Brainrot");
-                Brainrot brainrot = newObject.AddComponent<Brainrot>();
-                brainrot.Initialize(brainrotData);
+                Brainrot brainrot = new Brainrot(brainrotData);
                 return brainrot;
 
             case ItemType.Lootbox:
                 if (data is not Loottable lootboxData) throw new InvalidCastException("ItemData is not Loottable");
 
-                newObject = new GameObject("Lootbox");
-                Lootbox lootbox = newObject.AddComponent<Lootbox>();
-                lootbox.Initialize(lootboxData);
+                Lootbox lootbox = new Lootbox(lootboxData);
                 return lootbox;
 
             case ItemType.Tool:
@@ -53,9 +45,7 @@ public static class ItemFactory
             case ItemType.Contract:
                 if(data is not ContractData contractData) throw new InvalidCastException("ItemData is not ContractData");
                 
-                newObject = new GameObject("Contract");
-                Contract contract = newObject.AddComponent<Contract>();
-                contract.Initialize(contractData);
+                Contract contract = new Contract(contractData);
                 return contract;
 
             default:

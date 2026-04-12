@@ -77,24 +77,19 @@ public class SwapAttribute : MachineFunctionality
             Debug.LogWarning("MachineData.SwapRandomAttribute called with null input1.");
             return null;
         }
-        else if (input2 == null)
+        if (input2 == null)
         {
             Debug.LogWarning("MachineData.SwapRandomAttribute called with null input2.");
             return null;
         }
 
-        // Instantiate a runtime copy so the asset itself is not changed.
-        var clone1 = MonoBehaviour.Instantiate(input1);
-        // Instantiate a runtime copy so the asset itself is not changed.
-        var clone2 = MonoBehaviour.Instantiate(input2);
-
-        if (clone1.GetAttributes() == null)
+        if (input1.GetAttributes() == null)
         {
             Debug.LogWarning("Brainrot 1 is missing Attributes!");
             return null;
         }
 
-        if (clone2.GetAttributes() == null)
+        if (input2.GetAttributes() == null)
         {
             Debug.LogWarning("Brainrot 2 is missing Attributes!");
             return null;
@@ -108,37 +103,37 @@ public class SwapAttribute : MachineFunctionality
         int attribute2 = attributeToSwap2;
 
         // Total all attributes that currently exist on the Brainrot.
-        int totalAttributes1 = clone1.GetAttributes().Sum(aq => aq.quantity);
-        int totalAttributes2 = clone2.GetAttributes().Sum(aq => aq.quantity);
+        int totalAttributes1 = input1.GetAttributes().Sum(aq => aq.quantity);
+        int totalAttributes2 = input2.GetAttributes().Sum(aq => aq.quantity);
 
         // For each clone, roll the chance to fail, and if it fails, randomize to a different attribute.
-        if (UnityEngine.Random.Range(0, 100) < chanceOfFail)
+        if (Random.Range(0, 100) < chanceOfFail)
         {
             int randAttribute1 = attribute1;
             do
             {
-                randAttribute1 = UnityEngine.Random.Range(0, totalAttributes1);
+                randAttribute1 = Random.Range(0, totalAttributes1);
             } while (randAttribute1 == attribute1);
             attribute1 = randAttribute1;
         }
 
         // For each clone, roll the chance to fail, and if it fails, randomize to a different attribute.
-        if (UnityEngine.Random.Range(0, 100) < chanceOfFail)
+        if (Random.Range(0, 100) < chanceOfFail)
         {
             int randAttribute2 = attribute2;
             do
             {
-                randAttribute2 = UnityEngine.Random.Range(0, totalAttributes1);
+                randAttribute2 = Random.Range(0, totalAttributes1);
             } while (randAttribute2 == attribute1);
             attribute2 = randAttribute2;
         }
 
         // Swap the attributes.
 
-        var temp = clone1.GetAttributes()[attribute1];
-        clone1.GetAttributes()[attribute1] = clone2.GetAttributes()[attribute2];
-        clone2.GetAttributes()[attribute2] = temp;
+        var temp = input1.GetAttributes()[attribute1];
+        input1.GetAttributes()[attribute1] = input2.GetAttributes()[attribute2];
+        input2.GetAttributes()[attribute2] = temp;
 
-        return new Brainrot[] { clone1, clone2 };
+        return new[] { input1, input2};
     }
 }

@@ -9,11 +9,11 @@ public class PlayerInventory : MonoBehaviour
    [SerializeField] private PlayerInventoryUI playerInventoryUI;
    private int selectedSlot;
 
-   public Item testItem;
+   public Loottable testItem;
 
    private void Start()
    {
-       AddItemToInventory(testItem, 5);
+       AddItemToInventory(new Lootbox(testItem), 5);
    }
 
 
@@ -136,7 +136,7 @@ public class PlayerInventory : MonoBehaviour
        {
            InventorySlot slot = machineRef.GetOutputInventory().slots[i];
 
-           if (slot.item || slot.quantity <= 0) return;
+           if (slot.item == null || slot.quantity <= 0) return;
            
            AddItemToInventory(slot.item, slot.quantity);
            machineRef.RemoveItemFromOutput(i, slot.quantity);

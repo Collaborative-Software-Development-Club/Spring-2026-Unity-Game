@@ -41,14 +41,14 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!item) return;
+        if (item == null) return;
         
         GameManager.Instance.GUIManager.TooltipUIRef.Show(item);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!item) return;
+        if (item == null) return;
         
         GameManager.Instance.GUIManager.TooltipUIRef.Hide();
     }
