@@ -26,7 +26,7 @@ public class TerminalItemUI : MonoBehaviour
         _contract = contract;
 
         contractNameText.text = contract.GetPersonName();
-        contractValueText.text = StringUtils.AbbreviateNumber(contract.GetValue());
+        //contractValueText.text = StringUtils.AbbreviateNumber(contract.GetValue());
         turnsLeftText.text = StringUtils.AbbreviateNumber(contract.GetTurnCount());
     }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Brainrot : Item 
 {
     private Category _category;
+    private int _stability = 0;
     
     // Could switch to dictionary in the future
     private List<AttributeQuantity> _attributes; 
@@ -223,5 +224,15 @@ public class Brainrot : Item
         }
 
         return clone;
+    }
+
+    public void ChangeStability(int amount)
+    {
+        _stability += amount;
+        
+        if(_stability < 0)
+            _stability = 0;
+        else if (_stability > 100)
+            _stability = 100;
     }
 }

@@ -41,13 +41,6 @@ public static class ItemFactory
 
             case ItemType.Seed:
                 throw new NotImplementedException("Seed items are not implemented yet.");
-
-            case ItemType.Contract:
-                if(data is not ContractData contractData) throw new InvalidCastException("ItemData is not ContractData");
-                
-                Contract contract = new Contract(contractData);
-                return contract;
-
             default:
                 throw new ArgumentOutOfRangeException($"Unhandled ItemType: {data.type}");
         }

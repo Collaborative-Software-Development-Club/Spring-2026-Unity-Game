@@ -21,8 +21,6 @@ public class ContractManager : MonoBehaviour
     {
         _contracts.Add(contract);
     }
-    
-
     public bool RemoveContract(Contract contractToRemove)
     {
         return Enumerable.Contains(_contracts, contractToRemove) && _contracts.Remove(contractToRemove);
@@ -42,8 +40,9 @@ public class ContractManager : MonoBehaviour
     {
         if (!HasContract(contractToTurnIn)) return false;
 
-        double contractValue = contractToTurnIn.GetValue();
-        GameManager.Instance.EconomyManager.AddMoney(contractValue);
+        Debug.LogWarning("No way to calculate contract worth yet!");
+        //double contractValue = contractToTurnIn.GetValue();
+        //GameManager.Instance.EconomyManager.AddMoney(contractValue);
         onContractTurnedIn?.Invoke(contractToTurnIn);
         return _contracts.Remove(contractToTurnIn);
     }

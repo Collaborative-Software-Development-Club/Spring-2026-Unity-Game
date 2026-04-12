@@ -35,7 +35,7 @@ public class ContractUI : MonoBehaviour
         panel.SetActive(true);
         _currentContract = contract;
         infoText.text = contract.GetPersonName() + "'s contract";
-
+        
         foreach (var dataString in contract.GetDataAsString())
         {
             TextMeshProUGUI newText = Instantiate(textPrefab, InfoPanel);
