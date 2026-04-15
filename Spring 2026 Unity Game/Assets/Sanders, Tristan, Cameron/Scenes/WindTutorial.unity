@@ -6316,9 +6316,9 @@ MonoBehaviour:
     spells:
     - {fileID: 3359139041318384699, guid: ca9ec51e9003f5c42b0fc087d3952fba, type: 3}
     spellCharges: 0c000000
-  completionAudioSource: {fileID: 0}
-  levelCompleteClip: {fileID: 0}
-  gameCompleteClip: {fileID: 0}
+  completionAudioSource: {fileID: 1866944507}
+  levelCompleteClip: {fileID: 8300000, guid: f835445b11cd841b497a525259e88eb4, type: 3}
+  gameCompleteClip: {fileID: 8300000, guid: 345325bba2aa04dcda6fb9b6deec0c88, type: 3}
   completionVolume: 1
   loopLevels: 0
   finalReturnDelay: 0.25
