@@ -26,18 +26,28 @@ public class BrainrotNames : MonoBehaviour
         }
 
         if (brainrottest != null && PrintDebug) {
-            print(Name(brainrottest));
+            Brainrot newRot = new Brainrot();
+            newRot.Initialize(brainrottest, "Test brainrot");
+            print(Name(newRot));
         }
     }
 
-    public List<Category> MyCategories(BrainrotData brainrot) {
-        List<Category> myCategories = hasAllOfCategories(brainrot.attributes);
+    public List<Category> MyCategories(Brainrot brainrot) {
+        List<Category> myCategories = hasAllOfCategories(brainrot.GetAttributes());
         return myCategories;
     }
 
-    public string Name(BrainrotData brainrot) {
+    public List<bool> MyCategoriesHas(List<Category> listinput, Category[] compareArray) {
+        List<bool> buffer = new List<bool>();
+        for (int i = 0; i < compareArray.Length; i++) {
+            buffer.Add(listinput.Contains(compareArray[i]));
+        }
+        return buffer;
+    }
+
+    public string Name(Brainrot brainrot) {
         List<Category> myCategories = new List<Category>();
-        myCategories = hasAllOfCategories(brainrot.attributes);
+        myCategories = hasAllOfCategories(brainrot.GetAttributes());
         string named = "Brainrot";
         if (myCategories.Count() == 0) {
             return "Disappointing Brainrot";
