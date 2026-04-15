@@ -65,8 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: -4433842668613378424, guid: 8a60764ddc190524f9c3c7c94e97eed5,
+    type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -266,6 +267,7 @@ MonoBehaviour:
   slotIcon: {fileID: 4308623179267248497}
   background: {fileID: 776834843845784574}
   quantityText: {fileID: 3486140005428542629}
+  nameText: {fileID: 0}
 --- !u!1 &8086411537617127863
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,8 +302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -1.9528, y: 4.0067}
+  m_SizeDelta: {x: 69, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8485337238990756723
 CanvasRenderer:

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79eb1a81bb06e97449b4e9a172b9a197, type: 3}
+  m_Name: EssenceSpell
+  m_EditorClassIdentifier: Assembly-CSharp::SpellData
+  spellID: 4
+  spellName: Essence Spell
+  spellIcon: {fileID: -7912115213301040636, guid: d7c90df5dd152034cbe116c5ab79ced9,
+    type: 3}
+  loreDescription: Essence!
+  mechanicDescription: Shoots out essence around you!
+  spellPrefab: {fileID: 5088882292084153930, guid: ee0309fc3abb64f5e8f02fa1c2e4e0a4,
+    type: 3}

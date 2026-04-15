@@ -5,6 +5,11 @@ public class EssenceCollector : MonoBehaviour
 {
     [field: SerializeField][Tooltip("How much essence is required to move on")] public int RequiredAmount { get; private set; }
 
+    [Header("Audio")]
+    [SerializeField] AudioSource collectionAudioSource;
+    [SerializeField] AudioClip collectionClip;
+    [SerializeField][Range(0f, 1f)] float collectionVolume = 1f;
+
     [Header("Debug")]
     [SerializeField][Tooltip("Enable dev-only input to manually add essence during play mode")]
     bool enableDebugEssenceInput;
@@ -19,6 +24,11 @@ public class EssenceCollector : MonoBehaviour
     public UnityEvent<int> OnEssenceCollected;
     public UnityEvent OnRequiredMet;
     public UnityEvent<EssenceCollector> OnGoalCompleted;
+
+    private void Awake()
+    {
+        EnsureCollectionAudioSource();
+    }
 
     private void Start()
     {
@@ -45,8 +55,9 @@ public class EssenceCollector : MonoBehaviour
             return;
         }
 
-        if(collision.collider.CompareTag("Essence"))
+        if (collision.collider.CompareTag("Essence"))
         {
+            PlayCollectionAudio();
             Destroy(collision.gameObject);
             CollectEssence(1);
         }
@@ -101,5 +112,38 @@ public class EssenceCollector : MonoBehaviour
         {
             OnEssenceCollected?.Invoke(currentAmount);
         }
+    }
+
+    void EnsureCollectionAudioSource()
+    {
+        if (collectionAudioSource == null && collectionClip != null)
+        {
+            collectionAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (collectionAudioSource == null)
+        {
+            return;
+        }
+
+        collectionAudioSource.playOnAwake = false;
+        collectionAudioSource.loop = false;
+        collectionAudioSource.spatialBlend = 0f;
+    }
+
+    void PlayCollectionAudio()
+    {
+        if (collectionClip == null)
+        {
+            return;
+        }
+
+        EnsureCollectionAudioSource();
+        if (collectionAudioSource == null)
+        {
+            return;
+        }
+
+        collectionAudioSource.PlayOneShot(collectionClip, collectionVolume);
     }
 }

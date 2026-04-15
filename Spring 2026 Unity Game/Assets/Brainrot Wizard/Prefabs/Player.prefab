@@ -28,8 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4146660368290366650}
+  m_Children: []
   m_Father: {fileID: 1819949448753061164}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1471252124050748906
@@ -397,6 +396,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 553829eb-24c8-44d9-bee1-500b53d2d9c6
     m_ActionName: 'Player/OpenLootbox[/Keyboard/shift,/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 641f0dbe-e192-4e14-a2b4-7ce7272d7fe4
+    m_ActionName: 'Player/Exit[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -446,7 +449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
   playerInventoryUI: {fileID: 0}
-  TestItem: {fileID: 8734536046426563148}
 --- !u!114 &8367816431031056581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,51 +598,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &7264787347868172730
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4146660368290366650}
-  - component: {fileID: 8734536046426563148}
-  m_Layer: 0
-  m_Name: Lootbox Test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4146660368290366650
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264787347868172730}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1002.0114, y: 591.1748, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1595163897142822686}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8734536046426563148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264787347868172730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32fa9d18e774d0a4f8e3e18c6f36fa10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lootbox
-  data: {fileID: 11400000, guid: 973633dfca3b1b241bdad2d8443f1030, type: 2}
 --- !u!1 &7592000997098953893
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,13 +30,17 @@ public static class StringUtils
     public static string PlaceSeparators(string stringToSeparate, string separator = " ")
     {
         var temp = "";
-        
+    
         for (var i = 0; i < stringToSeparate.Length; i++)
         {
-            if (i + 1 < stringToSeparate.Length && Char.IsUpper(stringToSeparate[i + 1]))
+            temp += stringToSeparate[i];
+
+            if (i + 1 < stringToSeparate.Length && 
+                char.IsLower(stringToSeparate[i]) && 
+                char.IsUpper(stringToSeparate[i + 1]))
+            {
                 temp += separator;
-                
-            temp +=  stringToSeparate[i];
+            }
         }
 
         return temp;

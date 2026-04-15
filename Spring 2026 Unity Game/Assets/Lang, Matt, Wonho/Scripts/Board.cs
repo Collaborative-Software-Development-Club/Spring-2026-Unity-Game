@@ -58,6 +58,7 @@ public class Board : MonoBehaviour
             for (int j = 0; j < 13; j++)
             {
                 rows[i].tiles[j].SetLetter(gridGenerationScript.grid[i, j]);
+                rows[i].tiles[j].SetColor(Color.black);
             }
         }
     }

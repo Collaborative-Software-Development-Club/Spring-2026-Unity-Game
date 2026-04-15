@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SolutionChecker : MonoBehaviour
@@ -8,6 +9,8 @@ public class SolutionChecker : MonoBehaviour
     private int correct = 0;
     public ResultDisplayer result;
     public Stopwatch stopwatch;
+    [SerializeField]public BookUnlocker bookUnlocker;
+    [SerializeField]public SceneChanger sceneChanger;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +40,7 @@ public class SolutionChecker : MonoBehaviour
     }
 
 
-    void CheckSolution()
+    public void CheckSolution()
     {
         correct = 0;
         for (int i = 0; i < 13; i++)
@@ -54,16 +57,23 @@ public class SolutionChecker : MonoBehaviour
         if (correct == 0)
         {
             Debug.Log("You win");
-            stopwatch.PauseStopwatch();
+            if (sceneChanger.currentLevel == 1) {
+                stopwatch.PauseStopwatch();
+            }
             result.WinScreen();
         } else
         {
             Debug.Log("You lose");
             result.LoseScreen();
+            if(sceneChanger.currentLevel == 5)
+            {
+                Debug.Log("Book should be unlocked now");
+                bookUnlocker.Unlock();
+            }
         }
     }
-    /*
-    void Reset()
+    
+    public void Clear()
     {
         for (int i = 0; i < 13; i++)
         {
@@ -77,5 +87,5 @@ public class SolutionChecker : MonoBehaviour
             }
         }
     }
-    */
+    
 }

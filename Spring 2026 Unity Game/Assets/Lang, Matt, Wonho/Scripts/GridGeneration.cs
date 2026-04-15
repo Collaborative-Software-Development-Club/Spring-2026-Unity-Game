@@ -63,7 +63,7 @@ public class GridGeneration : MonoBehaviour
     }
     char RandomLetter()
     {
-        int letter = Random.Range(0, 26);
+        int letter = Random.Range(0, 27);
         return letters[letter];
     }
     bool InBounds(int x, int xChange, int y, int yChange) {

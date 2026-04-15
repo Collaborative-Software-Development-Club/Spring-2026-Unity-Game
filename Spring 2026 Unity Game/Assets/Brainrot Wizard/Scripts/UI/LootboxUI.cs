@@ -31,7 +31,7 @@ public class LootboxUI : MonoBehaviour
         hasRolled = false;
 
         // Set lootbox title
-        lootboxTitleText.text = currentLootbox.name;
+        lootboxTitleText.text = currentLootbox.GetName();
 
         // Clear previous drop list
         foreach (Transform child in contentParent)
@@ -105,7 +105,7 @@ public class LootboxUI : MonoBehaviour
         openButton.onClick.RemoveAllListeners();
         openButton.GetComponentInChildren<TextMeshProUGUI>().text = "Open Lootbox";
 
-        onLootboxUIClosed.Invoke();
+        onLootboxUIClosed?.Invoke();
         currentLootbox = null;
         hasRolled = false;
     }

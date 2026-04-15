@@ -56,7 +56,7 @@ public class AddAttribute : MachineFunctionality
         }
 
         // Instantiate a runtime copy so the asset itself is not changed.
-        var clone = MonoBehaviour.Instantiate(input);
+        var clone = input.Clone() as Brainrot;
 
         if (clone.GetAttributes() == null)
         {

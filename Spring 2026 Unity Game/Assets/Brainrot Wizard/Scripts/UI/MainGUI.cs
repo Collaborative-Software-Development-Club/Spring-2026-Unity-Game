@@ -9,7 +9,7 @@ public class MainGUI : MonoBehaviour
     public TextMeshProUGUI TurnText;
 
     private const string MoneyDisplayText = "Money: ";
-    private const string StateDisplayText = "GameState: ";
+    private const string StateDisplayText = "Phase: ";
     private const string TurnDisplayText = "Turn: ";
     private const string RentDisplayText = "Rent Due In: ";
 
@@ -46,7 +46,7 @@ public class MainGUI : MonoBehaviour
     /// </summary>
     /// <param name="gameState">The state to update the text to.</param>
     public void UpdateStateGUI(GameState gameState) {
-        StateText.text = StateDisplayText + gameState;
+        StateText.text = StringUtils.PlaceSeparators(StateDisplayText) + gameState;
     }
     /// <summary>
     /// Updates the text for the turn to the turn passed as a parameter. 

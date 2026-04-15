@@ -99,8 +99,8 @@ public class Inventory
             // removing problem probably starts here
             Debug.Log(slots[i].IsTypeAs(item));
             
-            if(slots[i].item)
-                Debug.Log(slots[i].item.name + " | " + item.name);
+            if(slots[i].item != null)
+                Debug.Log(slots[i].item.GetName() + " | " + item.GetName());
             
             if (!slots[i].IsTypeAs(item))
                 continue;

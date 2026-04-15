@@ -9,12 +9,14 @@ public class GUIManager : MonoBehaviour
     public LootboxUI lootboxUIRef;
     [SerializeField] private RentGUI rentGUIRef;
     [SerializeField] private TooltipUI tooltipUIRef;
+    [SerializeField] private ContractTerminalUI contractTerminalUIRef;
 
     [SerializeField] private GameObject slotPrefab;
 
     public MainGUI MainGUIRef => mainGUIRef;
     public MachineUI MachineUIRef => machineUIRef;
     public TooltipUI TooltipUIRef => tooltipUIRef;
+    public ContractTerminalUI ContractTerminalUIRef => contractTerminalUIRef;
 
     private void Start()
     {
@@ -70,6 +72,16 @@ public class GUIManager : MonoBehaviour
         rentGUIRef.CloseUI();
     }
 
+    public void ShowContractTerminalUI()
+    {
+        contractTerminalUIRef.Show();
+    }
+    
+    public void HideContractTerminalUI()
+    {
+        contractTerminalUIRef.Hide();
+    }
+
     /// <summary>
     /// Creates a new slot game object to be used in ui
     /// </summary>
@@ -80,10 +92,10 @@ public class GUIManager : MonoBehaviour
         GameObject newSlot = Instantiate(slotPrefab);
         var inventorySlotUI = newSlot.GetComponent<InventorySlotUI>();
 
-        if (!slot.item) return newSlot;
+        if (slot.item != null) return newSlot;
         inventorySlotUI.SetItem(slot.item);
         
-        if(slot.item.GetIcon())
+        if(slot.item != null && slot.item.GetIcon())
             inventorySlotUI.UpdateIcon(slot.item.GetIcon());
 
         if (slot.quantity > 0)

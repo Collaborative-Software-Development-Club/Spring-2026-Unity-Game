@@ -819,6 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf716d743b1ed43d3977df8df1107f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleManager
+  level: {fileID: 2116252687}
   difficulty: {fileID: 179031798}
   highlighter: {fileID: 444789461}
   grid: {fileID: 179031796}
@@ -1511,6 +1512,9 @@ MonoBehaviour:
   playerControll: {fileID: 1383254299}
   board: {fileID: 444789461}
   result: {fileID: 444789463}
+  stopwatch: {fileID: 0}
+  bookUnlocker: {fileID: 0}
+  sceneChanger: {fileID: 2116252687}
 --- !u!114 &444789463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,6 +1530,7 @@ MonoBehaviour:
   win: {fileID: 941171424}
   lose: {fileID: 1533738232}
   clickBlock: {fileID: 1585970307}
+  infoBlock: {fileID: 1533738232}
 --- !u!1 &445837471
 GameObject:
   m_ObjectHideFlags: 0
@@ -3155,7 +3160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   currentLevel: 4
   sceneToLoad: 
-  main: 
 --- !u!114 &941171427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4574,7 +4578,7 @@ MonoBehaviour:
 
     Phrase:
 
-    "I REALLY HOPE THIS WORKS"'
+    "YOU WILL NEVER JUMP FAR ENOUGH TO FIND ME"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9360,7 +9364,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   currentLevel: 4
   sceneToLoad: 
-  main: 
 --- !u!1001 &385948649209290773
 PrefabInstance:
   m_ObjectHideFlags: 0

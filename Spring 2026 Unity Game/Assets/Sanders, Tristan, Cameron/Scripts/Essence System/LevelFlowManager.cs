@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelFlowManager : MonoBehaviour
 {
@@ -32,12 +33,28 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField] float levelTransitionDelay = 3f;
     [SerializeField] LevelDefinition[] levels;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource completionAudioSource;
+    [SerializeField] AudioClip levelCompleteClip;
+    [SerializeField] AudioClip gameCompleteClip;
+    [SerializeField][Range(0f, 1f)] float completionVolume = 1f;
+
+    [Header("Completion / Return To Hub")]
+    [SerializeField] bool loopLevels = false;
+    [SerializeField] float finalReturnDelay = 0.25f;
+    [SerializeField] PlayerProgress progressData;
+    [SerializeField] LevelID unlockedBook = LevelID.None;
+    [SerializeField] string hubSceneName = "MageLibrary";
+    [SerializeField] BookUnlocker bookUnlocker;
+    [SerializeField] SceneReturner sceneReturner;
+
     int currentLevelIndex;
     bool isTransitioning;
 
     void Awake()
     {
         ResolveReferences();
+        EnsureCompletionAudioSource();
         SubscribeToGoals();
     }
 
@@ -85,7 +102,6 @@ public class LevelFlowManager : MonoBehaviour
         }
 
     }
-
     void SubscribeToGoals()
     {
         if (levels == null)
@@ -131,12 +147,22 @@ public class LevelFlowManager : MonoBehaviour
             return;
         }
 
+        bool isFinalLevel = currentLevelIndex >= levels.Length - 1;
+        isTransitioning = true;
+
+        if (isFinalLevel && !loopLevels)
+        {
+            PlayCompletionAudio(gameCompleteClip);
+            StartCoroutine(ReturnToHubAfterWinAudio());
+            return;
+        }
+
+        PlayCompletionAudio(levelCompleteClip);
         StartCoroutine(AdvanceAfterDelay());
     }
 
     IEnumerator AdvanceAfterDelay()
     {
-        isTransitioning = true;
         yield return new WaitForSeconds(levelTransitionDelay);
 
         ClearContainers();
@@ -144,6 +170,66 @@ public class LevelFlowManager : MonoBehaviour
         int nextLevel = (currentLevelIndex + 1) % levels.Length;
         ActivateLevel(nextLevel, false);
         isTransitioning = false;
+    }
+
+    IEnumerator ReturnToHubAfterWinAudio()
+    {
+        ClearContainers();
+
+        float clipDuration = gameCompleteClip != null ? gameCompleteClip.length : 0f;
+        float delay = Mathf.Max(finalReturnDelay, clipDuration);
+        if (delay > 0f)
+        {
+            yield return new WaitForSeconds(delay);
+        }
+
+        CompletePuzzleAndReturnToHub();
+    }
+
+    public void RestartCurrentLevel()
+    {
+        if (levels == null || levels.Length == 0)
+        {
+            return;
+        }
+
+        StopAllCoroutines();
+        isTransitioning = false;
+        ClearContainers();
+        ActivateLevel(currentLevelIndex, false);
+    }
+
+    void CompletePuzzleAndReturnToHub()
+    {
+        if (progressData != null && unlockedBook != LevelID.None)
+        {
+            progressData.UnlockBook(unlockedBook);
+        }
+        else if (bookUnlocker != null)
+        {
+            bookUnlocker.Unlock();
+        }
+        else
+        {
+            Debug.LogWarning($"{name}: No book unlock target configured for final level completion.");
+        }
+
+        isTransitioning = false;
+
+        if (sceneReturner != null)
+        {
+            sceneReturner.ReturnToLibrary();
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(hubSceneName))
+        {
+            SceneManager.LoadScene(hubSceneName);
+        }
+        else
+        {
+            Debug.LogError($"{name}: Hub scene name is empty, cannot return after final level.");
+        }
     }
 
     void ActivateLevel(int levelIndex, bool isInitialLevel)
@@ -236,5 +322,38 @@ public class LevelFlowManager : MonoBehaviour
         {
             Destroy(container.GetChild(i).gameObject);
         }
+    }
+
+    void EnsureCompletionAudioSource()
+    {
+        if (completionAudioSource == null && (levelCompleteClip != null || gameCompleteClip != null))
+        {
+            completionAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (completionAudioSource == null)
+        {
+            return;
+        }
+
+        completionAudioSource.playOnAwake = false;
+        completionAudioSource.loop = false;
+        completionAudioSource.spatialBlend = 0f;
+    }
+
+    void PlayCompletionAudio(AudioClip clip)
+    {
+        if (clip == null)
+        {
+            return;
+        }
+
+        EnsureCompletionAudioSource();
+        if (completionAudioSource == null)
+        {
+            return;
+        }
+
+        completionAudioSource.PlayOneShot(clip, completionVolume);
     }
 }

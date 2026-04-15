@@ -85,7 +85,7 @@ public class PlayerControll : MonoBehaviour
         }
         else
         {
-            /*
+            
             if (board.gridGenerationScript.startX == gridy && board.gridGenerationScript.startY == gridx)
             {
                 board.rows[gridy].tiles[gridx].SetColor(Color.red);
@@ -95,7 +95,7 @@ public class PlayerControll : MonoBehaviour
                 board.rows[gridy].tiles[gridx].SetColor(Color.green);
             }
             else
-            {*/
+            {
                 if (board.obstacles.isBlind[gridy,gridx]) 
                 {
                     board.rows[gridy].tiles[gridx].SetColor(Color.darkMagenta);
@@ -106,7 +106,7 @@ public class PlayerControll : MonoBehaviour
 
                 }
 
-            //}
+            }
             state.checkBox[gridx, gridy] = false;
         }
     }

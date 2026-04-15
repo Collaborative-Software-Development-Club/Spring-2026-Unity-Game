@@ -24,7 +24,7 @@ public class TutorialUI : MonoBehaviour
 
     private bool openedLootboxUI;
     private bool openedLootbox;
-    private bool closedLootboxUI;
+    //private bool closedLootboxUI;
 
     private bool arrivedAtMachine;
     private bool usedMachine;
@@ -100,9 +100,25 @@ public class TutorialUI : MonoBehaviour
 
         GameManager.Instance.GUIManager.lootboxUIRef.onLootboxOpened += l => openedLootbox = true;
         GameManager.Instance.GUIManager.lootboxUIRef.onLootboxUIOpened += () => openedLootboxUI = true;
-        GameManager.Instance.GUIManager.lootboxUIRef.onLootboxUIClosed += () => closedLootboxUI = true;
+        //GameManager.Instance.GUIManager.lootboxUIRef.onLootboxUIClosed += () => closedLootboxUI = true;
 
-        StartCoroutine(RunTutorial());
+        StartCoroutine(
+            NotificationUI.Instance.RequestConfirmation(
+                "Skip tutorial?",
+                "This action cannot be undone!",
+                result =>
+                {
+                    if (result)
+                    {
+                        StartGame();
+                    }
+                    else
+                    {
+                        StartCoroutine(RunTutorial());
+                    }
+                }
+            )
+        );
     }
 
     private void Update()
@@ -200,7 +216,7 @@ public class TutorialUI : MonoBehaviour
             "FINAL NOTICE\n\nRent is due soon.\n\nFailure to pay will result in eviction."
         );
 
-        NotificationUI.Instance.HideUI();
+        StartGame();
     }
 
     private IEnumerator LandlordMessage(string message)
@@ -264,5 +280,11 @@ public class TutorialUI : MonoBehaviour
     public void OnMachineUsed()
     {
         usedMachine = true;
+    }
+
+    private void StartGame()
+    {
+        NotificationUI.Instance.HideUI();
+        GameManager.Instance.NextState();
     }
 }

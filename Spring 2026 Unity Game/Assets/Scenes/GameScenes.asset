@@ -21,4 +21,6 @@ MonoBehaviour:
     sceneName: Main
   - id: 5
     sceneName: Basic Level
+  - id: 4
+    sceneName: WindTutorial
   progressData: {fileID: 11400000, guid: 81c9b90fb59066642b4673d6f771c2ca, type: 2}
