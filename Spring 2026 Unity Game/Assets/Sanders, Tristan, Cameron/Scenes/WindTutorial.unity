@@ -11677,9 +11677,9 @@ MonoBehaviour:
   _animator: {fileID: 1866944499}
   _movementLoopAudioSource: {fileID: 1866944507}
   _movementOneShotAudioSource: {fileID: 1866944507}
-  _movementStartClip: {fileID: 8300000, guid: 19480dd15bb269245af29ed1085357eb, type: 3}
-  _movementLoopClip: {fileID: 8300000, guid: 78f6a69079cfc2d4297879ac4c075bb4, type: 3}
-  _movementStopClip: {fileID: 8300000, guid: 651504ce32ae423418dc1986de09bd79, type: 3}
+  _movementStartClip: {fileID: 0}
+  _movementLoopClip: {fileID: 0}
+  _movementStopClip: {fileID: 0}
   _movementVolume: 0.3
   _movementThreshold: 0.05
   _loopStartOverlapSeconds: 0.02
