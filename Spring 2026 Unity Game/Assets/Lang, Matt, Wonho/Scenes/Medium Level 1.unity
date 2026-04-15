@@ -819,6 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf716d743b1ed43d3977df8df1107f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleManager
+  level: {fileID: 2116252687}
   difficulty: {fileID: 179031798}
   highlighter: {fileID: 444789461}
   grid: {fileID: 179031796}
@@ -1718,6 +1719,7 @@ MonoBehaviour:
   win: {fileID: 941171424}
   lose: {fileID: 1533738232}
   clickBlock: {fileID: 1585970307}
+  infoBlock: {fileID: 1533738232}
 --- !u!1 &445837471
 GameObject:
   m_ObjectHideFlags: 0

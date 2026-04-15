@@ -1394,6 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf716d743b1ed43d3977df8df1107f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleManager
+  level: {fileID: 2116252687}
   difficulty: {fileID: 179031798}
   highlighter: {fileID: 444789461}
   grid: {fileID: 179031796}
