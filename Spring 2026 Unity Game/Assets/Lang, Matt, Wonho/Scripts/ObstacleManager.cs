@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
+    public SceneChanger level;
     public DifficultyManager difficulty;
     private int diff;
     private int randnum;
@@ -33,24 +34,25 @@ public class ObstacleManager : MonoBehaviour
     }
     void BlindBlock()
     {
-        
-        Color blindColor = new Color(1f,1f,1f,0f);
-        for (int i = 0; i < 13; i++)
-        {
-            for (int j = 0; j < 13; j++)
+        if (level.currentLevel == 3 || level.currentLevel == 5) {
+            Color blindColor = new Color(1f,1f,1f,0f);
+            for (int i = 0; i < 13; i++)
             {
-                if (!(grid.startX == j && grid.startY == i) && !(grid.endX == j && grid.endY == i))
+                for (int j = 0; j < 13; j++)
                 {
-                    randnum = Random.Range(0, 100);
-                    if(randnum < 10)
+                    if (!(grid.startX == j && grid.startY == i) && !(grid.endX == j && grid.endY == i))
                     {
-                        highlighter.rows[i].tiles[j].SetColor(Color.darkMagenta);
-                        highlighter.rows[i].tiles[j].TextColor(blindColor);
-                        isBlind[i,j] = true;
+                        randnum = Random.Range(0, 100);
+                        if(randnum < 10)
+                        {
+                            highlighter.rows[i].tiles[j].SetColor(Color.darkMagenta);
+                            highlighter.rows[i].tiles[j].TextColor(blindColor);
+                            isBlind[i,j] = true;
+                        }
                     }
                 }
             }
+            highlighter.HighlightGrid();
         }
-        highlighter.HighlightGrid();
     }
 }

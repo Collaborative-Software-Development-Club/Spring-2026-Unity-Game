@@ -147,34 +147,43 @@ public class LevelFlowManager : MonoBehaviour
             return;
         }
 
+        bool isFinalLevel = currentLevelIndex >= levels.Length - 1;
+        isTransitioning = true;
+
+        if (isFinalLevel && !loopLevels)
+        {
+            PlayCompletionAudio(gameCompleteClip);
+            StartCoroutine(ReturnToHubAfterWinAudio());
+            return;
+        }
+
         PlayCompletionAudio(levelCompleteClip);
         StartCoroutine(AdvanceAfterDelay());
     }
 
     IEnumerator AdvanceAfterDelay()
     {
-        isTransitioning = true;
         yield return new WaitForSeconds(levelTransitionDelay);
 
         ClearContainers();
 
-        bool isFinalLevel = currentLevelIndex >= levels.Length - 1;
-        if (isFinalLevel && !loopLevels)
-        {
-            PlayCompletionAudio(gameCompleteClip);
-
-            if (finalReturnDelay > 0f)
-            {
-                yield return new WaitForSeconds(finalReturnDelay);
-            }
-
-            CompletePuzzleAndReturnToHub();
-            yield break;
-        }
-
         int nextLevel = (currentLevelIndex + 1) % levels.Length;
         ActivateLevel(nextLevel, false);
         isTransitioning = false;
+    }
+
+    IEnumerator ReturnToHubAfterWinAudio()
+    {
+        ClearContainers();
+
+        float clipDuration = gameCompleteClip != null ? gameCompleteClip.length : 0f;
+        float delay = Mathf.Max(finalReturnDelay, clipDuration);
+        if (delay > 0f)
+        {
+            yield return new WaitForSeconds(delay);
+        }
+
+        CompletePuzzleAndReturnToHub();
     }
 
     public void RestartCurrentLevel()

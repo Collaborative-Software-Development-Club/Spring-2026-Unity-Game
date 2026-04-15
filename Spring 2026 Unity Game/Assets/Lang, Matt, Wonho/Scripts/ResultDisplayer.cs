@@ -6,6 +6,7 @@ public class ResultDisplayer : MonoBehaviour
     public GameObject win;
     public GameObject lose;
     public GameObject clickBlock;
+    public GameObject infoBlock;
     void Start()
     {
         ContinueAfterLoss(); 
@@ -21,6 +22,7 @@ public class ResultDisplayer : MonoBehaviour
         clickBlock.SetActive(true);
         win.SetActive(true);
         lose.SetActive(false);
+        infoBlock.SetActive(false);
 
     }
     public void LoseScreen()
@@ -28,11 +30,20 @@ public class ResultDisplayer : MonoBehaviour
         clickBlock.SetActive(true);
         win.SetActive(false);
         lose.SetActive(true);
+        infoBlock.SetActive(false);
+    }
+    public void InfoScreen()
+    {
+        clickBlock.SetActive(true);
+        win.SetActive(false);
+        lose.SetActive(false);
+        infoBlock.SetActive(true);
     }
     public void ContinueAfterLoss()
     {
         clickBlock.SetActive(false);
         win.SetActive(false);
         lose.SetActive(false);
+        infoBlock.SetActive(false);
     }
 }

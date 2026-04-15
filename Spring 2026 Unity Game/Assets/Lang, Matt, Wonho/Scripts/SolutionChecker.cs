@@ -72,8 +72,8 @@ public class SolutionChecker : MonoBehaviour
             }
         }
     }
-    /*
-    void Reset()
+    
+    public void Clear()
     {
         for (int i = 0; i < 13; i++)
         {
@@ -87,5 +87,5 @@ public class SolutionChecker : MonoBehaviour
             }
         }
     }
-    */
+    
 }

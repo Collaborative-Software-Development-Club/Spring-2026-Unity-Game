@@ -35,12 +35,16 @@ public class SceneChanger : MonoBehaviour
         // Check if the Escape key was pressed this frame
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(main);
+            LoadMain();
         }
     }
 
     public void LoadTargetScene()
     {
         SceneManager.LoadScene(sceneToLoad);
+    }
+    public void LoadMain()
+    {
+        SceneManager.LoadScene(main);
     }
 }
