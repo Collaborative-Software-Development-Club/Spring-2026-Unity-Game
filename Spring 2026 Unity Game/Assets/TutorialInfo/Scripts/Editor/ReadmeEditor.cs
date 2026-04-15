@@ -80,10 +80,16 @@ public class ReadmeEditor : Editor
         if (ids.Length == 1)
         {
             var readmeObject = AssetDatabase.LoadMainAssetAtPath(AssetDatabase.GUIDToAssetPath(ids[0]));
-
-            Selection.objects = new UnityEngine.Object[] { readmeObject };
-
-            return (Readme)readmeObject;
+            if (readmeObject != null)
+            {
+                Selection.objects = new UnityEngine.Object[] { readmeObject };
+                return (Readme)readmeObject;
+            }
+            else
+            {
+                Debug.LogWarning("Found Readme GUID but failed to load the asset.");
+                return null;
+            }
         }
         else
         {
