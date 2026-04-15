@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +15,7 @@ public class TerminalItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI contractNameText;
     [SerializeField] private TextMeshProUGUI contractValueText;
     [SerializeField] private TextMeshProUGUI turnsLeftText;
+    [SerializeField] private TextMeshProUGUI attributeText;
     
 
     private void Start()
@@ -26,8 +29,41 @@ public class TerminalItemUI : MonoBehaviour
         _contract = contract;
 
         contractNameText.text = contract.GetPersonName();
-        //contractValueText.text = StringUtils.AbbreviateNumber(contract.GetValue());
-        turnsLeftText.text = StringUtils.AbbreviateNumber(contract.GetTurnCount());
+
+        var turnCount = contract.GetTurnCount();
+        
+        if(turnCount == 1)
+            turnsLeftText.text = StringUtils.AbbreviateNumber(contract.GetTurnCount()) + " Turn";
+        else
+            turnsLeftText.text = StringUtils.AbbreviateNumber(contract.GetTurnCount()) + " Turns";
+
+        StringBuilder sb = new StringBuilder();
+
+        void AppendSection(string title, IEnumerable<string> items)
+        {
+            sb.AppendLine($"<b>{title}</b>"); 
+            foreach (var item in items)
+            {
+                sb.AppendLine("    " + item); 
+            }
+            sb.AppendLine(); 
+        }
+
+        var primaries = contract.GetPrimaryAsString();
+        var secondaries = contract.GetSecondaryAsString();
+        var optionals = contract.GetOptionalAsString();
+        var extras =  contract.GetExtraAsString();
+
+        if (primaries.Count > 0)
+            AppendSection("Primary", primaries); 
+        if (secondaries.Count > 0)
+            AppendSection("Secondary", secondaries);
+        if (optionals.Count > 0)
+            AppendSection("Optional", optionals);
+        if (extras.Count > 0)
+            AppendSection("Extra", extras);
+
+        attributeText.text = sb.ToString();
     }
 
     private void OnTurnIn()

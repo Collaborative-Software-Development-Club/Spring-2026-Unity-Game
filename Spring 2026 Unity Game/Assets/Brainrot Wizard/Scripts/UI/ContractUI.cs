@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +9,11 @@ public class ContractUI : MonoBehaviour
 {
     [SerializeField] private Button AcceptButton;
     [SerializeField] private Button DeclineButton;
-    [SerializeField] private RectTransform InfoPanel;
     [SerializeField] private TextMeshProUGUI infoText;
+    [SerializeField] private TextMeshProUGUI durationText;
     [SerializeField] private GameObject panel;
-
-    [SerializeField] private TextMeshProUGUI textPrefab;
+    
+    [SerializeField] private TextMeshProUGUI attributeText;
 
     private Contract _currentContract;
 
@@ -34,24 +36,49 @@ public class ContractUI : MonoBehaviour
     {
         panel.SetActive(true);
         _currentContract = contract;
-        infoText.text = contract.GetPersonName() + "'s contract";
+        infoText.text = $"{contract.GetPersonName()}'s contract";
+
+        var turnCount = contract.GetTurnCount();
         
-        foreach (var dataString in contract.GetDataAsString())
+        if(turnCount == 1)
+            durationText.text = StringUtils.AbbreviateNumber(contract.GetTurnCount()) + " Turn";
+        else
+            durationText.text = StringUtils.AbbreviateNumber(contract.GetTurnCount()) + " Turns";
+
+        StringBuilder sb = new StringBuilder();
+
+        void AppendSection(string title, IEnumerable<string> items)
         {
-            TextMeshProUGUI newText = Instantiate(textPrefab, InfoPanel);
-            newText.text = dataString;
+            sb.AppendLine($"<b>{title}</b>"); 
+            foreach (var item in items)
+            {
+                sb.AppendLine("    " + item); 
+            }
+            sb.AppendLine(); 
         }
+
+        var primaries = contract.GetPrimaryAsString();
+        var secondaries = contract.GetSecondaryAsString();
+        var optionals = contract.GetOptionalAsString();
+        var extras =  contract.GetExtraAsString();
+
+        if (primaries.Count > 0)
+            AppendSection("Primary", primaries); 
+        if (secondaries.Count > 0)
+            AppendSection("Secondary", secondaries);
+        if (optionals.Count > 0)
+            AppendSection("Optional", optionals);
+        if (extras.Count > 0)
+            AppendSection("Extra", extras);
+
+        attributeText.text = sb.ToString();
     }
 
     public void CloseUI()
     {
         panel.SetActive(false);
         _currentContract = null;
-
-        for (var i = InfoPanel.childCount - 1; i >= 0; i--)
-        {
-            Destroy(InfoPanel.GetChild(i).gameObject);
-        }
+        attributeText.text = "";
     }
 
     private void AcceptCurrentContract()

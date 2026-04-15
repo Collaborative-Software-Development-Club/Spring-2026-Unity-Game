@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public enum ContractTier
@@ -36,7 +39,10 @@ public class Contract
 {
     private string _personName;
     public Inventory input = new Inventory(0);
+
+    private int stabilityRequirement;
     private Rarity _rarityRequirement;
+    
     private List<AttributeRequirementElement> _attributeRequirements = new(); 
     private List<ExtraRequirement> _extraRequirements = new();
 
@@ -73,46 +79,6 @@ public class Contract
     {
         return _personName;
     }
-
-    public new List<string> GetDataAsString()
-    {
-        var lines = new List<string>();
-
-        lines.Add($"{_personName}'s Contract");
-        lines.Add($"Duration: {turnDuration} turns");
-        lines.Add(""); 
-        lines.Add("Requirements:");
-
-        foreach (var req in _attributeRequirements)
-        {
-            string symbol = "";
-            
-            switch (req.AttributeRequirements)
-            {
-                case AttributeRequirement.Exact:
-                    symbol = "=";
-                    break;
-                case AttributeRequirement.GreaterThan:
-                    symbol = ">";
-                    break;
-                case AttributeRequirement.LessThan:
-                    symbol = "<";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            
-            lines.Add($"- {symbol} {req.AttributeQuantity.attribute}: {req.AttributeQuantity.quantity}");
-        }
-
-        foreach (ExtraRequirement req in _extraRequirements)
-        {
-            lines.Add(StringUtils.PlaceSeparators(req.ToString()));
-        }
-
-        return lines;
-    }
-
     public void AddRequirement(AttributeRequirementElement attributeRequirement)
     {
         _attributeRequirements.Add(attributeRequirement);
@@ -123,6 +89,10 @@ public class Contract
         _extraRequirements.Add(extraRequirement);
     }
 
+    public void SetStabilityRequirement(int stability)
+    {
+        stabilityRequirement = stability;
+    }
     public void SetRarityRequirement(Rarity rarity)
     {
         _rarityRequirement = rarity;
@@ -131,14 +101,84 @@ public class Contract
 
     public void SetTurnDuration(int duration)
     {
-        if (turnDuration <= 0)
-            turnDuration = 1;
-        else
-            turnDuration = duration;
+        turnDuration = turnDuration <= 0 ? 1 : duration;
+        _currentTurnCount = turnDuration;
     }
 
     public void SetPersonName(string name)
     {
         _personName = name;
+    }
+
+    public List<string> GetPrimaryAsString()
+    {
+        return _attributeRequirements
+            .Where(ar => ar.Priority == AttributeRequirementPriority.Primary)
+            .Select(FormatAttribute) 
+            .ToList();
+    }
+
+    public List<string> GetSecondaryAsString()
+    {
+        return _attributeRequirements
+            .Where(ar => ar.Priority == AttributeRequirementPriority.Secondary)
+            .Select(FormatAttribute)
+            .ToList();
+    }
+
+    public List<string> GetOptionalAsString()
+    {
+        return _attributeRequirements
+            .Where(ar => ar.Priority == AttributeRequirementPriority.Optional)
+            .Select(FormatAttribute)
+            .ToList();
+    }
+
+    private string FormatAttribute(AttributeRequirementElement requirement)
+    {
+        string rawName = requirement.AttributeQuantity.attribute.ToString();
+        string formattedName = StringUtils.PlaceSeparators(rawName).Replace("T V", "TV");
+    
+        return $"{GetSymbolFromRequirement(requirement.AttributeRequirements)}{requirement.AttributeQuantity.quantity} {formattedName}";
+    }
+
+    public List<string> GetExtraAsString()
+    {
+        List<string> extras = new List<string>();
+        
+        foreach (ExtraRequirement req in _extraRequirements)
+        {
+            switch (req)
+            {
+                case ExtraRequirement.BrainrotStability:
+                    extras.Add(StringUtils.PlaceSeparators(req.ToString()) + " = " + stabilityRequirement);
+                    break;
+                case ExtraRequirement.RarityRequirement:
+                    extras.Add("Required rarity: " + _rarityRequirement);
+                    break;
+                case ExtraRequirement.AttributeArchetypeSynergy:
+                    Debug.LogWarning("Synergies not implemented yet");
+                    break;
+                case ExtraRequirement.AttributeDiversity:
+                    Debug.LogWarning("Diversty not implemented yet");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        
+        return extras;
+    }
+    public static string GetSymbolFromRequirement(AttributeRequirement requirement)
+    {
+        var symbol = requirement switch
+        {
+            AttributeRequirement.Exact => "=",
+            AttributeRequirement.GreaterThan => ">",
+            AttributeRequirement.LessThan => "<",
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        return symbol;
     }
 }

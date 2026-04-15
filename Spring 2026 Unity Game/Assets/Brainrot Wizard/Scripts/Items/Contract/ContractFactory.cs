@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public static class ContractFactory
@@ -33,6 +34,7 @@ public static class ContractFactory
     public static Contract GenerateRandomContract(int level)
     {
         var contract = new Contract();
+        var possibleAttributes = new List<Attribute>((Attribute[])Enum.GetValues(typeof(Attribute)));
         
         contract.SetPersonName(ContractData.ContractNames[Random.Range(0, ContractData.ContractNames.Length)]);
         contract.SetTurnDuration(CalculateTurnLimit(level));
@@ -50,6 +52,16 @@ public static class ContractFactory
             if (Random.value > 0.5f)
             {
                 contract.AddExtra(ExtraRequirement.BrainrotStability);
+
+                float normalizedLevel = level / 10f;
+
+                float minReq = Mathf.Lerp(50f, 80f, normalizedLevel);
+                float maxReq = Mathf.Lerp(60f, 90f, normalizedLevel);
+
+                int stabilityRequirement = Mathf.RoundToInt(Random.Range(minReq, maxReq));
+
+                contract.SetStabilityRequirement(stabilityRequirement);
+
                 remainingBudget -= CostPerStability;
                 spendableOnExtras -= CostPerStability;
             }
@@ -57,7 +69,7 @@ public static class ContractFactory
 
         if (initialBudget >= MinScoreForRarity)
         {
-            Rarity randomRarity = (Rarity)Random.Range(0, Enum.GetValues(typeof(Rarity)).Length);
+            Rarity randomRarity = (Rarity)Random.Range(1, Enum.GetValues(typeof(Rarity)).Length);
             int rarityCost = RarityCosts[randomRarity];
 
             if (spendableOnExtras >= rarityCost)
@@ -78,11 +90,27 @@ public static class ContractFactory
             }
         }
 
+        var primary = GenerateRequirement(level, initialBudget, ref possibleAttributes);
+
+        if (primary != null)
+        {
+            primary.Priority = AttributeRequirementPriority.Primary;
+            contract.AddRequirement(primary);
+            remainingBudget -= CostPerAttribute;
+        }
+        else
+        {
+            Debug.LogWarning("Couldn't produce a primary requirement!");
+        }
+        
         // --- Attribute Requirements ---
         int attributeCount = 0;
         while (remainingBudget >= CostPerAttribute)
         {
-            var req = GenerateRequirement(level, initialBudget);
+            var req = GenerateRequirement(level, initialBudget, ref possibleAttributes);
+
+            if (req == null)
+                break;
             
             // Assign priority based on creation order
             req.Priority = attributeCount switch
@@ -105,25 +133,26 @@ public static class ContractFactory
             remainingBudget -= CostPerAttribute;
             attributeCount++;
         }
-
-        // Safety: Ensure at least one attribute exists
-        if (attributeCount == 0)
-        {
-            var primary = GenerateRequirement(level, initialBudget);
-            primary.Priority = AttributeRequirementPriority.Primary;
-            contract.AddRequirement(primary);
-        }
         
         return contract;
     }
 
-    private static AttributeRequirementElement GenerateRequirement(int level, int initialDifficulty)
+    private static AttributeRequirementElement GenerateRequirement(int level, int initialDifficulty, ref List<Attribute> possibleAttributes)
     {
+        if (possibleAttributes.Count <= 0)
+        {
+            Debug.LogWarning("No more attributes available");
+            return null;
+        }
+        
+        var randomAttribute = possibleAttributes[Random.Range(0, possibleAttributes.Count)];
+        possibleAttributes.Remove(randomAttribute);
+        
         return new AttributeRequirementElement
         {
             AttributeQuantity = new AttributeQuantity
             {
-                attribute = (Attribute)Random.Range(0, AttributeCount),
+                attribute = randomAttribute, 
                 quantity = (level * QtyMultiplier) + Random.Range(0, QtyMaxBonus)
             },
             AttributeRequirements = GetRandomRequirementType(initialDifficulty)
