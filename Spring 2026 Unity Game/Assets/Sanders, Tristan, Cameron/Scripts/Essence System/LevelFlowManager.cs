@@ -33,6 +33,12 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField] float levelTransitionDelay = 3f;
     [SerializeField] LevelDefinition[] levels;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource completionAudioSource;
+    [SerializeField] AudioClip levelCompleteClip;
+    [SerializeField] AudioClip gameCompleteClip;
+    [SerializeField][Range(0f, 1f)] float completionVolume = 1f;
+
     [Header("Completion / Return To Hub")]
     [SerializeField] bool loopLevels = false;
     [SerializeField] float finalReturnDelay = 0.25f;
@@ -48,6 +54,7 @@ public class LevelFlowManager : MonoBehaviour
     void Awake()
     {
         ResolveReferences();
+        EnsureCompletionAudioSource();
         SubscribeToGoals();
     }
 
@@ -140,6 +147,7 @@ public class LevelFlowManager : MonoBehaviour
             return;
         }
 
+        PlayCompletionAudio(levelCompleteClip);
         StartCoroutine(AdvanceAfterDelay());
     }
 
@@ -153,6 +161,8 @@ public class LevelFlowManager : MonoBehaviour
         bool isFinalLevel = currentLevelIndex >= levels.Length - 1;
         if (isFinalLevel && !loopLevels)
         {
+            PlayCompletionAudio(gameCompleteClip);
+
             if (finalReturnDelay > 0f)
             {
                 yield return new WaitForSeconds(finalReturnDelay);
@@ -165,6 +175,19 @@ public class LevelFlowManager : MonoBehaviour
         int nextLevel = (currentLevelIndex + 1) % levels.Length;
         ActivateLevel(nextLevel, false);
         isTransitioning = false;
+    }
+
+    public void RestartCurrentLevel()
+    {
+        if (levels == null || levels.Length == 0)
+        {
+            return;
+        }
+
+        StopAllCoroutines();
+        isTransitioning = false;
+        ClearContainers();
+        ActivateLevel(currentLevelIndex, false);
     }
 
     void CompletePuzzleAndReturnToHub()
@@ -290,5 +313,38 @@ public class LevelFlowManager : MonoBehaviour
         {
             Destroy(container.GetChild(i).gameObject);
         }
+    }
+
+    void EnsureCompletionAudioSource()
+    {
+        if (completionAudioSource == null && (levelCompleteClip != null || gameCompleteClip != null))
+        {
+            completionAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (completionAudioSource == null)
+        {
+            return;
+        }
+
+        completionAudioSource.playOnAwake = false;
+        completionAudioSource.loop = false;
+        completionAudioSource.spatialBlend = 0f;
+    }
+
+    void PlayCompletionAudio(AudioClip clip)
+    {
+        if (clip == null)
+        {
+            return;
+        }
+
+        EnsureCompletionAudioSource();
+        if (completionAudioSource == null)
+        {
+            return;
+        }
+
+        completionAudioSource.PlayOneShot(clip, completionVolume);
     }
 }
