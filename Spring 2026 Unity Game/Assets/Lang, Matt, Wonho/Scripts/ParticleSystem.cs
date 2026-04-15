@@ -29,7 +29,7 @@ public class ParticleSystem : MonoBehaviour
             GameObject newParticle = Instantiate(vfx, clickPosition, Quaternion.identity);
             Destroy(newParticle, 0.3f);
             clickable = false;
-            Invoke(nameof(Reload), 0.6f);
+            Invoke(nameof(Reload), 0.3f);
         }
 
     }
