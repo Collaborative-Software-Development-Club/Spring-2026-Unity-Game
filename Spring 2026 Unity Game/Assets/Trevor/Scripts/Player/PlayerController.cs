@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
         _inputReader.SprintEvent += (sprinting) => _isSprinting = sprinting;
     }
 
+    private void Update()
+    {
+        HandleAnimations();
+    }
     private void FixedUpdate()
     {
         float speed = _isSprinting ? _sprintSpeed : _walkSpeed;
@@ -38,15 +42,15 @@ public class PlayerController : MonoBehaviour
 
         _rb.linearVelocity = new Vector3(moveDir.x * speed, _rb.linearVelocity.y, moveDir.z * speed);
 
-        HandleAnimations();
+        
     }
 
     private void HandleAnimations()
     {
         if (_animator == null) return;
 
-        // Tell the animator if we are moving
-        bool isMoving = _frameInput.magnitude > 0;
+        // Add a 0.1f threshold so it ignores micro-inputs and smoothing!
+        bool isMoving = _frameInput.magnitude > 0.1f;
         _animator.SetBool("IsMoving", isMoving);
 
         if (!isMoving) return;
