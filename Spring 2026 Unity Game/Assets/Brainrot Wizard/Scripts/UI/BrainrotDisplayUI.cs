@@ -12,9 +12,8 @@ public class BrainrotDisplayUI : MonoBehaviour
     void Start()
     {
         if (mybraindebug is not null) {
-            Brainrot newbrainrot = new Brainrot();
+            Brainrot newbrainrot = new Brainrot(mybraindebug, "Chuck Testa");
             mybrain = newbrainrot;
-            newbrainrot.Initialize(mybraindebug, "Chuck Testa");
             Begin(mybrain);
         }
     }

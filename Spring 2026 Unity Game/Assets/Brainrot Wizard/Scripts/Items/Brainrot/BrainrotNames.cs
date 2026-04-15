@@ -26,8 +26,7 @@ public class BrainrotNames : MonoBehaviour
         }
 
         if (brainrottest != null && PrintDebug) {
-            Brainrot newRot = new Brainrot();
-            newRot.Initialize(brainrottest, "Test brainrot");
+            Brainrot newRot = new Brainrot(brainrottest, "Test brainrot");
             print(Name(newRot));
         }
     }
