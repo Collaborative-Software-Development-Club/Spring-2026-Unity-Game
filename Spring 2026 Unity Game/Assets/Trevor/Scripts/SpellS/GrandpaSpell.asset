@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79eb1a81bb06e97449b4e9a172b9a197, type: 3}
+  m_Name: GrandpaSpell
+  m_EditorClassIdentifier: Assembly-CSharp::SpellData
+  spellID: 2
+  spellName: GrandpaSpell
+  spellIcon: {fileID: 54260378572017787, guid: fb9abbb57e022aa4687fa1a1aff07721, type: 3}
+  loreDescription: Summon the apparition of grandpa.
+  mechanicDescription: He will keep you company.
+  spellPrefab: {fileID: 2363184364508103593, guid: f03b7643243bfef4dbc2729bbe2ee53c,
+    type: 3}
