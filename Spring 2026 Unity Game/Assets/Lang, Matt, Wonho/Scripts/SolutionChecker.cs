@@ -40,7 +40,7 @@ public class SolutionChecker : MonoBehaviour
     }
 
 
-    void CheckSolution()
+    public void CheckSolution()
     {
         correct = 0;
         for (int i = 0; i < 13; i++)

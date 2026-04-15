@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: f190172389373184f9e9ee78309f6d29
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7373491882086711751
+    second: Incantation Spritesheet_0
+  - first:
+      213: -2259720929634768308
+    second: Incantation Spritesheet_1
+  - first:
+      213: -3776189755554232716
+    second: Incantation Spritesheet_2
+  - first:
+      213: -6776219824613788087
+    second: Incantation Spritesheet_3
+  - first:
+      213: -1331834955056262830
+    second: Incantation Spritesheet_4
+  - first:
+      213: -3568873158527497389
+    second: Incantation Spritesheet_5
+  - first:
+      213: 2191743255704685163
+    second: Incantation Spritesheet_6
+  - first:
+      213: -677688429627608671
+    second: Incantation Spritesheet_7
+  - first:
+      213: 5151117781510559948
+    second: Incantation Spritesheet_8
+  - first:
+      213: -1565154933808739285
+    second: Incantation Spritesheet_9
+  - first:
+      213: -2244440500977224257
+    second: Incantation Spritesheet_10
+  - first:
+      213: 6877690178457253731
+    second: Incantation Spritesheet_11
+  - first:
+      213: 2039399274834263628
+    second: Incantation Spritesheet_12
+  - first:
+      213: 8527534692209092238
+    second: Incantation Spritesheet_13
+  - first:
+      213: 5339102417738917949
+    second: Incantation Spritesheet_14
+  - first:
+      213: 3774448461433733096
+    second: Incantation Spritesheet_15
+  - first:
+      213: -2997214272370352562
+    second: Incantation Spritesheet_16
+  - first:
+      213: 466332544209354513
+    second: Incantation Spritesheet_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Incantation Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 630
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c14102ecc7e35660800000000000000
+      internalID: 7373491882086711751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 630
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4aaa9979cbd3a0e0800000000000000
+      internalID: -2259720929634768308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 452
+        width: 452
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47688b7ac67489bc0800000000000000
+      internalID: -3776189755554232716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 580
+        width: 240
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9467fe1b8f706f1a0800000000000000
+      internalID: -6776219824613788087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 541
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2515c6c2a2f548de0800000000000000
+      internalID: -1331834955056262830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 541
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35bca8165c0d87ec0800000000000000
+      internalID: -3568873158527497389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 436
+        width: 240
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6ac223f0e2aa6e10800000000000000
+      internalID: 2191743255704685163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 452
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a177abb6fd5896f0800000000000000
+      internalID: -677688429627608671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 332
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc8922b94527c7740800000000000000
+      internalID: 5151117781510559948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 297
+        width: 406
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c41e751e3774ae0800000000000000
+      internalID: -1565154933808739285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 291
+        width: 240
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb5b0c381452ad0e0800000000000000
+      internalID: -2244440500977224257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 228
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 367332a17c6727f50800000000000000
+      internalID: 6877690178457253731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 158
+        width: 406
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e7fa3d5d66d4c10800000000000000
+      internalID: 2039399274834263628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 150
+        width: 240
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8661fa2f93e75670800000000000000
+      internalID: 8527534692209092238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 123
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d38e1c47c5d481a40800000000000000
+      internalID: 5339102417738917949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 19
+        width: 406
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eff6c6b0e8816430800000000000000
+      internalID: 3774448461433733096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 5
+        width: 241
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e52abcf71c766d0800000000000000
+      internalID: -2997214272370352562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Incantation Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 19
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11f7dcc6afeb87600800000000000000
+      internalID: 466332544209354513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Incantation Spritesheet_0: 7373491882086711751
+      Incantation Spritesheet_1: -2259720929634768308
+      Incantation Spritesheet_10: -2244440500977224257
+      Incantation Spritesheet_11: 6877690178457253731
+      Incantation Spritesheet_12: 2039399274834263628
+      Incantation Spritesheet_13: 8527534692209092238
+      Incantation Spritesheet_14: 5339102417738917949
+      Incantation Spritesheet_15: 3774448461433733096
+      Incantation Spritesheet_16: -2997214272370352562
+      Incantation Spritesheet_17: 466332544209354513
+      Incantation Spritesheet_2: -3776189755554232716
+      Incantation Spritesheet_3: -6776219824613788087
+      Incantation Spritesheet_4: -1331834955056262830
+      Incantation Spritesheet_5: -3568873158527497389
+      Incantation Spritesheet_6: 2191743255704685163
+      Incantation Spritesheet_7: -677688429627608671
+      Incantation Spritesheet_8: 5151117781510559948
+      Incantation Spritesheet_9: -1565154933808739285
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
