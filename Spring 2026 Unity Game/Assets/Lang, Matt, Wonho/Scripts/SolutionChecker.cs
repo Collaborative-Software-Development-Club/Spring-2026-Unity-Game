@@ -60,6 +60,11 @@ public class SolutionChecker : MonoBehaviour
             if (sceneChanger.currentLevel == 1) {
                 stopwatch.PauseStopwatch();
             }
+            if(sceneChanger.currentLevel == 5)
+            {
+                Debug.Log("Book should be unlocked now");
+                bookUnlocker.Unlock();
+            }
             result.WinScreen();
         } else
         {

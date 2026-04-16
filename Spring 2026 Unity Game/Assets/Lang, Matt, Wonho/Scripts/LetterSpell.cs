@@ -2,23 +2,32 @@ using UnityEngine;
 
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class LetterSpell : SpellBehavior
 {
     private string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private Coroutine currentRoutine;
 
-    public TextMeshPro textDisplay; // Use TextMeshPro for 3D
-
+    public TMP_Text textDisplay; // Use TextMeshPro for 3D
+    public GameObject box;
     void Awake()
     {
-        // Force the script to find the text component on THIS object
-        //textDisplay = GetComponent<TextMeshProUGUI>();
+        box = GameObject.FindWithTag("IncantationSpell");
 
-        // This will tell you EXACTLY if it failed to find it
+        if (box == null)
+        {
+            Debug.LogError("Tag not found!");
+            return;
+        }
+
+        textDisplay = box.GetComponent<TMP_Text>();
+
         if (textDisplay == null)
         {
-            Debug.LogError($"TMP Component missing on {gameObject.name}!", this);
+            Debug.LogError("TextMeshPro component not found!");
         }
+        
     }
 
     public void ChangeMyText(char letter)
@@ -37,8 +46,37 @@ public class LetterSpell : SpellBehavior
     {
         char letter = RandomLetter();
         Debug.Log(letter);
-        ChangeMyText(letter);
+        ShowText(""+letter);
         // Logic to spawn a fireball projectile, play sounds, etc.
+    }
+    public void ShowText(string message, float duration = 5f)
+    {
+        Color c = textDisplay.color;
+        c.a = 1;
+        textDisplay.color = c;
+        if (currentRoutine != null)
+        {
+            StopCoroutine(currentRoutine);
+        }
+
+        currentRoutine = StartCoroutine(ShowTextRoutine(message, duration)); 
+    }
+
+    private IEnumerator ShowTextRoutine(string message, float duration)
+    {
+        textDisplay.text = message;
+
+        yield return new WaitForSeconds(duration - 3);
+        for (int i = 0; i < 24; i++)
+        {
+            Color c = textDisplay.color;
+            c.a = c.a - 1f/24f;
+            textDisplay.color = c;
+            yield return new WaitForSeconds(0.125f);
+        }
+        
+
+        textDisplay.text = "";
     }
     char RandomLetter()
     {
