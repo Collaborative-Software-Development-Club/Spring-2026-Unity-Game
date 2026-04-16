@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JEC_PageData
   url: schmeebay.com/grandpa's-book
   pageName: SchmeeBay Book
-  background: {fileID: 0}
+  background: {fileID: -5345481571178833125, guid: 09f73db342685284c8529e85c51e518a,
+    type: 3}
   contentPrefab: {fileID: 6745830118252685732, guid: ddfa80951023fd843b729f71c014b81d,
     type: 3}
