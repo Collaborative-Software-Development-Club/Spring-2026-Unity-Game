@@ -19,5 +19,11 @@ MonoBehaviour:
   rarity: 3
   loottable:
   - RollAmount: 0
-    ItemData: {fileID: 0}
-    ItemQuantity: 0
+    ItemData: {fileID: 11400000, guid: dc1e66b9f1590184bae126b4430ff109, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 0
+    ItemData: {fileID: 11400000, guid: f938e44befe64df48a58d9fb8cfe57ce, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 0
+    ItemData: {fileID: 11400000, guid: 3cd1948f9dc9a064ca4378b020bde71d, type: 2}
+    ItemQuantity: 1

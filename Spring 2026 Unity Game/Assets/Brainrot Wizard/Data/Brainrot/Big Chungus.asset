@@ -21,7 +21,7 @@ MonoBehaviour:
   attributes:
   - attribute: 7
     quantity: 70
-  - attribute: 9
-    quantity: 10
   - attribute: 6
     quantity: 40
+  - attribute: 9
+    quantity: 10

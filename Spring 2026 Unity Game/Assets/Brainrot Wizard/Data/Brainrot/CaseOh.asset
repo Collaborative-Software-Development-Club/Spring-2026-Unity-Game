@@ -19,7 +19,7 @@ MonoBehaviour:
   rarity: 4
   category: 3
   attributes:
-  - attribute: 11
-    quantity: 40
   - attribute: 7
     quantity: 50
+  - attribute: 11
+    quantity: 40
