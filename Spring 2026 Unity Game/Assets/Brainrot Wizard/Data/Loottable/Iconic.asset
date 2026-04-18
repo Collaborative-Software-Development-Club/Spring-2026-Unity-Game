@@ -12,9 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
   m_Name: Iconic
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
-  text: 
-  value: 0
-  icon: {fileID: 0}
-  type: 0
-  rarity: 0
-  loottable: []
+  text: Now this will stand the test of time.
+  value: 330
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  type: 5
+  rarity: 2
+  loottable:
+  - RollAmount: 60
+    ItemData: {fileID: 11400000, guid: 72bbe47c5147f3e4e83c3e9f2687f78c, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 73c29d75ad318ea4db59a371ac9aa32b, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 8b8d9f964c7b2bc4dbef0401be89993c, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: 3cd1948f9dc9a064ca4378b020bde71d, type: 2}
+    ItemQuantity: 1

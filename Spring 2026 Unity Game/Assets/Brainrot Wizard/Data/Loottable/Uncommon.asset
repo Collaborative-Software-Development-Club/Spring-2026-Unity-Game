@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
+  m_Name: Uncommon
+  m_EditorClassIdentifier: Assembly-CSharp::Loottable
+  text: Oh wow, this is pretty nice.
+  value: 400
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  type: 5
+  rarity: 2
+  loottable:
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: a80525dd91390164eaff7ea585eae112, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: b2798690a2ddab74aa738d9d6c3ed5fd, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: b14f07d68cb2893488ad3ac0c5cb69e8, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: c90bc8b195215324faf7a38816146b0a, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: 20fb7215c4d8016469640b80acb898e4, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: 105444ac703804049beeecda85f41997, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: f314f2fe3b8a22346a5c8cd3b27da31d, type: 2}
+    ItemQuantity: 1

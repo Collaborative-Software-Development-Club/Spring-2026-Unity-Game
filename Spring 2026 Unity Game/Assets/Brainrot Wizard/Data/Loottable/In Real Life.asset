@@ -16,7 +16,7 @@ MonoBehaviour:
   value: 425
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   type: 5
-  rarity: 2
+  rarity: 3
   loottable:
   - RollAmount: 100
     ItemData: {fileID: 11400000, guid: c12d397c4c350f54780aa0481bde7ac0, type: 2}
