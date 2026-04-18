@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 4102743274219716933}
   - component: {fileID: 7334341287078792606}
   m_Layer: 0
-  m_Name: MyTarPage
+  m_Name: SeeMyTarPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe907d4faf639ab4b8ef060e59a3db6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JEC_Page
-  pageData: {fileID: 11400000, guid: 18eee8d61a6b5b2428e22315da06576e, type: 2}
+  pageData: {fileID: 11400000, guid: cfc7717bdd1c3f14e8e53a10011aee60, type: 2}
 --- !u!1 &7170851654463846858
 GameObject:
   m_ObjectHideFlags: 0
