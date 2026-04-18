@@ -40,7 +40,7 @@ public class JEC_KeyManager : MonoBehaviour
                 return key;
         }
 
-        Debug.Log("Reached here with letter: " + c);
+        Debug.Log("JEC: Unable to find letter " + c);
         return null;
     }
 
