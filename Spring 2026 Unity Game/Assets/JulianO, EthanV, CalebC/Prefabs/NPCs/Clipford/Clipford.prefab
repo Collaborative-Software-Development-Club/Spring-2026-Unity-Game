@@ -372,7 +372,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   interactionPrompt: {fileID: 7030287968700394268}
   hidePromptOnInteract: 1
-  dialogueData: {fileID: 11400000, guid: 77c6fa116e0a1e541986fe7af0a76958, type: 2}
+  dialogueData: {fileID: 11400000, guid: 9e0122b65c7907841be88a4bfac24622, type: 2}
   dialoguePanel: {fileID: 5728452226159612691}
   dialogueText: {fileID: 8861339366268284231}
   nameText: {fileID: 5325295658840634575}
