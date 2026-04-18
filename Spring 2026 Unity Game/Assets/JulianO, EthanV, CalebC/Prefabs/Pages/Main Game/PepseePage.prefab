@@ -751,6 +751,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Wig
       objectReference: {fileID: 0}
+    - target: {fileID: 4303728065411205352, guid: b71815e1065069b44bb5e0dd3f903958,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303728065411205352, guid: b71815e1065069b44bb5e0dd3f903958,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303728065411205352, guid: b71815e1065069b44bb5e0dd3f903958,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303728065411205352, guid: b71815e1065069b44bb5e0dd3f903958,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303728065411205352, guid: b71815e1065069b44bb5e0dd3f903958,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303728065411205352, guid: b71815e1065069b44bb5e0dd3f903958,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.14
+      objectReference: {fileID: 0}
     - target: {fileID: 6285158688181776680, guid: b71815e1065069b44bb5e0dd3f903958,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -990,7 +1020,7 @@ PrefabInstance:
     - target: {fileID: 3127278221859417523, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.29
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 3127278221859417523, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
@@ -1018,6 +1048,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fcf14be5ca2d39f459b61b991fb6c225,
         type: 2}
+    - target: {fileID: 5405477844323907060, guid: 5395ec87795e03d46b93796c864066ea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405477844323907060, guid: 5395ec87795e03d46b93796c864066ea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 87.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8584391440406854541, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
