@@ -36,6 +36,11 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     // This is needed for the tooltips
     public void SetItem(Item newItem)
     {
+        if (newItem == null)
+            slotIcon.gameObject.SetActive(false);
+        else
+            slotIcon.gameObject.SetActive(true);
+        
         item = newItem;
     }
 

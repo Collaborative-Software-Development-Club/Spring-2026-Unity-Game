@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum GameState 
 {
@@ -27,6 +29,11 @@ public enum GameState
 [RequireComponent(typeof(ContractManager))]
 public class GameManager : MonoBehaviour
 {
+    // TODO: Replace with shops in future
+    [SerializeField] private Loottable[] DailyLootboxesData;
+    private List<Lootbox> DailyLootboxes = new();
+    public PlayerInventory playerInventory;
+    
     /// <summary>
     /// Gets the current state that the game is in.
     /// </summary>
@@ -68,6 +75,11 @@ public class GameManager : MonoBehaviour
             RentManager = GetComponent<RentManager>();
         if (ContractManager == null)
             ContractManager = GetComponent<ContractManager>();
+
+        foreach (Loottable lootbox in DailyLootboxesData)
+        {
+            DailyLootboxes.Add(new Lootbox(lootbox));
+        }
     }
 
     private static GameManager _instance;
@@ -120,6 +132,7 @@ public class GameManager : MonoBehaviour
     }
     private void ContractWorkState()
     {
+        playerInventory.AddItemToInventory(DailyLootboxes[Random.Range(0, DailyLootboxes.Count - 1)] ,1);
         CurrentGameState = GameState.ContractWork;
         
         CurrentTurnCount++;

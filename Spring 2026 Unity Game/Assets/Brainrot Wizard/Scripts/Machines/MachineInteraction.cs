@@ -5,14 +5,14 @@ public class MachineInteraction : MonoBehaviour, IInteractable
 {
     [SerializeField] private MachineData machineData;
 
+    [SerializeField] private bool hasUI;
     private Machine _machine;
 
     private void Awake()
     {
-        if (machineData != null)
-        {
-            _machine = new Machine(machineData); 
-        }
+        if (machineData == null) return;
+        _machine = new Machine(machineData); 
+        _machine.hasUI = hasUI;
     }
     public string InteractionPrompt => "Open machine " + _machine.GetName(); 
     public bool Interact(Interacter interactor)
