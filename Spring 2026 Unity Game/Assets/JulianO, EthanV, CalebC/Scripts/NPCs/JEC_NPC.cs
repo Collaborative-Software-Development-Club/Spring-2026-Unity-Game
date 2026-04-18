@@ -62,10 +62,15 @@ public class JEC_NPC : JEC_InteractableBase
         // if doing portraits insert here
 
         dialoguePanel.SetActive(true);
-        Player.GetComponent<PlayerController>().enabled = false;
-        Player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        PreventMovement();
 
         StartCoroutine(TypeLine());
+    }
+
+    void PreventMovement()
+    {
+        Player.GetComponent<PlayerController>().enabled = false;
+        Player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
     }
 
     void NextLine()
@@ -75,12 +80,14 @@ public class JEC_NPC : JEC_InteractableBase
             // if NPC is already typing, autocompletes the line
             StopAllCoroutines();
             dialogueText.SetText(dialogueData.dialogueLines[dialogueIndex]);
+            PreventMovement();
             isTyping = false;
         }
         // if there is another line remaining, start the next line
         else if (++dialogueIndex < (dialogueData.dialogueLines.Length))
         {
             StartCoroutine(TypeLine());
+            PreventMovement();
         }
         else
         {

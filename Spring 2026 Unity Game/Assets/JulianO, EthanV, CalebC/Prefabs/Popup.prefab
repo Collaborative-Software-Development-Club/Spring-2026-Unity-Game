@@ -580,7 +580,7 @@ MonoBehaviour:
   interactionPrompt: {fileID: 8327590586869585281}
   hidePromptOnInteract: 1
   text: {fileID: 0}
-  Player: {fileID: 0}
+  Player: {fileID: 6515621381370381304, guid: e75c42f22861f4365a84c03b7a1083a3, type: 3}
   popupContent: {fileID: 2255283472793064273}
   hidingKeys: 0
   length: 0

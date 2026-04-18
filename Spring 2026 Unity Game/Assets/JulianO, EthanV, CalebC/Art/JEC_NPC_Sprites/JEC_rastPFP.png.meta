@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 68bc10ec8af9aff43bb9ea92ca4e8d0c
+guid: 5816702c1f4306546b8c5db10043762d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8339602756319854641
-    second: JEC_rast_0
+      213: 615326300704808915
+    second: JEC_rastPFP_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JEC_rast_0
+      name: JEC_rastPFP_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 320
-        height: 180
+        x: 8
+        y: 7
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fcfbfad6a77c34c80800000000000000
-      internalID: -8339602756319854641
+      spriteID: 3df1776a2041a8800800000000000000
+      internalID: 615326300704808915
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      JEC_rast_0: -8339602756319854641
+      JEC_rastPFP_0: 615326300704808915
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

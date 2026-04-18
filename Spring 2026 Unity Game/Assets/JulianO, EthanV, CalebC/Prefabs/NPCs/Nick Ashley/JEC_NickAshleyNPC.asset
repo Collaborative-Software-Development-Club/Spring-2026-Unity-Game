@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09483a59b88bbf2408b053b3f18815b7, type: 3}
+  m_Name: JEC_NickAshleyNPC
+  m_EditorClassIdentifier: Assembly-CSharp::JEC_NPCDialogue
+  npcName: Effigy of Nick Ashley
+  npcPortrait: {fileID: 615326300704808915, guid: 5816702c1f4306546b8c5db10043762d,
+    type: 3}
+  dialogueLines:
+  - We're no strangers at all... You know the greeting, and so do I!
+  - Being inviting's what I'm thinking of. But I'm more formal than any other guy~
+  - I just want to give you a nice greeting... acknowledge, show I- understand!
+  - Never gonna say "what's up?", never gonna start with a frown, never gonna run
+    around and not greet you
+  - Never gonna blink my eyes, never gonna do a high-five, just gonna shake the hand
+    and ask, "How d'you do?"
+  autoProgressLines: 
+  autoProgressDelay: 1.5
+  typingSpeed: 0.05
+  voiceSound: {fileID: 0}
+  voicePitch: 1
