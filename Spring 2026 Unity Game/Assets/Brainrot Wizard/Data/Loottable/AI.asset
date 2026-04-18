@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
   m_Name: AI
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
-  text: 
-  value: 0
-  icon: {fileID: 0}
-  type: 0
-  rarity: 0
-  loottable: []
+  text: I cannot fulfill this request.
+  value: 175
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  type: 5
+  rarity: 1
+  loottable:
+  - RollAmount: 100
+    ItemData: {fileID: 11400000, guid: 1bc465f099704b549baf19de0fc71e19, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 60
+    ItemData: {fileID: 11400000, guid: fbecba7111ac37449ae0f732df478d86, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 9d3bf689b1e933244a43aceabcd25606, type: 2}
+    ItemQuantity: 1

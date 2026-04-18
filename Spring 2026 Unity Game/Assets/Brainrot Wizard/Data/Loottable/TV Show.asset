@@ -10,23 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
-  m_Name: Animal
+  m_Name: TV Show
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
-  text: You can NOT control them.
-  value: 220
+  text: Hey, I've watched this before!
+  value: 255
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   type: 5
-  rarity: 2
+  rarity: 3
   loottable:
+  - RollAmount: 60
+    ItemData: {fileID: 11400000, guid: a529d8e5f3ae800489671ed12abaa47a, type: 2}
+    ItemQuantity: 1
   - RollAmount: 80
-    ItemData: {fileID: 11400000, guid: 20fb7215c4d8016469640b80acb898e4, type: 2}
-    ItemQuantity: 1
-  - RollAmount: 60
-    ItemData: {fileID: 11400000, guid: fbecba7111ac37449ae0f732df478d86, type: 2}
-    ItemQuantity: 1
-  - RollAmount: 60
-    ItemData: {fileID: 11400000, guid: 7df34dce845a53745b54ce171905c13a, type: 2}
+    ItemData: {fileID: 11400000, guid: b2798690a2ddab74aa738d9d6c3ed5fd, type: 2}
     ItemQuantity: 1
   - RollAmount: 100
-    ItemData: {fileID: 11400000, guid: 0eac697a51e8d434f96cca3ce71b68f3, type: 2}
+    ItemData: {fileID: 11400000, guid: 44ece119384f57544ab2c51f7e421c5a, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 73c29d75ad318ea4db59a371ac9aa32b, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: f938e44befe64df48a58d9fb8cfe57ce, type: 2}
     ItemQuantity: 1

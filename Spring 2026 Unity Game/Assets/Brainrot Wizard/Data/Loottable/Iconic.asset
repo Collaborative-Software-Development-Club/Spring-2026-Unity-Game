@@ -10,5 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
-  m_Name: Loottable
+  m_Name: Iconic
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
+  text: 
+  value: 0
+  icon: {fileID: 0}
+  type: 0
+  rarity: 0
+  loottable: []

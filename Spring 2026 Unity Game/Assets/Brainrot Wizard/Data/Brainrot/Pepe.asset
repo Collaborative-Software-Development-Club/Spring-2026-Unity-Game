@@ -21,3 +21,5 @@ MonoBehaviour:
   attributes:
   - attribute: 5
     quantity: 15
+  - attribute: 2
+    quantity: 5

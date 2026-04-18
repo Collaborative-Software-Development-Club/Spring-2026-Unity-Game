@@ -20,4 +20,6 @@ MonoBehaviour:
   category: 2
   attributes:
   - attribute: 6
-    quantity: 30
+    quantity: 20
+  - attribute: 2
+    quantity: 5

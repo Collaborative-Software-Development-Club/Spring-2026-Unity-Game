@@ -10,20 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
-  m_Name: Ironic
+  m_Name: Celebrities
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
-  text: Actually, not full of any loot.
-  value: 200
+  text: What is this, California?
+  value: 675
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   type: 5
-  rarity: 2
+  rarity: 4
   loottable:
   - RollAmount: 60
     ItemData: {fileID: 11400000, guid: f4a827e5b34439f4ab95ce3dccb7d626, type: 2}
     ItemQuantity: 1
-  - RollAmount: 80
-    ItemData: {fileID: 11400000, guid: f314f2fe3b8a22346a5c8cd3b27da31d, type: 2}
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 8b8d9f964c7b2bc4dbef0401be89993c, type: 2}
     ItemQuantity: 1
-  - RollAmount: 60
-    ItemData: {fileID: 11400000, guid: 87891c35057ddeb4d9e3168047acd5e3, type: 2}
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: b2798690a2ddab74aa738d9d6c3ed5fd, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: 3cd1948f9dc9a064ca4378b020bde71d, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: fd67e9f5c765e4a47b1f0eeff0fdb2f9, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 9d3bf689b1e933244a43aceabcd25606, type: 2}
     ItemQuantity: 1

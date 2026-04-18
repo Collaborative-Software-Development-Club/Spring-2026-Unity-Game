@@ -19,9 +19,9 @@ MonoBehaviour:
   rarity: 3
   category: 5
   attributes:
-  - attribute: 6
-    quantity: 20
   - attribute: 11
     quantity: 80
   - attribute: 13
     quantity: 40
+  - attribute: 6
+    quantity: 20

@@ -10,38 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
-  m_Name: Classic
+  m_Name: In Real Life
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
-  text: Ayyy no microtransactions!
-  value: 435
+  text: Woah, so real...
+  value: 425
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   type: 5
-  rarity: 3
+  rarity: 2
   loottable:
-  - RollAmount: 80
-    ItemData: {fileID: 11400000, guid: 20fb7215c4d8016469640b80acb898e4, type: 2}
-    ItemQuantity: 1
   - RollAmount: 100
-    ItemData: {fileID: 11400000, guid: 0eac697a51e8d434f96cca3ce71b68f3, type: 2}
+    ItemData: {fileID: 11400000, guid: c12d397c4c350f54780aa0481bde7ac0, type: 2}
     ItemQuantity: 1
-  - RollAmount: 60
-    ItemData: {fileID: 11400000, guid: 87891c35057ddeb4d9e3168047acd5e3, type: 2}
-    ItemQuantity: 1
-  - RollAmount: 60
-    ItemData: {fileID: 11400000, guid: a529d8e5f3ae800489671ed12abaa47a, type: 2}
-    ItemQuantity: 1
-  - RollAmount: 60
-    ItemData: {fileID: 11400000, guid: 44ee597b206ada340b88fc73cb406455, type: 2}
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: 4b805be264eee0147aadc6620a03608b, type: 2}
     ItemQuantity: 1
   - RollAmount: 80
     ItemData: {fileID: 11400000, guid: c90bc8b195215324faf7a38816146b0a, type: 2}
     ItemQuantity: 1
   - RollAmount: 80
-    ItemData: {fileID: 11400000, guid: 105444ac703804049beeecda85f41997, type: 2}
+    ItemData: {fileID: 11400000, guid: b14f07d68cb2893488ad3ac0c5cb69e8, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 8b8d9f964c7b2bc4dbef0401be89993c, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 60
+    ItemData: {fileID: 11400000, guid: 24ca778a076d7064aac78515cf23478f, type: 2}
     ItemQuantity: 1
   - RollAmount: 40
     ItemData: {fileID: 11400000, guid: 722d5f1aa531bdb45ad5314a69412b98, type: 2}
     ItemQuantity: 1
-  - RollAmount: 20
-    ItemData: {fileID: 11400000, guid: fd67e9f5c765e4a47b1f0eeff0fdb2f9, type: 2}
+  - RollAmount: 100
+    ItemData: {fileID: 11400000, guid: 78bd0e2296ec31a4cb9e905c122ba945, type: 2}
     ItemQuantity: 1

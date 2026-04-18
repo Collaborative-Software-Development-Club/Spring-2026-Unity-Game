@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
+  m_Name: TikTok
+  m_EditorClassIdentifier: Assembly-CSharp::Loottable
+  text: The wannabee celebrities.
+  value: 880
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  type: 5
+  rarity: 5
+  loottable:
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: a80525dd91390164eaff7ea585eae112, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 100
+    ItemData: {fileID: 11400000, guid: e0614d37667ca33419a1ea825e3dced3, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: b14f07d68cb2893488ad3ac0c5cb69e8, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: ccb764d7dcbe0914bb5b9f5eb582f79e, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 60
+    ItemData: {fileID: 11400000, guid: 410c1b2d2f658904c843f867be32747d, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 100
+    ItemData: {fileID: 11400000, guid: 68e475c87ee27664c9e64d14ed9eb88a, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 60
+    ItemData: {fileID: 11400000, guid: 24ca778a076d7064aac78515cf23478f, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: 722d5f1aa531bdb45ad5314a69412b98, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 100
+    ItemData: {fileID: 11400000, guid: 78bd0e2296ec31a4cb9e905c122ba945, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 80
+    ItemData: {fileID: 11400000, guid: 105444ac703804049beeecda85f41997, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 100
+    ItemData: {fileID: 11400000, guid: 8a479d717e500754c8dcff12ea9d18be, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 60
+    ItemData: {fileID: 11400000, guid: 72bbe47c5147f3e4e83c3e9f2687f78c, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: dc1e66b9f1590184bae126b4430ff109, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: 4b805be264eee0147aadc6620a03608b, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 60
+    ItemData: {fileID: 11400000, guid: fbecba7111ac37449ae0f732df478d86, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 100
+    ItemData: {fileID: 11400000, guid: c322d4f2020d073409a7d4a661dfca7d, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 8b8d9f964c7b2bc4dbef0401be89993c, type: 2}
+    ItemQuantity: 1
