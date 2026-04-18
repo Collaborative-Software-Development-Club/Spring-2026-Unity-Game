@@ -11451,6 +11451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineInteraction
   machineData: {fileID: 11400000, guid: 784462a0cf7840a4b9cb9baa964762ef, type: 2}
+  hasUI: 1
 --- !u!1 &491004525
 GameObject:
   m_ObjectHideFlags: 0
@@ -12128,6 +12129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineInteraction
   machineData: {fileID: 11400000, guid: 2a312e856c5045f4b95aa649da75f05b, type: 2}
+  hasUI: 1
 --- !u!1 &569408658
 GameObject:
   m_ObjectHideFlags: 0
@@ -13970,6 +13972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineInteraction
   machineData: {fileID: 11400000, guid: f6bcce591faa1154bbc74af332af2cbe, type: 2}
+  hasUI: 1
 --- !u!1 &754444857
 GameObject:
   m_ObjectHideFlags: 0
@@ -17517,6 +17520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineInteraction
   machineData: {fileID: 11400000, guid: e8c0ea90834fce743ae5e46c3c82566f, type: 2}
+  hasUI: 1
 --- !u!1 &1114911381
 GameObject:
   m_ObjectHideFlags: 0
@@ -18353,6 +18357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineInteraction
   machineData: {fileID: 11400000, guid: 44bfaa659146b6a4c894ed7c4277ba3e, type: 2}
+  hasUI: 1
 --- !u!1 &1192866313
 GameObject:
   m_ObjectHideFlags: 0
@@ -22057,6 +22062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineInteraction
   machineData: {fileID: 11400000, guid: fd4098c13da4b9e45a0170bb814bd31b, type: 2}
+  hasUI: 1
 --- !u!1 &1362122137
 GameObject:
   m_ObjectHideFlags: 0
@@ -30397,6 +30403,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 394444935}
+    - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: DailyLootboxesData.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: 'DailyLootboxesData.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e4393a5c8550a9e47b8b6e4673b0bc6d,
+        type: 2}
+    - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: 'DailyLootboxesData.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 48e38141f3191464b856e58fea4130b9,
+        type: 2}
+    - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: 'DailyLootboxesData.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: eaffa6ff40e6faa43b75539cc2aec87c,
+        type: 2}
+    - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: 'DailyLootboxesData.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d617ce878a357b34a90f4eaff6d16b76,
+        type: 2}
+    - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: 'DailyLootboxesData.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b162b18dc23d60b44929a423b579d7e9,
+        type: 2}
+    - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: 'DailyLootboxesData.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6895ece193f2919498afbd40a2a5bfcc,
+        type: 2}
     - target: {fileID: 6201533602095532066, guid: d2da53cc39382d74282fa6e32de3c59f,
         type: 3}
       propertyPath: rentGUIRef
