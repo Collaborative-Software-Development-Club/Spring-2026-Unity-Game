@@ -841,12 +841,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673839792}
   m_CullTransparentMesh: 1
---- !u!1 &695093600 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7626944820570068956, guid: 162734533596b174b87efa2d8a7b1b1d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1917296061878222556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &746591253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,23 +1096,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1917296061878222556}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &852619704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695093600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd39742280769f8408af873d66d5b2f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::JEC_BreathingEffect
-  targetObject: {fileID: 0}
-  expandDuration: 1
-  breatheIn: {x: 0.98, y: 1.02, z: 0}
-  breatheOut: {x: 1.02, y: 0.98, z: 0}
-  pulsing: 0
 --- !u!1 &874372261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,7 +1496,7 @@ GameObject:
   - component: {fileID: 1178415758}
   - component: {fileID: 1178415757}
   m_Layer: 0
-  m_Name: Page Bevel
+  m_Name: 9-Sliced
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3301,11 +3278,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7626944820570068956, guid: 162734533596b174b87efa2d8a7b1b1d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 852619704}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 162734533596b174b87efa2d8a7b1b1d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
