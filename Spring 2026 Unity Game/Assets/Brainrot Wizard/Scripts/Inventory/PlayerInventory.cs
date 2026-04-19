@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -9,12 +10,8 @@ public class PlayerInventory : MonoBehaviour
    [SerializeField] private PlayerInventoryUI playerInventoryUI;
    private int selectedSlot;
 
-   public Loottable testItem;
-
    private void Start()
    {
-       AddItemToInventory(new Lootbox(testItem), 5);
-
        for (int i = 0; i < _inventory.Length; i++)
        {
            playerInventoryUI.InitSlot(i, _inventory.GetItemAt(i));

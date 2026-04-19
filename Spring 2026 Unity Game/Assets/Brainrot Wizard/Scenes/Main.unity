@@ -29566,6 +29566,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3274360417386932433, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: sfxAudioSource
+      value: 
+      objectReference: {fileID: 909511169}
+    - target: {fileID: 3274360417386932433, guid: d2da53cc39382d74282fa6e32de3c59f,
+        type: 3}
+      propertyPath: musicAudioSource
+      value: 
+      objectReference: {fileID: 408543034}
     - target: {fileID: 3363393630960774592, guid: d2da53cc39382d74282fa6e32de3c59f,
         type: 3}
       propertyPath: playerInventory
@@ -29656,43 +29666,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2044469530310949172, guid: d2da53cc39382d74282fa6e32de3c59f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1055685683723380987}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2da53cc39382d74282fa6e32de3c59f, type: 3}
---- !u!1 &1055685683723380986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2044469530310949172, guid: d2da53cc39382d74282fa6e32de3c59f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1055685683723380985}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1055685683723380987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055685683723380986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5886ee92646ab96438f3d632a1de9afe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  sfxClips: []
-  musicClips:
-  - {fileID: 8300000, guid: 9b5b6d7411816c641bd0e62b3d9aee73, type: 3}
-  - {fileID: 8300000, guid: a9f27964b575732418e150048ffaa7fa, type: 3}
-  - {fileID: 8300000, guid: 9c585a4a88cd5af4799c3ea3ab60cd12, type: 3}
-  - {fileID: 8300000, guid: 5d3ac0bb2bee46d46b4fc3cb3d3f5322, type: 3}
-  - {fileID: 8300000, guid: b25425fceb63a34458a5a97e4f316f18, type: 3}
-  - {fileID: 8300000, guid: 78af4c0bc8b94204da664694e1615132, type: 3}
-  - {fileID: 8300000, guid: d2e1208403689c246b50eda7ae68bba8, type: 3}
-  - {fileID: 8300000, guid: c1055f6b7e9e0674696c320f05ab3b22, type: 3}
-  - {fileID: 8300000, guid: 19e189c664d504f4fbed6fe1e68e7fb7, type: 3}
-  sfxAudioSource: {fileID: 909511169}
-  musicAudioSource: {fileID: 408543034}
 --- !u!224 &2068694207703205855 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5527005034953554815, guid: dbd1fadf66da51e429ce1f168f8d9c3e,

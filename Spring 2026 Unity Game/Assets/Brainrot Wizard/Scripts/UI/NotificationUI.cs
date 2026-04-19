@@ -210,6 +210,8 @@ public class NotificationUI : MonoBehaviour
         subtitleUI.gameObject.SetActive(true);
         timerUI.gameObject.SetActive(false);
         closeButtonUI.gameObject.SetActive(false);
+        confirmButtonUI.gameObject.SetActive(false);
+        cancelButtonUI.gameObject.SetActive(false);
         titleUI.text = string.IsNullOrWhiteSpace(titleText) ? "Invalid Notification" : titleText;
         subtitleUI.text = subtitleText;
     }

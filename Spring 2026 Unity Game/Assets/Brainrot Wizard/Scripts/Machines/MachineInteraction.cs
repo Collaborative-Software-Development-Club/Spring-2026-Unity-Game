@@ -7,6 +7,7 @@ public class MachineInteraction : MonoBehaviour, IInteractable
 
     [SerializeField] private bool hasUI;
     private Machine _machine;
+    public Action onMachineUsed; 
 
     private void Awake()
     {
@@ -30,10 +31,12 @@ public class MachineInteraction : MonoBehaviour, IInteractable
             _machine.SetFunctionality(args);
         };
 
+        machineHandler += onMachineUsed.Invoke;
+        
         if (_machine.hasUI)
             GameManager.Instance.GUIManager.OpenMachineUI(_machine, machineHandler);
         else
-            machineHandler();
+            machineHandler.Invoke();
 
         return true;
     }

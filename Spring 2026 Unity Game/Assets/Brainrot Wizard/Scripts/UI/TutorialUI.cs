@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class TutorialUI : MonoBehaviour
 {
+    public Loottable starterLootbox;
+    
     [Header("Arrow")]
     public GameObject arrowPrefab;
     private GameObject arrowInstance;
@@ -11,16 +13,19 @@ public class TutorialUI : MonoBehaviour
     private Transform currentArrowTarget;
     public Transform player;
 
-    private readonly float detectionDistance = 5f;
+    private readonly float detectionDistance = 3f;
 
     // Movement completion
     private bool wDone, aDone, sDone, dDone;
 
     // Tutorial states
+    
+    /*
     private bool arrivedAtShop;
     private bool openedShop;
     private bool boughtLootbox;
     private bool closedShop;
+    */
 
     private bool openedLootboxUI;
     private bool openedLootbox;
@@ -36,9 +41,9 @@ public class TutorialUI : MonoBehaviour
     private InputAction wAction, aAction, sAction, dAction, interactAction;
 
     // Targets
-    private GameObject shop;
-    private GameObject machine;
-    private GameObject contractBoard;
+    //private GameObject shop;
+    private GameObject _machine;
+    private GameObject _contractBoard;
     
     // Random landlord flavor lines
     private string[] landlordExtras =
@@ -68,9 +73,9 @@ public class TutorialUI : MonoBehaviour
         dAction.performed += ctx => dDone = true;
         dAction.Enable();
 
-        interactAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/e");
-        interactAction.performed += ctx => openedShop = true;
-        interactAction.Enable();
+        //interactAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/e");
+        //interactAction.performed += ctx => openedShop = true;
+        //interactAction.Enable();
     }
 
     private void OnDisable()
@@ -79,7 +84,7 @@ public class TutorialUI : MonoBehaviour
         aAction.Dispose();
         sAction.Dispose();
         dAction.Dispose();
-        interactAction.Dispose();
+        //interactAction.Dispose();
     }
 
     private void Start()
@@ -91,9 +96,9 @@ public class TutorialUI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        shop = GameObject.Find("Shop");
-        machine = GameObject.Find("Adder");
-        contractBoard = GameObject.Find("ContractBoard");
+        //shop = GameObject.Find("Shop");
+        _machine = GameObject.Find("Adder");
+        _contractBoard = GameObject.Find("Contract Terminal");
 
         GameManager.Instance.ContractManager.onContractTaken += () => acceptedContract = true;
         GameManager.Instance.ContractManager.onContractTurnedIn += c => turnedInContract = true;
@@ -102,6 +107,8 @@ public class TutorialUI : MonoBehaviour
         GameManager.Instance.GUIManager.lootboxUIRef.onLootboxUIOpened += () => openedLootboxUI = true;
         //GameManager.Instance.GUIManager.lootboxUIRef.onLootboxUIClosed += () => closedLootboxUI = true;
 
+        _machine.GetComponent<MachineInteraction>().onMachineUsed += OnMachineUsed;
+            
         StartCoroutine(
             NotificationUI.Instance.RequestConfirmation(
                 "Skip tutorial?",
@@ -110,6 +117,7 @@ public class TutorialUI : MonoBehaviour
                 {
                     if (result)
                     {
+                        GameManager.Instance.playerInventory.AddItemToInventory(new Lootbox(starterLootbox), 1);
                         StartGame();
                     }
                     else
@@ -125,15 +133,15 @@ public class TutorialUI : MonoBehaviour
     {
         UpdateArrow();
 
-        if (!arrivedAtShop && shop != null)
-        {
-            if (Vector3.Distance(player.position, shop.transform.position) <= detectionDistance)
-                arrivedAtShop = true;
-        }
+        //if (!arrivedAtShop && shop != null)
+        //{
+        //    if (Vector3.Distance(player.position, shop.transform.position) <= detectionDistance)
+        //        arrivedAtShop = true;
+        //}
 
-        if (!arrivedAtMachine && machine != null)
+        if (!arrivedAtMachine && _machine != null)
         {
-            if (Vector3.Distance(player.position, machine.transform.position) <= detectionDistance)
+            if (Vector3.Distance(player.position, _machine.transform.position) <= detectionDistance)
                 arrivedAtMachine = true;
         }
     }
@@ -147,9 +155,12 @@ public class TutorialUI : MonoBehaviour
         yield return new WaitUntil(() => wDone && aDone && sDone && dDone);
 
         yield return LandlordMessage(
-            "You currently own ZERO Brainrots.\n\nThis is financially unacceptable.\nGo to the shop.\n\n" + RandomLandlordLine()
+            "You currently own ZERO Brainrots.\n\nThis is financially unacceptable.\nI'll give you a loot-box to get started.\n\n" + RandomLandlordLine()
         );
+        
+        GameManager.Instance.playerInventory.AddItemToInventory(new Lootbox(starterLootbox), 1);
 
+        /*
         SpawnArrowAt(shop.transform);
         yield return new WaitUntil(() => arrivedAtShop);
         RemoveArrow();
@@ -157,7 +168,7 @@ public class TutorialUI : MonoBehaviour
         yield return LandlordMessage(
             "Press E to interact with the shop.\nTry not to break anything."
         );
-
+        
         yield return new WaitUntil(() => openedShop);
 
         yield return LandlordMessage(
@@ -171,9 +182,10 @@ public class TutorialUI : MonoBehaviour
         );
 
         yield return new WaitUntil(() => closedShop);
+        */
 
         yield return LandlordMessage(
-            "Double click the lootbox in your inventory.\n\nLet's see how lucky you are."
+            "Right click the lootbox in your inventory.\n\nLet's see how lucky you are."
         );
 
         yield return new WaitUntil(() => openedLootboxUI);
@@ -188,7 +200,7 @@ public class TutorialUI : MonoBehaviour
             "Take your new Brainrot to the Adder machine.\n\nMake it more profitable.\n\n" + RandomLandlordLine()
         );
 
-        SpawnArrowAt(machine.transform);
+        SpawnArrowAt(_machine.transform);
         yield return new WaitUntil(() => arrivedAtMachine);
         RemoveArrow();
 
@@ -199,10 +211,10 @@ public class TutorialUI : MonoBehaviour
         yield return new WaitUntil(() => usedMachine);
 
         yield return LandlordMessage(
-            "Accept a contract.\n\nThis is how tenants generate income."
+            "Contracts are how tenants generate income. These only occur in the Morning!"
         );
 
-        SpawnArrowAt(contractBoard.transform);
+        SpawnArrowAt(_contractBoard.transform);
         yield return new WaitUntil(() => acceptedContract);
         RemoveArrow();
 
@@ -267,6 +279,7 @@ public class TutorialUI : MonoBehaviour
 
     // Hooks called from other systems
 
+    /*
     public void OnBoughtLootbox()
     {
         boughtLootbox = true;
@@ -276,6 +289,7 @@ public class TutorialUI : MonoBehaviour
     {
         closedShop = true;
     }
+    */
 
     public void OnMachineUsed()
     {
@@ -286,5 +300,7 @@ public class TutorialUI : MonoBehaviour
     {
         NotificationUI.Instance.HideUI();
         GameManager.Instance.NextState();
+        
+        GameManager.Instance.playerInventory.AddItemToInventory(new Lootbox(starterLootbox), 4);
     }
 }

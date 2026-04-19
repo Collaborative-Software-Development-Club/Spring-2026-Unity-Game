@@ -15,6 +15,7 @@ public class Machine : Item
     protected Inventory Output;
 
     private MachineFunctionality _machineFunctionality;
+    
 
     public void SetFunctionality(int[] args)
     {
