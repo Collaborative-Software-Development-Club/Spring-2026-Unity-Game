@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,9 +12,6 @@ public class LootboxUI : MonoBehaviour
     [SerializeField] private Transform contentParent;          // Parent for instantiated drops
     [SerializeField] private Button openButton;                // Open/Roll button
     [SerializeField] private GameObject panel;
-
-    [Header("References")]
-    [SerializeField] private PlayerInventory playerInventory;  // Player's inventory reference
 
     public Action<Lootbox> onLootboxOpened;
     public Action onLootboxUIClosed;
@@ -68,11 +66,13 @@ public class LootboxUI : MonoBehaviour
             {
                 // Convert ItemData → runtime Item
                 Item runtimeItem = ItemFactory.CreateItem(entry.ItemData);
+
                 if (runtimeItem != null)
                 {
-                    playerInventory.AddItemToInventory(runtimeItem, entry.ItemQuantity);
+                    GameManager.Instance.playerInventory.AddItemToInventory(runtimeItem, entry.ItemQuantity);
+                    GameManager.Instance.playerInventory.RemoveItemFromInventory(currentLootbox);
                 }
-
+                
                 lootboxTitleText.text = $"You got: {entry.ItemData.name} x{entry.ItemQuantity}";
             }
             else

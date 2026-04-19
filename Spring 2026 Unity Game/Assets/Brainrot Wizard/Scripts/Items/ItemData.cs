@@ -29,4 +29,5 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public ItemType type = ItemType.None;
     public Rarity rarity = Rarity.None;
+    public bool isConsumable = false;
 }

@@ -14,6 +14,11 @@ public class PlayerInventory : MonoBehaviour
    private void Start()
    {
        AddItemToInventory(new Lootbox(testItem), 5);
+
+       for (int i = 0; i < _inventory.Length; i++)
+       {
+           playerInventoryUI.InitSlot(i, _inventory.GetItemAt(i));
+       }
    }
 
 
@@ -30,57 +35,25 @@ public class PlayerInventory : MonoBehaviour
        }
 
        selectedSlot = slotIndex;
-       playerInventoryUI.HighlightInventorySlot(slotIndex);
+       //playerInventoryUI.HighlightInventorySlot(slotIndex);
    }
 
    public void AddItemToInventory(Item item, int amount)
    {
        int slotIndex = _inventory.AddItemToInventory(item, amount);
-       
-       playerInventoryUI.UpdateItem(slotIndex, item);
-       playerInventoryUI.UpdateQuantityTextForIndex(slotIndex, _inventory.GetItemAt(slotIndex).quantity);
-       playerInventoryUI.UpdateIconForIndex(slotIndex, item.GetIcon());
+       playerInventoryUI.RefreshSlot(slotIndex);
    }
 
-   public void RemoveItemFromInventory(Item item, int amount)
+   public void RemoveItemFromInventory(Item item, int amount = 1)
    {
-       List<InventoryChange> removeResult = _inventory.RemoveItemFromInventory(item, amount);
-       print(removeResult.Count);
-       
-       
-       foreach (InventoryChange inventoryChange in removeResult)
-       {
-           InventorySlot slot = _inventory.GetItemAt(inventoryChange.Index);
-
-           if (slot.item == null || slot.quantity <= 0)
-           {
-               playerInventoryUI.UpdateItem(inventoryChange.Index, null);
-               playerInventoryUI.UpdateQuantityTextForIndex(inventoryChange.NewQuantity, 0);
-               playerInventoryUI.UpdateIconForIndex(inventoryChange.Index, null);
-           }
-           else
-           {
-               playerInventoryUI.UpdateQuantityTextForIndex(inventoryChange.NewQuantity, slot.quantity);
-               playerInventoryUI.UpdateIconForIndex(inventoryChange.Index, slot.item.GetIcon());
-           }
-       }
+       InventoryChange removeResult = _inventory.RemoveItemFromInventory(item, amount);
+       playerInventoryUI.RefreshSlot(removeResult.Index);
    }
 
-   public void RemoveItemFromSlot(int index, int amount)
+   public void RemoveItemFromSlot(int index, int amount = 1)
    {
        InventorySlot removeResult = _inventory.RemoveFromSlot(index,amount);
-       
-       if (removeResult.item == null || removeResult.quantity <= 0)
-       {
-           playerInventoryUI.UpdateItem(index, null);
-           playerInventoryUI.UpdateQuantityTextForIndex(index, 0); 
-           playerInventoryUI.UpdateIconForIndex(index, null);
-       }
-       else
-       {
-           playerInventoryUI.UpdateQuantityTextForIndex(index, _inventory.slots[index].quantity);
-           playerInventoryUI.UpdateIconForIndex(index, removeResult.item.GetIcon());
-       }
+       playerInventoryUI.RefreshSlot(index);
    }
    
    //Implement later

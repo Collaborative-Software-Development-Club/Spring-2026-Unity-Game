@@ -124,15 +124,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OpenLootbox",
-                    "type": "Button",
-                    "id": "553829eb-24c8-44d9-bee1-500b53d2d9c6",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Exit",
                     "type": "Button",
                     "id": "641f0dbe-e192-4e14-a2b4-7ce7272d7fe4",
@@ -289,7 +280,7 @@
                 {
                     "name": "binding",
                     "id": "6f869b78-5224-4a8d-a243-ce9cf0a580f6",
-                    "path": "<Keyboard>/t",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -322,7 +313,7 @@
                 {
                     "name": "binding",
                     "id": "a98134b4-6aad-4a3b-a68e-802029b786b1",
-                    "path": "<Keyboard>/g",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -428,39 +419,6 @@
                     "action": "InventorySlot9",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "4752cbd2-5b42-4c9f-a9df-2470e8ddf26a",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "OpenLootbox",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "630faa7b-677c-4632-8d3d-1651ca8bbe77",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "OpenLootbox",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "3c26b6cb-592b-4f30-b453-7d726f4a6403",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "OpenLootbox",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",

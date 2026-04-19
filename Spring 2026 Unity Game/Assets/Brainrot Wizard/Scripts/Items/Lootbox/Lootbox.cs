@@ -15,6 +15,12 @@ public class Lootbox : Item
 
     private Loottable LootTable => data as Loottable;
 
+    public override void Consume()
+    {
+        base.Consume();
+        GameManager.Instance.GUIManager.ShowLootboxUI(this);
+    }
+
     public LoottableEntry Roll()
     {
         if (LootTable != null)

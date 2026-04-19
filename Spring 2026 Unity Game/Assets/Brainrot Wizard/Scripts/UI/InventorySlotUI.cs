@@ -1,60 +1,104 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler 
 {
     public Image slotIcon;
     public GameObject background;
     public TextMeshProUGUI quantityText;
     public TextMeshProUGUI nameText;
+    private bool _showTooltip = false;
 
-    private Item item;
+    private InventorySlot _linkedSlot;
     
     public void SetQuantityText(int amount)
     {
-        quantityText.text = amount <= 0 ? "" : StringUtils.AbbreviateNumber(amount);
+        if (quantityText != null)
+            quantityText.text = amount <= 1 ? "" : StringUtils.AbbreviateNumber(amount);
     }
 
     public void UpdateName(string newName)
     {
         nameText.text = newName;
-        
         nameText.gameObject.SetActive(true);
         slotIcon.gameObject.SetActive(false);
     }
+
     public void UpdateIcon(Sprite icon)
     {
         slotIcon.sprite = icon;
-        
         nameText.gameObject.SetActive(false);
         slotIcon.gameObject.SetActive(true);
     }
-    
-    // This is needed for the tooltips
-    public void SetItem(Item newItem)
+
+    public void InitializeInventorySlot(InventorySlot inventorySlot)
     {
-        if (newItem == null)
+        _linkedSlot = inventorySlot;
+        RefreshSlotVisuals();
+    }
+    
+    public void SetItem(Item newItem, int quantity = 1)
+    {
+        if (_linkedSlot == null) return;
+
+        _linkedSlot.item = newItem;
+        _linkedSlot.quantity = quantity;
+
+        RefreshSlotVisuals();
+    }
+
+    public void RefreshSlotVisuals()
+    {
+        if (_linkedSlot?.item == null)
+        {
             slotIcon.gameObject.SetActive(false);
-        else
-            slotIcon.gameObject.SetActive(true);
+            SetQuantityText(0);
+            return;
+        }
         
-        item = newItem;
+        slotIcon.gameObject.SetActive(true);
+        UpdateIcon(_linkedSlot.item.GetIcon());
+        SetQuantityText(_linkedSlot.quantity);
+    }
+
+    public Item GetItem()
+    {
+        return _linkedSlot?.item;
+    }
+
+    public int GetQuantity()
+    {
+        return _linkedSlot != null ? _linkedSlot.quantity : 0;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (item == null) return;
-        
-        GameManager.Instance.GUIManager.TooltipUIRef.Show(item);
+        if (GetItem() == null && !_showTooltip) return;
+        GameManager.Instance.GUIManager.TooltipUIRef.Show(GetItem());
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (item == null) return;
-        
+        if (GetItem() == null) return;
         GameManager.Instance.GUIManager.TooltipUIRef.Hide();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            GameManager.Instance.GUIManager.SwapMouseContent(this);
+        }
+        else
+        {
+            GetItem()?.Consume();
+        }
+    }
+
+    public void ShowTooltip(bool show)
+    {
+        _showTooltip = show;
     }
 }

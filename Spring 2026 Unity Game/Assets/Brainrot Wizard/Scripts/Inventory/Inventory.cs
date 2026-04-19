@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 public struct InventoryChange
 {
@@ -33,45 +29,49 @@ public class Inventory
         {
             if (slots[i].item != null) continue;
             
-            slots[i] = new InventorySlot(item, quantity);
+            slots[i].item = item; 
+            slots[i].quantity = quantity;
             return i;
         }
 
         return -1;
     }
 
+    // This doesn't make since the slot should never be null
     public InventorySlot AddToSlot(int slot, Item item, int quantity=1) {
         InventorySlot replace = slots[slot];
         if (slots[slot] == null) {
-            slots[slot] = new InventorySlot(item, quantity);
+            Debug.LogWarning($"Slot {slot} is null!" );
             return replace;
         }
         if (slots[slot].IsTypeAs(item)) {
             slots[slot].quantity += quantity;
         }
-        slots[slot] = new InventorySlot(item, quantity);
+
+        slots[slot].item = item;
+        slots[slot].quantity = quantity;
         return replace;
     }
     
-    public InventorySlot RemoveFromSlot(int slot, int quantity=1) {
-        InventorySlot returning = new InventorySlot(); // null slot
+    public InventorySlot RemoveFromSlot(int slot, int quantity = 1) {
+        InventorySlot returning = new InventorySlot();
 
-        //slots[slot].quantity = Math.Clamp(slots[slot].quantity - quantity, 0, slots.Length);
         if (quantity <= 0) {
-            Debug.Log("You asked for a negative or zero amount of something at invslot " + slot + "!");
+            Debug.Log("Invalid quantity requested at slot " + slot);
             return returning;
         }
 
         if (slots[slot].quantity > quantity) {
             slots[slot].quantity -= quantity;
             returning.Add(slots[slot].item, quantity);
-            return returning;
-        }
-        if (slots[slot].quantity > 0) { // full removal of the invslot
+        } 
+        else if (slots[slot].quantity > 0) {
             returning.Add(slots[slot].item, slots[slot].quantity);
-            slots[slot] = new InventorySlot(); // nullify slot
-            return returning;
+            
+            slots[slot].item = null;
+            slots[slot].quantity = 0;
         }
+        
         return returning;
     }
 
@@ -86,49 +86,22 @@ public class Inventory
     /// <returns>
     /// A list of InventoryChange structs containing the slot index and the updated quantity.
     /// </returns>
-    public List<InventoryChange> RemoveItemFromInventory(Item item, int quantity = 1)
+    public InventoryChange RemoveItemFromInventory(Item item, int quantity = 1)
     {
-        List<InventoryChange> changes = new();
-        int remainingToRemove = quantity;
+        InventoryChange change = new InventoryChange();
+        change.Index = -1;
+        
+        int itemIndex = GetItemAtFirstFoundIndex(item);
 
-        for (int i = slots.Length - 1; i >= 0; i--)
-        {
-            if (remainingToRemove <= 0)
-                break;
+        if (itemIndex < 0) return change;
 
-            // removing problem probably starts here
-            Debug.Log(slots[i].IsTypeAs(item));
-            
-            if(slots[i].item != null)
-                Debug.Log(slots[i].item.GetName() + " | " + item.GetName());
-            
-            if (!slots[i].IsTypeAs(item))
-                continue;
-
-            int available = slots[i].quantity;
-            int removeAmount = Mathf.Min(available, remainingToRemove);
-
-            if (removeAmount <= 0)
-                continue;
-
-            slots[i].quantity -= removeAmount;
-            remainingToRemove -= removeAmount;
-
-            if (slots[i].quantity <= 0)
-            {
-                slots[i].quantity = 0;
-                slots[i].item = null;
-            }
-
-            changes.Add(new InventoryChange
-            {
-                Index = i,
-                NewQuantity = slots[i].quantity
-            });
-        }
-
-        return changes;
+        change.Index = itemIndex;
+        RemoveFromSlot(itemIndex, quantity);
+        change.NewQuantity = GetItemAt(itemIndex).quantity;
+        
+        return change;
     }
+
     // Return the total number of items within the inventory.
     public int GetTotalItemCount() {
         int count = 0;
@@ -158,7 +131,7 @@ public class Inventory
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].item == item) return i;
+            if (slots[i].item.Equals(item)) return i;
         }
         
         return -1;

@@ -13,6 +13,9 @@ public class GUIManager : MonoBehaviour
 
     [SerializeField] private GameObject slotPrefab;
 
+    private InventorySlot _mouseInventorySlot = new();
+    [SerializeField] private InventorySlotUI mouseInventorySlotUI;
+
     public MainGUI MainGUIRef => mainGUIRef;
     public MachineUI MachineUIRef => machineUIRef;
     public TooltipUI TooltipUIRef => tooltipUIRef;
@@ -20,63 +23,60 @@ public class GUIManager : MonoBehaviour
 
     private void Start()
     {
+        mouseInventorySlotUI.ShowTooltip(false);
+        
         if (MainGUIRef == null)
             Debug.LogWarning("Main GUI is not inputted!");
         if (MachineUIRef == null)
             Debug.LogWarning("Machine UI is not inputted!");
+        
+        mouseInventorySlotUI.InitializeInventorySlot(_mouseInventorySlot);
     }
-    
+
+    private void Update()
+    {
+        mouseInventorySlotUI.transform.position = new Vector3(Input.mousePosition.x + 25, Input.mousePosition.y - 25, Input.mousePosition.z);
+    }
     public void OpenMachineUI(Machine machine)
     {
         MachineUIRef.Open(machine);
     }
-    
-    
     public void OpenMachineUI(Machine machine, Action action)
     {
         MachineUIRef.Open(machine, action);
     }
-
     public void CloseMachineUI()
     {
         MachineUIRef.Close();
     }
-
     public void ShowMainGUI()
     {
         MainGUIRef.Show();
     }
-
     public void HideMainGUI()
     {
         MainGUIRef.Hide();
     }
-
     public void ShowLootboxUI(Lootbox lootbox)
     {
         lootboxUIRef.OpenLootboxUI(lootbox);
     }
-
     public void HideLootboxUI()
     {
         lootboxUIRef.CloseLootboxUI();
     }
-
     public void ShowRentGUI(bool passedRentCycle)
     {
         rentGUIRef.OpenUI(passedRentCycle);
     }
-
     public void HideRentGUI()
     {
         rentGUIRef.CloseUI();
     }
-
     public void ShowContractTerminalUI()
     {
         contractTerminalUIRef.Show();
     }
-    
     public void HideContractTerminalUI()
     {
         contractTerminalUIRef.Hide();
@@ -121,5 +121,19 @@ public class GUIManager : MonoBehaviour
             inventorySlotUI.SetQuantityText(slot.quantity);
 
         return newSlot;
+    }
+    public void SwapMouseContent(InventorySlotUI slot)
+    {
+        Item itemInMouse = mouseInventorySlotUI.GetItem();
+        int qtyInMouse = mouseInventorySlotUI.GetQuantity();
+
+        Item itemInSlot = slot.GetItem();
+        int qtyInSlot = slot.GetQuantity();
+
+        mouseInventorySlotUI.SetItem(itemInSlot, qtyInSlot);
+        slot.SetItem(itemInMouse, qtyInMouse);
+    
+        mouseInventorySlotUI.background.SetActive(mouseInventorySlotUI.GetItem() != null);
+        TooltipUIRef.Hide();
     }
 }

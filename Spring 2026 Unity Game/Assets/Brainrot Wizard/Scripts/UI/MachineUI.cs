@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class MachineUI : MonoBehaviour
 {
     public GameObject machineBackgroundUI;
-    public GameObject machineSlotPrefab;
     
     public ScrollRect inputScrollView;
     public ScrollRect outputScrollView;
@@ -37,19 +36,22 @@ public class MachineUI : MonoBehaviour
         {
             GameObject newSlot = GameManager.Instance.GUIManager.CreateSlot(slot);
             newSlot.transform.SetParent(inputScrollView.content, false);
-            _inputSlots.Add(newSlot.GetComponent<InventorySlotUI>());
+            var newSlotUI = newSlot.GetComponent<InventorySlotUI>();
+            _inputSlots.Add(newSlotUI);
+            newSlotUI.InitializeInventorySlot(slot);
         }
 
         foreach (InventorySlot slot in outputs.slots)
         {
             GameObject newSlot = GameManager.Instance.GUIManager.CreateSlot(slot);
             newSlot.transform.SetParent(outputScrollView.content, false);
-            _outputSlots.Add(newSlot.GetComponent<InventorySlotUI>());
+            var newSlotUI = newSlot.GetComponent<InventorySlotUI>();
+            _outputSlots.Add(newSlotUI);
+            newSlotUI.InitializeInventorySlot(slot);
         }
         
         machineBackgroundUI.SetActive(true);
     }
-    
     
     public void Open(Machine machine, Action action)
     {
@@ -103,12 +105,14 @@ public class MachineUI : MonoBehaviour
             _inputSlots[index].SetItem(CurrentMachine.GetInputFromSlot(index));
             _inputSlots[index].UpdateIcon(icon);
             _inputSlots[index].SetQuantityText(quantity);
+            _inputSlots[index].RefreshSlotVisuals();
         }
         else
         {
             _outputSlots[index].SetItem(CurrentMachine.GetOutputFromSlot(index));
             _outputSlots[index].UpdateIcon(icon);
             _outputSlots[index].SetQuantityText(quantity);
+            _outputSlots[index].RefreshSlotVisuals();
         }
     }
 }

@@ -68,35 +68,16 @@ public class PlayerInventoryUI : MonoBehaviour
         );
     }
 
-    /// <summary>
-    /// Activates the highlight icon, making it visible.
-    /// </summary>
-    private void ShowHighlight()
+    private void ShowHighlight() => inventorySelectIcon.SetActive(true);
+    private void HideHighlight() => inventorySelectIcon.SetActive(false);
+
+    public void RefreshSlot(int index)
     {
-        inventorySelectIcon.SetActive(true);
-    }
-    
-    /// <summary>
-    /// Deactivates the highlight icon, hiding it from view.
-    /// </summary>
-    private void HideHighlight()
-    {
-        inventorySelectIcon.SetActive(false);
+        inventorySlotsUI[index].RefreshSlotVisuals();
     }
 
-    public void UpdateIconForIndex(int index, Sprite newIcon)
+    public void InitSlot(int index, InventorySlot inventorySlot)
     {
-        inventorySlotsUI[index].UpdateIcon(newIcon);
+        inventorySlotsUI[index].InitializeInventorySlot(inventorySlot);
     }
-
-    public void UpdateQuantityTextForIndex(int index, int quantity)
-    {
-        inventorySlotsUI[index].SetQuantityText(quantity);
-    }
-
-    public void UpdateItem(int index, Item item)
-    {
-        inventorySlotsUI[index].SetItem(item);
-    }
-    
 }

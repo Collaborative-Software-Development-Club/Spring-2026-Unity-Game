@@ -64,6 +64,10 @@ public abstract class Item
     {
         return data.icon;
     }
+    public virtual void Consume()
+    {
+        if (!data.isConsumable) return;
+    }
     public bool HasData()
     {
         return !(data is null);
@@ -74,7 +78,6 @@ public abstract class Item
         
         Debug.LogWarning($"{Name} has no ItemData assigned");
     }
-
     public override bool Equals(object obj)
     {
         if (obj == null)
@@ -95,8 +98,6 @@ public abstract class Item
     {
         return data != null ? data.GetHashCode() : 0;
     }
-    
-    
     public virtual Item Clone()
     {
         var clone = (Item)MemberwiseClone();
