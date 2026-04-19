@@ -5,6 +5,7 @@ using UnityEngine;
 public class JEC_KeyCollectable : MonoBehaviour
 {
     [SerializeField] private JEC_Key keyData;
+    [SerializeField] private GameObject popupCloseButton;
     [SerializeField] private Boolean isHidden;
 
     private string character;
@@ -14,6 +15,7 @@ public class JEC_KeyCollectable : MonoBehaviour
 
         JEC_Events.OnPopupClosed.AddListener(Appear);
         // hide the key if is marked hidden by popup
+
         if (isHidden)
         {
             gameObject.SetActive(false);
@@ -38,8 +40,11 @@ public class JEC_KeyCollectable : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Appear(GameObject ignore)
+    void Appear(GameObject target)
     {
-        gameObject.SetActive(true);
+        if (popupCloseButton != null && popupCloseButton == target)
+        {
+            gameObject.SetActive(true);
+        }
     }
 }

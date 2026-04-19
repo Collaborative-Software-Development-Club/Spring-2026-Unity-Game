@@ -1979,6 +1979,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3286697467153168871}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4621390059891938516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7907978074090007859, guid: d880b0b71a512234cb9567c769e8e3af,
+    type: 3}
+  m_PrefabInstance: {fileID: 3286697467153168871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6222021802740012597 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8918743767303516114, guid: d880b0b71a512234cb9567c769e8e3af,
@@ -2119,6 +2125,11 @@ PrefabInstance:
       propertyPath: isHidden
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5032579242996177791, guid: 5395ec87795e03d46b93796c864066ea,
+        type: 3}
+      propertyPath: popupCloseButton
+      value: 
+      objectReference: {fileID: 4621390059891938516}
     - target: {fileID: 8584391440406854541, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -2353,6 +2364,11 @@ PrefabInstance:
       propertyPath: isHidden
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5032579242996177791, guid: 5395ec87795e03d46b93796c864066ea,
+        type: 3}
+      propertyPath: popupCloseButton
+      value: 
+      objectReference: {fileID: 4621390059891938516}
     - target: {fileID: 8584391440406854541, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
       propertyPath: m_PresetInfoIsWorld

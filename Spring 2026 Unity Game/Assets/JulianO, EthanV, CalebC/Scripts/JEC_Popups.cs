@@ -8,7 +8,7 @@ public class JEC_Popups : JEC_InteractableBase
     public Image adImage;
     [SerializeField] public TMP_Text text;
     public GameObject Player;
-    public GameObject popupContent;
+    public GameObject popup;
     public bool hidingKeys;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,8 +28,7 @@ public class JEC_Popups : JEC_InteractableBase
     {
         if (target == this.gameObject)
         {
-        Destroy(popupContent);
-        Destroy(this.gameObject);
+            popup.SetActive(false);
 
         }
     }
