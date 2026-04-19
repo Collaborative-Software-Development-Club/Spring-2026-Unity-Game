@@ -1550,7 +1550,7 @@ PrefabInstance:
     - target: {fileID: 5851368520501434648, guid: 4a5d697082d75de42ad9e46f40fb6740,
         type: 3}
       propertyPath: m_Name
-      value: Aspiring Stud 1
+      value: Aspiring Stud
       objectReference: {fileID: 0}
     - target: {fileID: 8448589937717000779, guid: 4a5d697082d75de42ad9e46f40fb6740,
         type: 3}
