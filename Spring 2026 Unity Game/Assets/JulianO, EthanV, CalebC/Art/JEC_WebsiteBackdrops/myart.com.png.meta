@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 582acd2a3048c4241a676b7165a338c7
+guid: 6471b81d6af0c1649a54c134ec764d4f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6567576018255578395
-    second: myart.com_20260408182146_0
+      213: 4232569323543612216
+    second: JEC_myart(Filled)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: myart.com_20260408182146_0
+      name: JEC_myart(Filled)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ea708c68684bd4a0800000000000000
-      internalID: -6567576018255578395
+      spriteID: 83b4809ef5b1dba30800000000000000
+      internalID: 4232569323543612216
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      myart.com_20260408182146_0: -6567576018255578395
+      JEC_myart(Filled)_0: 4232569323543612216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

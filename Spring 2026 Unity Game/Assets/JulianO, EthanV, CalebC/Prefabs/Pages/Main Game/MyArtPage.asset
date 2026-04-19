@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JEC_PageData
   url: myart.com
   pageName: MyArt
-  background: {fileID: 0}
+  background: {fileID: 4232569323543612216, guid: 6471b81d6af0c1649a54c134ec764d4f,
+    type: 3}
   contentPrefab: {fileID: 6745830118252685732, guid: 8676db9096c8e0b4e99cfc749775a34e,
     type: 3}

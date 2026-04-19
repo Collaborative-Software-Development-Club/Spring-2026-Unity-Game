@@ -97,7 +97,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: My AWESOMECOOL art is almost as good
+  m_text: My AWESOMECOOL art is almost as good as
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.68946075, y: -84.93747, z: 132.06416, w: 73.95257}
+  m_margin: {x: 0.68946075, y: -83.823166, z: 125.006905, w: 73.95257}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2063,7 +2063,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6567576018255578395, guid: 582acd2a3048c4241a676b7165a338c7,
+      objectReference: {fileID: 4232569323543612216, guid: 6471b81d6af0c1649a54c134ec764d4f,
         type: 3}
     - target: {fileID: 4612954675170826066, guid: 88cb0a889f881a14e996a2bf6e1031b4,
         type: 3}
