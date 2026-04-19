@@ -35,7 +35,8 @@ public class GUIManager : MonoBehaviour
 
     private void Update()
     {
-        mouseInventorySlotUI.transform.position = new Vector3(Input.mousePosition.x + 25, Input.mousePosition.y - 25, Input.mousePosition.z);
+        if(mouseInventorySlotUI != null)
+            mouseInventorySlotUI.transform.position = new Vector3(Input.mousePosition.x + 25, Input.mousePosition.y - 25, Input.mousePosition.z);
     }
     public void OpenMachineUI(Machine machine)
     {
