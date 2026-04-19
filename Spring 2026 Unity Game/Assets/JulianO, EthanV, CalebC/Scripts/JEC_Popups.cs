@@ -11,9 +11,6 @@ public class JEC_Popups : JEC_InteractableBase
     public GameObject popupContent;
     public bool hidingKeys;
 
-    [SerializeField] private int length;
-    [SerializeField] private int height;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,13 +21,17 @@ public class JEC_Popups : JEC_InteractableBase
 
     protected override void Interact()
     {
-        JEC_Events.OnPopupClosed.Invoke();
+        JEC_Events.OnPopupClosed.Invoke(this.gameObject);
     }
 
-    void ClosePopup()
+    void ClosePopup(GameObject target)
     {
+        if (target == this.gameObject)
+        {
         Destroy(popupContent);
         Destroy(this.gameObject);
+
+        }
     }
 
 }

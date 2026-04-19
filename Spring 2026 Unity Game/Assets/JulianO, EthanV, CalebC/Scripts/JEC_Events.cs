@@ -29,6 +29,6 @@ public static class JEC_Events
     public static UnityEvent<JEC_MessengerMessage> OnMessengerMessageReceived = new UnityEvent<JEC_MessengerMessage>();
     public static UnityEvent<bool> OnMessengerUnreadChanged = new UnityEvent<bool>();
 
-    public static UnityEvent OnPopupClosed = new UnityEvent();
+    public static UnityEvent<GameObject> OnPopupClosed = new UnityEvent<GameObject>();
 
 }

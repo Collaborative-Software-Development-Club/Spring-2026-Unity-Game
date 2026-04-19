@@ -38,7 +38,7 @@ public class JEC_KeyCollectable : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Appear()
+    void Appear(GameObject ignore)
     {
         gameObject.SetActive(true);
     }

@@ -1940,7 +1940,7 @@ PrefabInstance:
     - target: {fileID: 1735310726880190257, guid: d880b0b71a512234cb9567c769e8e3af,
         type: 3}
       propertyPath: m_Name
-      value: Popup
+      value: RastPopup
       objectReference: {fileID: 0}
     - target: {fileID: 5947306574215518423, guid: d880b0b71a512234cb9567c769e8e3af,
         type: 3}
@@ -1950,7 +1950,17 @@ PrefabInstance:
     - target: {fileID: 7653256099279463519, guid: d880b0b71a512234cb9567c769e8e3af,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878752927714763679, guid: d880b0b71a512234cb9567c769e8e3af,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878752927714763679, guid: d880b0b71a512234cb9567c769e8e3af,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7878752927714763679, guid: d880b0b71a512234cb9567c769e8e3af,
         type: 3}
