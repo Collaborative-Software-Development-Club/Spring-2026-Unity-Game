@@ -7,11 +7,14 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     public Image slotIcon;
     public GameObject background;
+    public GameObject brainDisplayPrefab;
+    public GameObject brainDisplay; // instantiated from brainDisplayPrefab on icon update
     public TextMeshProUGUI quantityText;
     public TextMeshProUGUI nameText;
     private bool _showTooltip = false;
 
     private InventorySlot _linkedSlot;
+    private BrainrotDisplayUI brainDisplayUI; // the script from brainDisplay
     
     public void SetQuantityText(int amount)
     {
@@ -28,6 +31,18 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void UpdateIcon(Sprite icon)
     {
+        if (brainDisplay is not null) {
+            Destroy(brainDisplay);
+        }
+        print (_linkedSlot.Type());
+        if (_linkedSlot != null && _linkedSlot.Type() == ItemType.Brainrot) {
+            brainDisplay = GameObject.Instantiate(brainDisplayPrefab);
+            brainDisplay.transform.SetParent(transform);
+            brainDisplay.transform.position = transform.position;
+            brainDisplayUI = brainDisplay.GetComponent<BrainrotDisplayUI>();
+            brainDisplayUI.Begin((Brainrot)(_linkedSlot.item));
+        }
+
         slotIcon.sprite = icon;
         nameText.gameObject.SetActive(false);
         slotIcon.gameObject.SetActive(true);

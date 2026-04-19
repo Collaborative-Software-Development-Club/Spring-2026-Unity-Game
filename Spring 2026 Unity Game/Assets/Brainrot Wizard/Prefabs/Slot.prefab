@@ -406,6 +406,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 4308623179267248497}
   background: {fileID: 776834843845784574}
+  brainDisplayPrefab: {fileID: 2843679410199306285, guid: 265625d29bfaa9844a0c70a39b1a72ef,
+    type: 3}
   quantityText: {fileID: 3486140005428542629}
   nameText: {fileID: 3411263628645135916}
 --- !u!1 &8086411537617127863

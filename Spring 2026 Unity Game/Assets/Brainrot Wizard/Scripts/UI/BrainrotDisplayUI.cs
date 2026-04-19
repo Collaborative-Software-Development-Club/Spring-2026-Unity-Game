@@ -24,15 +24,16 @@ public class BrainrotDisplayUI : MonoBehaviour
         
     }
 
-    void Begin(Brainrot brainrot) {
+    public void Begin(Brainrot brainrot) {
+        mybrainrotnames.Setup();
         mybrain = brainrot;
         UpdateRot();
     }
 
-    void UpdateRot() {
+    public void UpdateRot() {
         mycategories = mybrainrotnames.MyCategoriesHas(mybrainrotnames.MyCategories(mybrain), mybrainrotnames.prioritylist);
         for (int i = 0; i < mycategories.Count; i++) {
-            mybrainlayers[i].active = mycategories[i];
+            mybrainlayers[i].SetActive(mycategories[i]);
         }
     }
 }

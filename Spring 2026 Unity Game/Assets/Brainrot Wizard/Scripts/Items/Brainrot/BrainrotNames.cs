@@ -20,9 +20,14 @@ public class BrainrotNames : MonoBehaviour
     private Attribute[][] setupPriorities = new Attribute[][] { new Attribute[]{Attribute.Massive}, new Attribute[]{Attribute.AI, Attribute.Surreal}, new Attribute[]{Attribute.Classic, Attribute.References}, new Attribute[]{Attribute.Classic, Attribute.Ironic}, new Attribute[]{Attribute.Tiktok, Attribute.TVShow, Attribute.Celebrities, Attribute.Movies}, new Attribute[]{Attribute.InRealLife, Attribute.Classic}};
 
     private void Start() {
+        Setup();
+    }
+
+    public void Setup() {
         for (int i = 0; i < setupPriorities.Length; i++) {
             names[prioritylist[i]] = setupPriorities[i];
             brainrotName[prioritylist[i]] = SetupNames[i];
+            //print(SetupNames[i]);
         }
 
         if (brainrottest != null && PrintDebug) {
