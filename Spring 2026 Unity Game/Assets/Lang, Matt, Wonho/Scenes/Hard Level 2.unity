@@ -1693,7 +1693,7 @@ MonoBehaviour:
   playerControll: {fileID: 1383254299}
   board: {fileID: 444789461}
   result: {fileID: 444789463}
-  stopwatch: {fileID: 0}
+  stopwatch: {fileID: 647750282}
   bookUnlocker: {fileID: 661214018}
   sceneChanger: {fileID: 2116252687}
 --- !u!114 &444789463
@@ -2138,6 +2138,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 647750280}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &647750282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1909891578246399923, guid: 249940b14aa9bd54eb4b177b56bd1d9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 647750280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121ca9b3ce3d5284eb1f4f107a3e746d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stopwatch
 --- !u!1 &661214017
 GameObject:
   m_ObjectHideFlags: 0

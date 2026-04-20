@@ -57,9 +57,8 @@ public class SolutionChecker : MonoBehaviour
         if (correct == 0)
         {
             Debug.Log("You win");
-            if (sceneChanger.currentLevel == 1) {
-                stopwatch.PauseStopwatch();
-            }
+            stopwatch.PauseStopwatch();
+            
             if(sceneChanger.currentLevel == 5)
             {
                 Debug.Log("Book should be unlocked now");
