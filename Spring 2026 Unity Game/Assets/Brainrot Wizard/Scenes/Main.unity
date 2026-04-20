@@ -2914,7 +2914,8 @@ GameObject:
   - component: {fileID: 370079941}
   - component: {fileID: 370079940}
   - component: {fileID: 370079942}
-  m_Layer: 0
+  - component: {fileID: 370079943}
+  m_Layer: 6
   m_Name: Furniture_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3041,6 +3042,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.2, y: 2.0666666}
   m_EdgeRadius: 0
+--- !u!114 &370079943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370079939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46d87832261b7c42a8311078c800e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressStage
 --- !u!114 &390895512 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3411263628645135916, guid: 774008735f126744db866307e200ace4,
