@@ -7,7 +7,7 @@ public class ResultDisplayer : MonoBehaviour
     public GameObject lose;
     public GameObject clickBlock;
     public GameObject infoBlock;
-    void Start()
+    void Awake()
     {
         ContinueAfterLoss(); 
     }

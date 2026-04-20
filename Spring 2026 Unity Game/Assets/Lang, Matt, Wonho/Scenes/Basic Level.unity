@@ -2258,6 +2258,7 @@ GameObject:
   - component: {fileID: 444789461}
   - component: {fileID: 444789462}
   - component: {fileID: 444789463}
+  - component: {fileID: 444789464}
   m_Layer: 5
   m_Name: Board
   m_TagString: Untagged
@@ -2374,6 +2375,19 @@ MonoBehaviour:
   lose: {fileID: 1533738232}
   clickBlock: {fileID: 1585970307}
   infoBlock: {fileID: 749662543}
+--- !u!114 &444789464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444789458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a78443426102452aa31753b99afe1a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popups: {fileID: 444789463}
 --- !u!1 &445837471
 GameObject:
   m_ObjectHideFlags: 0
