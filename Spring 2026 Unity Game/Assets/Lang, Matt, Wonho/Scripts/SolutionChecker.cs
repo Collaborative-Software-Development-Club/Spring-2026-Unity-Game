@@ -70,11 +70,12 @@ public class SolutionChecker : MonoBehaviour
         {
             Debug.Log("You lose");
             result.LoseScreen();
+            /*
             if(sceneChanger.currentLevel == 5)
             {
                 Debug.Log("Book should be unlocked now");
                 bookUnlocker.Unlock();
-            }
+            }*/
         }
     }
     

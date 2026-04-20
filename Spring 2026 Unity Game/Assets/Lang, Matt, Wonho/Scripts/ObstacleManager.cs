@@ -46,7 +46,7 @@ public class ObstacleManager : MonoBehaviour
                         if(randnum < 10)
                         {
                             highlighter.rows[i].tiles[j].SetColor(Color.darkMagenta);
-                            highlighter.rows[i].tiles[j].TextColor(blindColor);
+                            highlighter.rows[i].tiles[j].SetLetter('?');
                             isBlind[i,j] = true;
                         }
                     }
