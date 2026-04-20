@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 187, y: 132}
+  m_AnchoredPosition: {x: 195.5, y: 278}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9053537883774082085
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"E" to Interact'
+  m_text: '"E" to close'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -250,6 +250,7 @@ MonoBehaviour:
   interactionPrompt: {fileID: 224187223619640624}
   hidePromptOnInteract: 1
   text: {fileID: 0}
+  closeSFX: {fileID: 8300000, guid: 97a46400bc123974e9a0685ed12dec22, type: 3}
   Player: {fileID: 6515621381370381304, guid: e75c42f22861f4365a84c03b7a1083a3, type: 3}
   popup: {fileID: 7692509513941778960}
   hidingKeys: 0
@@ -312,7 +313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.5799866, y: 0.39001465}
+  m_AnchoredPosition: {x: -0.57995605, y: 0.39001465}
   m_SizeDelta: {x: 1101, y: 549}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5363735452230523686
@@ -360,7 +361,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &3886263346942897628
 MonoBehaviour:
   m_ObjectHideFlags: 0

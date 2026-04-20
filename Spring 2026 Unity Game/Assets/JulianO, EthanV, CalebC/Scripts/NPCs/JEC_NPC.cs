@@ -10,6 +10,7 @@ public class JEC_NPC : JEC_InteractableBase
     public TMP_Text dialogueText, nameText;
     public Image portraitImage;
     public GameObject Player;
+    [SerializeField] private AudioClip voice;
 
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
@@ -104,6 +105,7 @@ public class JEC_NPC : JEC_InteractableBase
         {
             // fill in the text box with the dialogue one char at a time
             dialogueText.text += letter;
+            JEC_SFXManager.Instance.Speak(voice, transform, 1f);
             yield return new WaitForSeconds(dialogueData.typingSpeed);
         }
 
