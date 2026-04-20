@@ -18,6 +18,6 @@ MonoBehaviour:
   - Where am I?!
   autoProgressLines: 
   autoProgressDelay: 1.5
-  typingSpeed: 0.05
-  voiceSound: {fileID: 0}
-  voicePitch: 1
+  typingSpeed: 0.11
+  voiceSound: {fileID: 8300000, guid: 1d5d6c369e0f9804daaf2ab767a42b6d, type: 3}
+  voicePitch: 0.5
