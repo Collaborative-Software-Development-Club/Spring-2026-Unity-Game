@@ -32,4 +32,16 @@ public class TileClicked : MonoBehaviour
             audioSource.Play();
         }
     }
+
+    public AudioSource hoverAudioSource; //Reference to your Audio Source
+
+    // A public function that can be called by the button's OnClick event
+    public void PlayHoverSound()
+    {
+        if (hoverAudioSource != null)
+        {
+            hoverAudioSource.Stop();
+            hoverAudioSource.Play();
+        }
+    }
 }
