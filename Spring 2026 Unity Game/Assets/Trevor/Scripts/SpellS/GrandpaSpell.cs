@@ -7,11 +7,11 @@ public class GrandpaSpell : SpellBehavior
     [SerializeField] private Quaternion summonRotation;
     public override void CastSpell(Transform playerTransform)
     {
-        SummonGrandpa();
+        SummonGrandpa(playerTransform);
     }
 
-    public void SummonGrandpa()
+    public void SummonGrandpa(Transform location)
     {
-        Instantiate(grandpa, summonLocation, summonRotation);
+        Instantiate(grandpa, location.position, summonRotation);
     }
 }

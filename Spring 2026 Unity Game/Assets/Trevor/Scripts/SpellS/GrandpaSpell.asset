@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: GrandpaSpell
   m_EditorClassIdentifier: Assembly-CSharp::SpellData
   spellID: 2
-  spellName: GrandpaSpell
-  spellIcon: {fileID: 54260378572017787, guid: fb9abbb57e022aa4687fa1a1aff07721, type: 3}
-  loreDescription: Summon the apparition of grandpa.
-  mechanicDescription: He will keep you company.
+  spellName: Grandpas Spell
+  spellIcon: {fileID: 1359254230896072486, guid: 653bd11cf40c09a4d8d4d783bb502e45,
+    type: 3}
+  loreDescription: 'Dear Marty and Mary:
+
+    I hope this finds you well. I know
+    that I haven''t been easy to talk to in the past few years, but I hope to remedy
+    that. I have constructed this spell so that I may help you, even long after I
+    am gone. I love you so much, you two.
+
+    - Grandpa'
+  mechanicDescription: Envision a button, labelled 'Q'. Now, whilst holding this
+    book, imagine pressing that button. A friendly and familial apparition you know
+    should appear and offer you wisdom.
   spellPrefab: {fileID: 2363184364508103593, guid: f03b7643243bfef4dbc2729bbe2ee53c,
     type: 3}
