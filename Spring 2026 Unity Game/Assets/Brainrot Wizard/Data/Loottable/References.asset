@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
   text: Hey, I've seen that before!
   value: 370
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 3509361438195868923, guid: 3f1cc574420154e4ba0020f651323948, type: 3}
   type: 5
   rarity: 2
+  isConsumable: 0
   loottable:
   - RollAmount: 60
     ItemData: {fileID: 11400000, guid: 44ee597b206ada340b88fc73cb406455, type: 2}

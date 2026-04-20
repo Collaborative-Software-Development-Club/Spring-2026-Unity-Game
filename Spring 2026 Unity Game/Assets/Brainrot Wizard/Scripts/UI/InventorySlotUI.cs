@@ -31,13 +31,12 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void UpdateIcon(Sprite icon)
     {
-        if (brainDisplay is not null) {
+        if (brainDisplay) {
             Destroy(brainDisplay);
         }
-        print (_linkedSlot.Type());
+        
         if (_linkedSlot != null && _linkedSlot.Type() == ItemType.Brainrot) {
-            brainDisplay = GameObject.Instantiate(brainDisplayPrefab);
-            brainDisplay.transform.SetParent(transform);
+            brainDisplay = Instantiate(brainDisplayPrefab, transform);
             brainDisplay.transform.position = transform.position;
             brainDisplayUI = brainDisplay.GetComponent<BrainrotDisplayUI>();
             brainDisplayUI.Begin((Brainrot)(_linkedSlot.item));
@@ -69,6 +68,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (_linkedSlot?.item == null)
         {
             slotIcon.gameObject.SetActive(false);
+            if (brainDisplay)
+                Destroy(brainDisplay);
             SetQuantityText(0);
             return;
         }

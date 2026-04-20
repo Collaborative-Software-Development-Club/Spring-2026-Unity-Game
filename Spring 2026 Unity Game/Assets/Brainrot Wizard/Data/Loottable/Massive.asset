@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
   text: All of the BIGGEST brainrots.
   value: 440
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 3509361438195868923, guid: 3f1cc574420154e4ba0020f651323948, type: 3}
   type: 5
   rarity: 4
+  isConsumable: 0
   loottable:
   - RollAmount: 40
     ItemData: {fileID: 11400000, guid: dc1e66b9f1590184bae126b4430ff109, type: 2}

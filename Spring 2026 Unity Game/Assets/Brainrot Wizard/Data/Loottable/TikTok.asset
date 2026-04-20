@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
   text: The wannabee celebrities.
   value: 880
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 3509361438195868923, guid: 3f1cc574420154e4ba0020f651323948, type: 3}
   type: 5
   rarity: 5
+  isConsumable: 0
   loottable:
   - RollAmount: 80
     ItemData: {fileID: 11400000, guid: a80525dd91390164eaff7ea585eae112, type: 2}

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
   text: 
   value: 0
-  icon: {fileID: 0}
+  icon: {fileID: -4324791947349359800, guid: 297908bc3a881874a953547dfe1d625b, type: 3}
   type: 0
   rarity: 0
+  isConsumable: 0
   loottable: []

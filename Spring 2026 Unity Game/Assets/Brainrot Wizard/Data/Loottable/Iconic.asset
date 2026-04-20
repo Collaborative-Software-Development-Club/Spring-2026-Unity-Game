@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
   text: Now this will stand the test of time.
   value: 330
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 3509361438195868923, guid: 3f1cc574420154e4ba0020f651323948, type: 3}
   type: 5
   rarity: 2
+  isConsumable: 0
   loottable:
   - RollAmount: 60
     ItemData: {fileID: 11400000, guid: 72bbe47c5147f3e4e83c3e9f2687f78c, type: 2}
