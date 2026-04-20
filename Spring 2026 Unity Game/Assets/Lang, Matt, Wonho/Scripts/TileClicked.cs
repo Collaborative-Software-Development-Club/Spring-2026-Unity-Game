@@ -12,20 +12,23 @@ public class TileClicked : MonoBehaviour
         if (control != null)
         {
             control.TileClicked(row, column);
+            PlayButtonSound();
         }
         else
         {
-            Debug.LogWarning("controll not assigned!");
+            Debug.LogWarning("control not assigned!");
         }
     }
 
-    public AudioSource audioSource; // Reference to your Audio Source
+    public AudioSource audioSource; //Reference to your Audio Source
 
     // A public function that can be called by the button's OnClick event
     public void PlayButtonSound()
     {
         if (audioSource != null)
         {
+            audioSource.Stop();
+            audioSource.time = 4.5f;
             audioSource.Play();
         }
     }
