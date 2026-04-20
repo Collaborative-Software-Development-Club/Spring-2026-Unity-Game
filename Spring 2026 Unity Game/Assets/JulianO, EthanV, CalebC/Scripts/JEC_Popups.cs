@@ -7,6 +7,7 @@ public class JEC_Popups : JEC_InteractableBase
 {
     public Image adImage;
     [SerializeField] public TMP_Text text;
+    [SerializeField] private AudioClip closeSFX;
     public GameObject Player;
     public GameObject popup;
     public bool hidingKeys;
@@ -28,8 +29,8 @@ public class JEC_Popups : JEC_InteractableBase
     {
         if (target == this.gameObject)
         {
+            JEC_SFXManager.Instance.PlaySoundEffect(closeSFX, transform, 1f, false);
             popup.SetActive(false);
-
         }
     }
 
