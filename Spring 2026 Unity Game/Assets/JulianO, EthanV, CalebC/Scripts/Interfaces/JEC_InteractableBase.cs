@@ -22,6 +22,11 @@ public abstract class JEC_InteractableBase : MonoBehaviour
         {
             inputReader.InteractEvent -= DisableInteract;
         }
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.SetActive(false);
+            inputReader.InteractEvent -= Interact;
+        }
     }
 
     protected abstract void Interact();

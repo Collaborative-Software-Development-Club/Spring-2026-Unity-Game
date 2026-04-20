@@ -137,6 +137,7 @@ MonoBehaviour:
   dialogueText: {fileID: 2680895210577400429}
   nameText: {fileID: 2935947348321994054}
   Player: {fileID: 0}
+  voice: {fileID: 8300000, guid: 1d5d6c369e0f9804daaf2ab767a42b6d, type: 3}
 --- !u!135 &2962506681176832497
 SphereCollider:
   m_ObjectHideFlags: 0
