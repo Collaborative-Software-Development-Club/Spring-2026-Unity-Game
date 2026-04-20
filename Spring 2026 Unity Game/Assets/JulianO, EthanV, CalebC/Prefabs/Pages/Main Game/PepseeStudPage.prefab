@@ -956,7 +956,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 90330ad08513814449c2b04be89ce2d0, type: 3}
+      objectReference: {fileID: 8300000, guid: 1983a61758c586d45a89dd9c40126ebe, type: 3}
     - target: {fileID: 8303224999526169870, guid: 8922383f15b004846b0dfb6fd59f8d65,
         type: 3}
       propertyPath: m_Name
@@ -1627,6 +1627,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 2530457537218333861, guid: 4a5d697082d75de42ad9e46f40fb6740,
+        type: 3}
+      propertyPath: voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f5cd43b66fa6744cb5af4f9181be60e, type: 3}
     - target: {fileID: 5851368520501434648, guid: 4a5d697082d75de42ad9e46f40fb6740,
         type: 3}
       propertyPath: m_Name
