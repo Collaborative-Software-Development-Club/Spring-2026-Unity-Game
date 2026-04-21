@@ -38,7 +38,7 @@ public class PatchOfDirt : MonoBehaviour
     {
         if (plantSpawnPoint == null) return;
 
-        Instantiate(plantPrefabs[seedIndex],
+        GameObject obj = Instantiate(plantPrefabs[seedIndex],
                     plantSpawnPoint.position,
                     plantPrefabs[seedIndex].transform.rotation);
 

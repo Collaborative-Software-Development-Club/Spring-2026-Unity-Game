@@ -58,9 +58,12 @@ public class WaterSeed : MonoBehaviour
         PlayerInv.water -= waterCost;
 
         Debug.Log("Plant watered! Water left: " + PlayerInv.water);
-        Instantiate(plantPrefabs[seedIndex],
+        GameObject obj = Instantiate(plantPrefabs[seedIndex],
                     plantSpawnPoint.position,
                     plantPrefabs[seedIndex].transform.rotation);
+        
+        obj.transform.rotation = Quaternion.Euler(plantSpawnPoint.rotation.x, obj.transform.rotation.y, 0);
+        
         watered = true;
         Debug.Log("Spawned plant: " + seedIndex);
         Destroy(dirtPatch);
