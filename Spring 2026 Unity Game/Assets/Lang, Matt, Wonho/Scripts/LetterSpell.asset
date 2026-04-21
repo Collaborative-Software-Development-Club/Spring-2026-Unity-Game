@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpellData
   spellID: 5
   spellName: Letter Spell
-  spellIcon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  loreDescription: Eventually is spelled wrong
-  mechanicDescription: Says A but will eventuall maybe say a random letter
+  spellIcon: {fileID: 466332544209354513, guid: f190172389373184f9e9ee78309f6d29,
+    type: 3}
+  loreDescription: 'After learning each incantation, the power has been gifted upon
+    you to hallucinate random letters into your mind at will. '
+  mechanicDescription: Press Q to generate a random letter on the screen!
   spellPrefab: {fileID: 3660042004250467229, guid: b9f339ad857a047b6b019453cdb47e28,
     type: 3}
