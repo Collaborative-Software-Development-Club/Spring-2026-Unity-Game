@@ -4608,6 +4608,7 @@ GameObject:
   - component: {fileID: 659742203}
   - component: {fileID: 659742202}
   - component: {fileID: 659742207}
+  - component: {fileID: 659742208}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4768,6 +4769,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0dabe1a00f87c47894b3ceb9be7670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResetSceneDamp
+--- !u!114 &659742208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659742201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93707007b1bc58ce4bd648c9ef7ea138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReturnToMainMenu
 --- !u!1 &689373830
 GameObject:
   m_ObjectHideFlags: 0
