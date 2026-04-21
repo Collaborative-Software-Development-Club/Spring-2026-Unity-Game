@@ -807,7 +807,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7950084, y: 0.5901445, z: 0.20000006}
+  m_Size: {x: 0.7950084, y: 0.5901445, z: 10}
   m_Center: {x: 0.022427201, y: -0.31669253, z: -0.000000007450581}
 --- !u!114 &4607476908210615096
 MonoBehaviour:
@@ -828,7 +828,9 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1845202239409823129}
   dialogueText: {fileID: 3178758964327621581}
   nameText: {fileID: 2234829349975833157}
+  portraitImage: {fileID: 0}
   Player: {fileID: 0}
+  voice: {fileID: 0}
 --- !u!135 &3281421629093869715
 SphereCollider:
   m_ObjectHideFlags: 0

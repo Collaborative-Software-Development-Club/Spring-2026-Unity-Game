@@ -112,8 +112,9 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   interactionPrompt: {fileID: 1779647248388148975}
   hidePromptOnInteract: 1
+  adImage: {fileID: 0}
   text: {fileID: 0}
-  closeSFX: {fileID: 0}
+  closeSFX: {fileID: 8300000, guid: 97a46400bc123974e9a0685ed12dec22, type: 3}
   Player: {fileID: 6515621381370381304, guid: e75c42f22861f4365a84c03b7a1083a3, type: 3}
   popup: {fileID: 8173930024135217615}
   hidingKeys: 0
@@ -172,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195.5, y: 278}
+  m_AnchoredPosition: {x: 188, y: 296}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7352770795964174330
@@ -361,7 +362,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &3332713501726359043
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -230,7 +230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195.5, y: 278}
+  m_AnchoredPosition: {x: 195.5, y: 292}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3362153359095328646
@@ -445,6 +445,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   interactionPrompt: {fileID: 5769143016696688275}
   hidePromptOnInteract: 1
+  adImage: {fileID: 0}
   text: {fileID: 0}
   closeSFX: {fileID: 8300000, guid: 97a46400bc123974e9a0685ed12dec22, type: 3}
   Player: {fileID: 6515621381370381304, guid: e75c42f22861f4365a84c03b7a1083a3, type: 3}

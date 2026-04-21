@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 325cb3e1241012142b53369783a56093
+guid: 2098716d6902cbf4b88f81c588b40881
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4232569323543612216
-    second: JEC_myart(Filled)_0
+      213: -440197054893569514
+    second: JEC_SickSciGames_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JEC_myart(Filled)_0
+      name: JEC_SickSciGames_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 83b4809ef5b1dba30800000000000000
-      internalID: 4232569323543612216
+      spriteID: 61a45ef5c1b14e9f0800000000000000
+      internalID: -440197054893569514
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      JEC_myart(Filled)_0: 4232569323543612216
+      JEC_SickSciGames_0: -440197054893569514
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

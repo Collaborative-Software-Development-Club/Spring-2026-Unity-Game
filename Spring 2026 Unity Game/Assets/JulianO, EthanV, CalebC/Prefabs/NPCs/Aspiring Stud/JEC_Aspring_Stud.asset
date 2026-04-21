@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: JEC_Aspring_Stud
   m_EditorClassIdentifier: Assembly-CSharp::JEC_NPCDialogue
   npcName: Aspiring Stud
-  npcPortrait: {fileID: 0}
+  voiceSound: {fileID: 0}
+  voicePitch: 1
   dialogueLines:
   - I wanted to get totally shredded...
   - So I bought 400 cans of pepsee...
@@ -22,6 +23,5 @@ MonoBehaviour:
   - I hope that if I keep drinking cans I'll get ripped enough to lift it...
   autoProgressLines: 
   autoProgressDelay: 1.5
-  typingSpeed: 0.05
-  voiceSound: {fileID: 0}
-  voicePitch: 1
+  typingSpeed: 0.04
+  npcPortrait: {fileID: 0}

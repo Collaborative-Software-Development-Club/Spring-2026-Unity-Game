@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09483a59b88bbf2408b053b3f18815b7, type: 3}
-  m_Name: JEC_Clipford
+  m_Name: JEC_Clipford (SickSci)
   m_EditorClassIdentifier: Assembly-CSharp::JEC_NPCDialogue
   npcName: Clipford
   voiceSound: {fileID: 0}
   voicePitch: 1
   dialogueLines:
   - h-hEH3YYY HEYYYY THER#E!!!
-  - I-II-II''M CLIPFORD!!!!
-  - TT-THAT'S RIIGH7!!! CLIPFORD TH3 ONEEE AND O-O-ONLLYYY!!! NO RE-E-E-LATIONN TO
-    ANYTH111NG ELSE!!!
-  - B-BBBUT7 II'VEE GOT SOME U$EFULL INF0 FOR YOU!! IT'S
+  - I-II-II''M CLIPFORD!!1
+  - AnD B0YY-Y, DO I H4V3 THE HI-I-I-1NT 4 U!!!
+  - HAV3 YOUU-U EVER C0N$!D3RED D-
   - '[Generating Info...]'
-  - '[Not all URLS are useful...]'
-  - '[Sometimes you''ll try a link from a cool-looking ad, but all you''ll get is
-    some sketchy money-laundering site...]'
-  - '[It''s kind of like some metaphor for life. Oh well.]'
+  - '[Backtracking. Such a beautiful portmanteau. But what to do?]'
+  - '[Maybe, occasionally, you''ll run into some random corner of the internet and
+    get stuck. No problem!]'
+  - '[If this ever happens, try *Backtracking*. Maybe there''s a hint you missed,
+    or a new site to get to!]'
   - '*click*'
   - A-AAAAND THAT'$ 4LL, F0LKS!!
   autoProgressLines: 

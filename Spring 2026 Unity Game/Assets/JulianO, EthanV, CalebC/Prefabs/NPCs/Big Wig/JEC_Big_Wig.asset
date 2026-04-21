@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: JEC_Big_Wig
   m_EditorClassIdentifier: Assembly-CSharp::JEC_NPCDialogue
   npcName: Big Wig
-  npcPortrait: {fileID: 0}
+  voiceSound: {fileID: 0}
+  voicePitch: 1
   dialogueLines:
   - How did I turn pepsee into such a successful business?
   - You gotta start the day right.
@@ -25,6 +26,5 @@ MonoBehaviour:
   - Stay on the grind, kid.
   autoProgressLines: 
   autoProgressDelay: 1.5
-  typingSpeed: 0.05
-  voiceSound: {fileID: 0}
-  voicePitch: 1
+  typingSpeed: 0.075
+  npcPortrait: {fileID: 0}
