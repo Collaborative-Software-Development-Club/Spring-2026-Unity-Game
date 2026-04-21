@@ -12,10 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
   m_Name: Epic
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
-  text: 
-  value: 0
+  text: WAIT A MINUTE, this is really epic
+  value: 800
   icon: {fileID: -4324791947349359800, guid: 297908bc3a881874a953547dfe1d625b, type: 3}
-  type: 0
-  rarity: 0
+  type: 5
+  rarity: 4
   isConsumable: 0
-  loottable: []
+  loottable:
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: f938e44befe64df48a58d9fb8cfe57ce, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: dc1e66b9f1590184bae126b4430ff109, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: 4b805be264eee0147aadc6620a03608b, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: ccb764d7dcbe0914bb5b9f5eb582f79e, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: 3cd1948f9dc9a064ca4378b020bde71d, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 40
+    ItemData: {fileID: 11400000, guid: 722d5f1aa531bdb45ad5314a69412b98, type: 2}
+    ItemQuantity: 1

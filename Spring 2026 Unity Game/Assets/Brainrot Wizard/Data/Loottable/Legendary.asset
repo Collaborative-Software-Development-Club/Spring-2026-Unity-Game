@@ -12,10 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eb36261da61164b85430ea2e63c07d, type: 3}
   m_Name: Legendary
   m_EditorClassIdentifier: Assembly-CSharp::Loottable
-  text: 
-  value: 0
+  text: WHAT IN THE WORLD, HOW DID YOU GET THIS?
+  value: 1000
   icon: {fileID: 1230295464822918588, guid: 45775194b9785cb408c54d1676352502, type: 3}
-  type: 0
-  rarity: 0
+  type: 5
+  rarity: 5
   isConsumable: 0
-  loottable: []
+loottable:
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 8b8d9f964c7b2bc4dbef0401be89993c, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: fd67e9f5c765e4a47b1f0eeff0fdb2f9, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 73c29d75ad318ea4db59a371ac9aa32b, type: 2}
+    ItemQuantity: 1
+  - RollAmount: 20
+    ItemData: {fileID: 11400000, guid: 9d3bf689b1e933244a43aceabcd25606, type: 2}
+    ItemQuantity: 1
