@@ -321,10 +321,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2825530380432517820}
     m_Modifications:
+    - target: {fileID: 5016701726039086534, guid: 4cfc1d2574bb31d47a2d2597123717d1,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5946620055733633825, guid: 4cfc1d2574bb31d47a2d2597123717d1,
         type: 3}
       propertyPath: m_Name
       value: NPC UI Popup
+      objectReference: {fileID: 0}
+    - target: {fileID: 6466159653742668334, guid: 4cfc1d2574bb31d47a2d2597123717d1,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7450944417306284287, guid: 4cfc1d2574bb31d47a2d2597123717d1,
         type: 3}
@@ -379,7 +389,7 @@ PrefabInstance:
     - target: {fileID: 7450944417306284287, guid: 4cfc1d2574bb31d47a2d2597123717d1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.7406693
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 7450944417306284287, guid: 4cfc1d2574bb31d47a2d2597123717d1,
         type: 3}
@@ -404,12 +414,7 @@ PrefabInstance:
     - target: {fileID: 7450944417306284287, guid: 4cfc1d2574bb31d47a2d2597123717d1,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.92098
-      objectReference: {fileID: 0}
-    - target: {fileID: 7450944417306284287, guid: 4cfc1d2574bb31d47a2d2597123717d1,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 48.756233
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 7450944417306284287, guid: 4cfc1d2574bb31d47a2d2597123717d1,
         type: 3}

@@ -1833,6 +1833,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1170333068703952998}
     m_Modifications:
+    - target: {fileID: 830760236447754783, guid: e5c086f8dbf18f74c85cd5797ae31c2f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2835069325339029659, guid: e5c086f8dbf18f74c85cd5797ae31c2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1887,6 +1892,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fine Artiste 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001482705921233694, guid: e5c086f8dbf18f74c85cd5797ae31c2f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6840195198171624493, guid: e5c086f8dbf18f74c85cd5797ae31c2f,
         type: 3}
@@ -3396,6 +3406,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4102743274219716933}
     m_Modifications:
+    - target: {fileID: 5231762149272676272, guid: 47b249319f7ce334c894b859a7862cc1,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5394372835986792950, guid: 47b249319f7ce334c894b859a7862cc1,
         type: 3}
       propertyPath: m_Pivot.x
