@@ -1585,6 +1585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205577430}
+  - component: {fileID: 1205577431}
   m_Layer: 0
   m_Name: MAIN
   m_TagString: Untagged
@@ -1612,6 +1613,19 @@ Transform:
   - {fileID: 1468506144}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1205577431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205577429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eedfa8ab1353d04c95e6d1664deb3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JEC_KillGame
+  HubSceneName: MainGameMenu
 --- !u!1 &1223443616
 GameObject:
   m_ObjectHideFlags: 0
