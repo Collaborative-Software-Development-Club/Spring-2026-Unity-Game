@@ -1741,6 +1741,7 @@ MonoBehaviour:
   - {fileID: 2130153973009620950, guid: 774f9ac7486136b4a837a806fcaea188, type: 3}
   - {fileID: 7626718662946350513, guid: 6e9aa69c4f4c09b4e8be92b426997fe3, type: 3}
   plantSpawnPoint: {fileID: 4716093292776453653}
+  dirtPatch: {fileID: 5835678142105981264}
   waterCost: 1
 --- !u!1 &6314286374500091975
 GameObject:

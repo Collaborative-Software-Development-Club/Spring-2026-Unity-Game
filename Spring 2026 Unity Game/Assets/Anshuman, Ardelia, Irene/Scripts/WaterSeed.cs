@@ -7,6 +7,7 @@ public class WaterSeed : MonoBehaviour
     [SerializeField] private InputReader inputReader;
     [SerializeField] private GameObject[] plantPrefabs;
     [SerializeField] private Transform plantSpawnPoint;
+    [SerializeField] private GameObject dirtPatch;
 
     private bool watered = false;
     private bool seedSelected = false;
@@ -62,6 +63,8 @@ public class WaterSeed : MonoBehaviour
                     plantPrefabs[seedIndex].transform.rotation);
         watered = true;
         Debug.Log("Spawned plant: " + seedIndex);
+        Destroy(dirtPatch);
+        Debug.Log("Dirt Patch Removed");
     }
 
     private void OnTriggerEnter(Collider other)
