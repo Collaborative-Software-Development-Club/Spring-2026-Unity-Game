@@ -132,7 +132,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Congratulations you win!
 
-        Click the button to greturn to the
+        Click the button to return to the
         hub.'
       objectReference: {fileID: 0}
     - target: {fileID: 2860956857131468065, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
@@ -213,12 +213,12 @@ PrefabInstance:
     - target: {fileID: 2860956857131468065, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -169.63211
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2860956857131468065, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -95.78596
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2860956857131468065, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}

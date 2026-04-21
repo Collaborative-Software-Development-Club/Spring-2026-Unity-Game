@@ -1906,12 +1906,12 @@ PrefabInstance:
     - target: {fileID: 2860956857131468065, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -169.63211
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2860956857131468065, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -95.78596
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2860956857131468065, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}
@@ -1932,6 +1932,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ClickBlocker (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446597788585796624, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5319454924970810392, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}

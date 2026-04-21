@@ -10981,6 +10981,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClickBlocker
       objectReference: {fileID: 0}
+    - target: {fileID: 4446597788585796624, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5319454924970810392, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -11099,6 +11104,21 @@ PrefabInstance:
     - target: {fileID: 9037540985711598942, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
         type: 3}
       propertyPath: currentLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142997487469121995, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142997487469121995, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142997487469121995, guid: 3b2e3528da0fc4886abb3ce0c28d2705,
+        type: 3}
+      propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

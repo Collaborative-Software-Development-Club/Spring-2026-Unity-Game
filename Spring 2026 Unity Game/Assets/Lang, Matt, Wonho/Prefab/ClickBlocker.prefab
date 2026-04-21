@@ -713,7 +713,7 @@ RectTransform:
   m_GameObject: {fileID: 3170159633373166645}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.500008, y: 3.500008, z: 3.500008}
+  m_LocalScale: {x: 10, y: 9.999977, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6802326666702112414}
@@ -723,7 +723,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000030517578, y: 50.000046}
-  m_SizeDelta: {x: 406, y: 133}
+  m_SizeDelta: {x: 68, y: 66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1495295097810129025
 CanvasRenderer:
@@ -746,14 +746,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46328998, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3774448461433733096, guid: f190172389373184f9e9ee78309f6d29,
+  m_Sprite: {fileID: -2259720929634768308, guid: f190172389373184f9e9ee78309f6d29,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.21568628, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
