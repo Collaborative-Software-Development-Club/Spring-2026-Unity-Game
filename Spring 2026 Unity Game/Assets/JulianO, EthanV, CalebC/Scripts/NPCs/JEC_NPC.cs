@@ -1,5 +1,5 @@
 using System.Collections;
-using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI; // Added this namespace to fix the Image error
 using TMPro;
 using UnityEngine;
 

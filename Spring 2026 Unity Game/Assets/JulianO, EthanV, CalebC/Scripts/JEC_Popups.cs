@@ -1,7 +1,7 @@
 using System.Collections;
-using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI; // Added this namespace to fix the Image error
 
 public class JEC_Popups : JEC_InteractableBase
 {
@@ -33,5 +33,4 @@ public class JEC_Popups : JEC_InteractableBase
             popup.SetActive(false);
         }
     }
-
 }

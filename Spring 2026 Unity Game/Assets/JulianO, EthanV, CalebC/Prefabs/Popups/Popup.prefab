@@ -249,6 +249,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   interactionPrompt: {fileID: 224187223619640624}
   hidePromptOnInteract: 1
+  adImage: {fileID: 0}
   text: {fileID: 0}
   closeSFX: {fileID: 8300000, guid: 97a46400bc123974e9a0685ed12dec22, type: 3}
   Player: {fileID: 6515621381370381304, guid: e75c42f22861f4365a84c03b7a1083a3, type: 3}
@@ -361,7 +362,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &3886263346942897628
 MonoBehaviour:
   m_ObjectHideFlags: 0
