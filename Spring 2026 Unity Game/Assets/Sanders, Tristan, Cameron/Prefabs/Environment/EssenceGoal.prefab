@@ -89,7 +89,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.91, y: 2.86}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -143,6 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EssenceCollector
   <RequiredAmount>k__BackingField: 100
+  collectionAudioSource: {fileID: 0}
+  collectionClip: {fileID: 0}
+  collectionVolume: 1
   enableDebugEssenceInput: 1
   debugAddEssenceKey: 61
   debugAddAmount: 1
