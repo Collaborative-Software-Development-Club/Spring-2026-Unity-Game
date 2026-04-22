@@ -44,5 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f91fcdebc4c2e843b3635f212ffb139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSummon
-  summonPrefab: {fileID: 6375988222447010453, guid: ddc222de83f2230408c01530d265587f,
+  waterPrefab: {fileID: 8142382917270976781, guid: cb6e24e08584dbe4e939bf6d0cac782d,
     type: 3}
+  sprayPoint: {fileID: 0}
+  amount: 5
+  speed: 5
+  spread: 20
+  lifeTime: 1

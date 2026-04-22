@@ -2,45 +2,32 @@ using UnityEngine;
 
 public class SummonedObject : MonoBehaviour
 {
-     public float spawnDistance = 2f;
-    public GameObject textBox;
-
-    private Transform player;
-    private bool playerNearby = false;
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        // Spawn in front of player
-        transform.position = player.position + player.forward * spawnDistance;
-        transform.rotation = player.rotation;
-
-        textBox.SetActive(false);
-    }
+   public GameObject textBox;
+    private bool playerNear = false;
 
     void Update()
     {
-        if (playerNearby && Input.GetKeyDown(KeyCode.E))
+        if (playerNear && Input.GetKeyDown(KeyCode.E))
         {
             textBox.SetActive(true);
+            Invoke("HideText", 2f);
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void HideText()
     {
-        if (other.CompareTag("Player"))
-        {
-            playerNearby = true;
-        }
+        textBox.SetActive(false);
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
-            playerNearby = false;
-            textBox.SetActive(false);
-        }
+            playerNear = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+            playerNear = false;
     }
 }

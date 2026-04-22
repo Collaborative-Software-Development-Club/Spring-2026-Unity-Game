@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79eb1a81bb06e97449b4e9a172b9a197, type: 3}
-  m_Name: FireSpell
+  m_Name: DampeningSpell
   m_EditorClassIdentifier: Assembly-CSharp::SpellData
-  spellID: 0
-  spellName: Fire Spell
-  spellIcon: {fileID: 6337546947990812001, guid: db406530dffd6574db5446e6e283f232,
+  spellID: 1
+  spellName: Dampening Spell
+  spellIcon: {fileID: -6860487137229460656, guid: de11b0b6e2d39b14999a5f45d57963f9,
     type: 3}
-  loreDescription: BLAZEE
-  mechanicDescription: Light things on fire
-  spellPrefab: {fileID: 6614907055282721451, guid: b566d9ea79b7d7b488dce95e0b5662c6,
+  loreDescription: Incur the dampening.
+  mechanicDescription: Dampen your surroundings.
+  spellPrefab: {fileID: -1481712968675766102, guid: 580e7443c3d5a3443a0b38c1b9150014,
     type: 3}

@@ -838,6 +838,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1216233335}
+  - {fileID: 1698691709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4134,7 +4135,7 @@ PrefabInstance:
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.23
+      value: 13.48
       objectReference: {fileID: 0}
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
@@ -5199,12 +5200,12 @@ PrefabInstance:
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9074197
+      value: -6.22
       objectReference: {fileID: 0}
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
@@ -6842,7 +6843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -829.81, y: -463.58}
+  m_AnchoredPosition: {x: -827.76, y: -464.02}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058526641
@@ -6865,22 +6866,23 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press e next to puddle collect one water.
+  m_text: 'Press E next to puddle collect one water.
 
-    Press e next to dirt patch
+    Press E next to dirt patch
     to seelct type of seed.
 
-    Press e again to water seed and grow plant.
+    Press E again to water seed and grow plant.
 
     Press
-    r to restart level
+    R to restart level
 
     Grow plants to get to the end.
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f0d17ba37063e34aacdee878a093dce, type: 2}
+  m_sharedMaterial: {fileID: 9218147638827882358, guid: 2f0d17ba37063e34aacdee878a093dce,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8170,8 +8172,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f0d17ba37063e34aacdee878a093dce, type: 2}
+  m_sharedMaterial: {fileID: 9218147638827882358, guid: 2f0d17ba37063e34aacdee878a093dce,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -109851,7 +109854,7 @@ PrefabInstance:
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.204
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
@@ -110530,8 +110533,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Idiot
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f0d17ba37063e34aacdee878a093dce, type: 2}
+  m_sharedMaterial: {fileID: 9218147638827882358, guid: 2f0d17ba37063e34aacdee878a093dce,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -110982,6 +110986,82 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1242975847}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1698691708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698691709}
+  - component: {fileID: 1698691711}
+  - component: {fileID: 1698691710}
+  m_Layer: 5
+  m_Name: WaterDroplet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1698691709
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698691708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 69487212}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 640, y: 450}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1698691710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698691708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -6860487137229460656, guid: de11b0b6e2d39b14999a5f45d57963f9,
+    type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1698691711
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698691708}
+  m_CullTransparentMesh: 1
 --- !u!114 &1699027454 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 454019553647121813, guid: d5d45ca3d55747f4f8ffc926a98d6d86,
@@ -112241,8 +112321,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Don't go here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f0d17ba37063e34aacdee878a093dce, type: 2}
+  m_sharedMaterial: {fileID: 9218147638827882358, guid: 2f0d17ba37063e34aacdee878a093dce,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
