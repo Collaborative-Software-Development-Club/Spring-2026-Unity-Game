@@ -49,7 +49,7 @@ public class LetterSpell : SpellBehavior
         ShowText(""+letter);
         // Logic to spawn a fireball projectile, play sounds, etc.
     }
-    public void ShowText(string message, float duration = 5f)
+    public void ShowText(string message, float duration = 2f)
     {
         Color c = textDisplay.color;
         c.a = 1;

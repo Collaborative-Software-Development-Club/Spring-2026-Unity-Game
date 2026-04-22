@@ -26,6 +26,6 @@ MonoBehaviour:
     - Grandpa'
   mechanicDescription: Envision a button, labelled 'Q'. Now, whilst holding this
     book, imagine pressing that button. A friendly and familial apparition you know
-    should appear and offer you wisdom.
+    should appear. Perhaps several friendly familial apparitions, even!
   spellPrefab: {fileID: 2363184364508103593, guid: f03b7643243bfef4dbc2729bbe2ee53c,
     type: 3}

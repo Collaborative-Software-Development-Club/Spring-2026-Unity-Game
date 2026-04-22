@@ -523,11 +523,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ContractUI
   AcceptButton: {fileID: 538237392}
   DeclineButton: {fileID: 2111589648}
-  InfoPanel: {fileID: 2096424277}
   infoText: {fileID: 1793225430}
+  durationText: {fileID: 0}
   panel: {fileID: 1675122420}
-  textPrefab: {fileID: 3829381684970022318, guid: bce1960c2052b4d46851c0a5361a1744,
-    type: 3}
+  attributeText: {fileID: 0}
 --- !u!1 &81475661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,6 +1271,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 651973183}
   background: {fileID: 1552937086}
+  brainDisplayPrefab: {fileID: 0}
+  brainDisplay: {fileID: 0}
   quantityText: {fileID: 951988660}
   nameText: {fileID: 1373642816}
 --- !u!1 &214528405
@@ -1402,18 +1403,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &271177638 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8734536046426563148, guid: 108c003947696a9438d4a9cd21c6737b,
-    type: 3}
-  m_PrefabInstance: {fileID: 288560237}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32fa9d18e774d0a4f8e3e18c6f36fa10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lootbox
 --- !u!1001 &288560237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1486,7 +1475,7 @@ PrefabInstance:
         type: 3}
       propertyPath: testItem
       value: 
-      objectReference: {fileID: 271177638}
+      objectReference: {fileID: 0}
     - target: {fileID: 2370744284109351084, guid: 108c003947696a9438d4a9cd21c6737b,
         type: 3}
       propertyPath: playerInventoryUI
@@ -1979,18 +1968,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376622568}
   m_CullTransparentMesh: 1
---- !u!114 &394444935 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2370744284109351084, guid: 108c003947696a9438d4a9cd21c6737b,
-    type: 3}
-  m_PrefabInstance: {fileID: 288560237}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e194e7890783284fbe643c651dae3ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
 --- !u!1 &399539410
 GameObject:
   m_ObjectHideFlags: 0
@@ -26882,52 +26859,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518010756}
   m_CullTransparentMesh: 1
---- !u!1 &524751270
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 524751272}
-  - component: {fileID: 524751271}
-  m_Layer: 0
-  m_Name: TestSummon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &524751271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524751270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 322de687df7b32f43a47a905288e101f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SummonBrainrotSpell
-  petBrainrot: {fileID: 7642645346946027917, guid: cc91e621219df2e478ea1baa8f889672,
-    type: 3}
---- !u!4 &524751272
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524751270}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.14094, y: 0.52099, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534659112
 GameObject:
   m_ObjectHideFlags: 0
@@ -27436,8 +27367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineUI
   machineBackgroundUI: {fileID: 855057920}
-  machineSlotPrefab: {fileID: 8041075600854039258, guid: 774008735f126744db866307e200ace4,
-    type: 3}
   inputScrollView: {fileID: 2129463004}
   outputScrollView: {fileID: 1150134525}
   actionButtonPrefab: {fileID: 3115196299859014122, guid: 5d25dbee00e5ae6428c1634ba09d3a3d,
@@ -27497,6 +27426,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 992147806}
   background: {fileID: 722288478}
+  brainDisplayPrefab: {fileID: 0}
+  brainDisplay: {fileID: 0}
   quantityText: {fileID: 1595670560}
   nameText: {fileID: 1723725592}
 --- !u!1 &578075316
@@ -31393,6 +31324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 585284351}
   background: {fileID: 1484161634}
+  brainDisplayPrefab: {fileID: 0}
+  brainDisplay: {fileID: 0}
   quantityText: {fileID: 30254780}
   nameText: {fileID: 1170491783}
 --- !u!1 &1081682832
@@ -31686,6 +31619,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 143032074}
   background: {fileID: 2096092064}
+  brainDisplayPrefab: {fileID: 0}
+  brainDisplay: {fileID: 0}
   quantityText: {fileID: 1687127147}
   nameText: {fileID: 1393424809}
 --- !u!1 &1083522645
@@ -37371,6 +37306,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 897684270}
   background: {fileID: 861593609}
+  brainDisplayPrefab: {fileID: 0}
+  brainDisplay: {fileID: 0}
   quantityText: {fileID: 211052976}
   nameText: {fileID: 1899064155}
 --- !u!1 &1245579442
@@ -38911,6 +38848,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 1943231630}
   background: {fileID: 1513654416}
+  brainDisplayPrefab: {fileID: 0}
+  brainDisplay: {fileID: 0}
   quantityText: {fileID: 828797491}
   nameText: {fileID: 497193154}
 --- !u!1 &1405410682
@@ -40977,6 +40916,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 976813063}
   background: {fileID: 181825351}
+  brainDisplayPrefab: {fileID: 0}
+  brainDisplay: {fileID: 0}
   quantityText: {fileID: 975534886}
   nameText: {fileID: 1461169904}
 --- !u!1 &1635392271
@@ -43087,6 +43028,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   slotIcon: {fileID: 534659114}
   background: {fileID: 376622568}
+  brainDisplayPrefab: {fileID: 0}
+  brainDisplay: {fileID: 0}
   quantityText: {fileID: 828568437}
   nameText: {fileID: 471820379}
 --- !u!1 &1903117450
@@ -45049,7 +44992,6 @@ MonoBehaviour:
   contentParent: {fileID: 1648073638}
   openButton: {fileID: 2071687324}
   panel: {fileID: 1925688072}
-  playerInventory: {fileID: 394444935}
 --- !u!1 &2079084245
 GameObject:
   m_ObjectHideFlags: 0
@@ -45671,6 +45613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069a43dae282b2545b59d1437ffc268d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialUI
+  starterLootbox: {fileID: 0}
   arrowPrefab: {fileID: 853202715}
   player: {fileID: 288560238}
 --- !u!1 &2111589644
@@ -46084,6 +46027,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2da53cc39382d74282fa6e32de3c59f, type: 3}
+--- !u!1001 &5150147106318581587
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7158230204750680261, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_Name
+      value: SummonBrainrotObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.14094
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.52099
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090160051356770711, guid: b723a9ab27960c14c95537d6e8e6869a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b723a9ab27960c14c95537d6e8e6869a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -46102,4 +46113,4 @@ SceneRoots:
   - {fileID: 1945154129}
   - {fileID: 1559467301}
   - {fileID: 2099775733}
-  - {fileID: 524751272}
+  - {fileID: 5150147106318581587}
