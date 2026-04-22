@@ -18,6 +18,11 @@ public class PlayerInventory : MonoBehaviour
        }
    }
 
+    public bool InvRemove(Contract contractToTurnIn) {
+        print(contractToTurnIn.GetPrimaryAsString()[0]);
+        return true;
+    }
+
 
    public void OnSlotClicked(InputAction.CallbackContext context)
    { 

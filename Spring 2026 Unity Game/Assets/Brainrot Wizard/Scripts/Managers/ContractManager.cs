@@ -41,10 +41,13 @@ public class ContractManager : MonoBehaviour
         if (!HasContract(contractToTurnIn)) return false;
 
         Debug.LogWarning("No way to calculate contract worth yet!");
-        //double contractValue = contractToTurnIn.GetValue();
-        //GameManager.Instance.EconomyManager.AddMoney(contractValue);
-        onContractTurnedIn?.Invoke(contractToTurnIn);
-        return _contracts.Remove(contractToTurnIn);
+        double contractValue = 5;//contractToTurnIn.GetValue();
+        if (InvRemove(contractToTurnIn)) {
+            GameManager.Instance.EconomyManager.AddMoney(contractValue);
+            onContractTurnedIn?.Invoke(contractToTurnIn);
+            return _contracts.Remove(contractToTurnIn);
+        }
+        return false;
     }
 
     private void OnTurnChange(int currentTurn)
@@ -58,6 +61,10 @@ public class ContractManager : MonoBehaviour
             onContractFailed?.Invoke(contract);
             RemoveContract(contract);
         } 
+    }
+
+    public bool InvRemove(Contract contractToTurnIn) {
+        return GameManager.Instance.playerInventory.InvRemove(contractToTurnIn);
     }
 
     public List<Contract> GetContracts()
