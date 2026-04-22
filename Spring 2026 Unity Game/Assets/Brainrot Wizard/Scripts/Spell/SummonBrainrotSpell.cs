@@ -5,7 +5,7 @@ using UnityEngine;
 public class SummonBrainrotSpell : SpellBehavior
 {
     public GameObject petBrainrot;
-    public int maxPets = 3;
+    public int maxPets = 1;
     private List<GameObject> activePets = new List<GameObject>();
 
     SummonBrainrotSpell() {
