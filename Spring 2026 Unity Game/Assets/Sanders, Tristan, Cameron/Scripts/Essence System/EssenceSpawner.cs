@@ -9,8 +9,8 @@ public class EssenceSpawner : MonoBehaviour
     [SerializeField][Tooltip("How many are spawned per second")] float spawnRate;
     GameObject essenceContainer;
 
-    int spawnCount = 0;
     [SerializeField][Tooltip("Max amount of essence allowed to be spawned")] int spawnMaximum = 5000;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,12 +19,20 @@ public class EssenceSpawner : MonoBehaviour
     }
 
     private IEnumerator ContinuallySpawnEssence()
-    {
-        while(spawnCount < spawnMaximum)
+    {  
+        while(true)
         {
             yield return new WaitForSeconds(1 / spawnRate);
-            CreateEssence();
+            if(essenceContainer.transform.childCount < spawnMaximum)
+            {
+                CreateEssence();
+            }
         }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private void CreateEssence()
@@ -32,7 +40,6 @@ public class EssenceSpawner : MonoBehaviour
         var essence = Instantiate(essencePrefab, transform.position, transform.rotation,essenceContainer.transform);
         Vector2 initialVel = GenerateSpawnVector();
         essence.GetComponent<Rigidbody2D>().linearVelocity = initialVel;
-        spawnCount++;
     }
 
     private Vector2 GenerateSpawnVector()
