@@ -1617,7 +1617,19 @@ MonoBehaviour:
   unlockOnPlayerCollision: 1
   onBookUnlocked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8300000, guid: 345325bba2aa04dcda6fb9b6deec0c88, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Win.wav
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &3980958585908280592
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,7 +2912,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 90330ad08513814449c2b04be89ce2d0, type: 3}
+      objectReference: {fileID: 8300000, guid: 442026faac671d247ac98ebc2255f57e, type: 3}
     - target: {fileID: 8303224999526169870, guid: 8922383f15b004846b0dfb6fd59f8d65,
         type: 3}
       propertyPath: m_Name

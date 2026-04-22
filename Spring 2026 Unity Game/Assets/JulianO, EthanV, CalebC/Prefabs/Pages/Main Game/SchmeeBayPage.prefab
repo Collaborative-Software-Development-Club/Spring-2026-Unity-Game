@@ -2510,6 +2510,11 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1437819359749967529, guid: c9f1785de9e828f49aa47e587ca0b80c,
+        type: 3}
+      propertyPath: voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 93b243e228964794c8329737cf0186a2, type: 3}
     - target: {fileID: 7618105004688243692, guid: c9f1785de9e828f49aa47e587ca0b80c,
         type: 3}
       propertyPath: m_LocalPosition.x
