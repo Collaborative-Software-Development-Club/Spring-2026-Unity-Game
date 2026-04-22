@@ -12,6 +12,8 @@ public class Restart : MonoBehaviour
     [SerializeField] private bool _enableRestartKey = true;
     [SerializeField] private KeyCode _restartKey = KeyCode.R;
     [SerializeField][Min(0f)] private float _restartDelaySeconds = 0.1f;
+    [SerializeField][Min(0f)] private float _sceneFadeDuration = 1f;
+    [SerializeField][Min(0f)] private float _restartFadeTotalDuration = 0.5f;
 
     [Header("Audio")]
     [SerializeField] private AudioSource _restartAudioSource;
@@ -58,10 +60,34 @@ public class Restart : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        if (_isRestarting)
+        {
+            return;
+        }
+
         if (string.IsNullOrWhiteSpace(_mainMenuSceneName))
         {
             Debug.LogWarning("Main menu scene name is empty.");
             return;
+        }
+
+        StartCoroutine(GoToMainMenuRoutine());
+    }
+
+    private IEnumerator GoToMainMenuRoutine()
+    {
+        _isRestarting = true;
+
+        if (_levelFlowManager != null)
+        {
+            _levelFlowManager.FadeOutBackgroundMusic(_sceneFadeDuration);
+        }
+
+        ScreenFadeController.Instance.FadeOutToBlack(_sceneFadeDuration);
+
+        if (_sceneFadeDuration > 0f)
+        {
+            yield return new WaitForSeconds(_sceneFadeDuration);
         }
 
         SceneManager.LoadScene(_mainMenuSceneName);
@@ -72,30 +98,40 @@ public class Restart : MonoBehaviour
         _isRestarting = true;
         PlayRestartAudio();
 
+        float restartHalfFadeDuration = Mathf.Max(0f, _restartFadeTotalDuration * 0.5f);
+
         if (_levelFlowManager != null)
         {
-            _levelFlowManager.FadeOutBackgroundMusic();
+            _levelFlowManager.FadeOutBackgroundMusic(restartHalfFadeDuration);
         }
 
-        float restartDelay = _restartDelaySeconds;
-        if (_levelFlowManager != null)
+        if (restartHalfFadeDuration > 0f)
         {
-            restartDelay = Mathf.Max(restartDelay, _levelFlowManager.BackgroundMusicFadeDurationSeconds);
+            ScreenFadeController.Instance.FadeOutToBlack(restartHalfFadeDuration);
+            yield return new WaitForSeconds(restartHalfFadeDuration);
         }
 
-        if (restartDelay > 0f)
+        if (restartHalfFadeDuration <= 0f && _restartDelaySeconds > 0f)
         {
-            yield return new WaitForSeconds(restartDelay);
+            yield return new WaitForSeconds(_restartDelaySeconds);
         }
 
         if (_levelFlowManager != null)
         {
             _levelFlowManager.RestartCurrentLevel();
-            _isRestarting = false;
-            yield break;
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (restartHalfFadeDuration > 0f)
+        {
+            ScreenFadeController.Instance.FadeInFromBlack(restartHalfFadeDuration);
+            yield return new WaitForSeconds(restartHalfFadeDuration);
+        }
+
+        _isRestarting = false;
     }
 
     private void EnsureRestartAudioSource()

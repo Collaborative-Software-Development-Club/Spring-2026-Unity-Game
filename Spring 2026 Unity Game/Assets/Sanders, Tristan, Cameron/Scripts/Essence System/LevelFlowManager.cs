@@ -48,6 +48,9 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField][Min(0f)] float finalWinBackgroundMusicFadeDuration = 2.5f;
     [SerializeField] bool fadeMusicInOnStart = true;
 
+    [Header("Scene Fade")]
+    [SerializeField][Min(0f)] float sceneFadeDuration = 1f;
+
     [Header("Player Transition VFX")]
     [SerializeField] UnityEngine.ParticleSystem playerPoofOutPrefab;
     [SerializeField] UnityEngine.ParticleSystem playerPoofInPrefab;
@@ -78,6 +81,7 @@ public class LevelFlowManager : MonoBehaviour
 
     void Start()
     {
+        ScreenFadeController.Instance.FadeInFromBlack(sceneFadeDuration);
         StartBackgroundMusic();
 
         if (levels == null || levels.Length == 0)
@@ -172,9 +176,10 @@ public class LevelFlowManager : MonoBehaviour
 
         if (isFinalLevel && !loopLevels)
         {
+            float winSequenceStartTime = Time.time;
             FadeOutBackgroundMusic(finalWinBackgroundMusicFadeDuration);
             PlayCompletionAudio(gameCompleteClip, gameCompleteVolume);
-            StartCoroutine(ReturnToHubAfterWinAudio());
+            StartCoroutine(ReturnToHubAfterWinAudio(winSequenceStartTime));
             return;
         }
 
@@ -196,9 +201,8 @@ public class LevelFlowManager : MonoBehaviour
         isTransitioning = false;
     }
 
-    IEnumerator ReturnToHubAfterWinAudio()
+    IEnumerator ReturnToHubAfterWinAudio(float sequenceStartTime)
     {
-        float sequenceStartTime = Time.time;
         yield return PlayPlayerPoofOutAndHide();
 
         ClearContainers();
@@ -211,6 +215,12 @@ public class LevelFlowManager : MonoBehaviour
         if (delay > 0f)
         {
             yield return new WaitForSeconds(delay);
+        }
+
+        if (sceneFadeDuration > 0f)
+        {
+            ScreenFadeController.Instance.FadeOutToBlack(sceneFadeDuration);
+            yield return new WaitForSeconds(sceneFadeDuration);
         }
 
         CompletePuzzleAndReturnToHub();
