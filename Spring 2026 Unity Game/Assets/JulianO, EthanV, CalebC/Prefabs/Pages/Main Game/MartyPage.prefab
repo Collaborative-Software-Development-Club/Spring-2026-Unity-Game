@@ -1657,7 +1657,7 @@ PrefabInstance:
         type: 3}
       propertyPath: voice
       value: 
-      objectReference: {fileID: 8300000, guid: bd17798417cdfdb42a1838f711f6baf5, type: 3}
+      objectReference: {fileID: 8300000, guid: a526afbb0cfc96845acfd17452a37458, type: 3}
     - target: {fileID: 3200228506671047469, guid: cd88a69dea1bed440957d7bfb719498f,
         type: 3}
       propertyPath: m_Size.z

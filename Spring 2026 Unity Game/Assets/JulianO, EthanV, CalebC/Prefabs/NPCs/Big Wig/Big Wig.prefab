@@ -149,7 +149,7 @@ MonoBehaviour:
   nameText: {fileID: 5688884036501377161}
   portraitImage: {fileID: 0}
   Player: {fileID: 0}
-  voice: {fileID: 8300000, guid: 1d5d6c369e0f9804daaf2ab767a42b6d, type: 3}
+  voice: {fileID: 8300000, guid: 245b7b3438239bc4083af8643a453e1c, type: 3}
 --- !u!135 &7365014305966643210
 SphereCollider:
   m_ObjectHideFlags: 0
