@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpellData
   spellID: 3
   spellName: Brainrot Summon
-  spellIcon: {fileID: -4374155886025107018, guid: 039f31331c4a89e4f8428942d4bc9945,
+  spellIcon: {fileID: -4374155886025107018, guid: c03d85b8b795572448df01170a27b3d5,
     type: 3}
   loreDescription: Bring your crafted beings into the world to travel with you.
-  mechanicDescription: Creates a brainrot that follows you. Maximum of 3 brainrot
-    summoned at once.
+  mechanicDescription: Creates a brainrot that follows you.
   spellPrefab: {fileID: 8520789435132100130, guid: b723a9ab27960c14c95537d6e8e6869a,
     type: 3}
