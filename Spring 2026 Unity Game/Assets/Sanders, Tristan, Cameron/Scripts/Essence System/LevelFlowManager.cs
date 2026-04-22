@@ -38,12 +38,14 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField] AudioClip levelCompleteClip;
     [SerializeField] AudioClip gameCompleteClip;
     [SerializeField][Range(0f, 1f)] float completionVolume = 1f;
+    [SerializeField][Range(0f, 2f)] float gameCompleteVolume = 1.35f;
 
     [Header("Background Music")]
     [SerializeField] AudioSource backgroundMusicSource;
     [SerializeField] AudioClip backgroundMusicClip;
     [SerializeField][Range(0f, 1f)] float backgroundMusicVolume = 0.65f;
     [SerializeField][Min(0f)] float backgroundMusicFadeDuration = 0.75f;
+    [SerializeField][Min(0f)] float finalWinBackgroundMusicFadeDuration = 2.5f;
     [SerializeField] bool fadeMusicInOnStart = true;
 
     [Header("Player Transition VFX")]
@@ -170,8 +172,8 @@ public class LevelFlowManager : MonoBehaviour
 
         if (isFinalLevel && !loopLevels)
         {
-            FadeOutBackgroundMusic();
-            PlayCompletionAudio(gameCompleteClip);
+            FadeOutBackgroundMusic(finalWinBackgroundMusicFadeDuration);
+            PlayCompletionAudio(gameCompleteClip, gameCompleteVolume);
             StartCoroutine(ReturnToHubAfterWinAudio());
             return;
         }
@@ -201,7 +203,7 @@ public class LevelFlowManager : MonoBehaviour
         ClearContainers();
 
         float clipDuration = gameCompleteClip != null ? gameCompleteClip.length : 0f;
-        float delay = Mathf.Max(finalReturnDelay, clipDuration, BackgroundMusicFadeDurationSeconds);
+        float delay = Mathf.Max(finalReturnDelay, clipDuration, finalWinBackgroundMusicFadeDuration);
         if (delay > 0f)
         {
             yield return new WaitForSeconds(delay);
@@ -229,6 +231,11 @@ public class LevelFlowManager : MonoBehaviour
 
     public void FadeOutBackgroundMusic()
     {
+        FadeOutBackgroundMusic(backgroundMusicFadeDuration);
+    }
+
+    public void FadeOutBackgroundMusic(float fadeDurationSeconds)
+    {
         if (backgroundMusicClip == null)
         {
             return;
@@ -240,7 +247,7 @@ public class LevelFlowManager : MonoBehaviour
             return;
         }
 
-        FadeBackgroundMusicTo(0f, true);
+        FadeBackgroundMusicTo(0f, true, fadeDurationSeconds);
     }
 
     public void FadeInBackgroundMusic()
@@ -263,7 +270,7 @@ public class LevelFlowManager : MonoBehaviour
             backgroundMusicSource.Play();
         }
 
-        FadeBackgroundMusicTo(backgroundMusicVolume, false);
+        FadeBackgroundMusicTo(backgroundMusicVolume, false, backgroundMusicFadeDuration);
     }
 
     void CompletePuzzleAndReturnToHub()
@@ -522,7 +529,7 @@ public class LevelFlowManager : MonoBehaviour
             }
 
             backgroundMusicSource.volume = 0f;
-            FadeBackgroundMusicTo(backgroundMusicVolume, false);
+            FadeBackgroundMusicTo(backgroundMusicVolume, false, backgroundMusicFadeDuration);
             return;
         }
 
@@ -533,7 +540,7 @@ public class LevelFlowManager : MonoBehaviour
         }
     }
 
-    void FadeBackgroundMusicTo(float targetVolume, bool stopWhenSilent)
+    void FadeBackgroundMusicTo(float targetVolume, bool stopWhenSilent, float fadeDurationSeconds)
     {
         if (backgroundMusicSource == null)
         {
@@ -545,14 +552,14 @@ public class LevelFlowManager : MonoBehaviour
             StopCoroutine(backgroundMusicFadeCoroutine);
         }
 
-        backgroundMusicFadeCoroutine = StartCoroutine(FadeBackgroundMusicRoutine(targetVolume, stopWhenSilent));
+        backgroundMusicFadeCoroutine = StartCoroutine(FadeBackgroundMusicRoutine(targetVolume, stopWhenSilent, fadeDurationSeconds));
     }
 
-    IEnumerator FadeBackgroundMusicRoutine(float targetVolume, bool stopWhenSilent)
+    IEnumerator FadeBackgroundMusicRoutine(float targetVolume, bool stopWhenSilent, float fadeDurationSeconds)
     {
         float startVolume = backgroundMusicSource.volume;
 
-        if (backgroundMusicFadeDuration <= 0f)
+        if (fadeDurationSeconds <= 0f)
         {
             backgroundMusicSource.volume = targetVolume;
             if (stopWhenSilent && targetVolume <= 0f)
@@ -565,10 +572,10 @@ public class LevelFlowManager : MonoBehaviour
         }
 
         float elapsed = 0f;
-        while (elapsed < backgroundMusicFadeDuration)
+        while (elapsed < fadeDurationSeconds)
         {
             elapsed += Time.deltaTime;
-            backgroundMusicSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsed / backgroundMusicFadeDuration);
+            backgroundMusicSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsed / fadeDurationSeconds);
             yield return null;
         }
 
@@ -583,6 +590,11 @@ public class LevelFlowManager : MonoBehaviour
 
     void PlayCompletionAudio(AudioClip clip)
     {
+        PlayCompletionAudio(clip, completionVolume);
+    }
+
+    void PlayCompletionAudio(AudioClip clip, float volume)
+    {
         if (clip == null)
         {
             return;
@@ -594,6 +606,6 @@ public class LevelFlowManager : MonoBehaviour
             return;
         }
 
-        completionAudioSource.PlayOneShot(clip, completionVolume);
+        completionAudioSource.PlayOneShot(clip, volume);
     }
 }
