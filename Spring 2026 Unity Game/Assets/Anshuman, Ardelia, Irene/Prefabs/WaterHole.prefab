@@ -245,6 +245,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   popupPrompt: {fileID: 1476428708625777908}
   seedsManager: {fileID: 0}
+  waterfall: {fileID: 2971894833643918311}
 --- !u!1 &2971894833643918311
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +299,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
   popupPrompt: {fileID: 1476428708625777908}
   seedsManager: {fileID: 0}
+  waterfall: {fileID: 0}
 --- !u!95 &-9054023786810922823
 Animator:
   serializedVersion: 7

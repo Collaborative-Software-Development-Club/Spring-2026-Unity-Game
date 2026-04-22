@@ -9,8 +9,9 @@ public class CollectWater: MonoBehaviour {
 	[SerializeField] private InputReader inputReader;
 	[SerializeField] private GameObject popupPrompt;
 	[SerializeField] private GameObject seedsManager;
+	[SerializeField] private GameObject waterfall;
 
-	private bool isPlayerNearby = false;
+    private bool isPlayerNearby = false;
 
 	private void Awake() {
 		popupPrompt.SetActive(false);
@@ -31,6 +32,7 @@ public class CollectWater: MonoBehaviour {
 				Debug.Log("<color=blue> COLLECTED ANOTHER WATER.</color>");
 			} else {
 				Debug.Log("<color=red>MAX WATER AMOUNT REACHED</color>.");
+				Destroy(waterfall);
 			}
 		}
 	}
