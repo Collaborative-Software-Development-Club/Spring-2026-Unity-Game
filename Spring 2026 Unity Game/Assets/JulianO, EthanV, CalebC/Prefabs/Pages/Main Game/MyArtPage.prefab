@@ -1985,7 +1985,7 @@ PrefabInstance:
     - target: {fileID: 3127278221859417523, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.78
+      value: 3.67
       objectReference: {fileID: 0}
     - target: {fileID: 3127278221859417523, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
@@ -2010,7 +2010,7 @@ PrefabInstance:
     - target: {fileID: 3127278221859417523, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 4.06
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3127278221859417523, guid: 5395ec87795e03d46b93796c864066ea,
         type: 3}
@@ -2265,6 +2265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rast Popup
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136499991687191782, guid: 307b3639325ad564d826d378f66ba5ec,
+        type: 3}
+      propertyPath: m_text
+      value: '"E" to close'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

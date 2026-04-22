@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79eb1a81bb06e97449b4e9a172b9a197, type: 3}
   m_Name: FireSpell
   m_EditorClassIdentifier: Assembly-CSharp::SpellData
-  spellID: 1
+  spellID: 0
   spellName: Fire Spell
   spellIcon: {fileID: 6337546947990812001, guid: db406530dffd6574db5446e6e283f232,
     type: 3}

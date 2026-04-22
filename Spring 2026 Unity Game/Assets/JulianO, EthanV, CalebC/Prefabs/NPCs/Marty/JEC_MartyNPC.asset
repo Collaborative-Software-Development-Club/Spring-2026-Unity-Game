@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: JEC_MartyNPC
   m_EditorClassIdentifier: Assembly-CSharp::JEC_NPCDialogue
   npcName: Marty
-  npcPortrait: {fileID: 0}
+  voiceSound: {fileID: 0}
+  voicePitch: 1
   dialogueLines:
   - Yo, first visitor in a while and it's a freaking WIZARD!
   - I'm Marty!
@@ -22,9 +23,10 @@ MonoBehaviour:
   - Of course, if you wanna surf the web to go elsewhere,
   - you can go over to that blue pedestal over there and type a new URL!
   - Doesn't have a ton of keys though...
+  - You have a few decent characters to start with, though- you can just delete them
+    if you wanna rearrange em! But...
   - You may need to find some new ones along the way!
   autoProgressLines: 
   autoProgressDelay: 1.5
   typingSpeed: 0.05
-  voiceSound: {fileID: 0}
-  voicePitch: 1
+  npcPortrait: {fileID: 0}

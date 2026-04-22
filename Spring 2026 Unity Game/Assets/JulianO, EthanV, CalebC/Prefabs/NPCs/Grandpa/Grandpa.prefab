@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.27238, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4849285670511263313}
@@ -77,7 +77,7 @@ Transform:
   m_GameObject: {fileID: 5690342322487960047}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.126, y: 0.545, z: 0.33}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -130,10 +130,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: fa5a65d6790d04347b4c93440ed01e3c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8915094, g: 0.8915094, b: 0.8915094, a: 0.4862745}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,8 +161,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.44, y: 0.82, z: 10}
-  m_Center: {x: -0.03, y: -0.11, z: -0.000000007450581}
+  m_Size: {x: 0.79958045, y: 1.1121593, z: 10000}
+  m_Center: {x: 0, y: -0.35059056, z: -1.4294786e-15}
 --- !u!114 &5863347297353184338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,12 +176,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JEC_NPC
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
-  interactionPrompt: {fileID: 0}
+  interactionPrompt: {fileID: 3075894482604854526}
   hidePromptOnInteract: 1
   dialogueData: {fileID: 11400000, guid: be40537ed9b0a8444958c50b8549b832, type: 2}
-  dialoguePanel: {fileID: 0}
-  dialogueText: {fileID: 0}
-  nameText: {fileID: 0}
+  dialoguePanel: {fileID: 3147399709114168442}
+  dialogueText: {fileID: 2508158979043593892}
+  nameText: {fileID: 4758551245918678874}
   portraitImage: {fileID: 0}
   Player: {fileID: 0}
   voice: {fileID: 8300000, guid: 1d5d6c369e0f9804daaf2ab767a42b6d, type: 3}
@@ -204,8 +204,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.5
-  m_Center: {x: 0, y: -0.00000007152558, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: -0.3, z: 0}
 --- !u!114 &5577641429692721038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +341,36 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b93f4f7c67a4bf840bf9d362400f9542, type: 3}
+--- !u!114 &2508158979043593892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2041729941149836551, guid: b93f4f7c67a4bf840bf9d362400f9542,
+    type: 3}
+  m_PrefabInstance: {fileID: 4511318049338059683}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &3147399709114168442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1528589998510612441, guid: b93f4f7c67a4bf840bf9d362400f9542,
+    type: 3}
+  m_PrefabInstance: {fileID: 4511318049338059683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4758551245918678874 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8976429388918932729, guid: b93f4f7c67a4bf840bf9d362400f9542,
+    type: 3}
+  m_PrefabInstance: {fileID: 4511318049338059683}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &5757484403705625764 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8177932547001669383, guid: b93f4f7c67a4bf840bf9d362400f9542,
@@ -463,6 +493,12 @@ PrefabInstance:
 --- !u!224 &2255868743641997088 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7450944417306284287, guid: 4cfc1d2574bb31d47a2d2597123717d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8658564815390281695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3075894482604854526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5946620055733633825, guid: 4cfc1d2574bb31d47a2d2597123717d1,
     type: 3}
   m_PrefabInstance: {fileID: 8658564815390281695}
   m_PrefabAsset: {fileID: 0}

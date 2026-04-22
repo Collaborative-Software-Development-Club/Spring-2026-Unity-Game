@@ -72,9 +72,20 @@ public class Restart : MonoBehaviour
         _isRestarting = true;
         PlayRestartAudio();
 
-        if (_restartDelaySeconds > 0f)
+        if (_levelFlowManager != null)
         {
-            yield return new WaitForSeconds(_restartDelaySeconds);
+            _levelFlowManager.FadeOutBackgroundMusic();
+        }
+
+        float restartDelay = _restartDelaySeconds;
+        if (_levelFlowManager != null)
+        {
+            restartDelay = Mathf.Max(restartDelay, _levelFlowManager.BackgroundMusicFadeDurationSeconds);
+        }
+
+        if (restartDelay > 0f)
+        {
+            yield return new WaitForSeconds(restartDelay);
         }
 
         if (_levelFlowManager != null)

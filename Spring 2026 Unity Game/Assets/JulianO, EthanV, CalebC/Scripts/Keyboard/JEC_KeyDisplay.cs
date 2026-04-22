@@ -69,7 +69,7 @@ public class JEC_KeyDisplay : MonoBehaviour
             TextMeshProUGUI amountText = amount.GetComponent<TextMeshProUGUI>();
             Button keyIcon = keyUI.GetComponent<Button>();
 
-            if (key.amount == 0)
+            if (key.amount == 0 || KeyManager.KeysUsed[c] == key.amount)
             {
                 keyIcon.interactable = false;
             }

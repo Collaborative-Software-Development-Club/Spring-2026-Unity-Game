@@ -838,6 +838,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1216233335}
+  - {fileID: 1698691709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -871,8 +872,9 @@ GameObject:
   - component: {fileID: 137622081}
   - component: {fileID: 137622080}
   - component: {fileID: 137622079}
-  - component: {fileID: 137622078}
   - component: {fileID: 137622077}
+  - component: {fileID: 137622084}
+  - component: {fileID: 137622083}
   m_Layer: 0
   m_Name: RETURN (1)
   m_TagString: Untagged
@@ -893,19 +895,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RenableWS
   inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
---- !u!114 &137622078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137622075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e473b53a9e90c469f1095190867542, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneReturner
-  librarySceneName: DampLevel3
 --- !u!65 &137622079
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -999,6 +988,117 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &137622083
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137622075}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 0ecc2c0eae917d15b8c232f763fae9dd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &137622084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137622075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96246c7cb138e789b334fdadeeb4109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneReturnerWithSound
+  librarySceneName: DampLevel3
+  audioSource: {fileID: 137622083}
 --- !u!1 &140780425
 GameObject:
   m_ObjectHideFlags: 0
@@ -4134,7 +4234,7 @@ PrefabInstance:
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.23
+      value: 13.48
       objectReference: {fileID: 0}
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
@@ -4781,6 +4881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93707007b1bc58ce4bd648c9ef7ea138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReturnToMainMenu
+  inputReader: {fileID: 11400000, guid: 8e06065f7eedc8f4787846ee62980e30, type: 2}
 --- !u!1 &689373830
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,12 +5300,12 @@ PrefabInstance:
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9074197
+      value: -6.22
       objectReference: {fileID: 0}
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
@@ -6842,7 +6943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -829.81, y: -463.58}
+  m_AnchoredPosition: {x: -827.76, y: -464.02}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058526641
@@ -6865,15 +6966,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press e next to puddle collect one water.
+  m_text: 'Press E next to puddle collect one water.
 
-    Press e next to dirt patch
+    Press E next to dirt patch
     to seelct type of seed.
 
-    Press e again to water seed and grow plant.
+    Press E again to water seed and grow plant.
 
     Press
-    r to restart level
+    R to restart level
 
     Grow plants to get to the end.
 
@@ -109851,7 +109952,7 @@ PrefabInstance:
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.204
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 1649292204547694278, guid: 2ecc4ef7fb3fdaa4094437291fb900bf,
         type: 3}
@@ -110982,6 +111083,82 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1242975847}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1698691708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698691709}
+  - component: {fileID: 1698691711}
+  - component: {fileID: 1698691710}
+  m_Layer: 5
+  m_Name: WaterDroplet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1698691709
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698691708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 69487212}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 640, y: 450}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1698691710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698691708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -6860487137229460656, guid: de11b0b6e2d39b14999a5f45d57963f9,
+    type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1698691711
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698691708}
+  m_CullTransparentMesh: 1
 --- !u!114 &1699027454 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 454019553647121813, guid: d5d45ca3d55747f4f8ffc926a98d6d86,
