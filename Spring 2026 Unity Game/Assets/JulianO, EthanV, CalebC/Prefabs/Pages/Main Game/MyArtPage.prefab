@@ -2266,6 +2266,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rast Popup
       objectReference: {fileID: 0}
+    - target: {fileID: 9136499991687191782, guid: 307b3639325ad564d826d378f66ba5ec,
+        type: 3}
+      propertyPath: m_text
+      value: '"E" to close'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
