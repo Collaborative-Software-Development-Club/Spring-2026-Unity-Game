@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 1337795804046982368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2434842390639391484}
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -66.46}
+  m_AnchoredPosition: {x: 0, y: -180}
   m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1241765146709660009
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3690881, g: 1, b: 0.023584902, a: 1}
+  m_Color: {r: 0.82861644, g: 0.6084906, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -713,8 +713,8 @@ RectTransform:
   m_GameObject: {fileID: 3170159633373166645}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 9.999977, z: 10}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 2, y: 2.3, z: 2}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6802326666702112414}
   - {fileID: 1576436860975979799}
@@ -722,8 +722,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 50.000046}
-  m_SizeDelta: {x: 68, y: 66}
+  m_AnchoredPosition: {x: 0.000030517578, y: 25}
+  m_SizeDelta: {x: 924, y: 401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1495295097810129025
 CanvasRenderer:
@@ -753,7 +753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2259720929634768308, guid: f190172389373184f9e9ee78309f6d29,
+  m_Sprite: {fileID: -3169479682448470896, guid: 32c7d6e21e56ade4e9deb54f8d68d817,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1041,9 +1041,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Next Level!
-
-'
+  m_text: Got it!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ad5937f95604964084405076eceed17, type: 2}
   m_sharedMaterial: {fileID: -6615689721462214858, guid: 4ad5937f95604964084405076eceed17,
@@ -1259,7 +1257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Info Info Info etc.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ad5937f95604964084405076eceed17, type: 2}
   m_sharedMaterial: {fileID: -6615689721462214858, guid: 4ad5937f95604964084405076eceed17,
