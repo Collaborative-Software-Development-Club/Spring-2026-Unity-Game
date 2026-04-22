@@ -28,8 +28,8 @@ public class TileClicked : MonoBehaviour
         if (audioSource != null)
         {
             audioSource.Stop();
-            audioSource.time = 4.5f;
             audioSource.Play();
+            audioSource.time = 0.0f; //7195f;
         }
     }
 
