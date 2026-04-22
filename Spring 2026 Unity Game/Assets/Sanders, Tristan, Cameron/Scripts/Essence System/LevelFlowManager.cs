@@ -38,13 +38,21 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField] AudioClip levelCompleteClip;
     [SerializeField] AudioClip gameCompleteClip;
     [SerializeField][Range(0f, 1f)] float completionVolume = 1f;
+    [SerializeField][Range(0f, 2f)] float gameCompleteVolume = 1.35f;
 
     [Header("Background Music")]
     [SerializeField] AudioSource backgroundMusicSource;
     [SerializeField] AudioClip backgroundMusicClip;
     [SerializeField][Range(0f, 1f)] float backgroundMusicVolume = 0.65f;
     [SerializeField][Min(0f)] float backgroundMusicFadeDuration = 0.75f;
+    [SerializeField][Min(0f)] float finalWinBackgroundMusicFadeDuration = 2.5f;
     [SerializeField] bool fadeMusicInOnStart = true;
+
+    [Header("Player Transition VFX")]
+    [SerializeField] UnityEngine.ParticleSystem playerPoofOutPrefab;
+    [SerializeField] UnityEngine.ParticleSystem playerPoofInPrefab;
+    [SerializeField][Min(0f)] float playerPoofOutHoldTime = 0.3f;
+    [SerializeField][Min(0f)] float playerPoofInRevealDelay = 0.15f;
 
     [Header("Completion / Return To Hub")]
     [SerializeField] bool loopLevels = false;
@@ -54,6 +62,7 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField] string hubSceneName = "MageLibrary";
     [SerializeField] BookUnlocker bookUnlocker;
     [SerializeField] SceneReturner sceneReturner;
+
 
     int currentLevelIndex;
     bool isTransitioning;
@@ -163,8 +172,8 @@ public class LevelFlowManager : MonoBehaviour
 
         if (isFinalLevel && !loopLevels)
         {
-            FadeOutBackgroundMusic();
-            PlayCompletionAudio(gameCompleteClip);
+            FadeOutBackgroundMusic(finalWinBackgroundMusicFadeDuration);
+            PlayCompletionAudio(gameCompleteClip, gameCompleteVolume);
             StartCoroutine(ReturnToHubAfterWinAudio());
             return;
         }
@@ -177,19 +186,28 @@ public class LevelFlowManager : MonoBehaviour
     {
         yield return new WaitForSeconds(levelTransitionDelay);
 
+        yield return PlayPlayerPoofOutAndHide();
+
         ClearContainers();
 
         int nextLevel = (currentLevelIndex + 1) % levels.Length;
         ActivateLevel(nextLevel, false);
+        yield return PlayPlayerPoofInAndShow();
         isTransitioning = false;
     }
 
     IEnumerator ReturnToHubAfterWinAudio()
     {
+        float sequenceStartTime = Time.time;
+        yield return PlayPlayerPoofOutAndHide();
+
         ClearContainers();
 
+        float elapsedSinceSequenceStart = Time.time - sequenceStartTime;
         float clipDuration = gameCompleteClip != null ? gameCompleteClip.length : 0f;
-        float delay = Mathf.Max(finalReturnDelay, clipDuration, BackgroundMusicFadeDurationSeconds);
+        float remainingClipDelay = Mathf.Max(0f, clipDuration - elapsedSinceSequenceStart);
+        float remainingMusicFadeDelay = Mathf.Max(0f, finalWinBackgroundMusicFadeDuration - elapsedSinceSequenceStart);
+        float delay = Mathf.Max(finalReturnDelay, remainingClipDelay, remainingMusicFadeDelay);
         if (delay > 0f)
         {
             yield return new WaitForSeconds(delay);
@@ -209,12 +227,18 @@ public class LevelFlowManager : MonoBehaviour
         isTransitioning = false;
         ClearContainers();
         ActivateLevel(currentLevelIndex, false);
+        EnsurePlayerVisible();
         FadeInBackgroundMusic();
     }
 
     public float BackgroundMusicFadeDurationSeconds => backgroundMusicClip != null ? backgroundMusicFadeDuration : 0f;
 
     public void FadeOutBackgroundMusic()
+    {
+        FadeOutBackgroundMusic(backgroundMusicFadeDuration);
+    }
+
+    public void FadeOutBackgroundMusic(float fadeDurationSeconds)
     {
         if (backgroundMusicClip == null)
         {
@@ -227,7 +251,7 @@ public class LevelFlowManager : MonoBehaviour
             return;
         }
 
-        FadeBackgroundMusicTo(0f, true);
+        FadeBackgroundMusicTo(0f, true, fadeDurationSeconds);
     }
 
     public void FadeInBackgroundMusic()
@@ -250,7 +274,7 @@ public class LevelFlowManager : MonoBehaviour
             backgroundMusicSource.Play();
         }
 
-        FadeBackgroundMusicTo(backgroundMusicVolume, false);
+        FadeBackgroundMusicTo(backgroundMusicVolume, false, backgroundMusicFadeDuration);
     }
 
     void CompletePuzzleAndReturnToHub()
@@ -355,6 +379,79 @@ public class LevelFlowManager : MonoBehaviour
         player.rotation = spawnPoint.rotation;
     }
 
+    IEnumerator PlayPlayerPoofOutAndHide()
+    {
+        if (player == null)
+        {
+            yield break;
+        }
+
+        float poofDuration = SpawnPlayerPoof(playerPoofOutPrefab, player.position);
+        player.gameObject.SetActive(false);
+
+        float holdDelay = Mathf.Max(playerPoofOutHoldTime, poofDuration);
+        if (holdDelay > 0f)
+        {
+            yield return new WaitForSeconds(holdDelay);
+        }
+    }
+
+    IEnumerator PlayPlayerPoofInAndShow()
+    {
+        if (player == null)
+        {
+            yield break;
+        }
+
+        float poofDuration = SpawnPlayerPoof(playerPoofInPrefab, player.position);
+        float revealDelay = poofDuration > 0f ? Mathf.Min(playerPoofInRevealDelay, poofDuration) : 0f;
+        if (revealDelay > 0f)
+        {
+            yield return new WaitForSeconds(revealDelay);
+        }
+
+        EnsurePlayerVisible();
+    }
+
+    void EnsurePlayerVisible()
+    {
+        if (player == null)
+        {
+            return;
+        }
+
+        if (!player.gameObject.activeSelf)
+        {
+            player.gameObject.SetActive(true);
+        }
+    }
+
+    float SpawnPlayerPoof(UnityEngine.ParticleSystem poofPrefab, Vector3 position)
+    {
+        if (poofPrefab == null)
+        {
+            return 0f;
+        }
+
+        UnityEngine.ParticleSystem spawnedPoof = Instantiate(poofPrefab, position, Quaternion.identity);
+        spawnedPoof.Play();
+
+        float poofDuration = GetParticleDurationSeconds(spawnedPoof);
+        Destroy(spawnedPoof.gameObject, poofDuration + 0.1f);
+        return poofDuration;
+    }
+
+    float GetParticleDurationSeconds(UnityEngine.ParticleSystem particleSystem)
+    {
+        if (particleSystem == null)
+        {
+            return 0f;
+        }
+
+        UnityEngine.ParticleSystem.MainModule main = particleSystem.main;
+        return main.duration + main.startLifetime.constantMax;
+    }
+
     void ClearContainers()
     {
         if (spellCasting != null)
@@ -436,7 +533,7 @@ public class LevelFlowManager : MonoBehaviour
             }
 
             backgroundMusicSource.volume = 0f;
-            FadeBackgroundMusicTo(backgroundMusicVolume, false);
+            FadeBackgroundMusicTo(backgroundMusicVolume, false, backgroundMusicFadeDuration);
             return;
         }
 
@@ -447,7 +544,7 @@ public class LevelFlowManager : MonoBehaviour
         }
     }
 
-    void FadeBackgroundMusicTo(float targetVolume, bool stopWhenSilent)
+    void FadeBackgroundMusicTo(float targetVolume, bool stopWhenSilent, float fadeDurationSeconds)
     {
         if (backgroundMusicSource == null)
         {
@@ -459,14 +556,14 @@ public class LevelFlowManager : MonoBehaviour
             StopCoroutine(backgroundMusicFadeCoroutine);
         }
 
-        backgroundMusicFadeCoroutine = StartCoroutine(FadeBackgroundMusicRoutine(targetVolume, stopWhenSilent));
+        backgroundMusicFadeCoroutine = StartCoroutine(FadeBackgroundMusicRoutine(targetVolume, stopWhenSilent, fadeDurationSeconds));
     }
 
-    IEnumerator FadeBackgroundMusicRoutine(float targetVolume, bool stopWhenSilent)
+    IEnumerator FadeBackgroundMusicRoutine(float targetVolume, bool stopWhenSilent, float fadeDurationSeconds)
     {
         float startVolume = backgroundMusicSource.volume;
 
-        if (backgroundMusicFadeDuration <= 0f)
+        if (fadeDurationSeconds <= 0f)
         {
             backgroundMusicSource.volume = targetVolume;
             if (stopWhenSilent && targetVolume <= 0f)
@@ -479,10 +576,10 @@ public class LevelFlowManager : MonoBehaviour
         }
 
         float elapsed = 0f;
-        while (elapsed < backgroundMusicFadeDuration)
+        while (elapsed < fadeDurationSeconds)
         {
             elapsed += Time.deltaTime;
-            backgroundMusicSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsed / backgroundMusicFadeDuration);
+            backgroundMusicSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsed / fadeDurationSeconds);
             yield return null;
         }
 
@@ -497,6 +594,11 @@ public class LevelFlowManager : MonoBehaviour
 
     void PlayCompletionAudio(AudioClip clip)
     {
+        PlayCompletionAudio(clip, completionVolume);
+    }
+
+    void PlayCompletionAudio(AudioClip clip, float volume)
+    {
         if (clip == null)
         {
             return;
@@ -508,6 +610,6 @@ public class LevelFlowManager : MonoBehaviour
             return;
         }
 
-        completionAudioSource.PlayOneShot(clip, completionVolume);
+        completionAudioSource.PlayOneShot(clip, volume);
     }
 }

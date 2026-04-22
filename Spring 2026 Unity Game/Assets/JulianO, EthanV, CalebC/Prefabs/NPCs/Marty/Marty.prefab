@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 183706125449438351}
   - component: {fileID: 1336987958944015626}
   - component: {fileID: 7963431562188608979}
-  - component: {fileID: 3200228506671047469}
   - component: {fileID: 8940064387861504813}
   m_Layer: 0
   m_Name: MartySprite
@@ -252,7 +251,7 @@ MonoBehaviour:
   nameText: {fileID: 613444932019934848}
   portraitImage: {fileID: 0}
   Player: {fileID: 0}
-  voice: {fileID: 8300000, guid: bd17798417cdfdb42a1838f711f6baf5, type: 3}
+  voice: {fileID: 8300000, guid: a526afbb0cfc96845acfd17452a37458, type: 3}
 --- !u!135 &7963431562188608979
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -274,27 +273,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: -0.00000007152558, z: 0}
---- !u!65 &3200228506671047469
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7576382526698408424}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.11, y: 1.4550004, z: 10}
-  m_Center: {x: 0, y: 1.2637935e-15, z: 0.09}
 --- !u!114 &8940064387861504813
 MonoBehaviour:
   m_ObjectHideFlags: 0
