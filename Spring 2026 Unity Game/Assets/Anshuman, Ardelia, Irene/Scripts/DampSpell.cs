@@ -10,10 +10,12 @@ public class DampSpell : SpellBehavior
     public float spread = 20f;         // Random angle spread
     public float lifeTime = 1f;        // How long droplets stay
 
+    public float spawnRadius = 1f;
+
     public override void CastSpell(Transform playerTransform)
     {
         // If no spray point assigned, use player position
-        Vector3 spawnPos = sprayPoint != null
+        Vector3 centerPos = sprayPoint != null
             ? sprayPoint.position
             : playerTransform.position;
 
@@ -22,18 +24,21 @@ public class DampSpell : SpellBehavior
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject drop = Instantiate(waterPrefab, spawnPos, Quaternion.identity);
+            float angle = i * (360f / amount);
+            Vector2 dir = new Vector2(
+        Mathf.Cos(angle * Mathf.Deg2Rad),
+        Mathf.Sin(angle * Mathf.Deg2Rad)
+    );
+            Vector3 spawnPos = centerPos + (Vector3)(dir * spawnRadius);
 
+            GameObject drop = Instantiate(
+                waterPrefab,
+                spawnPos,
+                Quaternion.Euler(90f, 0f, 0f)
+            );
             Rigidbody2D rb = drop.GetComponent<Rigidbody2D>();
-
-            float angle = Random.Range(-spread, spread);
-
-            Vector2 baseDir = direction > 0 ? Vector2.right : Vector2.left;
-            Vector2 finalDir = Quaternion.Euler(0, 0, angle) * baseDir;
-
             if (rb != null)
-                rb.linearVelocity = finalDir * speed;
-
+                rb.linearVelocity = dir * speed;
             Destroy(drop, lifeTime);
         }
     }

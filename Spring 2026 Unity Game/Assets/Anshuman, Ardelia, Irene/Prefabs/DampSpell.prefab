@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139866961527188524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &-1481712968675766102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,14 +39,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139866961527188524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f91fcdebc4c2e843b3635f212ffb139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSummon
   waterPrefab: {fileID: 8142382917270976781, guid: cb6e24e08584dbe4e939bf6d0cac782d,
     type: 3}
-  sprayPoint: {fileID: 0}
+  sprayPoint: {fileID: 660834689158950998}
   amount: 5
   speed: 5
   spread: 20
