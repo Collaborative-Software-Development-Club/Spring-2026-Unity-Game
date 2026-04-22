@@ -122,7 +122,7 @@ public class PlayerInventory : MonoBehaviour
    {
        if (_inventory.GetItemAt(selectedSlot).item is not Lootbox lootbox || !context.canceled) return;
        
-       GameManager.Instance.GUIManager.ShowLootboxUI(lootbox);
+       lootbox.Consume();
        RemoveItemFromSlot(selectedSlot, 1);
    }
 }

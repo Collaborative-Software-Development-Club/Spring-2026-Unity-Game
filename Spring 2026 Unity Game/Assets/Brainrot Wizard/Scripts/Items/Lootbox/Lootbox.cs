@@ -18,7 +18,21 @@ public class Lootbox : Item
     public override void Consume()
     {
         base.Consume();
-        GameManager.Instance.GUIManager.ShowLootboxUI(this);
+
+        LoottableEntry entry = Roll();
+        if (entry != null)
+        {
+            Item runtimeItem = ItemFactory.CreateItem(entry.ItemData);
+
+            if (runtimeItem != null)
+            {
+                GameManager.Instance.playerInventory.AddItemToInventory(runtimeItem, entry.ItemQuantity);
+                GameManager.Instance.playerInventory.RemoveItemFromInventory(this);
+            }
+        }
+        
+        GameManager.Instance.GUIManager.lootboxUIRef.onLootboxOpened?.Invoke(this);
+        GameManager.Instance.GUIManager.TooltipUIRef.Hide();
     }
 
     public LoottableEntry Roll()
