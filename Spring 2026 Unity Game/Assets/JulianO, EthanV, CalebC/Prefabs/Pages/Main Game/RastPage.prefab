@@ -3145,7 +3145,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4532987587939346756, guid: afb50dcbcc197b04f848d9fdd9bc1a47,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5144769770063972888}
   m_SourcePrefab: {fileID: 100100000, guid: afb50dcbcc197b04f848d9fdd9bc1a47, type: 3}
 --- !u!4 &38000905705208504 stripped
 Transform:
@@ -3153,6 +3157,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5637277121748712505}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8130063430362436989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4532987587939346756, guid: afb50dcbcc197b04f848d9fdd9bc1a47,
+    type: 3}
+  m_PrefabInstance: {fileID: 5637277121748712505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5144769770063972888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130063430362436989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd39742280769f8408af873d66d5b2f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JEC_BreathingEffect
+  targetObject: {fileID: 8130063430362436989}
+  expandDuration: 5
+  breatheIn: {x: 4.25, y: 4.25, z: 4.25}
+  breatheOut: {x: 4, y: 4, z: 4}
+  pulsing: 1
 --- !u!1001 &6521611987395608427
 PrefabInstance:
   m_ObjectHideFlags: 0
