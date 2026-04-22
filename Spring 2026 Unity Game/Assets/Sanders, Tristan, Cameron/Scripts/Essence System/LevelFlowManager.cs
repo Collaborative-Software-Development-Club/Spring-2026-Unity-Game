@@ -198,12 +198,16 @@ public class LevelFlowManager : MonoBehaviour
 
     IEnumerator ReturnToHubAfterWinAudio()
     {
+        float sequenceStartTime = Time.time;
         yield return PlayPlayerPoofOutAndHide();
 
         ClearContainers();
 
+        float elapsedSinceSequenceStart = Time.time - sequenceStartTime;
         float clipDuration = gameCompleteClip != null ? gameCompleteClip.length : 0f;
-        float delay = Mathf.Max(finalReturnDelay, clipDuration, finalWinBackgroundMusicFadeDuration);
+        float remainingClipDelay = Mathf.Max(0f, clipDuration - elapsedSinceSequenceStart);
+        float remainingMusicFadeDelay = Mathf.Max(0f, finalWinBackgroundMusicFadeDuration - elapsedSinceSequenceStart);
+        float delay = Mathf.Max(finalReturnDelay, remainingClipDelay, remainingMusicFadeDelay);
         if (delay > 0f)
         {
             yield return new WaitForSeconds(delay);
