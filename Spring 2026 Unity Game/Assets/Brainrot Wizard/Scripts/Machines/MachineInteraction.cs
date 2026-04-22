@@ -31,8 +31,7 @@ public class MachineInteraction : MonoBehaviour, IInteractable
             _machine.SetFunctionality(args);
         };
 
-        machineHandler += onMachineUsed.Invoke;
-        
+        machineHandler += () => onMachineUsed?.Invoke();        
         if (_machine.hasUI)
             GameManager.Instance.GUIManager.OpenMachineUI(_machine, machineHandler);
         else
