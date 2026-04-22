@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fee3e6036b37577448b6cad6474e140e
+guid: faab8d9baa30cd74eb0916d933b4acff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1745543604050361048
-    second: vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-dirt-mound_19527043_0
+      213: -1481890724413172477
+    second: UI_TravelBook_ButtonValue01a_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-dirt-mound_19527043_0
+      name: UI_TravelBook_ButtonValue01a_0
       rect:
         serializedVersion: 2
-        x: 499
-        y: 811
-        width: 3002
-        height: 1940
+        x: 0
+        y: 0
+        width: 8
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8da706bd8aa693810800000000000000
-      internalID: 1745543604050361048
+      spriteID: 305186fcc344f6be0800000000000000
+      internalID: -1481890724413172477
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-dirt-mound_19527043_0: 1745543604050361048
+      UI_TravelBook_ButtonValue01a_0: -1481890724413172477
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

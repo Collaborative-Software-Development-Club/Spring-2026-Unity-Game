@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: fee3e6036b37577448b6cad6474e140e
+guid: 6625861783f319f4194cf64621050b04
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1745543604050361048
-    second: vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-dirt-mound_19527043_0
+      213: 4252405463100013216
+    second: UI_TravelBook_SlotCursor01a_4_0
+  - first:
+      213: -2827034590203943853
+    second: UI_TravelBook_SlotCursor01a_4_1
+  - first:
+      213: 3045534450009247493
+    second: UI_TravelBook_SlotCursor01a_4_2
+  - first:
+      213: -5221347658682754001
+    second: UI_TravelBook_SlotCursor01a_4_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-dirt-mound_19527043_0
+      name: UI_TravelBook_SlotCursor01a_4_0
       rect:
         serializedVersion: 2
-        x: 499
-        y: 811
-        width: 3002
-        height: 1940
+        x: 0
+        y: 22
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8da706bd8aa693810800000000000000
-      internalID: 1745543604050361048
+      spriteID: 0aab10d0d34930b30800000000000000
+      internalID: 4252405463100013216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TravelBook_SlotCursor01a_4_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 22
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 354e62bb40b54c8d0800000000000000
+      internalID: -2827034590203943853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TravelBook_SlotCursor01a_4_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50f04044279e34a20800000000000000
+      internalID: 3045534450009247493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TravelBook_SlotCursor01a_4_3
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2c9563e7fb0a87b0800000000000000
+      internalID: -5221347658682754001
       vertices: []
       indices: 
       edges: []
@@ -148,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-dirt-mound_19527043_0: 1745543604050361048
+      UI_TravelBook_SlotCursor01a_4_0: 4252405463100013216
+      UI_TravelBook_SlotCursor01a_4_1: -2827034590203943853
+      UI_TravelBook_SlotCursor01a_4_2: 3045534450009247493
+      UI_TravelBook_SlotCursor01a_4_3: -5221347658682754001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
