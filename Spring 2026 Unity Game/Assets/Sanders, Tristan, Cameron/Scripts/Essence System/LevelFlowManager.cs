@@ -46,6 +46,12 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField][Min(0f)] float backgroundMusicFadeDuration = 0.75f;
     [SerializeField] bool fadeMusicInOnStart = true;
 
+    [Header("Player Transition VFX")]
+    [SerializeField] UnityEngine.ParticleSystem playerPoofOutPrefab;
+    [SerializeField] UnityEngine.ParticleSystem playerPoofInPrefab;
+    [SerializeField][Min(0f)] float playerPoofOutHoldTime = 0.3f;
+    [SerializeField][Min(0f)] float playerPoofInRevealDelay = 0.15f;
+
     [Header("Completion / Return To Hub")]
     [SerializeField] bool loopLevels = false;
     [SerializeField] float finalReturnDelay = 0.25f;
@@ -54,6 +60,7 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField] string hubSceneName = "MageLibrary";
     [SerializeField] BookUnlocker bookUnlocker;
     [SerializeField] SceneReturner sceneReturner;
+
 
     int currentLevelIndex;
     bool isTransitioning;
@@ -177,15 +184,20 @@ public class LevelFlowManager : MonoBehaviour
     {
         yield return new WaitForSeconds(levelTransitionDelay);
 
+        yield return PlayPlayerPoofOutAndHide();
+
         ClearContainers();
 
         int nextLevel = (currentLevelIndex + 1) % levels.Length;
         ActivateLevel(nextLevel, false);
+        yield return PlayPlayerPoofInAndShow();
         isTransitioning = false;
     }
 
     IEnumerator ReturnToHubAfterWinAudio()
     {
+        yield return PlayPlayerPoofOutAndHide();
+
         ClearContainers();
 
         float clipDuration = gameCompleteClip != null ? gameCompleteClip.length : 0f;
@@ -209,6 +221,7 @@ public class LevelFlowManager : MonoBehaviour
         isTransitioning = false;
         ClearContainers();
         ActivateLevel(currentLevelIndex, false);
+        EnsurePlayerVisible();
         FadeInBackgroundMusic();
     }
 
@@ -353,6 +366,79 @@ public class LevelFlowManager : MonoBehaviour
 
         player.position = spawnPoint.position;
         player.rotation = spawnPoint.rotation;
+    }
+
+    IEnumerator PlayPlayerPoofOutAndHide()
+    {
+        if (player == null)
+        {
+            yield break;
+        }
+
+        float poofDuration = SpawnPlayerPoof(playerPoofOutPrefab, player.position);
+        player.gameObject.SetActive(false);
+
+        float holdDelay = Mathf.Max(playerPoofOutHoldTime, poofDuration);
+        if (holdDelay > 0f)
+        {
+            yield return new WaitForSeconds(holdDelay);
+        }
+    }
+
+    IEnumerator PlayPlayerPoofInAndShow()
+    {
+        if (player == null)
+        {
+            yield break;
+        }
+
+        float poofDuration = SpawnPlayerPoof(playerPoofInPrefab, player.position);
+        float revealDelay = poofDuration > 0f ? Mathf.Min(playerPoofInRevealDelay, poofDuration) : 0f;
+        if (revealDelay > 0f)
+        {
+            yield return new WaitForSeconds(revealDelay);
+        }
+
+        EnsurePlayerVisible();
+    }
+
+    void EnsurePlayerVisible()
+    {
+        if (player == null)
+        {
+            return;
+        }
+
+        if (!player.gameObject.activeSelf)
+        {
+            player.gameObject.SetActive(true);
+        }
+    }
+
+    float SpawnPlayerPoof(UnityEngine.ParticleSystem poofPrefab, Vector3 position)
+    {
+        if (poofPrefab == null)
+        {
+            return 0f;
+        }
+
+        UnityEngine.ParticleSystem spawnedPoof = Instantiate(poofPrefab, position, Quaternion.identity);
+        spawnedPoof.Play();
+
+        float poofDuration = GetParticleDurationSeconds(spawnedPoof);
+        Destroy(spawnedPoof.gameObject, poofDuration + 0.1f);
+        return poofDuration;
+    }
+
+    float GetParticleDurationSeconds(UnityEngine.ParticleSystem particleSystem)
+    {
+        if (particleSystem == null)
+        {
+            return 0f;
+        }
+
+        UnityEngine.ParticleSystem.MainModule main = particleSystem.main;
+        return main.duration + main.startLifetime.constantMax;
     }
 
     void ClearContainers()
