@@ -14,12 +14,12 @@ public class TooltipUI : MonoBehaviour
     [Header("Brainrot Section")]
     public GameObject brainrotSection;
     public TextMeshProUGUI brainrotCategoryText;
-    public RectTransform brainrotAttributesRect;
+    public TextMeshProUGUI brainrotAttributesText;
     
     [Header("Lootbox Section")]
     public GameObject lootboxSection;
-    public RectTransform lootboxChancesRect;
     public GameObject lootboxDropPrefab;
+    public TextMeshProUGUI lootboxChancesText;
 
     public void Show(Item item)
     {
@@ -41,7 +41,7 @@ public class TooltipUI : MonoBehaviour
         }
 
         nameText.text = item.GetName();
-        valueText.text = StringUtils.AbbreviateNumber(item.GetValue());
+        valueText.text = StringUtils.AbbreviateNumber(item.GetValue()) + " Coins";
         descriptionText.text = item.GetDescription();
 
         switch (item.GetItemType())
@@ -73,7 +73,7 @@ public class TooltipUI : MonoBehaviour
 
         foreach (var attributeQuantity in brainrot.GetAttributes())
         {
-            GameManager.Instance.GUIManager.CreateSlot(attributeQuantity).transform.parent = brainrotAttributesRect;
+            brainrotAttributesText.text = StringUtils.PlaceSeparators(attributeQuantity.attribute.ToString()) + ": " + attributeQuantity.quantity + "\n";
         }
     }
     private void ShowLootboxSection(Lootbox lootbox)
@@ -85,10 +85,7 @@ public class TooltipUI : MonoBehaviour
 
         foreach (var drop in lootbox.GetDropSummary())
         {
-            GameObject temp = Instantiate(lootboxDropPrefab, lootboxChancesRect);
-            TextMeshProUGUI tempText = temp.GetComponent<TextMeshProUGUI>();
-            
-            tempText.text = drop;
+            lootboxChancesText.text += drop + "\n";
         }
     }
 
