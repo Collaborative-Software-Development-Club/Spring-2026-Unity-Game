@@ -650,6 +650,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DirtPatch2nd
       objectReference: {fileID: 0}
+    - target: {fileID: 6786075234779033822, guid: d5d45ca3d55747f4f8ffc926a98d6d86,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.39
+      objectReference: {fileID: 0}
     - target: {fileID: 9175659800178979845, guid: d5d45ca3d55747f4f8ffc926a98d6d86,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

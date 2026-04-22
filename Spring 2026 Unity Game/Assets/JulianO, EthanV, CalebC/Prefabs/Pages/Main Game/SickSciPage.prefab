@@ -804,7 +804,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 630c86a3c20ab2444af3e5d189a56fc8, type: 3}
+      objectReference: {fileID: 8300000, guid: 97310ecab15863c4e964ce1c6dbfd4d4, type: 3}
     - target: {fileID: 8303224999526169870, guid: 8922383f15b004846b0dfb6fd59f8d65,
         type: 3}
       propertyPath: m_Name

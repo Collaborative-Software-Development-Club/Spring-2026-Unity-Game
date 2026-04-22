@@ -6395,7 +6395,7 @@ MonoBehaviour:
   spellManager: {fileID: 39127501}
   spellCasting: {fileID: 1866944500}
   essenceContainer: {fileID: 166458215}
-  levelTransitionDelay: 3
+  levelTransitionDelay: 1
   levels:
   - levelName: Lvl1
     environmentRoot: {fileID: 719796345}
@@ -6422,13 +6422,21 @@ MonoBehaviour:
   levelCompleteClip: {fileID: 8300000, guid: f835445b11cd841b497a525259e88eb4, type: 3}
   gameCompleteClip: {fileID: 8300000, guid: 345325bba2aa04dcda6fb9b6deec0c88, type: 3}
   completionVolume: 1
+  gameCompleteVolume: 1.6
   backgroundMusicSource: {fileID: 1178496290}
   backgroundMusicClip: {fileID: 8300000, guid: 6b67aab6d744be94f8857c050a8f2e7e, type: 3}
   backgroundMusicVolume: 0.4
   backgroundMusicFadeDuration: 0.75
+  finalWinBackgroundMusicFadeDuration: 3
   fadeMusicInOnStart: 1
+  playerPoofOutPrefab: {fileID: 7484172816937772841, guid: 00c3dde1bf082c34ab0865d3c9ada43e,
+    type: 3}
+  playerPoofInPrefab: {fileID: 7484172816937772841, guid: af2e61ade9fedf94b96293f11d86e2f3,
+    type: 3}
+  playerPoofOutHoldTime: 2
+  playerPoofInRevealDelay: 2
   loopLevels: 0
-  finalReturnDelay: 0.25
+  finalReturnDelay: 0
   progressData: {fileID: 0}
   unlockedBook: 0
   hubSceneName: MainGameMenu

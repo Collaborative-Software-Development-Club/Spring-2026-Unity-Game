@@ -54,8 +54,8 @@ public class SpellCasting : MonoBehaviour
     //Updates the spells to be where the mouse is and determines the color the spell should be based on visibility
     private void UpdateSpellPosition()
     {
-        spellToPlace.transform.position = GetMousePosition();        
-        spellToPlace.GetComponent<SpriteRenderer>().color = CanSeeLocation() ? Color.clear : Color.white;
+        spellToPlace.transform.position = GetMousePosition();
+        spellToPlace.GetComponent<EssenceMover>().DisplayPlaceability(CanSeeLocation());
         
     }
 

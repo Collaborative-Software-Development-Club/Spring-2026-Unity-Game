@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79eb1a81bb06e97449b4e9a172b9a197, type: 3}
+  m_Name: DampeningSpell
+  m_EditorClassIdentifier: Assembly-CSharp::SpellData
+  spellID: 1
+  spellName: Dampening Spell
+  spellIcon: {fileID: -6860487137229460656, guid: de11b0b6e2d39b14999a5f45d57963f9,
+    type: 3}
+  loreDescription: Incur the dampening.
+  mechanicDescription: Dampen your surroundings.
+  spellPrefab: {fileID: -1481712968675766102, guid: 580e7443c3d5a3443a0b38c1b9150014,
+    type: 3}
