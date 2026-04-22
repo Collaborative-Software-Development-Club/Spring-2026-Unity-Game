@@ -39,6 +39,13 @@ public class LevelFlowManager : MonoBehaviour
     [SerializeField] AudioClip gameCompleteClip;
     [SerializeField][Range(0f, 1f)] float completionVolume = 1f;
 
+    [Header("Background Music")]
+    [SerializeField] AudioSource backgroundMusicSource;
+    [SerializeField] AudioClip backgroundMusicClip;
+    [SerializeField][Range(0f, 1f)] float backgroundMusicVolume = 0.65f;
+    [SerializeField][Min(0f)] float backgroundMusicFadeDuration = 0.75f;
+    [SerializeField] bool fadeMusicInOnStart = true;
+
     [Header("Completion / Return To Hub")]
     [SerializeField] bool loopLevels = false;
     [SerializeField] float finalReturnDelay = 0.25f;
@@ -50,16 +57,20 @@ public class LevelFlowManager : MonoBehaviour
 
     int currentLevelIndex;
     bool isTransitioning;
+    Coroutine backgroundMusicFadeCoroutine;
 
     void Awake()
     {
         ResolveReferences();
         EnsureCompletionAudioSource();
+        EnsureBackgroundMusicSource();
         SubscribeToGoals();
     }
 
     void Start()
     {
+        StartBackgroundMusic();
+
         if (levels == null || levels.Length == 0)
         {
             Debug.LogWarning($"{name}: No levels configured in LevelFlowManager.");
@@ -152,6 +163,7 @@ public class LevelFlowManager : MonoBehaviour
 
         if (isFinalLevel && !loopLevels)
         {
+            FadeOutBackgroundMusic();
             PlayCompletionAudio(gameCompleteClip);
             StartCoroutine(ReturnToHubAfterWinAudio());
             return;
@@ -177,7 +189,7 @@ public class LevelFlowManager : MonoBehaviour
         ClearContainers();
 
         float clipDuration = gameCompleteClip != null ? gameCompleteClip.length : 0f;
-        float delay = Mathf.Max(finalReturnDelay, clipDuration);
+        float delay = Mathf.Max(finalReturnDelay, clipDuration, BackgroundMusicFadeDurationSeconds);
         if (delay > 0f)
         {
             yield return new WaitForSeconds(delay);
@@ -197,6 +209,48 @@ public class LevelFlowManager : MonoBehaviour
         isTransitioning = false;
         ClearContainers();
         ActivateLevel(currentLevelIndex, false);
+        FadeInBackgroundMusic();
+    }
+
+    public float BackgroundMusicFadeDurationSeconds => backgroundMusicClip != null ? backgroundMusicFadeDuration : 0f;
+
+    public void FadeOutBackgroundMusic()
+    {
+        if (backgroundMusicClip == null)
+        {
+            return;
+        }
+
+        EnsureBackgroundMusicSource();
+        if (backgroundMusicSource == null || !backgroundMusicSource.isPlaying)
+        {
+            return;
+        }
+
+        FadeBackgroundMusicTo(0f, true);
+    }
+
+    public void FadeInBackgroundMusic()
+    {
+        if (backgroundMusicClip == null)
+        {
+            return;
+        }
+
+        EnsureBackgroundMusicSource();
+        if (backgroundMusicSource == null)
+        {
+            return;
+        }
+
+        backgroundMusicSource.clip = backgroundMusicClip;
+        if (!backgroundMusicSource.isPlaying)
+        {
+            backgroundMusicSource.volume = 0f;
+            backgroundMusicSource.Play();
+        }
+
+        FadeBackgroundMusicTo(backgroundMusicVolume, false);
     }
 
     void CompletePuzzleAndReturnToHub()
@@ -339,6 +393,106 @@ public class LevelFlowManager : MonoBehaviour
         completionAudioSource.playOnAwake = false;
         completionAudioSource.loop = false;
         completionAudioSource.spatialBlend = 0f;
+    }
+
+    void EnsureBackgroundMusicSource()
+    {
+        if (backgroundMusicSource == null && backgroundMusicClip != null)
+        {
+            backgroundMusicSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (backgroundMusicSource == null)
+        {
+            return;
+        }
+
+        backgroundMusicSource.playOnAwake = false;
+        backgroundMusicSource.loop = true;
+        backgroundMusicSource.spatialBlend = 0f;
+        backgroundMusicSource.clip = backgroundMusicClip;
+    }
+
+    void StartBackgroundMusic()
+    {
+        if (backgroundMusicClip == null)
+        {
+            return;
+        }
+
+        EnsureBackgroundMusicSource();
+        if (backgroundMusicSource == null)
+        {
+            return;
+        }
+
+        backgroundMusicSource.clip = backgroundMusicClip;
+
+        if (fadeMusicInOnStart)
+        {
+            if (!backgroundMusicSource.isPlaying)
+            {
+                backgroundMusicSource.Play();
+            }
+
+            backgroundMusicSource.volume = 0f;
+            FadeBackgroundMusicTo(backgroundMusicVolume, false);
+            return;
+        }
+
+        backgroundMusicSource.volume = backgroundMusicVolume;
+        if (!backgroundMusicSource.isPlaying)
+        {
+            backgroundMusicSource.Play();
+        }
+    }
+
+    void FadeBackgroundMusicTo(float targetVolume, bool stopWhenSilent)
+    {
+        if (backgroundMusicSource == null)
+        {
+            return;
+        }
+
+        if (backgroundMusicFadeCoroutine != null)
+        {
+            StopCoroutine(backgroundMusicFadeCoroutine);
+        }
+
+        backgroundMusicFadeCoroutine = StartCoroutine(FadeBackgroundMusicRoutine(targetVolume, stopWhenSilent));
+    }
+
+    IEnumerator FadeBackgroundMusicRoutine(float targetVolume, bool stopWhenSilent)
+    {
+        float startVolume = backgroundMusicSource.volume;
+
+        if (backgroundMusicFadeDuration <= 0f)
+        {
+            backgroundMusicSource.volume = targetVolume;
+            if (stopWhenSilent && targetVolume <= 0f)
+            {
+                backgroundMusicSource.Stop();
+            }
+
+            backgroundMusicFadeCoroutine = null;
+            yield break;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < backgroundMusicFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            backgroundMusicSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsed / backgroundMusicFadeDuration);
+            yield return null;
+        }
+
+        backgroundMusicSource.volume = targetVolume;
+        if (stopWhenSilent && targetVolume <= 0f)
+        {
+            backgroundMusicSource.Stop();
+        }
+
+        backgroundMusicFadeCoroutine = null;
     }
 
     void PlayCompletionAudio(AudioClip clip)

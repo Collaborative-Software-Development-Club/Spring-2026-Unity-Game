@@ -319,7 +319,7 @@ MonoBehaviour:
   <RequiredAmount>k__BackingField: 100
   collectionAudioSource: {fileID: 53551788}
   collectionClip: {fileID: 8300000, guid: 56c72bb20d715db4bb84697a9275e6be, type: 3}
-  collectionVolume: 0.2
+  collectionVolume: 0.1
   enableDebugEssenceInput: 1
   debugAddEssenceKey: 61
   debugAddAmount: 10
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   <RequiredAmount>k__BackingField: 100
   collectionAudioSource: {fileID: 398705508}
   collectionClip: {fileID: 8300000, guid: 56c72bb20d715db4bb84697a9275e6be, type: 3}
-  collectionVolume: 0.2
+  collectionVolume: 0.1
   enableDebugEssenceInput: 1
   debugAddEssenceKey: 61
   debugAddAmount: 10
@@ -6422,6 +6422,11 @@ MonoBehaviour:
   levelCompleteClip: {fileID: 8300000, guid: f835445b11cd841b497a525259e88eb4, type: 3}
   gameCompleteClip: {fileID: 8300000, guid: 345325bba2aa04dcda6fb9b6deec0c88, type: 3}
   completionVolume: 1
+  backgroundMusicSource: {fileID: 1178496290}
+  backgroundMusicClip: {fileID: 8300000, guid: 6b67aab6d744be94f8857c050a8f2e7e, type: 3}
+  backgroundMusicVolume: 0.4
+  backgroundMusicFadeDuration: 0.75
+  fadeMusicInOnStart: 1
   loopLevels: 0
   finalReturnDelay: 0.25
   progressData: {fileID: 0}
@@ -11494,9 +11499,9 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.30149055}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.03125, z: 0, w: 0.9375}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.65625, y: 1.5}
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.86, y: 2.1}
     newSize: {x: 0.65625, y: 1.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -11844,7 +11849,7 @@ PrefabInstance:
     - target: {fileID: 1638792487756357733, guid: b0569e44a8205444787ecad03c83543f,
         type: 3}
       propertyPath: collectionVolume
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1638792487756357733, guid: b0569e44a8205444787ecad03c83543f,
         type: 3}
