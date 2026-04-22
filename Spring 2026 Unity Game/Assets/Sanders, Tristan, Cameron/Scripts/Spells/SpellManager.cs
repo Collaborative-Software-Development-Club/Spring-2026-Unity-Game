@@ -104,6 +104,21 @@ public class SpellManager : MonoBehaviour
         return spellCharges;
     }
 
+    public void NotifyCurrentSelection()
+    {
+        if (spells == null || currentSpellIndex < 0 || currentSpellIndex >= spells.Length)
+        {
+            return;
+        }
+
+        if (spells[currentSpellIndex] == null)
+        {
+            return;
+        }
+
+        OnSpellSelected?.Invoke(currentSpellIndex, spells[currentSpellIndex]);
+    }
+
     public void SetLoadout(GameObject[] newSpells, int[] newCharges, int defaultSelectedIndex = 0)
     {
         if (newSpells == null || newCharges == null)
@@ -144,9 +159,6 @@ public class SpellManager : MonoBehaviour
             OnChargeChanged?.Invoke(i, spellCharges[i]);
         }
 
-        if (spells[currentSpellIndex] != null)
-        {
-            OnSpellSelected?.Invoke(currentSpellIndex, spells[currentSpellIndex]);
-        }
+        NotifyCurrentSelection();
     }
 }

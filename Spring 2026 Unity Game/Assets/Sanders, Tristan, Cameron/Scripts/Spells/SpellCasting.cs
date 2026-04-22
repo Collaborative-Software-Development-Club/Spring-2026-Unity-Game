@@ -12,6 +12,7 @@ public class SpellCasting : MonoBehaviour
     private EssenceInput.SpellCastingActions spellActions;
     private GameObject spellToPlace;
     private float currentRotation = 0f;
+    private bool isSubscribedToSpellSelection;
 
 
     private void Awake()
@@ -26,22 +27,23 @@ public class SpellCasting : MonoBehaviour
 
     private void OnEnable()
     {
+        EnsureSpellSelectionSubscription();
         spellActions.Enable();
         spellActions.Cast.performed += Cast;
         spellActions.Rotate.performed += Rotate;
+
+        if (spellManager != null)
+        {
+            spellManager.NotifyCurrentSelection();
+        }
     }
 
     private void OnDisable()
     {
         spellActions.Cast.performed -= Cast;
         spellActions.Rotate.performed -= Rotate;
-        spellManager.OnSpellSelected -= Display;
+        RemoveSpellSelectionSubscription();
         spellActions.Disable();
-    }
-
-    private void Start()
-    {
-        spellManager.OnSpellSelected += Display;
     }
 
     private void Update()
@@ -95,6 +97,28 @@ public class SpellCasting : MonoBehaviour
 
         spellToPlace = Instantiate(spell, mousePos, Quaternion.identity, spellContainer);
         spellToPlace.GetComponent<Collider2D>().enabled = false;
+    }
+
+    private void EnsureSpellSelectionSubscription()
+    {
+        if (isSubscribedToSpellSelection || spellManager == null)
+        {
+            return;
+        }
+
+        spellManager.OnSpellSelected += Display;
+        isSubscribedToSpellSelection = true;
+    }
+
+    private void RemoveSpellSelectionSubscription()
+    {
+        if (!isSubscribedToSpellSelection || spellManager == null)
+        {
+            return;
+        }
+
+        spellManager.OnSpellSelected -= Display;
+        isSubscribedToSpellSelection = false;
     }
 
     public void ClearPlacedSpells()
